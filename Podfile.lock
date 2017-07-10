@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.4.0)
+  - IQKeyboardManagerSwift (4.0.10)
+  - SSZipArchive (1.8.1)
+  - SwiftIconFont (2.6.0)
+  - SwiftyMarkdown (0.3.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - IQKeyboardManagerSwift
+  - SSZipArchive
+  - SwiftIconFont
+  - SwiftyMarkdown
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
+  SwiftIconFont: bbe1f32e1e16bac87dad8566afc80132cb8d072c
+  SwiftyMarkdown: e227c4f67000248358be3d566e5f51e9a020757d
+
+PODFILE CHECKSUM: d3ab7a514d32f3e5fca52945f95390b02d1fff35
+
+COCOAPODS: 1.2.1

@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650206981EF89CDF0056F22A /* AssociatedServiceView.swift */; };
+		6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */; };
+		6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */; };
+		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
+		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
+		6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5C91EFCDFAA00769FF7 /* WikiView.swift */; };
+		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
+		6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */; };
+		6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */; };
+		65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7B1F09746800BDC60A /* icons8-Folder-50.png */; };
+		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
+		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
+		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
+		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
+		65C360671F037CE200006074 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C360661F037CE200006074 /* PDFView.swift */; };
+		65C785CE1F008F1100F80BDC /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C785CD1F008F1100F80BDC /* Function.swift */; };
+		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
+		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
+		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
+		D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */; };
+		D60749D11E59E5C000C1DD03 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */; };
+		D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6552FAA1E4CCE7700A2B220 /* ForumView.swift */; };
+		D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D01B31EE7972600DC0642 /* HomeScreenController.swift */; };
+		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
+		D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17431E44D51600E66B4B /* ViewController.swift */; };
+		D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6AE17481E44D51600E66B4B /* Assets.xcassets */; };
+		D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */; };
+		D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F7A0031EF2393E0047CF5D /* StoreKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		650206981EF89CDF0056F22A /* AssociatedServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedServiceView.swift; sourceTree = "<group>"; };
+		6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesSearchingView.swift; sourceTree = "<group>"; };
+		6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesFiltringView.swift; sourceTree = "<group>"; };
+		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
+		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
+		6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-NFLS.png"; sourceTree = "<group>"; };
+		6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
+		65784C7B1F09746800BDC60A /* icons8-Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Folder-50.png"; sourceTree = "<group>"; };
+		65784C7D1F09762400BDC60A /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Documents-50.png"; sourceTree = "<group>"; };
+		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
+		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
+		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
+		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		65C360661F037CE200006074 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		65C785CD1F008F1100F80BDC /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EFDE6420DBEAF0FB694F697 /* Pods-NFLSers-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSTests/Pods-NFLSers-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		81238CB6B663B8C8706E3A62 /* Pods-NFLSers-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		D606F2BB1EE86CD800564191 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		D606F2BF1EE9027900564191 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/NFLSers-iOS-gfmjxostdafotgcwdloyrmomfuzy/Build/Products/Debug-iphoneos/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"; sourceTree = "<group>"; };
+		D606F2C11EE9039D00564191 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NFLSers_iOS.framework; path = "Pods/../build/Release-iphoneos/Pods_NFLSers_iOS.framework"; sourceTree = "<group>"; };
+		D606F2C61EE997B800564191 /* UserCertification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertification.swift; sourceTree = "<group>"; };
+		D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertificationStepView.swift; sourceTree = "<group>"; };
+		D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
+		D6552FAA1E4CCE7700A2B220 /* ForumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
+		D66D01B31EE7972600DC0642 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
+		D6AE173E1E44D51600E66B4B /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "NFLSers-iOS.app"; path = "/Users/hqy/Documents/GitHub/nflsers/build/Debug-iphoneos/NFLSers-iOS.app"; sourceTree = "<absolute>"; };
+		D6AE17411E44D51600E66B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D6AE17431E44D51600E66B4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D6AE17481E44D51600E66B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D6AE174B1E44D51600E66B4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D6AE174D1E44D51600E66B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NFLSers-iOS.entitlements"; sourceTree = "<group>"; };
+		D6F7A0031EF2393E0047CF5D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E7BCC1679DFA556D3674DF34 /* Pods-NFLSers-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSTests/Pods-NFLSers-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6AE173B1E44D51600E66B4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */,
+				D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0349413280DA2E07E819AAA2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6F7A0031EF2393E0047CF5D /* StoreKit.framework */,
+				D606F2C11EE9039D00564191 /* Pods_NFLSers_iOS.framework */,
+				D606F2BF1EE9027900564191 /* IQKeyboardManagerSwift.framework */,
+				3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */,
+				7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */,
+				1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65784C7A1F0973DD00BDC60A /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */,
+				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
+				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
+				65784C7B1F09746800BDC60A /* icons8-Folder-50.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		D6AE17351E44D51600E66B4B = {
+			isa = PBXGroup;
+			children = (
+				D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */,
+				D6AE17401E44D51600E66B4B /* general */,
+				E014B762E1B339252796E5D2 /* Pods */,
+				0349413280DA2E07E819AAA2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D6AE17401E44D51600E66B4B /* general */ = {
+			isa = PBXGroup;
+			children = (
+				D606F2C61EE997B800564191 /* UserCertification.swift */,
+				6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */,
+				D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */,
+				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
+				650206981EF89CDF0056F22A /* AssociatedServiceView.swift */,
+				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
+				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
+				D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */,
+				6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */,
+				65784C7A1F0973DD00BDC60A /* icons */,
+				65C360661F037CE200006074 /* PDFView.swift */,
+				D6552FAA1E4CCE7700A2B220 /* ForumView.swift */,
+				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
+				6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */,
+				D6AE17431E44D51600E66B4B /* ViewController.swift */,
+				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
+				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
+				D6AE17481E44D51600E66B4B /* Assets.xcassets */,
+				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
+				6534B61B1F0E51F700607BDA /* WeatherView.swift */,
+				6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */,
+				6595BA9D1F00844100BA1CE1 /* NotificationView.swift */,
+				65C785CD1F008F1100F80BDC /* Function.swift */,
+				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
+				D6AE174D1E44D51600E66B4B /* Info.plist */,
+				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
+			);
+			path = general;
+			sourceTree = "<group>";
+		};
+		E014B762E1B339252796E5D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */,
+				C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */,
+				7EFDE6420DBEAF0FB694F697 /* Pods-NFLSers-iOSTests.debug.xcconfig */,
+				E7BCC1679DFA556D3674DF34 /* Pods-NFLSers-iOSTests.release.xcconfig */,
+				81238CB6B663B8C8706E3A62 /* Pods-NFLSers-iOSUITests.debug.xcconfig */,
+				6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6AE173D1E44D51600E66B4B /* NFLSers-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */;
+			buildPhases = (
+				E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */,
+				D6AE173A1E44D51600E66B4B /* Sources */,
+				D6AE173B1E44D51600E66B4B /* Frameworks */,
+				D6AE173C1E44D51600E66B4B /* Resources */,
+				22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */,
+				6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NFLSers-iOS";
+			productName = general;
+			productReference = D6AE173E1E44D51600E66B4B /* NFLSers-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6AE17361E44D51600E66B4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "胡清阳";
+				TargetAttributes = {
+					D6AE173D1E44D51600E66B4B = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = K2P3533G4D;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = D6AE17391E44D51600E66B4B /* Build configuration list for PBXProject "NFLSers-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D6AE17351E44D51600E66B4B;
+			productRefGroup = D6AE17351E44D51600E66B4B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6AE173D1E44D51600E66B4B /* NFLSers-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6AE173C1E44D51600E66B4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */,
+				D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */,
+				6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */,
+				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
+				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
+				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
+				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6AE173A1E44D51600E66B4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */,
+				D606F2C71EE997B800564191 /* UserCertification.swift in Sources */,
+				65C785CE1F008F1100F80BDC /* Function.swift in Sources */,
+				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
+				D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */,
+				D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */,
+				6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */,
+				6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */,
+				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
+				6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */,
+				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
+				6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */,
+				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
+				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
+				D60749D11E59E5C000C1DD03 /* PersonalInfo.swift in Sources */,
+				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
+				65C360671F037CE200006074 /* PDFView.swift in Sources */,
+				650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */,
+				6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6546E68A1EF84A29008CBBCA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6546E68B1EF84A29008CBBCA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6AE174B1E44D51600E66B4B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D6AE17641E44D51600E66B4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6AE17651E44D51600E66B4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D6AE17671E44D51600E66B4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
+				INFOPLIST_FILE = general/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "general/NFLSers-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		D6AE17681E44D51600E66B4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
+				INFOPLIST_FILE = general/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "general/NFLSers-iOS-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6AE17391E44D51600E66B4B /* Build configuration list for PBXProject "NFLSers-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6AE17641E44D51600E66B4B /* Debug */,
+				D6AE17651E44D51600E66B4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6AE17671E44D51600E66B4B /* Debug */,
+				D6AE17681E44D51600E66B4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6AE17361E44D51600E66B4B /* Project object */;
+}
