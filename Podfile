@@ -12,14 +12,4 @@ target 'NFLSers-iOS' do
   pod 'SwiftyMarkdown'
   pod 'SwiftIconFont'
 
-  target 'NFLSers-iOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'NFLSers-iOSUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
