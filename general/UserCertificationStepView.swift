@@ -241,7 +241,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "邮箱", tag: .email)
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "真实姓名", tag: .realName)
                 self.addFormItem(rootStackView: self.container, type: .datePicker, name: "生日", tag: .birthday)
-                self.addFormItem(rootStackView: self.container, type: .picker, name: "性别", tag: .gender, 0, ["男","女","其他/保密"])
+                self.addFormItem(rootStackView: self.container, type: .picker, name: "性别", tag: .gender, 0, ["其他/保密","男","女"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "曾用名", tag: .usedName)
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "国内手机号码", tag: .phoneIn)
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "国外手机号码", tag: .phoneInter)
