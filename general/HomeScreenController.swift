@@ -52,8 +52,10 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             SKPaymentQueue.default().add(payment)
             self.transactionInProgress = true
         })
+        let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
         dialog.addAction(donate)
         dialog.addAction(exit)
+        dialog.addAction(cancel)
         dialog.popoverPresentationController?.barButtonItem = barItem
         self.present(dialog, animated: true)
     }

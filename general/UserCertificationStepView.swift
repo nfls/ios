@@ -855,7 +855,12 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             height = 100
         }
         let constraintForStack = NSLayoutConstraint(item: stackview, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height)
-        let constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 125)
+        var constraintForLabel = NSLayoutConstraint()
+        if(type == .datePicker){
+            constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
+        } else {
+            constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 125)
+        }
         
         label.text = name + "："
         label.textAlignment = .right

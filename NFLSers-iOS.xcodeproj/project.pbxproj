@@ -45,6 +45,7 @@
 		6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesFiltringView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
 		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
 		6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-NFLS.png"; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
 		D6552FAA1E4CCE7700A2B220 /* ForumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
 		D66D01B31EE7972600DC0642 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
-		D6AE173E1E44D51600E66B4B /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "NFLSers-iOS.app"; path = "/Users/hqy/Documents/GitHub/nflsers/build/Debug-iphoneos/NFLSers-iOS.app"; sourceTree = "<absolute>"; };
 		D6AE17411E44D51600E66B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6AE17431E44D51600E66B4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D6AE17481E44D51600E66B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +127,7 @@
 				D6AE17401E44D51600E66B4B /* general */,
 				E014B762E1B339252796E5D2 /* Pods */,
 				0349413280DA2E07E819AAA2 /* Frameworks */,
+				656AEC931F3096F100F0801A /* NFLSers-iOS.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,7 +197,7 @@
 			);
 			name = "NFLSers-iOS";
 			productName = general;
-			productReference = D6AE173E1E44D51600E66B4B /* NFLSers-iOS.app */;
+			productReference = 656AEC931F3096F100F0801A /* NFLSers-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
