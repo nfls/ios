@@ -23,6 +23,7 @@
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65C360671F037CE200006074 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C360661F037CE200006074 /* PDFView.swift */; };
 		65C785CE1F008F1100F80BDC /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C785CD1F008F1100F80BDC /* Function.swift */; };
+		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
 		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
 		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
@@ -59,6 +60,7 @@
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65C360661F037CE200006074 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
 		65C785CD1F008F1100F80BDC /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFDE6420DBEAF0FB694F697 /* Pods-NFLSers-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSTests/Pods-NFLSers-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
 				650206981EF89CDF0056F22A /* AssociatedServiceView.swift */,
 				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
+				65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */,
 				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
 				D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */,
 				6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */,
@@ -333,6 +336,7 @@
 				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
 				D60749D11E59E5C000C1DD03 /* PersonalInfo.swift in Sources */,
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
+				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,
 				65C360671F037CE200006074 /* PDFView.swift in Sources */,
 				650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */,
 				6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */,

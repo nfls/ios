@@ -11,5 +11,6 @@ target 'NFLSers-iOS' do
   pod 'SSZipArchive'
   pod 'SwiftyMarkdown'
   pod 'SwiftIconFont'
+  pod 'Charts'
 
 end
