@@ -10,8 +10,13 @@
 		650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650206981EF89CDF0056F22A /* AssociatedServiceView.swift */; };
 		6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */; };
 		6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */; };
+		65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A801F4608CF00E084A2 /* LaunchScreenView.swift */; };
+		65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A821F460A6500E084A2 /* AlumniActivityView.swift */; };
+		65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A841F46120B00E084A2 /* PostDetailView.swift */; };
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
+		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
 		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
+		654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654923A01F452CF2000E22C9 /* LiveListView.swift */; };
 		6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5C91EFCDFAA00769FF7 /* WikiView.swift */; };
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
 		6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */; };
@@ -44,8 +49,13 @@
 		650206981EF89CDF0056F22A /* AssociatedServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedServiceView.swift; sourceTree = "<group>"; };
 		6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesSearchingView.swift; sourceTree = "<group>"; };
 		6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesFiltringView.swift; sourceTree = "<group>"; };
+		65234A801F4608CF00E084A2 /* LaunchScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		65234A821F460A6500E084A2 /* AlumniActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniActivityView.swift; sourceTree = "<group>"; };
+		65234A841F46120B00E084A2 /* PostDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		654923A01F452CF2000E22C9 /* LiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveListView.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
 		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
@@ -114,6 +124,7 @@
 		65784C7A1F0973DD00BDC60A /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
 				6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
@@ -136,7 +147,11 @@
 		D6AE17401E44D51600E66B4B /* general */ = {
 			isa = PBXGroup;
 			children = (
+				65234A821F460A6500E084A2 /* AlumniActivityView.swift */,
+				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 				D606F2C61EE997B800564191 /* UserCertification.swift */,
+				65234A841F46120B00E084A2 /* PostDetailView.swift */,
+				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
 				6510A31D1F00CE30000D3468 /* ResourcesSearchingView.swift */,
 				D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */,
 				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
@@ -257,6 +272,7 @@
 			files = (
 				D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */,
 				D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */,
+				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
 				6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
@@ -323,13 +339,16 @@
 				D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */,
 				D606F2C71EE997B800564191 /* UserCertification.swift in Sources */,
 				65C785CE1F008F1100F80BDC /* Function.swift in Sources */,
+				65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */,
 				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
 				D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */,
 				D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */,
+				65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */,
 				6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */,
 				6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */,
+				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
@@ -338,6 +357,7 @@
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
 				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,
 				65C360671F037CE200006074 /* PDFView.swift in Sources */,
+				65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */,
 				650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */,
 				6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */,
 			);

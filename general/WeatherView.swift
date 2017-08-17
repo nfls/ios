@@ -106,13 +106,11 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     func numberOfSections(in tableView: UITableView) -> Int {
         return totalStations
     }
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        //let cell = tableView.dequeueReusableCell(withIdentifier: ID)
-        //return cell!.textLabel!.frame.height + cell!.detailTextLabel!.frame.height
-        return 100
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return 
     }
-    */
+    
 }
 class DetailCell:UITableViewCell{
     required init?(coder aDecoder: NSCoder) {

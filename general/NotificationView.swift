@@ -26,7 +26,7 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
     
     func getNotificationData(){
         let headers: HTTPHeaders = [
-            "Cookie" : "token=" + "953176462068c12df3d57481a67b7626dff0b9a55eaed9be2b0045ace006e537"
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
         Alamofire.request("https://api.nfls.io/center/systemMessage", headers: headers).responseJSON{ response in
             switch response.result{
