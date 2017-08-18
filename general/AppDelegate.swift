@@ -15,38 +15,19 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var token:String = ""
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
         //ZIKCellularAuthorization
         return true
     }
+    
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8 , value != 0 else { return identifier     }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
-        let system = identifier + " @ " + ProcessInfo.processInfo.operatingSystemVersionString
-        let parameters: Parameters = [
-            "device_id":token,
-            "device_model":system
-        ]
-        Alamofire.request("https://api.nfls.io/device/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).response(completionHandler: {
-            response in
-            dump(response)
-        })
-        print("DEVICE TOKEN = \(token)")
+        token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
     }
     
 

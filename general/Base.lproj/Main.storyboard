@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2GH-CM-jsF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -310,6 +310,7 @@
                     <connections>
                         <outlet property="barItem" destination="gPO-xK-J33" id="LDH-By-bcD"/>
                         <segue destination="Mfd-TQ-No7" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="SlH-j6-mgU"/>
+                        <segue destination="yOG-PY-KJD" kind="show" identifier="showOpenSource" id="Uwg-ur-hDW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwS-QH-0hI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1140,6 +1141,155 @@
             </objects>
             <point key="canvasLocation" x="117.39130434782609" y="-1328.804347826087"/>
         </scene>
+        <!--开源许可-->
+        <scene sceneID="oDB-Wz-jfb">
+            <objects>
+                <viewController title="开源许可" id="yOG-PY-KJD" customClass="OpenSourceLicenseViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LBR-nw-DSn"/>
+                        <viewControllerLayoutGuide type="bottom" id="zCf-AZ-ifT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zch-4R-QnA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8j0-1f-vpN">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="X7B-Jh-b9J"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="开源组件许可" id="Uxu-gN-mFr">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="9rh-qr-Sj1">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ap1-q9-QyJ">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="7UI-fb-jdN" kind="unwind" unwindAction="closeCurrentWithSegue:" id="SrM-6J-Wfp"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-T7-77B">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                            </scrollView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLE-zm-Iaa">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Illustrations have their own licenses.
+
+------------
+nflsers
+------------ 
+ https://github.com/nfls/nflsers
+ © 2017 mmlmml1(</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="Verdana"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="胡清阳">
+                                        <attributes>
+                                            <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="PingFangSC-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">) 
+ Licensed under Apache License 2.0
+
+------------
+IQKeyboardManager
+------------
+ https://github.com/hackiftekhar/IQKeyboardManager
+ © 2013-2016 Iftekhar Qurashi
+ Licensed under MIT License
+
+------------
+Alamofire
+------------
+ https://github.com/Alamofire/Alamofire
+ © 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
+ Licensed under MIT License
+
+------------
+ZipArchive
+------------
+ https://github.com/ZipArchive/ZipArchive
+ © 2010-2015, Sam Soffes, http://soff.es
+ Licensed under MIT License
+
+------------
+SwiftyMarkdown
+------------
+ https://github.com/SimonFairbairn/SwiftyMarkdown
+ © 2016 Simon Fairbairn
+ Licensed under MIT License
+
+------------
+SwiftIconFont
+------------
+ https://github.com/0x73/SwiftIconFont
+ © 2016 Sedat Gokbek CIFTCI &lt;me@sedat.ninja&gt;
+ Licensed under MIT License
+
+------------
+Charts
+------------
+ https://github.com/danielgindi/Charts
+ © 2016 Daniel Cohen Gindi &amp; Philipp Jahoda
+ Licensed under Apache License 2.0</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="Verdana"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8j0-1f-vpN" secondAttribute="trailing" id="8To-GA-6AD"/>
+                            <constraint firstAttribute="trailing" secondItem="gLE-zm-Iaa" secondAttribute="trailing" id="983-f8-LJN"/>
+                            <constraint firstItem="zCf-AZ-ifT" firstAttribute="top" secondItem="wZv-T7-77B" secondAttribute="bottom" id="Dd1-NM-JDQ"/>
+                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="G7o-eb-2wq"/>
+                            <constraint firstItem="wZv-T7-77B" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="Vef-kU-cGK"/>
+                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="top" secondItem="Zch-4R-QnA" secondAttribute="top" constant="64" id="Ybc-Vy-ok7"/>
+                            <constraint firstItem="8j0-1f-vpN" firstAttribute="top" secondItem="LBR-nw-DSn" secondAttribute="bottom" id="kHc-hp-WEM"/>
+                            <constraint firstItem="8j0-1f-vpN" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="kmy-mp-AD0"/>
+                            <constraint firstItem="zCf-AZ-ifT" firstAttribute="top" secondItem="gLE-zm-Iaa" secondAttribute="bottom" id="p4u-hY-VAN"/>
+                            <constraint firstAttribute="trailing" secondItem="wZv-T7-77B" secondAttribute="trailing" id="ylS-Xx-bHO"/>
+                            <constraint firstItem="wZv-T7-77B" firstAttribute="top" secondItem="8j0-1f-vpN" secondAttribute="bottom" id="zoN-L3-csx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textview" destination="gLE-zm-Iaa" id="dRM-pO-7Jh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="57K-gm-mfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7UI-fb-jdN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-656.25" y="-600"/>
+        </scene>
         <!--个人中心-->
         <scene sceneID="icj-ah-7Ge">
             <objects>
@@ -1390,7 +1540,7 @@
         <!--!校友会-->
         <scene sceneID="jG7-7b-Hjq">
             <objects>
-                <tabBarController title="!校友会" id="zbU-uo-eoH" sceneMemberID="viewController">
+                <tabBarController title="!校友会" automaticallyAdjustsScrollViewInsets="NO" id="zbU-uo-eoH" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7mS-jD-vFL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

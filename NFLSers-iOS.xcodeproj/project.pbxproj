@@ -13,6 +13,7 @@
 		65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A801F4608CF00E084A2 /* LaunchScreenView.swift */; };
 		65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A821F460A6500E084A2 /* AlumniActivityView.swift */; };
 		65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A841F46120B00E084A2 /* PostDetailView.swift */; };
+		65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */; };
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
 		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
 		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
@@ -33,7 +34,6 @@
 		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
 		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
 		D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */; };
-		D60749D11E59E5C000C1DD03 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */; };
 		D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6552FAA1E4CCE7700A2B220 /* ForumView.swift */; };
 		D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D01B31EE7972600DC0642 /* HomeScreenController.swift */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
@@ -52,6 +52,7 @@
 		65234A801F4608CF00E084A2 /* LaunchScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		65234A821F460A6500E084A2 /* AlumniActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniActivityView.swift; sourceTree = "<group>"; };
 		65234A841F46120B00E084A2 /* PostDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,7 +83,6 @@
 		D606F2C11EE9039D00564191 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NFLSers_iOS.framework; path = "Pods/../build/Release-iphoneos/Pods_NFLSers_iOS.framework"; sourceTree = "<group>"; };
 		D606F2C61EE997B800564191 /* UserCertification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertification.swift; sourceTree = "<group>"; };
 		D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertificationStepView.swift; sourceTree = "<group>"; };
-		D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
 		D6552FAA1E4CCE7700A2B220 /* ForumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
 		D66D01B31EE7972600DC0642 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		D6AE17411E44D51600E66B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +147,7 @@
 		D6AE17401E44D51600E66B4B /* general */ = {
 			isa = PBXGroup;
 			children = (
+				65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */,
 				65234A821F460A6500E084A2 /* AlumniActivityView.swift */,
 				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 				D606F2C61EE997B800564191 /* UserCertification.swift */,
@@ -159,7 +160,6 @@
 				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
 				65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */,
 				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
-				D60749D01E59E5C000C1DD03 /* PersonalInfo.swift */,
 				6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */,
 				65784C7A1F0973DD00BDC60A /* icons */,
 				65C360661F037CE200006074 /* PDFView.swift */,
@@ -348,12 +348,12 @@
 				6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */,
+				65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */,
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
-				D60749D11E59E5C000C1DD03 /* PersonalInfo.swift in Sources */,
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
 				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,
 				65C360671F037CE200006074 /* PDFView.swift in Sources */,

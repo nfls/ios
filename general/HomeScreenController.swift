@@ -21,11 +21,23 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var productsArray = [SKProduct]()
     
     override func viewDidLoad() {
+        let application = UIApplication.shared
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+        application.registerUserNotificationSettings(pushNotificationSettings)
+        application.registerForRemoteNotifications()
         SKPaymentQueue.default().add(self)
         let productID:NSSet = NSSet(object: "2")
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
-        productsRequest.start();
+        productsRequest.start()
+        let time: TimeInterval = 10.0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+            //code
+            self.registerDevice()
+        }
+        
+        
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -52,8 +64,14 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             SKPaymentQueue.default().add(payment)
             self.transactionInProgress = true
         })
+        let opensourceInfo = UIAlertAction(title: "开源组件许可", style: .default, handler: {
+            action in
+            self.performSegue(withIdentifier: "showOpenSource", sender: self)
+            
+        })
         let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
         dialog.addAction(donate)
+        dialog.addAction(opensourceInfo)
         dialog.addAction(exit)
         dialog.addAction(cancel)
         dialog.popoverPresentationController?.barButtonItem = barItem
@@ -80,14 +98,17 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 let parameters: Parameters = [
                     "receipt": receipt!.base64EncodedString(options: .endLineWithCarriageReturn)
                 ]
-                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).response(completionHandler: { (response) in
+                let headers: HTTPHeaders = [
+                    "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+                ]
+                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
+                    /*
                     print(response.response)
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("Data: \(utf8Text)")
                     }
-                })
-                //print(receipt?.base64EncodedData(options: .endLineWithLineFeed))
-                //delegate.didBuyColorsCollection(selectedProductIndex)
+                    */
+            })
                 
                 
             case SKPaymentTransactionState.failed:
@@ -99,7 +120,40 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 print(transaction.transactionState.rawValue)
             }
         }
-
+    }
+    
+    func checkStatus(){
+        
+    }
+    
+    func registerDevice(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let token = appDelegate.token
+        if(token != ""){
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8 , value != 0 else { return identifier }
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+            let system = identifier + " @ " + ProcessInfo.processInfo.operatingSystemVersionString
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            let parameters:Parameters = [
+                "device_id" : token,
+                "device_model" : system
+            ]
+            Alamofire.request("https://api.nfls.io/device/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
+                /*
+                print(response.response)
+                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                    print("Data: \(utf8Text)")
+                }
+                */
+            })
+        }
     }
     
     
