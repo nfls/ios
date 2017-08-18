@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.5.0)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
@@ -9,7 +11,8 @@ PODS:
   - SwiftyMarkdown (0.3.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
+  - Alamofire
+  - AlamofireNetworkActivityIndicator
   - Charts
   - IQKeyboardManagerSwift
   - SSZipArchive
@@ -18,12 +21,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   IQKeyboardManagerSwift: 10f0a6b8ea2904c8943c0e1a116c99f5b8ad83af
   SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
   SwiftIconFont: 98b97dc505dab3ed4eaaf6751985a7fa275a3283
   SwiftyMarkdown: e227c4f67000248358be3d566e5f51e9a020757d
 
-PODFILE CHECKSUM: 58771afeca41368d4738278d2a0bd38bd8b1cd0d
+PODFILE CHECKSUM: e08eccb18678594360fea7351c36ccd4f32184e1
 
 COCOAPODS: 1.2.1

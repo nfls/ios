@@ -7,10 +7,10 @@ target 'NFLSers-iOS' do
 
   # Pods for NFLSers-iOS
   pod 'IQKeyboardManagerSwift'
-  pod 'Alamofire', '~> 4.4'
+  pod 'Alamofire'
   pod 'SSZipArchive'
   pod 'SwiftyMarkdown'
   pod 'SwiftIconFont'
   pod 'Charts'
-
+  pod 'AlamofireNetworkActivityIndicator'
 end

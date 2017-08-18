@@ -21,6 +21,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var productsArray = [SKProduct]()
     
     override func viewDidLoad() {
+        checkStatus()
         let application = UIApplication.shared
         let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
         let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
@@ -123,7 +124,58 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     }
     
     func checkStatus(){
-        
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/device/status", headers: headers).responseJSON(completionHandler: {
+            response in
+            switch response.result{
+            case .success(let json):
+                if((json as! [String:Int])["code"]! != 200){
+                    if let bundle = Bundle.main.bundleIdentifier {
+                        UserDefaults.standard.removePersistentDomain(forName: bundle)
+                    }
+                    self.performSegue(withIdentifier: "exit", sender: self)
+                } else {
+                    Alamofire.request("https://api.nfls.io/device/notice").responseJSON(completionHandler: {
+                        response in
+                        switch response.result{
+                        case .success(let json):
+                            if((json as! [String:AnyObject])["code"]! as! Int == 200){
+                                dump(json)
+                                let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
+                                let text = info["text"]! as! String
+                                let title = info["title"]! as! String
+                                let id = info["id"]! as! Int
+                                if(UserDefaults.standard.object(forKey: "id") as? Int != id ){
+                                    let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+                                    let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
+                                    let never = UIAlertAction(title: "不再提醒本条", style: .cancel, handler: {
+                                        action in
+                                        UserDefaults.standard.set(id, forKey: "notice_id")
+                                    })
+                                    alert.addAction(ok)
+                                    alert.addAction(never)
+                                    self.present(alert, animated: true, completion: nil)
+                                    
+                                }
+                            }
+                            break
+                        default:
+                            break
+                        }
+                    })
+                }
+                break
+            default:
+                let alert = UIAlertController(title: "提示", message: "网络连接异常！", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                break
+            }
+
+        })
     }
     
     func registerDevice(){

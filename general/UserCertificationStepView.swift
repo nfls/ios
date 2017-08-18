@@ -815,6 +815,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 case .success(let json):
                     let messages = (json as! [String:AnyObject])["message"] as! [String]
                     self.showMessage(messages: messages, title: "信息")
+                    //dump(response)
                     if((json as! [String:AnyObject])["code"] as! Int == 200){
                         self.initialize()
                     }
