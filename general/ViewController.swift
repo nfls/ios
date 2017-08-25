@@ -130,9 +130,18 @@ class ViewController: UIViewController {
     }
     
     func networkError(){
-        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常。", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查您的网络连接。", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
+        let tips = UIAlertAction(title: "TIPS", style: .cancel, handler: {
+            action in
+            UIApplication.shared.openURL(NSURL(string: "https://zhuanlan.zhihu.com/p/22738261")! as URL)
+        })
         alert.addAction(ok)
+        alert.addAction(tips)
         self.present(alert,animated: true)
+        self.login_button.isEnabled = true
+        self.recoverButton.isEnabled = true
+        self.registerButton.isEnabled = true
+        self.loadingBar.isHidden = true;
     }
 }

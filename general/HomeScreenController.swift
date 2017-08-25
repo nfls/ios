@@ -147,7 +147,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                 let text = info["text"]! as! String
                                 let title = info["title"]! as! String
                                 let id = info["id"]! as! Int
-                                if(UserDefaults.standard.object(forKey: "id") as? Int != id ){
+                                if(UserDefaults.standard.object(forKey: "notice_id") as? Int != id ){
                                     let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
                                     let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
                                     let never = UIAlertAction(title: "不再提醒本条", style: .cancel, handler: {

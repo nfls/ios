@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m73-2I-9fu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1189,7 +1189,7 @@
 
 ------------
 nflsers
------------- 
+------------
  https://github.com/nfls/nflsers
  © 2017 mmlmml1(</string>
                                         <attributes>
@@ -1210,7 +1210,7 @@ nflsers
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">) 
+                                        <string key="content">) 
  Licensed under Apache License 2.0
 
 ------------
@@ -1227,17 +1227,7 @@ Alamofire
  © 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
  Licensed under MIT License
 
-</mutableString>
-                                        <attributes>
-                                            <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="12" name="Verdana"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">------------
+------------
 AlamofireNetworkActivityIndicator
 ------------
  https://github.com/Alamofire/AlamofireNetworkActivityIndicator
@@ -1267,17 +1257,7 @@ AlamofireNetworkActivityIndicator
                                         <string key="content">
  Licensed under MIT License
 
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="12" name="Verdana"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <mutableString key="content">------------
+------------
 ZipArchive
 ------------
  https://github.com/ZipArchive/ZipArchive
@@ -1303,7 +1283,7 @@ Charts
 ------------
  https://github.com/danielgindi/Charts
  © 2016 Daniel Cohen Gindi &amp; Philipp Jahoda
- Licensed under Apache License 2.0</mutableString>
+ Licensed under Apache License 2.0</string>
                                         <attributes>
                                             <color key="NSColor" red="0.27059" green="0.27059" blue="0.27059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="12" name="Verdana"/>

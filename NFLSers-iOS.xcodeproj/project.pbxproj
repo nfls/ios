@@ -18,6 +18,7 @@
 		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
 		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
 		654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654923A01F452CF2000E22C9 /* LiveListView.swift */; };
+		654A33A61F48532D000287A8 /* DJI_0077.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 654A33A51F48532D000287A8 /* DJI_0077.JPG */; };
 		6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5C91EFCDFAA00769FF7 /* WikiView.swift */; };
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
 		6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */; };
@@ -57,6 +58,7 @@
 		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		654923A01F452CF2000E22C9 /* LiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveListView.swift; sourceTree = "<group>"; };
+		654A33A51F48532D000287A8 /* DJI_0077.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DJI_0077.JPG; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
 		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
+				654A33A51F48532D000287A8 /* DJI_0077.JPG */,
 				6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
@@ -278,6 +281,7 @@
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
+				654A33A61F48532D000287A8 /* DJI_0077.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

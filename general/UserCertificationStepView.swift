@@ -361,13 +361,13 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 case .other:
                     self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
                     self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
+                    //self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
                     break
                 case .nflsPrimary2,
                      .nflsPrimary4:
                     self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
                     self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
+                    //self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
                     break
                 }
                 break
@@ -467,22 +467,22 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                     self.setTextfieldValue(tag: .classNo, value: string as! Int)
                     break
                 case "senior_class_11":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 11)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 11)
                     break
                 case "senior_class_12":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 12)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 12)
                     break
                 case "senior_class_21":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 21)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 21)
                     break
                 case "senior_class_22":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 22)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 22)
                     break
                 case "senior_class_31":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 31)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 31)
                     break
                 case "senior_class_32":
-                    self.setTextfieldValue(tag: .enterYear, value: string as! Int, 32)
+                    self.setTextfieldValue(tag: .classNo, value: string as! Int, 32)
                     break
                 case "junior_school_no",
                      "primary_school_no",
@@ -705,7 +705,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         switch(currentStep){
         case .basicInfo:
             jsonDictionary["realname"] = self.getTextfieldText(tag: .realName)
-            jsonDictionary["usedname"] = self.getTextfieldText(tag: .userName)
+            jsonDictionary["usedname"] = self.getTextfieldText(tag: .usedName)
             jsonDictionary["phone_domestic"] = self.getTextfieldText(tag: .phoneIn)
             jsonDictionary["phone_international"] = self.getTextfieldText(tag: .phoneInter)
             jsonDictionary["username"] = self.getTextfieldText(tag: .userName)
@@ -721,6 +721,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             let enumOption = PrimarySchoolType(rawValue: pickerOption)!
             jsonDictionary["primary_school_no"] = pickerOption as AnyObject
             jsonDictionary["primary_school_name"] = (self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField).text as AnyObject
+            jsonDictionary["primary_remark"] = (self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField).text as AnyObject
             switch(enumOption){
             case .other:
                 break
@@ -728,7 +729,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                  .nflsPrimary4:
                 jsonDictionary["primary_school_enter_year"] = (self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField).text as AnyObject
                 jsonDictionary["primary_school_graduated_year"] = (self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField).text as AnyObject
-                jsonDictionary["primary_remark"] = (self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField).text as AnyObject
                 break
             }
             break
@@ -856,13 +856,14 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             height = 100
         }
         let constraintForStack = NSLayoutConstraint(item: stackview, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height)
-        var constraintForLabel = NSLayoutConstraint()
+        let constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: CGFloat((Double(name.characters.count + 1) * 17.5)))
+        /*
         if(type == .datePicker){
             constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
         } else {
             constraintForLabel = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 125)
         }
-        
+        */
         label.text = name + "："
         label.textAlignment = .right
         

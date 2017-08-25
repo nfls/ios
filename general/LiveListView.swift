@@ -142,7 +142,8 @@ class LiveListViewController:UIViewController,UITableViewDelegate,UITableViewDat
             (openController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).numberOfLines = 0
             let okAction = UIAlertAction(title: "好的", style: .cancel, handler: nil)
             openController.addAction(okAction)
-            openController.popoverPresentationController?.barButtonItem = baritem
+            openController.popoverPresentationController?.sourceView = tableView
+            openController.popoverPresentationController?.sourceRect = cell.frame
             switch(indexPath.section){
             case 0:
                 if(list[indexPath.section][indexPath.row]["stream_code"]!.hasPrefix("http")){
