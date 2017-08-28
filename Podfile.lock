@@ -5,10 +5,10 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
-  - IQKeyboardManagerSwift (4.0.11)
+  - IQKeyboardManagerSwift (4.0.13)
   - SSZipArchive (2.0.3)
   - SwiftIconFont (2.7.0)
-  - SwiftyMarkdown (0.3.4)
+  - SwiftyMarkdown (0.3.5)
 
 DEPENDENCIES:
   - Alamofire
@@ -23,10 +23,10 @@ SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
-  IQKeyboardManagerSwift: 10f0a6b8ea2904c8943c0e1a116c99f5b8ad83af
+  IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
   SwiftIconFont: 98b97dc505dab3ed4eaaf6751985a7fa275a3283
-  SwiftyMarkdown: e227c4f67000248358be3d566e5f51e9a020757d
+  SwiftyMarkdown: 2b48b1df3706f649eef0a22cad51e41d7e152f07
 
 PODFILE CHECKSUM: e08eccb18678594360fea7351c36ccd4f32184e1
 
