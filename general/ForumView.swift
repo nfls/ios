@@ -31,42 +31,16 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
     
     
     func getToken(){
-        var cookies:String = ""
-        var jsCookies = ""
-        let username = UserDefaults.standard.string(forKey: "username")!
-        let password = UserDefaults.standard.string(forKey: "password")!
-        let token = UserDefaults.standard.string(forKey: "token")!
-        let parameters:Parameters = [
-            "username":username,
-            "password":password,
-            "token":token
-        ]
-        Alamofire.request("https://api.nfls.io/center/forumLogin", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{
-            response in
-            switch response.result{
-            case .success(let json):
-                let jsonDic = (json as! [String:AnyObject])["info"]! as! [String]
-                for cookie in jsonDic {
-                    let range = cookie.range(of: "; ", options:.regularExpression)
-                    let endIndex = cookie.distance(from: cookie.startIndex, to: range!.lowerBound)
-                    let realCookie = (cookie as NSString).substring(to: endIndex )
-                    cookies = cookies + realCookie + ";"
-                    jsCookies = "document.cookies='" + cookie + "';"
-                }
-                self.requestCookies = cookies
-                let cookieScript = WKUserScript(source: jsCookies, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
-                let webviewConfig = WKWebViewConfiguration()
-                let webviewController = WKUserContentController()
-                webviewController.addUserScript(cookieScript)
-                webviewConfig.userContentController = webviewController
-                self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
-                self.startRequest(cookies: cookies)
-                break
-            default:
-                self.networkError()
-                break
-            }
-        }
+        let cookies:String = "token=" + UserDefaults.standard.string(forKey: "token")!
+        let jsCookies = "document.cookie=\"" + cookies + "\"";
+        self.requestCookies = cookies
+        let cookieScript = WKUserScript(source: jsCookies, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
+        let webviewConfig = WKWebViewConfiguration()
+        let webviewController = WKUserContentController()
+        webviewController.addUserScript(cookieScript)
+        webviewConfig.userContentController = webviewController
+        self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
+        self.startRequest(cookies: cookies)
     }
     
     func startRequest(cookies:String){
@@ -110,8 +84,9 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
                 let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
-            }
-            else {
+            } else if(url!.hasPrefix("https://nfls.io")){
+                self.performSegue(withIdentifier: "back", sender: self)
+            } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",
                                                         message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {

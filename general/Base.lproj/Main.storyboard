@@ -1914,7 +1914,7 @@ Charts
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
-                                                    <segue destination="BiR-br-H5k" kind="unwind" unwindAction="closeCurrentWithSegue:" id="mgU-6r-kkS"/>
+                                                    <segue destination="BiR-br-H5k" kind="unwind" identifier="back" unwindAction="closeCurrentWithSegue:" id="mgU-6r-kkS"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>

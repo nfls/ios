@@ -35,61 +35,16 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
     
     
     func getToken(){
-        var cookies:String = ""
-        let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-        ]
-        //print(10)
-        Alamofire.request("https://api.nfls.io/center/wikiLogin",  headers: headers).responseJSON{
-            response in
-            dump(response)
-            switch response.result{
-            case .success(let json):
-                print(11)
-                let webStatus = (json as! [String:AnyObject])["code"]! as! Int
-                if(webStatus != 200){
-                    let alert = UIAlertController(title: "错误", message: "您没有激活您的百科账号！请转到个人中心-关联服务界面，选择激活您的百科账号！", preferredStyle: .alert)
-                    let back = UIAlertAction(title: "返回", style: .default, handler: nil)
-                    alert.addAction(back)
-                    self.present(alert,animated: true)
-                }else{
-                    let jsonDic = (json as! [String:AnyObject])["info"]! as! [String]
-                    var jsCookies = [HTTPCookie]()
-                    for cookie in jsonDic {
-                        let range = cookie.range(of: "; ", options:.regularExpression)
-                        let endIndex = cookie.distance(from: cookie.startIndex, to: range!.lowerBound)
-                        var realCookie = (cookie as NSString).substring(to: endIndex )
-                        if(realCookie.range(of: "[\u{4e00}-\u{9fa5}]",options: .regularExpression) != nil){
-                            let range = realCookie.range(of: "[\u{4e00}-\u{9fa5}]",options: .regularExpression)
-                            let division = realCookie.distance(from: realCookie.startIndex, to: range!.lowerBound)
-                            let cookieHead = (realCookie as NSString).substring(to: division)
-                            let cookieContent = (realCookie as NSString).substring(from: division)
-                            jsCookies.append(HTTPCookie(properties: [
-                                HTTPCookiePropertyKey.domain: "wiki.nfls.io",
-                                HTTPCookiePropertyKey.path : "/",
-                                HTTPCookiePropertyKey.name : (cookieHead as NSString).substring(to: cookieHead.lengthOfBytes(using: .utf8) - 1),
-                                HTTPCookiePropertyKey.value: cookieContent.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,
-                                HTTPCookiePropertyKey.expires: NSDate(timeIntervalSinceNow: TimeInterval(60 * 60 * 24 * 365))
-                                ])!)
-                            realCookie = cookieHead + cookieContent.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-                        }
-                        cookies = cookies + realCookie + ";"
-                    }
-                    let script = self.getJSCookiesString(cookies: jsCookies)
-                    let cookieScript = WKUserScript(source: script, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
-                    let webviewConfig = WKWebViewConfiguration()
-                    let webviewController = WKUserContentController()
-                    webviewController.addUserScript(cookieScript)
-                    webviewConfig.userContentController = webviewController
-                    self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
-                    self.startRequest(cookies: cookies)
-                    break
-                }
-            default:
-                self.networkError()
-                break
-            }
-        }
+        let cookies:String = "token=" + UserDefaults.standard.string(forKey: "token")!
+        let jsCookies = "document.cookie=\"" + cookies + "\"";
+        self.requestCookies = cookies
+        let cookieScript = WKUserScript(source: jsCookies, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
+        let webviewConfig = WKWebViewConfiguration()
+        let webviewController = WKUserContentController()
+        webviewController.addUserScript(cookieScript)
+        webviewConfig.userContentController = webviewController
+        self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
+        self.startRequest(cookies: cookies)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -152,25 +107,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
-    func getJSCookiesString(cookies: [HTTPCookie]) -> String {
-        var result = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC") as TimeZone!
-        dateFormatter.dateFormat = "EEE, d MMM yyyy HH:mm:ss zzz"
-        
-        for cookie in cookies {
-            result += "document.cookie='\(cookie.name)=\(cookie.value); domain=\(cookie.domain); path=\(cookie.path); "
-            if let date = cookie.expiresDate {
-                result += "expires=\(dateFormatter.string(from: date)); "
-            }
-            if (cookie.isSecure) {
-                result += "secure; "
-            }
-            result += "'; "
-        }
-        return result
-    }
-    
+
     func networkError(){
         let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常。", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
