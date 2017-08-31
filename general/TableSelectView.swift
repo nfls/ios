@@ -74,6 +74,20 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
         
     }
     
+    @IBAction func new(_ sender: Any) {
+        if(type == "university"){
+            guard let parent = self.presentingViewController else{
+                return
+            }
+            if parent.isKind(of: UniversityInfoViewController.self){
+                (parent as! UniversityInfoViewController).id = 0
+                (parent as! UniversityInfoViewController).action = "add"
+                self.performSegue(withIdentifier: "backToUniversity", sender: self)
+            }
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return names.count
     }
@@ -95,6 +109,7 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             }
             if parent.isKind(of: UniversityInfoViewController.self){
                 (parent as! UniversityInfoViewController).id = ids[indexPath.row]
+                (parent as! UniversityInfoViewController).action = "edit"
                 self.performSegue(withIdentifier: "backToUniversity", sender: self)
             }
         }
