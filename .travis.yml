@@ -1,3 +1,6 @@
 language: swift
 osx_image: xcode8.3
 xcode_workspace: NFLSers-iOS.xcworkspace
+before_install:
+	- rvm use system
+	- sudo gem install cocoapods -v '0.39.0'
