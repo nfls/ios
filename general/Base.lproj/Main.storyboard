@@ -2212,7 +2212,13 @@ CountryCode
                     <tabBarItem key="tabBarItem" title="大学" id="2Oh-wY-v50"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="added_by" destination="n1M-2K-KI5" id="bTY-DH-aPZ"/>
+                        <outlet property="chineseName" destination="dUJ-zY-yzE" id="iXJ-z8-lD5"/>
+                        <outlet property="chineseShortName" destination="alP-ss-iSD" id="HBr-C7-TcJ"/>
+                        <outlet property="comment" destination="DcI-lW-Mom" id="3Rd-2o-zX0"/>
                         <outlet property="country" destination="iQa-wW-dSX" id="DyO-iD-K18"/>
+                        <outlet property="name" destination="gmb-f5-gNi" id="ow0-Zo-qFo"/>
+                        <outlet property="shortName" destination="b2n-2U-Kx3" id="Z4Z-C5-JYb"/>
                         <segue destination="meq-qJ-GUl" kind="show" identifier="showTableSelect" id="fTu-A0-9Ku"/>
                     </connections>
                 </viewController>
@@ -2267,7 +2273,15 @@ CountryCode
                                     <constraint firstAttribute="height" constant="44" id="TJH-W7-6KS"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="v6G-Re-5ym"/>
+                                    <navigationItem title="查询" id="v6G-Re-5ym">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Jha-8z-w28">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ost-ph-Mo4">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-S8-Ddn">
@@ -2301,9 +2315,11 @@ CountryCode
                     <connections>
                         <outlet property="name" destination="fCA-CA-q1k" id="Tqt-Fe-jcO"/>
                         <outlet property="tableview" destination="Yc8-S8-Ddn" id="v6o-fg-KoO"/>
+                        <segue destination="ycg-Bf-yUV" kind="unwind" identifier="backToUniversity" unwindAction="backToUniversityViewWithSegue:" id="II9-7f-Wfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2G4-EP-nDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ycg-Bf-yUV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5533" y="875"/>
         </scene>

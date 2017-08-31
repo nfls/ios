@@ -82,16 +82,22 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
         if(indexPath.row == names.count - 1){
             loadData(lastName)
         }
-        
     }
     
     @IBAction func editingEnd(_ sender: Any) {
         loadData(name.text!)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(names[indexPath.row])
-        print(ids[indexPath.row])
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        if(type == "university"){
+            guard let parent = self.presentingViewController else{
+                return
+            }
+            if parent.isKind(of: UniversityInfoViewController.self){
+                (parent as! UniversityInfoViewController).id = ids[indexPath.row]
+                self.performSegue(withIdentifier: "backToUniversity", sender: self)
+            }
+        }
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         loadData(name.text!)
