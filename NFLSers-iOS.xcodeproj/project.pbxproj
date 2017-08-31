@@ -16,6 +16,8 @@
 		65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */; };
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
 		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
+		6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */; };
+		6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */; };
 		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
 		654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654923A01F452CF2000E22C9 /* LiveListView.swift */; };
 		654A33A61F48532D000287A8 /* DJI_0077.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 654A33A51F48532D000287A8 /* DJI_0077.JPG */; };
@@ -56,6 +58,8 @@
 		65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
+		6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityInfoView.swift; sourceTree = "<group>"; };
+		6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSelectView.swift; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		654923A01F452CF2000E22C9 /* LiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveListView.swift; sourceTree = "<group>"; };
 		654A33A51F48532D000287A8 /* DJI_0077.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DJI_0077.JPG; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6544765A1F57DA1500CDEBD8 /* Alumni */ = {
+			isa = PBXGroup;
+			children = (
+				6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */,
+				6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */,
+			);
+			name = Alumni;
+			sourceTree = "<group>";
+		};
 		65784C7A1F0973DD00BDC60A /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,7 @@
 		D6AE17401E44D51600E66B4B /* general */ = {
 			isa = PBXGroup;
 			children = (
+				6544765A1F57DA1500CDEBD8 /* Alumni */,
 				65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */,
 				65234A821F460A6500E084A2 /* AlumniActivityView.swift */,
 				654923A01F452CF2000E22C9 /* LiveListView.swift */,
@@ -345,6 +359,7 @@
 				65C785CE1F008F1100F80BDC /* Function.swift in Sources */,
 				65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */,
 				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
+				6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */,
 				D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */,
 				D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */,
 				65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */,
@@ -358,6 +373,7 @@
 				6510A31E1F00CE30000D3468 /* ResourcesSearchingView.swift in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
+				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
 				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,
 				65C360671F037CE200006074 /* PDFView.swift in Sources */,

@@ -13,4 +13,6 @@ target 'NFLSers-iOS' do
   pod 'SwiftIconFont'
   pod 'Charts'
   pod 'AlamofireNetworkActivityIndicator'
+  pod 'UITableView+FDTemplateLayoutCell'
+  pod 'CountryPickerSwift'
 end

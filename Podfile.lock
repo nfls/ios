@@ -5,29 +5,35 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - CountryPickerSwift (1.4.4)
   - IQKeyboardManagerSwift (4.0.13)
   - SSZipArchive (2.0.3)
   - SwiftIconFont (2.7.0)
   - SwiftyMarkdown (0.3.5)
+  - UITableView+FDTemplateLayoutCell (1.6)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
   - Charts
+  - CountryPickerSwift
   - IQKeyboardManagerSwift
   - SSZipArchive
   - SwiftIconFont
   - SwiftyMarkdown
+  - UITableView+FDTemplateLayoutCell
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  CountryPickerSwift: e31e67f2b95eb1fa6ad230e9eb0b49b020526d99
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
   SwiftIconFont: 98b97dc505dab3ed4eaaf6751985a7fa275a3283
   SwiftyMarkdown: 2b48b1df3706f649eef0a22cad51e41d7e152f07
+  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
-PODFILE CHECKSUM: e08eccb18678594360fea7351c36ccd4f32184e1
+PODFILE CHECKSUM: bd115d4b5fd347fcef536bc240958c36880d365c
 
 COCOAPODS: 1.2.1
