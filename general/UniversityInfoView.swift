@@ -29,6 +29,10 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         reloadData()
     }
     
+    @IBAction func query(_ sender: Any) {
+        self.performSegue(withIdentifier: "showTableSelect", sender: "university")
+    }
+    
     func reloadData(){
         print(id)
         if(id == 0){
@@ -38,9 +42,18 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
                 "id":id
             ]
             
-            Alamofire.request("https://api.nfls.io/get", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            Alamofire.request("https://api.nfls.io/university/get", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
                 switch(response.result){
                 case .success(let json):
+                    let info = ((json as! [String:AnyObject])["info"] as! [String:Any])
+                    self.name.text = info["name"] as? String
+                    self.shortName.text = info["shortName"] as? String
+                    self.chineseName.text = info["chineseName"] as? String
+                    self.chineseShortName.text = info["chineseShortName"] as? String
+                    self.comment.text = info["comment"] as? String
+                    self.added_by.text = info["added_by"] as? String
+                    self.added_by.isEnabled = false
+                    self.country.setCountry(info["country"] as! String)
                     break
                 default:
                     break

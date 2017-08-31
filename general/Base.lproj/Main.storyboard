@@ -2099,15 +2099,6 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-VY-oOF">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="aT5-Hc-NyM"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="大学查询及修改" id="M6P-aj-uOS"/>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ogO-cP-tvK">
                                 <rect key="frame" x="8" y="64.5" width="304" height="363.5"/>
                                 <subviews>
@@ -2198,6 +2189,26 @@ CountryCode
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-VY-oOF">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aT5-Hc-NyM"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="大学查询及修改" id="M6P-aj-uOS">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="DNP-xk-WFr">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oJ7-wC-gYK">
+                                                <rect key="frame" x="233" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="查询"/>
+                                                <connections>
+                                                    <action selector="query:" destination="HwZ-hc-tY1" eventType="touchDown" id="lgE-Ee-KnE"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
