@@ -73,17 +73,15 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
         return cell
         
     }
-    
     @IBAction func new(_ sender: Any) {
         if(type == "university"){
             guard let parent = self.presentingViewController else{
                 return
             }
-            if parent.isKind(of: UniversityInfoViewController.self){
-                (parent as! UniversityInfoViewController).id = 0
-                (parent as! UniversityInfoViewController).action = "add"
-                self.performSegue(withIdentifier: "backToUniversity", sender: self)
-            }
+            let parent_view = (parent as! UITabBarController).selectedViewController
+            (parent_view as! UniversityInfoViewController).id = 0
+            (parent_view as! UniversityInfoViewController).action = "add"
+            self.performSegue(withIdentifier: "backToUniversity", sender: self)
         }
 
     }
@@ -107,11 +105,10 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             guard let parent = self.presentingViewController else{
                 return
             }
-            if parent.isKind(of: UniversityInfoViewController.self){
-                (parent as! UniversityInfoViewController).id = ids[indexPath.row]
-                (parent as! UniversityInfoViewController).action = "edit"
-                self.performSegue(withIdentifier: "backToUniversity", sender: self)
-            }
+            let parent_view = (parent as! UITabBarController).selectedViewController
+            (parent_view as! UniversityInfoViewController).id = ids[indexPath.row]
+            (parent_view as! UniversityInfoViewController).action = "edit"
+            self.performSegue(withIdentifier: "backToUniversity", sender: self)
         }
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

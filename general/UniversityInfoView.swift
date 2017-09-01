@@ -94,7 +94,7 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         comment.isEnabled = false
     }
     func enableFields(){
-        name.isEnabled = true
+        //name.isEnabled = true
         shortName.isEnabled = true
         chineseName.isEnabled = true
         chineseShortName.isEnabled = true
@@ -154,35 +154,33 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
             self.chineseShortName.text = ""
             self.comment.text = ""
             self.added_by.text = ""
-            self.added_by.isEnabled = false
+            self.name.isEnabled = true
             self.country.setCountry("US")
             self.enableFields()
         }else if(id == 0){
             self.performSegue(withIdentifier: "showTableSelect", sender: "university")
-        } else {
-            if(action == "edit"){
-                let parameters:Parameters = [
-                    "id":id
-                ]
-                
-                Alamofire.request("https://api.nfls.io/university/get", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-                    switch(response.result){
-                    case .success(let json):
-                        self.enableFields()
-                        let info = ((json as! [String:AnyObject])["info"] as! [String:Any])
-                        self.name.text = info["name"] as? String
-                        self.shortName.text = info["shortName"] as? String
-                        self.chineseName.text = info["chineseName"] as? String
-                        self.chineseShortName.text = info["chineseShortName"] as? String
-                        self.comment.text = info["comment"] as? String
-                        self.added_by.text = info["added_by"] as? String
-                        self.added_by.isEnabled = false
-                        self.country.setCountry(info["country"] as! String)
-                        break
-                    default:
-                        self.enableFields()
-                        break
-                    }
+        }else {
+            let parameters:Parameters = [
+                "id":id
+            ]
+            self.name.isEnabled = false
+            Alamofire.request("https://api.nfls.io/university/get", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                switch(response.result){
+                case .success(let json):
+                    self.enableFields()
+                    let info = ((json as! [String:AnyObject])["info"] as! [String:Any])
+                    self.name.text = info["name"] as? String
+                    self.shortName.text = info["shortName"] as? String
+                    self.chineseName.text = info["chineseName"] as? String
+                    self.chineseShortName.text = info["chineseShortName"] as? String
+                    self.comment.text = info["comment"] as? String
+                    self.added_by.text = info["added_by"] as? String
+                    self.added_by.isEnabled = false
+                    self.country.setCountry(info["country"] as! String)
+                    break
+                default:
+                    self.enableFields()
+                    break
                 }
             }
         }

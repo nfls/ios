@@ -1421,7 +1421,7 @@ CountryCode
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="实名认证" id="dIw-e4-wGK"/>
+                    <tabBarItem key="tabBarItem" title="实名" id="dIw-e4-wGK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="enterButton" destination="WsF-gX-ZJP" id="UCo-rp-4Fr"/>
@@ -1535,12 +1535,14 @@ CountryCode
                         <outlet property="resetButton" destination="Qoq-Ky-w8M" id="GLS-pB-9mE"/>
                         <outlet property="saveButton" destination="cUY-Cc-qv3" id="6ig-4r-zAD"/>
                         <outlet property="showIntro" destination="aqI-V0-Spd" id="8zb-AW-gKo"/>
+                        <segue destination="HwZ-hc-tY1" kind="show" id="NCu-xf-gAI"/>
+                        <segue destination="XZD-l4-Bvi" kind="show" id="uew-Bm-T5Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEu-ck-OyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="x71-EA-e9m" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4779.7101449275369" y="122.28260869565219"/>
+            <point key="canvasLocation" x="4778" y="120"/>
         </scene>
         <!--!校友会-->
         <scene sceneID="jG7-7b-Hjq">
@@ -2196,6 +2198,16 @@ CountryCode
                                 </constraints>
                                 <items>
                                     <navigationItem title="大学查询及修改" id="M6P-aj-uOS">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Yxm-30-dbJ">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BzG-Hk-Z5U">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="Eon-0r-Nrg" kind="unwind" unwindAction="closeCurrentWithSegue:" id="fiN-Y1-dMO"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="DNP-xk-WFr">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oJ7-wC-gYK">
                                                 <rect key="frame" x="273" y="7" width="31" height="30"/>
@@ -2235,13 +2247,14 @@ CountryCode
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gR-QI-oHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Eon-0r-Nrg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4088" y="875"/>
         </scene>
         <!--社团-->
         <scene sceneID="6pl-Sa-IP5">
             <objects>
-                <viewController id="XZD-l4-Bvi" sceneMemberID="viewController">
+                <viewController id="XZD-l4-Bvi" customClass="ClubInfoViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RDu-Yh-3d7"/>
                         <viewControllerLayoutGuide type="bottom" id="zYS-Oo-2BJ"/>
@@ -2254,16 +2267,98 @@ CountryCode
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="bhO-OO-lXD"/>
+                                    <navigationItem title="社团查询及修改" id="bhO-OO-lXD">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="J1r-b3-hAY">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WPo-pv-ts9">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="Way-rR-y3g" kind="unwind" unwindAction="closeCurrentWithSegue:" id="5fp-Lu-4Za"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="cb1-8E-vuj">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="05O-SF-zFa">
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="操作"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Kad-yP-Sgh">
+                                <rect key="frame" x="24" y="69" width="272" height="342"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="社团名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZC-5h-esG">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAA-3W-pjB">
+                                        <rect key="frame" x="0.0" y="16.5" width="272" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-op-iD5">
+                                        <rect key="frame" x="0.0" y="48.5" width="272" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Fn-b6m">
+                                        <rect key="frame" x="0.0" y="65" width="272" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5h-bx-utK">
+                                        <rect key="frame" x="0.0" y="97" width="272" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z7b-c5-h6h">
+                                        <rect key="frame" x="0.0" y="113.5" width="272" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前已选择的社团（单击删除）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p01-4j-KwU">
+                                        <rect key="frame" x="0.0" y="145.5" width="272" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="smR-r2-met">
+                                        <rect key="frame" x="0.0" y="162" width="272" height="180"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="MON-ou-ldM"/>
+                                        </constraints>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kad-yP-Sgh" firstAttribute="centerY" secondItem="1OI-wj-I13" secondAttribute="centerY" id="4mF-Po-hFQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kad-yP-Sgh" secondAttribute="trailing" constant="8" id="YR0-3e-6yY"/>
+                            <constraint firstItem="Kad-yP-Sgh" firstAttribute="leading" secondItem="1OI-wj-I13" secondAttribute="leadingMargin" constant="8" id="aEA-3D-19L"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="社团" id="0bJ-ID-ms4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableview" destination="smR-r2-met" id="QAT-cV-xxM"/>
+                        <segue destination="meq-qJ-GUl" kind="show" id="2Al-lY-Kfm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LP5-na-e7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Way-rR-y3g" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4779" y="876"/>
         </scene>
@@ -2344,12 +2439,15 @@ CountryCode
         <image name="_MG_6142.JPG" width="3456" height="5184"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gEM-ev-sIX"/>
-        <segue reference="c4f-hH-u7f"/>
-        <segue reference="7ju-EX-yYQ"/>
         <segue reference="bsB-Ir-01b"/>
-        <segue reference="0Bj-lN-DmH"/>
-        <segue reference="kNW-PJ-LkL"/>
         <segue reference="RMU-wg-LOR"/>
+        <segue reference="kNW-PJ-LkL"/>
+        <segue reference="7ju-EX-yYQ"/>
+        <segue reference="UQZ-V9-A1l"/>
+        <segue reference="c4f-hH-u7f"/>
+        <segue reference="gEM-ev-sIX"/>
+        <segue reference="NCu-xf-gAI"/>
+        <segue reference="uew-Bm-T5Z"/>
+        <segue reference="2Al-lY-Kfm"/>
     </inferredMetricsTieBreakers>
 </document>
