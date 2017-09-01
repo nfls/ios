@@ -27,7 +27,7 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
         self.name.delegate = self
         loadData()
     }
-    func loadData(_ name:String = ""){
+    func loadData(_ name:String = "", forceRefresh:Bool = false){
         var refresh = true
         if(lastName == name){
             startWith += limit
@@ -41,7 +41,7 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             "limit":limit,
             "startFrom":startWith
         ]
-
+        refresh = refresh || forceRefresh
         Alamofire.request("https://api.nfls.io/" + type + "/list", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             switch(response.result){
             case .success(let json):
@@ -80,9 +80,18 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             }
             let parent_view = (parent as! UITabBarController).selectedViewController
             (parent_view as! UniversityInfoViewController).id = 0
-            (parent_view as! UniversityInfoViewController).action = "add"
+            (parent_view as! UniversityInfoViewController).action = "new"
             self.performSegue(withIdentifier: "backToUniversity", sender: self)
+        } else if(type == "club"){
+            guard let parent = self.presentingViewController else{
+                return
+            }
+            let parent_view = (parent as! UITabBarController).selectedViewController
+            (parent_view as! ClubInfoViewController).id = 0
+            (parent_view as! ClubInfoViewController).action = "new"
+            self.performSegue(withIdentifier: "backToClub", sender: self)
         }
+
 
     }
     
@@ -91,13 +100,13 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if(indexPath.row == names.count - 1){
+        if(indexPath.row == names.count - 1 && type=="university"){
             loadData(lastName)
         }
     }
     
     @IBAction func editingEnd(_ sender: Any) {
-        loadData(name.text!)
+        loadData(name.text!,forceRefresh: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -109,10 +118,18 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             (parent_view as! UniversityInfoViewController).id = ids[indexPath.row]
             (parent_view as! UniversityInfoViewController).action = "edit"
             self.performSegue(withIdentifier: "backToUniversity", sender: self)
+        } else if(type == "club"){
+            guard let parent = self.presentingViewController else{
+                return
+            }
+            let parent_view = (parent as! UITabBarController).selectedViewController
+            (parent_view as! ClubInfoViewController).id = ids[indexPath.row]
+            (parent_view as! ClubInfoViewController).action = "edit"
+            self.performSegue(withIdentifier: "backToClub", sender: self)
         }
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        loadData(name.text!)
+        loadData(name.text!,forceRefresh: true)
         return true
     }
     

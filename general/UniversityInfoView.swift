@@ -147,7 +147,7 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
     
     func reloadData(){
         //print(id)
-        if(action == "add"){
+        if(action == "new"){
             self.name.text = ""
             self.shortName.text = ""
             self.chineseName.text = ""

@@ -2171,7 +2171,7 @@ CountryCode
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选填" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DcI-lW-Mom">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选填（不要太长）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DcI-lW-Mom">
                                         <rect key="frame" x="0.0" y="285" width="304" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2283,6 +2283,9 @@ CountryCode
                                                 <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="操作"/>
+                                                <connections>
+                                                    <action selector="showMenu:" destination="XZD-l4-Bvi" eventType="touchDown" id="JOw-kt-M7z"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2297,7 +2300,7 @@ CountryCode
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAA-3W-pjB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="必填" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAA-3W-pjB">
                                         <rect key="frame" x="0.0" y="16.5" width="272" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2309,7 +2312,7 @@ CountryCode
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Fn-b6m">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选填（不要太长）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Fn-b6m">
                                         <rect key="frame" x="0.0" y="65" width="272" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2353,8 +2356,12 @@ CountryCode
                     <tabBarItem key="tabBarItem" title="社团" id="0bJ-ID-ms4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="added_by" destination="Z7b-c5-h6h" id="RTu-WK-T3p"/>
+                        <outlet property="barbutton" destination="cb1-8E-vuj" id="E9n-Tc-jF5"/>
+                        <outlet property="comment" destination="aeP-Fn-b6m" id="phv-p2-rtd"/>
+                        <outlet property="name" destination="NAA-3W-pjB" id="lCQ-iL-DcG"/>
                         <outlet property="tableview" destination="smR-r2-met" id="QAT-cV-xxM"/>
-                        <segue destination="meq-qJ-GUl" kind="show" id="2Al-lY-Kfm"/>
+                        <segue destination="meq-qJ-GUl" kind="show" identifier="showTableSelect2" id="2Al-lY-Kfm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LP5-na-e7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2426,6 +2433,7 @@ CountryCode
                         <outlet property="name" destination="fCA-CA-q1k" id="Tqt-Fe-jcO"/>
                         <outlet property="tableview" destination="Yc8-S8-Ddn" id="v6o-fg-KoO"/>
                         <segue destination="ycg-Bf-yUV" kind="unwind" identifier="backToUniversity" unwindAction="backToUniversityViewWithSegue:" id="II9-7f-Wfv"/>
+                        <segue destination="ycg-Bf-yUV" kind="unwind" identifier="backToClub" unwindAction="backToClubViewWithSegue:" id="RUF-NJ-qI1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2G4-EP-nDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2439,13 +2447,13 @@ CountryCode
         <image name="_MG_6142.JPG" width="3456" height="5184"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsB-Ir-01b"/>
-        <segue reference="RMU-wg-LOR"/>
         <segue reference="kNW-PJ-LkL"/>
-        <segue reference="7ju-EX-yYQ"/>
-        <segue reference="UQZ-V9-A1l"/>
         <segue reference="c4f-hH-u7f"/>
+        <segue reference="bsB-Ir-01b"/>
+        <segue reference="UQZ-V9-A1l"/>
         <segue reference="gEM-ev-sIX"/>
+        <segue reference="7ju-EX-yYQ"/>
+        <segue reference="RMU-wg-LOR"/>
         <segue reference="NCu-xf-gAI"/>
         <segue reference="uew-Bm-T5Z"/>
         <segue reference="2Al-lY-Kfm"/>
