@@ -13,10 +13,17 @@ import Alamofire
 class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tableview: UITableView!
     let ID = "cell"
+    var selected = [Int]()
     override func viewDidLoad() {
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: ID)
         tableview.dataSource = self
         tableview.delegate = self
+    }
+    func prepareList(){
+        
+    }
+    func loaddata(){
+        Alamo
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
