@@ -193,7 +193,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中就读学校", identifyName:"junior_school_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中毕业年份", identifyName:"junir_school_graduated_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中入学年份", identifyName:"junior_school_enter_year")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中班级号", identifyName:"junior_class_no")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中班级号", identifyName:"junior_class")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "备注", identifyName:"junior_remark")
                 break
             case .seniorInfo:
