@@ -113,6 +113,11 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                             let data = (json as! [String:AnyObject])["info"] as? [String:Any?]
                             if(data != nil){
                                 self.loadData(data: data!)
+                            } else {
+                                let data = (json as! [String:AnyObject])["info"] as? [String]
+                                if(data != nil){
+                                    self.loadData(messages: data!)
+                                }
                             }
                             break
                         default:
@@ -191,7 +196,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             case .juniorInfo:
                 self.addFormItem(rootStackView: self.container, type: .picker, name: "初中学校",identifyName: "junior_school_no",["其他学校","普通初中课程","基础教育初中课程"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中就读学校", identifyName:"junior_school_name")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中毕业年份", identifyName:"junir_school_graduated_year")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中毕业年份", identifyName:"junior_school_graduated_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中入学年份", identifyName:"junior_school_enter_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中班级号", identifyName:"junior_class")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "备注", identifyName:"junior_remark")
@@ -274,7 +279,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 print(1)
                 break
             }
-            self.addContainerSpacing(rootStackView: self.container, itemNum: 4)
+            //self.addContainerSpacing(rootStackView: self.container, itemNum: 4)
             self.container.frame.size.height = 100
             self.container.layer.borderColor = UIColor.gray.cgColor
             self.container.layer.borderWidth = 1.0
@@ -291,6 +296,11 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             //self.fadeInOrOut(object: self.container, isIn: false)
             let nfls_primary_info = ["primary_school_graduated_year","primary_school_enter_year","primary_class"]
             let nfls_junior_info = ["junior_school_graduated_year","junior_school_enter_year","junior_class"]
+            let junior_school_div = ["junior_school_name"]
+            let senior_school_div = ["senior_school_name"]
+            let nfls_senior_general = ["senior_school_graduated_year","senior_school_enter_year"]
+            let nfls_international_info = ["senior_class"]
+            let nfls_senior_info = ["senior_class_11","senior_class_12","senior_class_21","senior_class_22","senior_class_31","senior_class_32"]
             switch(self.currentStep){
             case .primaryInfo:
                 switch(selected){
@@ -308,10 +318,46 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 switch(selected){
                 case 0:
                     self.operateGroups(group: nfls_junior_info, operation: false)
+                    self.operateGroups(group: junior_school_div, operation: true)
                     break
-                case 1,
-                     2:
+                case 1,2:
                     self.operateGroups(group: nfls_junior_info, operation: true)
+                    self.operateGroups(group: junior_school_div, operation: false)
+                    break
+                default:
+                    break
+                }
+            case .seniorInfo:
+                switch(selected){
+                case 0:
+                    self.operateGroups(group: senior_school_div, operation: false)
+                    self.operateGroups(group: nfls_international_info, operation: false)
+                    self.operateGroups(group: nfls_senior_info, operation: false)
+                    self.operateGroups(group: nfls_senior_general, operation: false)
+                    break
+                case 1,2:
+                    self.operateGroups(group: senior_school_div, operation: true)
+                    self.operateGroups(group: nfls_international_info, operation: false)
+                    self.operateGroups(group: nfls_senior_info, operation: false)
+                    self.operateGroups(group: nfls_senior_general, operation: false)
+                    break
+                case 3:
+                    self.operateGroups(group: senior_school_div, operation: true)
+                    self.operateGroups(group: nfls_international_info, operation: false)
+                    self.operateGroups(group: nfls_senior_info, operation: true)
+                    self.operateGroups(group: nfls_senior_general, operation: true)
+                    break
+                case 4,5,6,7,10:
+                    self.operateGroups(group: senior_school_div, operation: false)
+                    self.operateGroups(group: nfls_international_info, operation: true)
+                    self.operateGroups(group: nfls_senior_general, operation: true)
+                    self.operateGroups(group: nfls_senior_info, operation: false)
+                    break
+                case 8,9:
+                    self.operateGroups(group: senior_school_div, operation: false)
+                    self.operateGroups(group: nfls_international_info, operation: false)
+                    self.operateGroups(group: nfls_senior_general, operation: true)
+                    self.operateGroups(group: nfls_senior_info, operation: false)
                     break
                 default:
                     break
@@ -324,11 +370,11 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func operateGroups(group:[String],operation:Bool){
-        dump(tagMap)
+        //dump(tagMap)
         for field in group{
-            print(field)
+            //print(field)
             let tag = findTagForIdentification(field)
-            print(tag)
+            //print(tag)
             self.container.viewWithTag(tag)?.isHidden = !operation
             self.container.viewWithTag(-tag)?.isHidden = !operation
         }
@@ -369,8 +415,19 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 let picker = view as! UIPickerView
                 picker.selectRow(value as! Int, inComponent: 0, animated: true)
                 self.pickerOption = value as! Int
+                self.updateTextfield(selected: self.pickerOption)
             }
         }
+    }
+    
+    func loadData(messages:[String]){
+        var str = ""
+        for message in messages {
+            str += message + "\n"
+        }
+        (self.container.viewWithTag(1) as! UITextView).text = str
+        (self.container.viewWithTag(1) as! UITextView).isEditable = false
+        (self.container.viewWithTag(1) as! UITextView).isHidden = false
     }
     
     func findTagForIdentification(_ id:String) -> Int{
@@ -462,6 +519,8 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         switch(type){
         case .textView:
             let textfield = UITextView()
+            let constraintForTextView = NSLayoutConstraint(item: textfield, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 200)
+            textfield.addConstraint(constraintForTextView)
             rootStackView.addArrangedSubview(textfield)
             textfield.tag = lastTag
             textfield.frame.size.height = 100
@@ -491,7 +550,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             picker.tag = lastTag
             picker.delegate = self
             picker.dataSource = self
-            
+            updateTextfield(selected: 0)
             self.pickerData = data
             break
         case .datePicker:
@@ -531,7 +590,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 } else {
                     showMessage = showMessage + message + "\n"
                 }
-               
             }
             alert = UIAlertController(title: title, message: showMessage, preferredStyle: .alert)
             (alert.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left
@@ -548,43 +606,10 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         rootStackView.addArrangedSubview(stackview)
     }
     
-    func addContainerSpacing(rootStackView:UIStackView,itemNum:Int){
-        //xrrootStackView.spacing = 15
-    }
-    
-    func textfieldOperation(tag:Int,enable:Bool){
-        let textfield = (self.container.viewWithTag(tag) as! UITextField)
-        if(enable){
-            enableTextfield(textfield: textfield)
-        } else {
-            disableTextfield(textfield: textfield)
-        }
-    }
-    func disableTextfield(textfield:UITextField){
-        textfield.superview?.isHidden = true
-    }
-    
-    func enableTextfield(textfield:UITextField){
-        textfield.superview?.isHidden = false
-    }
-    
-    
     func pickerCheck(){
         if(!self.setPicker){
             self.updateTextfield(selected: 0)
         }
-    }
-    
-    func setTextfieldValue(tag:Int,value:Int){
-        (self.container.viewWithTag(tag) as! UITextField!).text = String(describing: value)
-    }
-    
-    func setTextfieldText(tag:Int,text:String?){
-        (self.container.viewWithTag(tag) as! UITextField!).text = text as String!
-    }
-    
-    func getTextfieldText(tag:Int) -> AnyObject {
-        return (self.container.viewWithTag(tag) as! UITextField).text as AnyObject
     }
     
     @objc func reset(button:UIButton){
@@ -608,19 +633,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func fadeInOrOut(object:UIView,isIn:Bool,duration:Double = 1){
-        if (isIn){
-            UIView.animate(withDuration: duration, animations: {
-                object.alpha = 1
-            })
-        }
-        else{
-            UIView.animate(withDuration: duration, animations: {
-                object.alpha = 0
-            })
-        }
     }
     
     @objc func showIntroductions(button:UIButton){
