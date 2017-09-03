@@ -22,7 +22,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var showIntro: UIButton!
-    var pickerOption = -1
+    var pickerOption = 0
     var pickerData: [String] = [String]()
     var currentStep:Step = .basicInfo
     var setPicker:Bool = false
@@ -192,7 +192,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .picker, name: "初中学校",identifyName: "junior_school_no",["其他学校","普通初中课程","基础教育初中课程"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中就读学校", identifyName:"junior_school_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中毕业年份", identifyName:"junir_school_graduated_year")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中入学年份", identifyName:"junior_enter_year")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "初中入学年份", identifyName:"junior_school_enter_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中班级号", identifyName:"junior_class_no")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "备注", identifyName:"junior_remark")
                 break
@@ -285,114 +285,71 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-    func updateTextfield(step:Step,selected:Int){
+    func updateTextfield(selected:Int){
         DispatchQueue.main.async {
-            //self.fadeInOrOut(object: self.container, isIn: false)
-            /*
             self.pickerOption = selected
-            if((selected==0) && (self.currentStep != .basicInfo)){
-                print("yes")
-                self.pickerOption = -1
-            }
-            switch(step){
+            //self.fadeInOrOut(object: self.container, isIn: false)
+            let nfls_primary_info = ["primary_school_graduated_year","primary_school_enter_year","primary_class"]
+            let nfls_junior_info = ["junior_school_graduated_year","junior_school_enter_year","junior_class"]
+            switch(self.currentStep){
             case .primaryInfo:
-                let enumOption = PrimarySchoolType(rawValue: self.pickerOption)
-                switch(enumOption!){
-                case .other:
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    //self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
+                switch(selected){
+                case 0:
+                    self.operateGroups(group: nfls_primary_info, operation: false)
                     break
-                case .nflsPrimary2,
-                     .nflsPrimary4:
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    //self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.remark.rawValue) as! UITextField))
+                case 1:
+                    self.operateGroups(group: nfls_primary_info, operation: true)
+                    break
+                default:
                     break
                 }
                 break
             case .juniorInfo:
-                let enumOption = JuniorSchoolType(rawValue: self.pickerOption)
-                switch(enumOption!){
-                case .other:
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue) as! UITextField))
+                switch(selected){
+                case 0:
+                    self.operateGroups(group: nfls_junior_info, operation: false)
                     break
-                case .nflsJunior:
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue) as! UITextField))
+                case 1,
+                     2:
+                    self.operateGroups(group: nfls_junior_info, operation: true)
+                    break
+                default:
                     break
                 }
-                break
-            case .seniorInfo:
-                let enumOption = SeniorSchoolType(rawValue: self.pickerOption)
-                switch(enumOption!){
-                case .other:
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 11) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 12) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 21) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 22) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 31) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 32) as! UITextField))
-                    break
-                case .nflsSeniorGeneral:
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 11) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 12) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 21) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 22) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 31) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 32) as! UITextField))
-                    break
-                case .nflsSeniorALevel,
-                     .nflsSeniorIB,
-                     .nflsSeniorBCA:
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.schoolName.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.enterYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.graduatedYear.rawValue) as! UITextField))
-                    self.enableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 11) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 12) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 21) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 22) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 31) as! UITextField))
-                    self.disableTextfield(textfield:(self.container.viewWithTag(TagInt.classNo.rawValue + 32) as! UITextField))
-                    break
-                }
-                break
-            case .basicInfo,
-                 .confirmInfo,
-                 .collegeInfo,
-                 .workInfo,
-                 .personalInfo,
-                 .end:
+            default:
                 break
             }
             //self.fadeInOrOut(object: self.container, isIn: true)
-            */
+        }
+    }
+    
+    func operateGroups(group:[String],operation:Bool){
+        dump(tagMap)
+        for field in group{
+            print(field)
+            let tag = findTagForIdentification(field)
+            print(tag)
+            self.container.viewWithTag(tag)?.isHidden = !operation
+            self.container.viewWithTag(-tag)?.isHidden = !operation
         }
     }
     
     func loadData(data:[String:Any?]){
         for(name,value) in data{
-            print(name)
-            print(value)
             var str:String
             if(value is String){
                 str = value as! String
             }else if(value is Int){
                 str = String(value as! Int)
+            }else if(value is [Any]){
+                str = ""
+                for id in (value as! [Any]){
+                    if(id is Int){
+                        str += String(describing: id) + ","
+                    } else {
+                         str += (id as! String) + ","
+                    }
+                }
             }else{
                 str = " "
             }
@@ -406,11 +363,12 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 dateFormatter.dateFormat = "yyyy/MM/dd"
                 let date = dateFormatter.date(from: str)!
                 (self.container.viewWithTag(tag) as! UIDatePicker).setDate(date, animated: true)
-                break
             }else if (view is UISwitch){
                 
             }else if (view is UIPickerView){
-                
+                let picker = view as! UIPickerView
+                picker.selectRow(value as! Int, inComponent: 0, animated: true)
+                self.pickerOption = value as! Int
             }
         }
     }
@@ -426,7 +384,26 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     @objc func buttonPressed(button:UIButton){
         disableButtons()
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
-        let jsonDictionary = Parameters()
+        var jsonDictionary = Parameters()
+        jsonDictionary["action"] = button.tag as AnyObject
+        for(key,value)in tagMap{
+            let view = self.container.viewWithTag(key)
+            if(view?.isHidden == false){
+                if(view is UITextField){
+                    jsonDictionary[value] = (view as! UITextField).text
+                }else if (view is UIDatePicker){
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy/MM/dd"
+                    let date = (view as! UIDatePicker).date
+                    jsonDictionary[value]=dateFormatter.string(from: date)
+                }else if (view is UISwitch){
+                    
+                }else if (view is UIPickerView){
+                    jsonDictionary[value] = pickerOption
+                }
+            }
+        }
+        //dump(jsonDictionary)
         do {
             let parameters: Parameters = jsonDictionary
             let headers: HTTPHeaders = [
@@ -435,6 +412,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             Alamofire.request("https://api.nfls.io/alumni/auth/"+String(describing: self.currentStep.rawValue)+"/update", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
                 switch(response.result){
                 case .success(let json):
+                    dump(json)
                     let messages = (json as! [String:AnyObject])["message"] as! [String]
                     self.showMessage(messages: messages, title: "信息")
                     //dump(response)
@@ -593,7 +571,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     func pickerCheck(){
         if(!self.setPicker){
-            self.updateTextfield(step: self.currentStep, selected: 0)
+            self.updateTextfield(selected: 0)
         }
     }
     
@@ -667,7 +645,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        updateTextfield(step:currentStep,selected: row)
+        updateTextfield(selected: row)
     }
-    
 }
