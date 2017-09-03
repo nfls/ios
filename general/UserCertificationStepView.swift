@@ -489,6 +489,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     
     func checkSwitchItems(jsonDictionary:inout [String:AnyObject]){
+        
         /*
         jsonDictionary[prefix] = (self.container.viewWithTag(tag.rawValue) as! UISwitch).isOn as AnyObject
         if((self.container.viewWithTag(tag.rawValue) as! UISwitch).isOn == true)
@@ -617,19 +618,12 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     @objc func switchChanged(switch_:UISwitch){
-        /*
         let status = switch_.isOn
-        textfieldOperation(tag: (TagInt.schoolName.rawValue + switch_.tag), enable: status)
-        textfieldOperation(tag: (TagInt.enterYear.rawValue + switch_.tag), enable: status)
-        textfieldOperation(tag: (TagInt.graduatedYear.rawValue + switch_.tag), enable: status)
-        textfieldOperation(tag: (TagInt.major.rawValue + switch_.tag), enable: status)
-        if(switch_.tag == TagInt.otherSwitch.rawValue){
-            textfieldOperation(tag: (TagInt.schoolType.rawValue + switch_.tag), enable: status)
-        }
-         */
+        let prefix = tagMap[switch_.tag]!
+        let textfields = [prefix+"_name",prefix+"_major",prefix+"_start",prefix+"_end"]
+        self.operateGroups(group: textfields, operation: status)
         
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
