@@ -38,6 +38,16 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         }
         
     }
+    @IBAction func exit(_ sender: Any) {
+        if(self.presentingViewController is UserCertificationStepView){
+            if(self.saveData()){
+                self.performSegue(withIdentifier: "backToCertification", sender: self)
+                (self.presentingViewController as! UserCertificationStepView).inputData = id
+            }
+        } else {
+            self.performSegue(withIdentifier: "back", sender: self)
+        }
+    }
     
     func loadMessage(_ loadMore:Bool = true){
         let headers: HTTPHeaders = [
@@ -101,7 +111,7 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         comment.isEnabled = true
     }
     
-    func saveData(){
+    func saveData() -> Bool{
         var passed = true
         if(name.text == "" || shortName.text == "" || name.text == nil || shortName.text == nil){
             passed = false
@@ -143,6 +153,7 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
                 }
             }
         }
+        return passed
     }
     
     func reloadData(){

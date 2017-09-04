@@ -11,7 +11,7 @@ import UIKit
 import QuartzCore
 import Alamofire
 
-class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     @IBOutlet weak var container: UIStackView!
     @IBOutlet weak var resetButton: UIButton!
@@ -28,6 +28,10 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     var setPicker:Bool = false
     var tagMap = [Int:String]()
     var lastTag = 0
+    var specialTextFields = [String]()
+    var specialAction = ""
+    var inputData:Any? = nil
+    var operatingField = 0
     //var typeMap = [Int:FormType]()
     enum Step:Int{
         case basicInfo = 1
@@ -65,7 +69,16 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     
     override func viewDidAppear(_ animated: Bool) {
-        initialize(true)
+        if(operatingField == 0){
+            initialize(true)
+        } else {
+            if(inputData != nil){
+                (self.container.viewWithTag(operatingField) as! UITextField).text = String(inputData as! Int)
+            }
+            inputData = nil
+            operatingField = 0
+        }
+        
     }
     func showBasicInstructions(_ continue_:Bool = true){
         let headers: HTTPHeaders = [
@@ -173,6 +186,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         tagMap.removeAll()
         lastTag = 0
         currentStep = step
+        specialTextFields.removeAll()
        // let type　= TagInt()
         DispatchQueue.main.async {
             switch(step){
@@ -220,10 +234,10 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 break
             case .collegeInfo:
                 self.addFormItem(rootStackView: self.container, type: .switch_, name: "夏校", identifyName: "summer")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "就读院校ID",identifyName:"summer_school")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "主要专业方向",identifyName:"summer_major")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "毕业年份",identifyName:"summer_end")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "入学年份",identifyName:"summer_start")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "就读院校ID",identifyName:"summer_school",hidden:true)
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "主要专业方向",identifyName:"summer_major",hidden:true)
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "毕业年份",identifyName:"summer_end",hidden:true)
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "入学年份",identifyName:"summer_start",hidden:true)
                 self.addFormItem(rootStackView: self.container, type: .switch_, name: "专科", identifyName: "college")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "就读院校ID",identifyName:"college_school")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "主要专业方向",identifyName:"college_major")
@@ -250,7 +264,14 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "主要专业方向",identifyName:"other_major")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "毕业年份",identifyName:"other_end")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "入学年份",identifyName:"other_start")
-
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "备注",identifyName:"college_remark")
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("summer")) as! UISwitch))
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("college")) as! UISwitch))
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("undergraduate")) as! UISwitch))
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("master")) as! UISwitch))
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("doctor")) as! UISwitch))
+                self.switchChanged(switch_: (self.container.viewWithTag(self.findTagForIdentification("other")) as! UISwitch))
+                self.specialTextFields.append(contentsOf: ["summer_school","college_school","undergraduate_school","master_school","doctor_school"])
                 break
             case .workInfo:
                 //self.addFormItem(rootStackView: self.container, type: .textView, name: "工作信息",identifyName:.workType)
@@ -372,9 +393,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     func operateGroups(group:[String],operation:Bool){
         //dump(tagMap)
         for field in group{
-            //print(field)
+            print(field)
             let tag = findTagForIdentification(field)
-            //print(tag)
+            print(tag)
             self.container.viewWithTag(tag)?.isHidden = !operation
             self.container.viewWithTag(-tag)?.isHidden = !operation
         }
@@ -410,7 +431,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 let date = dateFormatter.date(from: str)!
                 (self.container.viewWithTag(tag) as! UIDatePicker).setDate(date, animated: true)
             }else if (view is UISwitch){
-                
+                let switch_ = view as! UISwitch
+                switch_.isOn = value as! Bool
+                switchChanged(switch_: switch_)
             }else if (view is UIPickerView){
                 let picker = view as! UIPickerView
                 picker.selectRow(value as! Int, inComponent: 0, animated: true)
@@ -454,13 +477,13 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                     let date = (view as! UIDatePicker).date
                     jsonDictionary[value]=dateFormatter.string(from: date)
                 }else if (view is UISwitch){
-                    
+                    jsonDictionary[value]=(view as! UISwitch).isOn
                 }else if (view is UIPickerView){
                     jsonDictionary[value] = pickerOption
                 }
             }
         }
-        //dump(jsonDictionary)
+        dump(jsonDictionary)
         do {
             let parameters: Parameters = jsonDictionary
             let headers: HTTPHeaders = [
@@ -505,7 +528,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
          */
         
     }
-    func addFormItem(rootStackView:UIStackView,type:FormType,name:String,identifyName:String?,_ data:[String] = []){
+    func addFormItem(rootStackView:UIStackView,type:FormType,name:String,identifyName:String?,hidden:Bool = false,_ data:[String] = []){
         let label = UILabel()
         rootStackView.addArrangedSubview(label)
         rootStackView.spacing = 2
@@ -524,6 +547,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             textfield.addConstraint(constraintForTextView)
             rootStackView.addArrangedSubview(textfield)
             textfield.tag = lastTag
+            textfield.isHidden = hidden
             textfield.frame.size.height = 100
             textfield.layer.borderColor = UIColor.lightGray.cgColor
             textfield.layer.borderWidth = 1.0
@@ -535,10 +559,12 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 textfield.isEnabled = false
                 textfield.textColor = UIColor.gray
             }
+            textfield.isHidden = hidden
             textfield.placeholder = name
             textfield.tag = lastTag
             textfield.borderStyle = .roundedRect
             rootStackView.addArrangedSubview(textfield)
+            textfield.delegate = self
             break
         case .picker:
             let picker = UIPickerView()
@@ -573,7 +599,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             rootStackView.addArrangedSubview(switch_)
             switch_.addTarget(self, action: #selector(switchChanged(switch_:)), for: .valueChanged)
             switch_.tag = lastTag
-            switch_.isOn = true
+            switch_.isOn = false
             break
         }
     }
@@ -607,6 +633,15 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         rootStackView.addArrangedSubview(stackview)
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if(textField.tag != 0 && specialTextFields.contains(tagMap[textField.tag]!)){
+            self.operatingField = textField.tag
+            self.performSegue(withIdentifier: "showUniversitySelect", sender: self)
+            return false
+        } else {
+            return true
+        }
+    }
     func pickerCheck(){
         if(!self.setPicker){
             self.updateTextfield(selected: 0)
@@ -620,7 +655,10 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     @objc func switchChanged(switch_:UISwitch){
         let status = switch_.isOn
         let prefix = tagMap[switch_.tag]!
-        let textfields = [prefix+"_name",prefix+"_major",prefix+"_start",prefix+"_end"]
+        var textfields = [prefix+"_school",prefix+"_major",prefix+"_start",prefix+"_end"]
+        if(prefix == "other"){
+            textfields.append(prefix+"_type")
+        }
         self.operateGroups(group: textfields, operation: status)
         
     }
@@ -652,5 +690,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateTextfield(selected: row)
+    }
+    
+    @IBAction func backToCertificationView(segue: UIStoryboardSegue){
+        
     }
 }
