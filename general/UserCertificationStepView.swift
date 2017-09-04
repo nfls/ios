@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import QuartzCore
 import Alamofire
+import CountryPicker
 
-class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, CountryPickerDelegate{
     
     @IBOutlet weak var container: UIStackView!
     @IBOutlet weak var resetButton: UIButton!
@@ -32,6 +33,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     var specialAction = ""
     var inputData:Any? = nil
     var operatingField = 0
+    var countryCode = "CN"
     //var typeMap = [Int:FormType]()
     enum Step:Int{
         case basicInfo = 1
@@ -52,6 +54,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         case picker
         case datePicker
         case switch_
+        case countryPicker
     }
     
     override func viewDidLoad() {
@@ -274,27 +277,23 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.specialTextFields.append(contentsOf: ["summer_school","college_school","undergraduate_school","master_school","doctor_school"])
                 break
             case .workInfo:
-                //self.addFormItem(rootStackView: self.container, type: .textView, name: "工作信息",identifyName:.workType)
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "从事行业",identifyName: "career")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "公司名称",identifyName: "company_name")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "职称",identifyName: "job")
+                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "公司所在国家",identifyName: "work_country")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "省/洲/地区",identifyName: "work_region")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "城市",identifyName: "work_city")
+                self.addFormItem(rootStackView: self.container, type: .textView, name: "工作简介",identifyName: "work_info")
                 break
             case .personalInfo:
-                /*
-                self.addFormItem(rootStackView: self.container, type: .textView, name: "个 人 介 绍", identifyName:.personalInfo )
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "WeChat", identifyName: .personalInfo, PersonalInfoType.wechat.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "QQ", identifyName: .personalInfo, PersonalInfoType.qq.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "微博", identifyName: .personalInfo, PersonalInfoType.weibo.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Telegram", identifyName: .personalInfo, PersonalInfoType.telegram.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "WhatsApp", identifyName: .personalInfo, PersonalInfoType.whatsapp.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Skype", identifyName: .personalInfo, PersonalInfoType.skype.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Google  Talk", identifyName: .personalInfo, PersonalInfoType.google_talk.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Snapchat", identifyName: .personalInfo, PersonalInfoType.snapchat.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Viber", identifyName: .personalInfo, PersonalInfoType.viber.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "GroupMe", identifyName: .personalInfo, PersonalInfoType.groupme.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Twitter", identifyName: .personalInfo, PersonalInfoType.twitter.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Youtube", identifyName: .personalInfo, PersonalInfoType.youtube.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Facebook", identifyName: .personalInfo, PersonalInfoType.facebook.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Vimeo", identifyName: .personalInfo, PersonalInfoType.vimeo.rawValue)
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "Instagram", identifyName: .personalInfo, PersonalInfoType.instagram.rawValue)
-                */
+                self.addFormItem(rootStackView: self.container, type: .textView, name: "个人简介",identifyName: "personal_info")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "手机号码（国内）",identifyName: "phone_domestic")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "手机号码（国外）",identifyName: "phone_international")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "昵称",identifyName: "nickname")
+                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "常住国家",identifyName: "country")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "省/洲/地区",identifyName: "region")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "城市",identifyName: "city")
+                
                 break
             case .end:
                 print(1)
@@ -418,13 +417,16 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                     }
                 }
             }else{
-                str = " "
+                str = ""
             }
             let tag = findTagForIdentification(name)
             let view = self.container.viewWithTag(tag)
             if(view is UITextField){
                 let textfield = view as! UITextField
                 textfield.text = str
+            }else if (view is UITextView){
+                let textview = view as! UITextView
+                textview.text = str
             }else if (view is UIDatePicker){
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -434,6 +436,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 let switch_ = view as! UISwitch
                 switch_.isOn = value as! Bool
                 switchChanged(switch_: switch_)
+            }else if (view is CountryPicker){
+                let picker = view as! CountryPicker
+                picker.setCountry(str)
             }else if (view is UIPickerView){
                 let picker = view as! UIPickerView
                 picker.selectRow(value as! Int, inComponent: 0, animated: true)
@@ -471,6 +476,8 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             if(view?.isHidden == false){
                 if(view is UITextField){
                     jsonDictionary[value] = (view as! UITextField).text
+                }else if(view is UITextView){
+                    jsonDictionary[value] = (view as! UITextView).text
                 }else if (view is UIDatePicker){
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -478,6 +485,8 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                     jsonDictionary[value]=dateFormatter.string(from: date)
                 }else if (view is UISwitch){
                     jsonDictionary[value]=(view as! UISwitch).isOn
+                }else if (view is CountryPicker){
+                    jsonDictionary[value] = countryCode
                 }else if (view is UIPickerView){
                     jsonDictionary[value] = pickerOption
                 }
@@ -601,6 +610,15 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             switch_.tag = lastTag
             switch_.isOn = false
             break
+        case .countryPicker:
+            let picker = CountryPicker()
+            rootStackView.addArrangedSubview(picker)
+            let locale = Locale.current
+            countryCode = ((locale as NSLocale).object(forKey: NSLocale.Key.countryCode) as! String?)!
+            picker.countryPickerDelegate = self
+            picker.showPhoneNumbers = false
+            picker.setCountry(countryCode)
+            picker.tag = lastTag
         }
     }
     
@@ -690,6 +708,10 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateTextfield(selected: row)
+    }
+    
+    func countryPhoneCodePicker(_ picker: CountryPicker, didSelectCountryWithName name: String, countryCode: String, phoneCode: String, flag: UIImage) {
+        self.countryCode  = countryCode
     }
     
     @IBAction func backToCertificationView(segue: UIStoryboardSegue){
