@@ -88,10 +88,16 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
             action in
             self.loadMessage(false)
         })
+        let backWithoutSave = UIAlertAction(title: "不保存返回", style: .destructive, handler: { (action) in
+            self.performSegue(withIdentifier: "backToCertification", sender: self)
+            })
         let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         menu.addAction(query)
         menu.addAction(save)
         menu.addAction(showNotice)
+        if(self.presentingViewController is UserCertificationStepView){
+            menu.addAction(backWithoutSave)
+        }
         menu.addAction(cancel)
         menu.popoverPresentationController?.barButtonItem = barbutton
         self.present(menu, animated: true)

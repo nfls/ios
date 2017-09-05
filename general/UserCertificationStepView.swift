@@ -302,7 +302,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "常住国家或地区",identifyName: "country")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "省/洲/地区",identifyName: "region")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "城市",identifyName: "city")
-                self.addFormItem(rootStackView: self.container, type: .textField, name: "在南外参加的俱乐部", identifyName: "clubs")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "在南外参加的社团", identifyName: "clubs")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "微信", identifyName: "wechat")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "QQ/TIM", identifyName: "qq")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "新浪微博", identifyName: "weibo")
@@ -502,7 +502,11 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             let view = self.container.viewWithTag(key)
             if(view?.isHidden == false){
                 if(view is UITextField){
-                    jsonDictionary[value] = (view as! UITextField).text
+                    if((view as! UITextField).text != nil && Int((view as! UITextField).text!) == nil){
+                        jsonDictionary[value] = (view as! UITextField).text
+                    } else {
+                        jsonDictionary[value] = Int((view as! UITextField).text!)
+                    }
                 }else if(view is UITextView){
                     jsonDictionary[value] = (view as! UITextView).text
                 }else if (view is UIDatePicker){
@@ -528,15 +532,13 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             Alamofire.request("https://api.nfls.io/alumni/auth/"+String(describing: self.currentStep.rawValue)+"/update", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
                 switch(response.result){
                 case .success(let json):
-                    dump(json)
-                    let messages = (json as! [String:AnyObject])["message"] as! [String]
-                    self.showMessage(messages: messages, title: "信息")
-                    //dump(response)
                     if((json as! [String:AnyObject])["code"] as! Int == 200){
                         self.initialize()
                     }
                     else{
                         self.enableButtons()
+                        let messages = (json as! [String:AnyObject])["message"] as! [String]
+                        self.showMessage(messages: messages, title: "信息")
                     }
                     break
                 default:
@@ -683,11 +685,11 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             switch(self.currentStep){
             case .collegeInfo:
                 self.operatingField = textField.tag
-                self.performSegue(withIdentifier: "showUniversitySelect", sender: self)
+                self.performSegue(withIdentifier: "showUniversitySelect", sender: textField.text)
                 break
             case .personalInfo:
                 self.operatingField = textField.tag
-                self.performSegue(withIdentifier: "showClubSelect", sender: self)
+                self.performSegue(withIdentifier: "showClubSelect", sender: textField.text)
                 break
             default:
                 break
@@ -755,7 +757,16 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showClubSelect" {
             if let destinationVC = segue.destination as? ClubInfoViewController {
-                destinationVC.ids =
+                if(sender != nil){
+                    destinationVC.selected = (sender as! String).components(separatedBy: ",").flatMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+                }
+                //destinationVC.type = sender as! String
+            }
+        } else if segue.identifier == "showUniversitySelect" {
+            if let destinationVC = segue.destination as? UniversityInfoViewController {
+                if(sender != nil){
+                    destinationVC.id = Int(sender as! String)!
+                }
                 //destinationVC.type = sender as! String
             }
         }

@@ -11,6 +11,7 @@ import UIKit
 import WebKit
 import AVKit
 import AVFoundation
+import QuickLook
 
 
 

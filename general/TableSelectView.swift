@@ -136,9 +136,15 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             guard let parent = self.presentingViewController else{
                 return
             }
-            let parent_view = (parent as! UITabBarController).selectedViewController
-            (parent_view as! ClubInfoViewController).id = ids[indexPath.row]
-            (parent_view as! ClubInfoViewController).action = "edit"
+            if(parent is UITabBarController){
+                let parent_view = (parent as! UITabBarController).selectedViewController
+                (parent_view as! ClubInfoViewController).id = ids[indexPath.row]
+                (parent_view as! ClubInfoViewController).action = "edit"
+            } else {
+                let parent_view = parent as! ClubInfoViewController
+                parent_view.id = ids[indexPath.row]
+                parent_view.action = "edit"
+            }
             self.performSegue(withIdentifier: "backToClub", sender: self)
         }
     }

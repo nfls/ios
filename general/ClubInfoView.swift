@@ -41,7 +41,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
     }
     @IBAction func showMenu(_ sender: Any) {
         let menu = UIAlertController(title: "操作", message: "新建社团前请先进入查询社团模块", preferredStyle: .actionSheet)
-        let query = UIAlertAction(title: "查询学校", style: .default, handler: {
+        let query = UIAlertAction(title: "查询社团", style: .default, handler: {
             action in
             self.performSegue(withIdentifier: "showTableSelect2", sender: "club")
         })
@@ -57,6 +57,9 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
             action in
             self.loadMessage(false)
         })
+        let exitWithoutSave = UIAlertAction(title: "不保存退出", style: .destructive) { (action) in
+            self.performSegue(withIdentifier: "backToCertification", sender: self)
+        }
         let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         menu.addAction(query)
         if(!(id == 0 && action == "edit")){
@@ -66,6 +69,9 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
             menu.addAction(add)
         }
         menu.addAction(showNotice)
+        if(self.presentingViewController is UserCertificationStepView){
+            menu.addAction(exitWithoutSave)
+        }
         menu.addAction(cancel)
         menu.popoverPresentationController?.barButtonItem = barbutton
         self.present(menu, animated: true)
@@ -74,6 +80,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func exit(_ sender: Any) {
         if(self.presentingViewController is UserCertificationStepView){
             self.performSegue(withIdentifier: "backToCertification", sender: self)
+            ids.sort()
             (self.presentingViewController as! UserCertificationStepView).inputData = ids
         } else {
             self.performSegue(withIdentifier: "back", sender: self)
