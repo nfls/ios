@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zbU-uo-eoH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1380,20 +1380,11 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2rQ-qo-aGJ">
-                                <rect key="frame" x="140" y="57" width="110" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgd-TO-rRc">
-                                <rect key="frame" x="8.5" y="62.5" width="303" height="241"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="shr-UY-DEo">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shr-UY-DEo">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="TWZ-62-kwX"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="实名认证" id="8NO-sw-M8a">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="P4A-pz-tHA">
@@ -1419,14 +1410,27 @@ CountryCode
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yU2-nT-kFe">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yU2-nT-kFe" firstAttribute="top" secondItem="shr-UY-DEo" secondAttribute="bottom" id="3QF-TE-t4H"/>
+                            <constraint firstItem="shr-UY-DEo" firstAttribute="leading" secondItem="SsH-Jp-CHR" secondAttribute="leading" id="6FV-bj-7xf"/>
+                            <constraint firstItem="yU2-nT-kFe" firstAttribute="leading" secondItem="SsH-Jp-CHR" secondAttribute="leading" id="FES-fR-Lno"/>
+                            <constraint firstItem="shr-UY-DEo" firstAttribute="top" secondItem="625-22-85V" secondAttribute="bottom" id="O5Y-bZ-L6N"/>
+                            <constraint firstAttribute="trailing" secondItem="yU2-nT-kFe" secondAttribute="trailing" id="k4o-ae-kAe"/>
+                            <constraint firstItem="g3i-1m-S6J" firstAttribute="top" secondItem="yU2-nT-kFe" secondAttribute="bottom" id="tCu-vE-ubJ"/>
+                            <constraint firstAttribute="trailing" secondItem="shr-UY-DEo" secondAttribute="trailing" id="v0X-Wp-SS6"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="实名" id="dIw-e4-wGK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="enterButton" destination="WsF-gX-ZJP" id="UCo-rp-4Fr"/>
-                        <outlet property="status" destination="Tgd-TO-rRc" id="Tpt-1H-Es6"/>
+                        <outlet property="enterButton" destination="WsF-gX-ZJP" id="Uzl-cm-Waa"/>
+                        <outlet property="tableview" destination="yU2-nT-kFe" id="w3K-Ru-NBr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKI-bw-0Pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2454,7 +2458,7 @@ CountryCode
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
         <segue reference="uew-Bm-T5Z"/>
-        <segue reference="yvX-1Z-Kwu"/>
+        <segue reference="NCu-xf-gAI"/>
         <segue reference="c4f-hH-u7f"/>
         <segue reference="UQZ-V9-A1l"/>
         <segue reference="gEM-ev-sIX"/>
