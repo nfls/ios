@@ -76,7 +76,16 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             initialize(true)
         } else {
             if(inputData != nil){
-                (self.container.viewWithTag(operatingField) as! UITextField).text = String(inputData as! Int)
+                if(inputData is Int){
+                    (self.container.viewWithTag(operatingField) as! UITextField).text = String(inputData as! Int)
+                } else if (inputData is [Int]){
+                    var str = ""
+                    for id in (inputData as! [Int]){
+                        str += String(id) + ","
+                    }
+                    (self.container.viewWithTag(operatingField) as! UITextField).text = str
+                }
+                
             }
             inputData = nil
             operatingField = 0
@@ -280,7 +289,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "从事行业",identifyName: "career")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "公司名称",identifyName: "company_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "职称",identifyName: "job")
-                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "公司所在国家",identifyName: "work_country")
+                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "公司所在国家或地区",identifyName: "work_country")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "省/洲/地区",identifyName: "work_region")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "城市",identifyName: "work_city")
                 self.addFormItem(rootStackView: self.container, type: .textView, name: "工作简介",identifyName: "work_info")
@@ -290,10 +299,28 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "手机号码（国内）",identifyName: "phone_domestic")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "手机号码（国外）",identifyName: "phone_international")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "昵称",identifyName: "nickname")
-                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "常住国家",identifyName: "country")
+                self.addFormItem(rootStackView: self.container, type: .countryPicker, name: "常住国家或地区",identifyName: "country")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "省/洲/地区",identifyName: "region")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "城市",identifyName: "city")
-                
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "在南外参加的俱乐部", identifyName: "clubs")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "微信", identifyName: "wechat")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "QQ/TIM", identifyName: "qq")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "新浪微博", identifyName: "weibo")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Telegram", identifyName: "telegram")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "WhatsApp", identifyName: "whatsapp")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Skype", identifyName: "skype")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "GroupMe", identifyName: "groupme")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "SnapChat", identifyName: "snapchat")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Viber", identifyName: "viber")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Google Talk", identifyName: "google_talk")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Youtube", identifyName: "youtube")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Twitter", identifyName: "twitter")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Facebook", identifyName: "facebook")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Vimeo", identifyName: "vimeo")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "Instagram", identifyName: "instagram")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "LinkedIn", identifyName: "linkedin")
+                self.addFormItem(rootStackView: self.container, type: .textField, name: "其他", identifyName: "other_com")
+                self.specialTextFields.append("clubs")
                 break
             case .end:
                 print(1)
@@ -653,8 +680,19 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if(textField.tag != 0 && specialTextFields.contains(tagMap[textField.tag]!)){
-            self.operatingField = textField.tag
-            self.performSegue(withIdentifier: "showUniversitySelect", sender: self)
+            switch(self.currentStep){
+            case .collegeInfo:
+                self.operatingField = textField.tag
+                self.performSegue(withIdentifier: "showUniversitySelect", sender: self)
+                break
+            case .personalInfo:
+                self.operatingField = textField.tag
+                self.performSegue(withIdentifier: "showClubSelect", sender: self)
+                break
+            default:
+                break
+            }
+            
             return false
         } else {
             return true
@@ -714,7 +752,15 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         self.countryCode  = countryCode
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showClubSelect" {
+            if let destinationVC = segue.destination as? ClubInfoViewController {
+                destinationVC.ids =
+                //destinationVC.type = sender as! String
+            }
+        }
+    }
+    
     @IBAction func backToCertificationView(segue: UIStoryboardSegue){
-        
     }
 }

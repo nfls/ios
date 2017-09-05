@@ -71,6 +71,14 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
         self.present(menu, animated: true)
     }
 
+    @IBAction func exit(_ sender: Any) {
+        if(self.presentingViewController is UserCertificationStepView){
+            self.performSegue(withIdentifier: "backToCertification", sender: self)
+            (self.presentingViewController as! UserCertificationStepView).inputData = ids
+        } else {
+            self.performSegue(withIdentifier: "back", sender: self)
+        }
+    }
     func cleanFields(){
         self.name.text = ""
         self.comment.text = ""
