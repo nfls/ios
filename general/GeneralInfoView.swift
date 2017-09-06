@@ -36,7 +36,7 @@ class GeneralInfoView:UIViewController,UITableViewDataSource,UITableViewDelegate
             case .success(let json):
                 if(((json as! [String:AnyObject])["code"] as! Int)==200){
                     let jsonDic = (json as! [String:AnyObject])["info"]!
-                    self.statusData["用户ID"] = jsonDic.object(forKey: "id") as? String
+                    self.statusData["ID"] = String(describing: jsonDic.object(forKey: "id") as! Int)
                     self.statusData["加入时间"] = jsonDic.object(forKey: "join_time") as? String
                     self.statusData["用户名"] = jsonDic.object(forKey: "username") as? String
                     self.statusData["邮箱"] = jsonDic.object(forKey: "email") as? String
@@ -63,12 +63,12 @@ class GeneralInfoView:UIViewController,UITableViewDataSource,UITableViewDelegate
             case .success(let json):
                 if(((json as! [String:AnyObject])["code"] as! Int)==200){
                     let jsonDic = (json as! [String:AnyObject])["info"]!
-                    self.forumData["ID"] = jsonDic.object(forKey: "id") as? String
+                    self.forumData["ID"] = String(describing: jsonDic.object(forKey: "id") as! Int)
                     self.forumData["用户名"] = jsonDic.object(forKey: "username") as? String
                     self.forumData["最近登录"] = jsonDic.object(forKey: "last_seen_time") as? String
-                    self.forumData["最近通知阅读"] = jsonDic.object(forKey: "2017-08-24 02:27:23") as? String
-                    self.forumData["发帖数"] = jsonDic.object(forKey: "discussions_count") as? String
-                    self.forumData["评论数"] = jsonDic.object(forKey: "avatar_path") as? String
+                    self.forumData["最近通知阅读"] = jsonDic.object(forKey: "last_seen_time") as? String
+                    self.forumData["发帖数"] = String(describing: jsonDic.object(forKey: "discussions_count") as! Int)
+                    self.forumData["评论数"] = String(describing: jsonDic.object(forKey: "comments_count") as! Int)
                     self.tableview.reloadData()
                 }
             default:
@@ -81,17 +81,17 @@ class GeneralInfoView:UIViewController,UITableViewDataSource,UITableViewDelegate
         let headers: HTTPHeaders = [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
-        Alamofire.request("https://api.nfls.io/center/forumInfo", headers: headers).responseJSON{ response in
+        Alamofire.request("https://api.nfls.io/center/wikiInfo", headers: headers).responseJSON{ response in
             switch response.result{
             case .success(let json):
                 if(((json as! [String:AnyObject])["code"] as! Int)==200){
                     let jsonDic = (json as! [String:AnyObject])["info"]!
-                    self.wikiData["ID"] = jsonDic.object(forKey: "user_id") as? String
+                    self.wikiData["ID"] = String(describing: (jsonDic.object(forKey: "user_id") as? Int)!)
                     self.wikiData["用户名"] = jsonDic.object(forKey: "user_name") as? String
                     self.wikiData["真实姓名"] = jsonDic.object(forKey: "user_real_name") as? String
                     self.wikiData["注册时间"] = jsonDic.object(forKey: "user_registration") as? String
                     self.wikiData["最近登录"] = jsonDic.object(forKey: "user_touched") as? String
-                    self.wikiData["编辑数"] = jsonDic.object(forKey: "user_editcount") as? String
+                    self.wikiData["编辑数"] = String(describing: (jsonDic.object(forKey: "user_editcount") as? Int)!)
                     self.tableview.reloadData()
                 }
             default:

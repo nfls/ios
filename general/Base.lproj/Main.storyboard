@@ -393,15 +393,32 @@
                                                 </connections>
                                             </button>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="ofq-NR-am9">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PbP-bQ-i8q">
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="操作"/>
+                                                <connections>
+                                                    <action selector="operate:" destination="G89-e2-yri" eventType="touchDown" id="NYf-VX-Roz"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="56r-bd-PoY">
+                                <rect key="frame" x="16" y="64" width="288" height="367"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="56r-bd-PoY" firstAttribute="top" secondItem="cKe-nZ-SFk" secondAttribute="bottom" id="6Ij-ZV-HNG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="56r-bd-PoY" secondAttribute="trailing" id="9fY-Wc-Fvh"/>
                             <constraint firstItem="cKe-nZ-SFk" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="A0r-IS-tH4"/>
                             <constraint firstAttribute="trailing" secondItem="cKe-nZ-SFk" secondAttribute="trailing" id="BIp-2i-NWd"/>
                             <constraint firstItem="cKe-nZ-SFk" firstAttribute="top" secondItem="UYS-Ac-DXd" secondAttribute="bottom" id="NYR-Sf-cip"/>
+                            <constraint firstItem="56r-bd-PoY" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leadingMargin" id="OT7-zT-S3c"/>
+                            <constraint firstItem="2Oy-1R-3LZ" firstAttribute="top" secondItem="56r-bd-PoY" secondAttribute="bottom" id="fit-Ra-Cs8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="安全隐私" id="N66-yG-fHX"/>
