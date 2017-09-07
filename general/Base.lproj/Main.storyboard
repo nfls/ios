@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dce-kE-49C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mPN-5e-0fP">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -230,7 +230,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="📒"/>
                                                 <connections>
-                                                    <segue destination="deY-Cs-2KE" kind="show" id="0Bj-lN-DmH"/>
+                                                    <segue destination="deY-Cs-2KE" kind="show" identifier="" id="0Bj-lN-DmH"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh3-rb-sjE">
@@ -304,6 +304,7 @@
                         <outlet property="barItem" destination="gPO-xK-J33" id="LDH-By-bcD"/>
                         <segue destination="Mfd-TQ-No7" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="SlH-j6-mgU"/>
                         <segue destination="yOG-PY-KJD" kind="show" identifier="showOpenSource" id="Uwg-ur-hDW"/>
+                        <segue destination="deY-Cs-2KE" kind="show" identifier="aboutUs" id="lFS-WE-bF0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwS-QH-0hI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -389,7 +390,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
-                                                    <segue destination="Ef7-47-Ow2" kind="unwind" unwindAction="closeCurrentWithSegue:" id="JsS-4v-usg"/>
+                                                    <segue destination="Ef7-47-Ow2" kind="unwind" identifier="goBack" unwindAction="closeCurrentWithSegue:" id="dZT-Ob-9pJ"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -423,6 +424,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="安全隐私" id="N66-yG-fHX"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="oWJ-TB-2Xg" kind="show" identifier="showEditing" id="7mu-4n-5G1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6G-UH-2RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ef7-47-Ow2" userLabel="Exit" sceneMemberID="exit"/>
@@ -644,9 +648,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="3wQ-hR-Q1z">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CvU-k0-MEd">
-                                                <rect key="frame" x="196" y="7" width="108" height="30"/>
+                                                <rect key="frame" x="260" y="7" width="44" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="用其他应用打开"/>
+                                                <state key="normal" title="打开..."/>
                                                 <connections>
                                                     <action selector="shareButtonClicked:" destination="YkA-1z-YsK" eventType="touchUpInside" id="lke-e3-fUW"/>
                                                 </connections>
@@ -2000,10 +2004,10 @@ CountryCode
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
         <segue reference="uew-Bm-T5Z"/>
-        <segue reference="NCu-xf-gAI"/>
+        <segue reference="yvX-1Z-Kwu"/>
         <segue reference="c4f-hH-u7f"/>
-        <segue reference="UQZ-V9-A1l"/>
-        <segue reference="gEM-ev-sIX"/>
+        <segue reference="lFS-WE-bF0"/>
+        <segue reference="43D-cO-s6v"/>
         <segue reference="RMU-wg-LOR"/>
         <segue reference="kNW-PJ-LkL"/>
         <segue reference="bsB-Ir-01b"/>

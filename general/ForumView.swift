@@ -15,9 +15,16 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var stackView: UIStackView!
     var webview = WKWebView()
     var requestCookies = ""
+    var restrcited = false
     override func viewDidLoad() {
-         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(self.presentingViewController is UITabBarController){
+            restrcited = true
+        }
         getToken()
     }
     
@@ -47,8 +54,13 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
         webview = WKWebView(frame: UIScreen.main.bounds)
         webview.navigationDelegate = self
         webview.tag = 1
-        let url = NSURL(string: "https://forum.nfls.io")
-        let request = NSMutableURLRequest(url: url! as URL)
+        var url = NSURL()
+        if(restrcited){
+            url = NSURL(string: "https://forum.nfls.io/settings")!
+        } else {
+            url = NSURL(string: "https://forum.nfls.io")!
+        }
+        let request = NSMutableURLRequest(url: url as URL)
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         webview.load(request as URLRequest)
         stackView.addArrangedSubview(webview)
@@ -66,9 +78,9 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
             let request = navigationAction.request as! NSMutableURLRequest
             request.addValue(requestCookies, forHTTPHeaderField: "Cookie")
             webView.load(request as URLRequest)
+        } else {
+            decisionHandler(.allow)
         }
-        decisionHandler(.allow)
-        
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

@@ -32,13 +32,19 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
-        let time: TimeInterval = 10.0
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
-            //code
+        getBadge()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
             self.registerDevice()
         }
-        
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            self.registerDevice()
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0) {
+            self.registerDevice()
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10.0) {
+            self.registerDevice()
+        }
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -48,7 +54,12 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //vcCount += 1
         navigationItem.title = nil
+        if(segue.identifier == "aboutUs"){
+            let dest = segue.destination as! WikiViewController
+            dest.restricted = true
+        }
     }
+    
     
     @IBAction func settings(_ sender: Any) {
         let dialog = UIAlertController(title: "选项", message: "您的捐助是我们前进的动力。点击下面按钮给我们捐赠30元，所有款项将被用于服务器支出，您的用户名将公布在我们的感谢榜上。", preferredStyle: .actionSheet)
@@ -70,9 +81,14 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             self.performSegue(withIdentifier: "showOpenSource", sender: self)
             
         })
+        let aboutUs = UIAlertAction(title:"关于我们", style:.default, handler:{
+            action in
+            self.performSegue(withIdentifier: "aboutUs", sender: self)
+        })
         let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
         dialog.addAction(donate)
         dialog.addAction(opensourceInfo)
+        dialog.addAction(aboutUs)
         dialog.addAction(exit)
         dialog.addAction(cancel)
         dialog.popoverPresentationController?.barButtonItem = barItem
@@ -137,22 +153,25 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                     }
                     self.performSegue(withIdentifier: "exit", sender: self)
                 } else {
-                    Alamofire.request("https://api.nfls.io/device/notice").responseJSON(completionHandler: {
+                    let headers: HTTPHeaders = [
+                        "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+                    ]
+                    Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
                         response in
                         switch response.result{
                         case .success(let json):
                             if((json as! [String:AnyObject])["code"]! as! Int == 200){
-                                dump(json)
+                                //dump(json)
                                 let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
                                 let text = info["text"]! as! String
                                 let title = info["title"]! as! String
                                 let id = info["id"]! as! Int
-                                if(UserDefaults.standard.object(forKey: "notice_id") as? Int != id ){
+                                if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
                                     let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
                                     let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
                                     let never = UIAlertAction(title: "不再提醒本条", style: .cancel, handler: {
                                         action in
-                                        UserDefaults.standard.set(id, forKey: "notice_id")
+                                        UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
                                     alert.addAction(ok)
                                     alert.addAction(never)
@@ -177,7 +196,23 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
 
         })
     }
-    
+    func getBadge(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/count",headers: headers).responseJSON(completionHandler: {
+            response in
+            switch response.result{
+            case .success(let json):
+                if((json as! [String:AnyObject])["code"]! as! Int == 200){
+                    UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
+                }
+                break
+            default:
+                break
+            }
+        })
+    }
     func registerDevice(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let token = appDelegate.token

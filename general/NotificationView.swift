@@ -16,6 +16,7 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
     var types = [String]()
     var details = [String]()
     var times = [String]()
+    var isRead = [Bool]()
     let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
@@ -35,12 +36,13 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
                 if(((json as! [String:AnyObject])["code"] as! Int)==200){
                     let messages = (json as! [String:AnyObject])["info"] as! NSArray
                     for message in messages {
-                        var data = message as! [String:String]
+                        var data = message as! [String:Any]
                         self.count += 1
-                        self.details.append(data["detail"]!)
-                        self.times.append(data["time"]!)
-                        self.titles.append(data["title"]!)
-                        self.types.append(data["type"]!)
+                        self.details.append(data["detail"] as! String)
+                        self.times.append(data["time"] as! String)
+                        self.titles.append(data["title"] as! String)
+                        self.types.append(data["type"] as! String)
+                        self.isRead.append(data["isRead"] as! Bool)
                     }
                     self.details.reverse()
                     self.times.reverse()

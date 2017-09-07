@@ -11,9 +11,10 @@ import UIKit
 import Alamofire
 import SSZipArchive
 import SwiftyMarkdown
+import QuickLook
 
-
-class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource{
+    
     @IBOutlet weak var confuguireButton: UIButton!
     
     @IBOutlet weak var barItem: UIBarButtonItem!
@@ -30,6 +31,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var errorController = UIAlertController()
     var reactWithClick = true
     var onlineMode = true
+    let qlpreview = QLPreviewController()
+    var fileurls = [NSURL]()
+    var useNew = true
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var tableview: UITableView!
@@ -51,6 +55,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         errorController.addAction(retryAction)
         errorController.addAction(listAction)
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
+        qlpreview.delegate = self
+        qlpreview.dataSource = self
     }
     
     func handleSwipeLeft(gesture:UIGestureRecognizer){
@@ -84,22 +90,18 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 self.showTips()
             })
             alertController.addAction(showTipsAction)
+            mutipleSelectAction = UIAlertAction(title: "多选模式", style: UIAlertActionStyle.default, handler: {
+                (alert: UIAlertAction!) in
+                self.reactWithClick = !self.reactWithClick
+                self.tableview.reloadData()
+            })
+            alertController.addAction(mutipleSelectAction)
             if(onlineMode){
-                mutipleSelectAction = UIAlertAction(title: "多选模式", style: UIAlertActionStyle.default, handler: {
-                    (alert: UIAlertAction!) in
-                    self.reactWithClick = !self.reactWithClick
-                    self.tableview.reloadData()
-                })
-                alertController.addAction(mutipleSelectAction)
                 let showHeadersFootersAction = UIAlertAction(title: "显示页眉页脚", style: UIAlertActionStyle.default, handler: {
                     (alert: UIAlertAction) in
                     self.showHeaderFooter(force: true)
                 })
                 alertController.addAction(showHeadersFootersAction)
-                /*
-                let catogorySearchAction = UIAlertAction(title: "往卷分类搜索", style: UIAlertActionStyle.default, handler: nil)
-                alertController.addAction(catogorySearchAction)
-                 */
             }
             var offlineAction = UIAlertAction()
             if(self.onlineMode){
@@ -140,6 +142,29 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             alertController.addAction(mutipleSelectAction)
             alertController.addAction(downloadAction)
         }
+        if(useNew){
+            let changeMode = UIAlertAction(title: "使用旧版预览", style: .default, handler: { (alert) in
+                self.useNew = false
+            })
+            alertController.addAction(changeMode)
+            if(!self.reactWithClick){
+                let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
+                    alert in
+                    let selectedRows = self.tableview.indexPathsForSelectedRows
+                    if(selectedRows != nil){
+                        self.bulkPreview(files: selectedRows!)
+                    }
+                    self.reactWithClick = !self.reactWithClick
+                    self.tableview.reloadData()
+                })
+                alertController.addAction(previewAll)
+            }
+        } else {
+            let changeMode = UIAlertAction(title: "使用新版预览", style: .default, handler: { (alert) in
+                self.useNew = true
+            })
+            alertController.addAction(changeMode)
+        }
         alertController.popoverPresentationController?.barButtonItem = barItem
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
@@ -156,7 +181,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         if(self.currentFolder.isEmpty){
             filenames.append(" ")
         } else {
-            filenames.append("返回")
+            filenames.append("返回上级目录")
         }
         
         times.append(0)
@@ -274,13 +299,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         isFolder.append(false)
                     }
                     isDownloaded.append(true)
-                    //print("target:"+documentsUrl.path + currentFolder.removingPercentEncoding! + "/")
                     let range = file.path.range(of: (documentsUrl.path + currentFolder.removingPercentEncoding! + "/"))
-                    //print("haha:"+currentFolder)
                     let endIndex = file.path.distance(from: file.path.startIndex, to: range!.upperBound)
                     let name = (file.path as NSString).substring(from: endIndex)
                     filenames.append(name)
-                    //dump(name.removingPercentEncoding)
                 }
             }
         } catch let error as NSError {
@@ -376,6 +398,28 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         }
     }
     
+    func bulkPreview(files:[IndexPath]!){
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        fileurls.removeAll()
+        for path in files{
+            if(isFileExists(filename: filenames[path.row], path: currentFolder)){
+                let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(currentFolder.removingPercentEncoding!).appendingPathComponent(filenames[path.row])
+                fileurls.append(fileURL as NSURL)
+                print(fileURL.path)
+            }
+        }
+        if(fileurls.count != files.count || files.count == 0){
+            let alert = UIAlertController(title: "提示", message: "仅能预览已经缓存的文件！", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            self.present(alert,animated:true)
+        } else {
+            qlpreview.reloadData()
+            self.present(qlpreview, animated: true, completion: nil)
+        }
+        
+    }
+    
     func downloadFiles(url:String,filename:String,path:String,force:Bool = false, temp:Bool = false){
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         var fileURL: URL
@@ -412,7 +456,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             let finished = UIAlertController(title: "下载完成", message: filename + "已下载完成", preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "打开", style: .cancel, handler: {
                                 action in
-                                self.goToView(url: fileURL.path)
+                                self.goToView(url: fileURL)
                             })
                             let doneAction = UIAlertAction(title: "完成", style: .default, handler: {
                                 action in
@@ -426,7 +470,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         } else {
-            self.goToView(url: fileURL.path)
+            self.goToView(url: fileURL)
             
         }
     }
@@ -435,9 +479,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         listRequest()
     }
     
-    func goToView(url:String){
-        self.performSegue(withIdentifier: "showPDF", sender: url)
+    func goToView(url:URL){
+        if(useNew){
+            fileurls.removeAll()
+            fileurls.append(url as NSURL)
+            qlpreview.currentPreviewItemIndex = 0
+            qlpreview.reloadData()
+            self.present(qlpreview, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "showPDF", sender: url.path)
+        }
+        
     }
+    
     
     
     func changeCurrentDir(newDir:String,_ add:Bool = true){
@@ -464,7 +518,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                    "2.如想下载整个文件夹，请使用多选模式，然后选中单个或多个文件夹下载即可\n" +
                    "3.打开文件时默认会将文件缓存至本地，如果您的手机空间捉急，可选择“临时下载”\n" +
                    "4.当然，如果您觉得您的手机存储空间足够大，可以缓存所有文件\n" +
-                   "5.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
+                   "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）" +
+                   "6.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
         let tipsController = UIAlertController(title: "Tips", message: tips, preferredStyle: .alert)
         (tipsController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left
         let doneAction = UIAlertAction(title: "我知道了", style: .default, handler: {
@@ -651,26 +706,23 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         
     }
 
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        //let cell = tableView.dequeueReusableCell(withIdentifier: ID)
-        //return cell!.textLabel!.frame.height + cell!.detailTextLabel!.frame.height
-        return 100
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return fileurls.count
     }
- */
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return fileurls[index]
+    }
 
 }
 
 class DownloadCell:UITableViewCell{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //self.accessibilityElementsHidden = true
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        //self.accessibilityElementsHidden = true
-        //self.setUpUI()
     }
 }
 
