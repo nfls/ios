@@ -1,15 +1,15 @@
 PODS:
-  - Alamofire (4.5.0)
+  - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - Charts (3.0.2):
-    - Charts/Core (= 3.0.2)
-  - Charts/Core (3.0.2)
+  - Charts (3.0.3):
+    - Charts/Core (= 3.0.3)
+  - Charts/Core (3.0.3)
   - CountryPickerSwift (1.4.4)
   - IQKeyboardManagerSwift (4.0.13)
-  - SSZipArchive (2.0.3)
-  - SwiftIconFont (2.7.0)
-  - SwiftyMarkdown (0.3.5)
+  - SSZipArchive (2.0.4)
+  - SwiftIconFont (2.7.1)
+  - SwiftyMarkdown (0.3.6)
   - UITableView+FDTemplateLayoutCell (1.6)
 
 DEPENDENCIES:
@@ -24,14 +24,14 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  Charts: bcde37724c161958c1438dd4883971fcb2d50c06
   CountryPickerSwift: e31e67f2b95eb1fa6ad230e9eb0b49b020526d99
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
-  SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
-  SwiftIconFont: 98b97dc505dab3ed4eaaf6751985a7fa275a3283
-  SwiftyMarkdown: 2b48b1df3706f649eef0a22cad51e41d7e152f07
+  SSZipArchive: c77fc6ec8194f4e6d57876da1348e46cd63b90ba
+  SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
+  SwiftyMarkdown: 6419ed988f458fd85ca62f8f3b621a2288660865
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
 PODFILE CHECKSUM: bd115d4b5fd347fcef536bc240958c36880d365c

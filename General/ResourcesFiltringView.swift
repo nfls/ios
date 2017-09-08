@@ -82,7 +82,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     @IBAction func actionButtonPressed(_ sender: Any) {
         var mutipleSelectAction = UIAlertAction()
-        let alertController = UIAlertController(title: "选项", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertController = UIAlertController(title: "选项", message: "小提示，文件夹可以在多选模式批量下载哦！多选模式也可以一次预览多个文件，卷子与答案一起预览，左右滑动切换！", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil)
         if(reactWithClick){
             let showTipsAction = UIAlertAction(title: "Tips", style: UIAlertActionStyle.default, handler: {
@@ -143,10 +143,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             alertController.addAction(downloadAction)
         }
         if(useNew){
-            let changeMode = UIAlertAction(title: "使用旧版预览", style: .default, handler: { (alert) in
-                self.useNew = false
-            })
-            alertController.addAction(changeMode)
             if(!self.reactWithClick){
                 let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
                     alert in
@@ -159,8 +155,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 })
                 alertController.addAction(previewAll)
             }
+            let changeMode = UIAlertAction(title: "切换至旧版预览", style: .default, handler: { (alert) in
+                self.useNew = false
+            })
+            alertController.addAction(changeMode)
         } else {
-            let changeMode = UIAlertAction(title: "使用新版预览", style: .default, handler: { (alert) in
+            let changeMode = UIAlertAction(title: "切换至新版预览", style: .default, handler: { (alert) in
                 self.useNew = true
             })
             alertController.addAction(changeMode)
@@ -224,8 +224,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append((file as! [String:Any])["time"] as! Int)
-                                self.sizes.append((file as! [String:Any])["size"] as! Int)
+                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -244,8 +244,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append((file as! [String:Any])["time"] as! Int)
-                                self.sizes.append((file as! [String:Any])["size"] as! Int)
+                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -518,7 +518,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                    "2.如想下载整个文件夹，请使用多选模式，然后选中单个或多个文件夹下载即可\n" +
                    "3.打开文件时默认会将文件缓存至本地，如果您的手机空间捉急，可选择“临时下载”\n" +
                    "4.当然，如果您觉得您的手机存储空间足够大，可以缓存所有文件\n" +
-                   "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）" +
+                   "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）\n" +
                    "6.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
         let tipsController = UIAlertController(title: "Tips", message: tips, preferredStyle: .alert)
         (tipsController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left

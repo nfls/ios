@@ -12,6 +12,7 @@ import Alamofire
 
 class AssociatedServiceView:UIViewController{
     
+    @IBOutlet weak var baritem: UIBarButtonItem!
     @IBAction func operate(_ sender: Any) {
         let action = UIAlertController(title: "操作", message: "您可以在此对您的账户安全进行操作", preferredStyle: .actionSheet)
         let editPassword = UIAlertAction(title: "修改邮箱及密码", style: .default) { (action) in
@@ -79,6 +80,7 @@ class AssociatedServiceView:UIViewController{
         action.addAction(editUsername)
         //action.addAction(fa)
         action.addAction(cancel)
+        action.popoverPresentationController?.barButtonItem = baritem
         self.present(action, animated: true, completion: nil)
     }
 }

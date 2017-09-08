@@ -14,7 +14,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     let ID = "Cell"
     var totalStations = 1
     var stationNames : [String] = ["综合信息"]
-    var weatherData = [[String:String]]()
+    var weatherData = [[[String:String]]]()
     
     @IBOutlet weak var tableview: UITableView!
     
@@ -32,7 +32,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
             switch(response.result){
             case .success(let json):
                 self.weatherData.removeAll()
-                self.weatherData.append(["n/a":"n/a"])
+                self.weatherData.append([["name":"n/a","value":"n/a"]])
                 let messages = (json as! [String:AnyObject])["info"] as! [AnyObject]
                 for message in messages {
                     let info = message as! [String:Any]
@@ -47,10 +47,6 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func getStationInfo(id:Int,update:Bool = false){
-        dump(id)
-        let headers: HTTPHeaders = [:
-            //"Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-        ]
         let parameters:Parameters = [
             "id":String(id)
         ]
@@ -60,19 +56,29 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
             case .success(let json):
                 let messages = (json as! [String:AnyObject])["info"] as! [AnyObject]
                 dump(messages)
+                var whole = [[String:String]]()
                 var data = [String:String]()
                 for message in messages {
                     let info = message as! [String:Any]
-                    data[info["name"] as! String] = String(info["value"] as! Double)
+                    var name = info["name"] as! String
+                    if((info["sensor_name"] as? String) != nil && (info["sensor_name"] as? String) != ""){
+                        name = name + " [" + (info["sensor_name"] as! String) + "]"
+                    }
+                    var value = String(info["value"] as! Double)
+                    if((info["unit"] as? String) != nil && (info["unit"] as? String) != ""){
+                        value = value + " " + (info["unit"] as! String)
+                    }
+                    data["name"] = name
+                    data["value"] = value
+                    whole.append(data);
                 }
-                self.weatherData.append(data);
+                self.weatherData.append(whole)
                 if(update){
                     DispatchQueue.main.async {
                         self.tableview.dataSource = self
                         self.tableview.delegate = self
                         self.tableview.reloadData()
                     }
-                    
                 }
             default:
                 break
@@ -87,8 +93,8 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
-        let key = Array(weatherData[indexPath.section].keys)[indexPath.row]
-        let value = Array(weatherData[indexPath.section].values)[indexPath.row]
+        let key = weatherData[indexPath.section][indexPath.row]["name"]
+        let value = weatherData[indexPath.section][indexPath.row]["value"]
         cell.textLabel!.text = key
         cell.detailTextLabel!.text = value
         cell.detailTextLabel!.lineBreakMode = .byWordWrapping

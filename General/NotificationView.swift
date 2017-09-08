@@ -48,10 +48,12 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
                     self.times.reverse()
                     self.titles.reverse()
                     self.types.reverse()
+                    self.isRead.reverse()
                     DispatchQueue.main.async{
                         self.tableview.dataSource = self
                         self.tableview.delegate = self
                         self.tableview.reloadData()
+                        UIApplication.shared.applicationIconBadgeNumber = 0
                     }
                 }
                 break
@@ -63,6 +65,7 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
  */
             }
         }
+        
 
     }
     
@@ -82,6 +85,9 @@ class NotificationViewController:UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
         cell.textLabel!.text = "\(types[indexPath.row]) - \(titles[indexPath.row])"
+        if(!isRead[indexPath.row]){
+            cell.textLabel!.text = "[新] " +  cell.textLabel!.text!
+        }
         cell.detailTextLabel!.text = "\(times[indexPath.row])\n\(details[indexPath.row])"
         cell.detailTextLabel!.lineBreakMode = .byWordWrapping
         cell.detailTextLabel!.numberOfLines = 0

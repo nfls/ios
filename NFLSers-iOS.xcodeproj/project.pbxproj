@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650160B51F6300B600B5F95D /* CenterTabRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650160B41F6300B600B5F95D /* CenterTabRootView.swift */; };
 		650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650206981EF89CDF0056F22A /* AssociatedServiceView.swift */; };
 		6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */; };
 		65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A801F4608CF00E084A2 /* LaunchScreenView.swift */; };
@@ -32,7 +33,6 @@
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65C360671F037CE200006074 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C360661F037CE200006074 /* PDFView.swift */; };
-		65C785CE1F008F1100F80BDC /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C785CD1F008F1100F80BDC /* Function.swift */; };
 		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
 		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
@@ -50,6 +50,7 @@
 /* Begin PBXFileReference section */
 		1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		650160B41F6300B600B5F95D /* CenterTabRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTabRootView.swift; sourceTree = "<group>"; };
 		650206981EF89CDF0056F22A /* AssociatedServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedServiceView.swift; sourceTree = "<group>"; };
 		6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesFiltringView.swift; sourceTree = "<group>"; };
 		65234A801F4608CF00E084A2 /* LaunchScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65C360661F037CE200006074 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
-		65C785CD1F008F1100F80BDC /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +131,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		650160B31F62F6E800B5F95D /* Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
+				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
+				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
+				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
+				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
+			);
+			name = Essentials;
+			sourceTree = "<group>";
+		};
+		65276F4A1F62F6A400DD0FBF /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
+				D6552FAA1E4CCE7700A2B220 /* ForumView.swift */,
+			);
+			name = WebView;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		65276F4B1F62F6C200DD0FBF /* Media */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
 		653B10991F5B24D800ACDC37 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +172,7 @@
 		653B109A1F5B250300ACDC37 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				650160B41F6300B600B5F95D /* CenterTabRootView.swift */,
 				650206981EF89CDF0056F22A /* AssociatedServiceView.swift */,
 				6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */,
 				6595BA9D1F00844100BA1CE1 /* NotificationView.swift */,
@@ -157,6 +187,8 @@
 				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
 				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
 				D6AE17431E44D51600E66B4B /* ViewController.swift */,
+				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
+				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 				6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */,
 			);
 			name = RootPage;
@@ -202,37 +234,30 @@
 			isa = PBXGroup;
 			children = (
 				D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */,
-				D6AE17401E44D51600E66B4B /* general */,
+				D6AE17401E44D51600E66B4B /* General */,
 				E014B762E1B339252796E5D2 /* Pods */,
 				0349413280DA2E07E819AAA2 /* Frameworks */,
 				656AEC931F3096F100F0801A /* NFLSers-iOS.app */,
 			);
 			sourceTree = "<group>";
 		};
-		D6AE17401E44D51600E66B4B /* general */ = {
+		D6AE17401E44D51600E66B4B /* General */ = {
 			isa = PBXGroup;
 			children = (
+				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
+				650160B31F62F6E800B5F95D /* Essentials */,
+				65276F4B1F62F6C200DD0FBF /* Media */,
+				65276F4A1F62F6A400DD0FBF /* WebView */,
 				653B109C1F5B255C00ACDC37 /* Download */,
 				653B109B1F5B253B00ACDC37 /* RootPage */,
 				653B109A1F5B250300ACDC37 /* UserCenter */,
 				653B10991F5B24D800ACDC37 /* Weather */,
 				6544765A1F57DA1500CDEBD8 /* Alumni */,
-				654923A01F452CF2000E22C9 /* LiveListView.swift */,
-				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
-				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
 				65784C7A1F0973DD00BDC60A /* icons */,
-				D6552FAA1E4CCE7700A2B220 /* ForumView.swift */,
-				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
-				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
-				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
 				D6AE17481E44D51600E66B4B /* Assets.xcassets */,
-				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
-				65C785CD1F008F1100F80BDC /* Function.swift */,
-				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 				D6AE174D1E44D51600E66B4B /* Info.plist */,
-				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
 			);
-			path = general;
+			path = General;
 			sourceTree = "<group>";
 		};
 		E014B762E1B339252796E5D2 /* Pods */ = {
@@ -395,7 +420,6 @@
 			files = (
 				D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */,
 				D606F2C71EE997B800564191 /* UserCertification.swift in Sources */,
-				65C785CE1F008F1100F80BDC /* Function.swift in Sources */,
 				65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */,
 				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
 				6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */,
@@ -417,6 +441,7 @@
 				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,
 				65C360671F037CE200006074 /* PDFView.swift in Sources */,
 				65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */,
+				650160B51F6300B600B5F95D /* CenterTabRootView.swift in Sources */,
 				650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */,
 				6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */,
 			);

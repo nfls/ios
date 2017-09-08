@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mPN-5e-0fP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -131,7 +131,7 @@
                                 <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="NFLS.IO客户端" id="Ied-BX-3xa">
+                                    <navigationItem title="南外人" id="Ied-BX-3xa">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gPO-xK-J33">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
                                                 <rect key="frame" x="273" y="7" width="31" height="30"/>
@@ -186,21 +186,21 @@
                                                     <segue destination="IkS-ib-9hb" kind="show" id="x8H-nQ-Z2o"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqj-Ne-OSw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psf-gj-bnd">
                                                 <rect key="frame" x="2.5" y="190" width="69" height="47.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                                <state key="normal" title="🏫"/>
+                                                <state key="normal" title="☔️"/>
                                                 <connections>
-                                                    <segue destination="zbU-uo-eoH" kind="showDetail" id="kNW-PJ-LkL"/>
+                                                    <segue destination="aML-ls-6Ug" kind="show" id="c4f-hH-u7f"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9S-IH-6ZT">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-n0-BDI">
                                                 <rect key="frame" x="14" y="237.5" width="46" height="47.5"/>
-                                                <state key="normal" title="校友会">
+                                                <state key="normal" title="气象站">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="zbU-uo-eoH" kind="showDetail" id="LXt-hi-ZXK"/>
+                                                    <segue destination="aML-ls-6Ug" kind="show" id="JGm-pL-cxc"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRd-he-m3e">
@@ -213,7 +213,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-6A-hp0">
                                                 <rect key="frame" x="21.5" y="332.5" width="31" height="47.5"/>
-                                                <state key="normal" title="直播">
+                                                <state key="normal" title="影音">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -226,7 +226,7 @@
                                         <rect key="frame" x="174" y="0.0" width="74" height="380"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRn-UJ-fEN">
-                                                <rect key="frame" x="2.5" y="0.0" width="69" height="47.5"/>
+                                                <rect key="frame" x="2.5" y="0.0" width="69" height="63.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="📒"/>
                                                 <connections>
@@ -234,7 +234,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh3-rb-sjE">
-                                                <rect key="frame" x="21.5" y="47.5" width="31" height="47.5"/>
+                                                <rect key="frame" x="21.5" y="63.5" width="31" height="63"/>
                                                 <state key="normal" title="百科">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -242,36 +242,25 @@
                                                     <segue destination="deY-Cs-2KE" kind="show" id="UQZ-V9-A1l"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psf-gj-bnd">
-                                                <rect key="frame" x="2.5" y="95" width="69" height="47.5"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqj-Ne-OSw">
+                                                <rect key="frame" x="2.5" y="126.5" width="69" height="63.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                                <state key="normal" title="☔️"/>
+                                                <state key="normal" title="🏫"/>
                                                 <connections>
-                                                    <segue destination="aML-ls-6Ug" kind="show" id="c4f-hH-u7f"/>
+                                                    <segue destination="zbU-uo-eoH" kind="showDetail" id="kNW-PJ-LkL"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-n0-BDI">
-                                                <rect key="frame" x="14" y="142.5" width="46" height="47.5"/>
-                                                <state key="normal" title="气象站">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9S-IH-6ZT">
+                                                <rect key="frame" x="14" y="190" width="46" height="63.5"/>
+                                                <state key="normal" title="校友会">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="aML-ls-6Ug" kind="show" id="JGm-pL-cxc"/>
+                                                    <segue destination="zbU-uo-eoH" kind="showDetail" id="LXt-hi-ZXK"/>
                                                 </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXi-C8-QH0">
-                                                <rect key="frame" x="2.5" y="190" width="69" height="47.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                                <state key="normal" title="🌄"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iw0-fo-GIq">
-                                                <rect key="frame" x="21.5" y="237.5" width="31" height="47.5"/>
-                                                <state key="normal" title="影音">
-                                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-vz-hrY">
-                                                <rect key="frame" x="2.5" y="285" width="69" height="47.5"/>
+                                                <rect key="frame" x="2.5" y="253.5" width="69" height="63"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="👩‍👩‍👧‍👦"/>
                                                 <connections>
@@ -279,7 +268,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-jc-GJn">
-                                                <rect key="frame" x="6" y="332.5" width="62" height="47.5"/>
+                                                <rect key="frame" x="6" y="316.5" width="62" height="63.5"/>
                                                 <state key="normal" title="个人中心">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -403,6 +392,9 @@
                                                     <action selector="operate:" destination="G89-e2-yri" eventType="touchDown" id="NYf-VX-Roz"/>
                                                 </connections>
                                             </button>
+                                            <connections>
+                                                <action selector="operate:" destination="G89-e2-yri" id="Lku-cU-0EJ"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -425,6 +417,7 @@
                     <tabBarItem key="tabBarItem" title="安全隐私" id="N66-yG-fHX"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="baritem" destination="ofq-NR-am9" id="Mxe-tH-cg5"/>
                         <segue destination="oWJ-TB-2Xg" kind="show" identifier="showEditing" id="7mu-4n-5G1"/>
                     </connections>
                 </viewController>
@@ -844,13 +837,14 @@ CountryCode
         <!--个人中心-->
         <scene sceneID="icj-ah-7Ge">
             <objects>
-                <tabBarController title="个人中心" id="dce-kE-49C" sceneMemberID="viewController">
+                <tabBarController title="个人中心" id="dce-kE-49C" customClass="CenterTabRootViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="th7-Kt-HZ3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tabbar" destination="th7-Kt-HZ3" id="Z1l-q9-BDi"/>
                         <segue destination="dZ6-BZ-1Ev" kind="relationship" relationship="viewControllers" id="9nu-3I-rg5"/>
                         <segue destination="8dD-gb-uAT" kind="relationship" relationship="viewControllers" id="F0P-Vp-fVk"/>
                         <segue destination="G89-e2-yri" kind="relationship" relationship="viewControllers" id="hoO-3T-dx2"/>
@@ -1297,6 +1291,8 @@ CountryCode
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="image" destination="aHt-4m-JIc" id="RjX-JL-H7B"/>
+                        <outlet property="text" destination="KO5-dO-dyp" id="hvg-72-fOd"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="jumpToLogin" id="N6c-o5-QuS"/>
                     </connections>
                 </viewController>
@@ -2003,13 +1999,13 @@ CountryCode
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
-        <segue reference="uew-Bm-T5Z"/>
+        <segue reference="Np1-Rg-Xqt"/>
         <segue reference="yvX-1Z-Kwu"/>
         <segue reference="c4f-hH-u7f"/>
         <segue reference="lFS-WE-bF0"/>
         <segue reference="43D-cO-s6v"/>
         <segue reference="RMU-wg-LOR"/>
-        <segue reference="kNW-PJ-LkL"/>
+        <segue reference="LXt-hi-ZXK"/>
         <segue reference="bsB-Ir-01b"/>
         <segue reference="x8H-nQ-Z2o"/>
     </inferredMetricsTieBreakers>

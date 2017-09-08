@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  general
@@ -31,6 +32,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        if(token != "" && UserDefaults.standard.string(forKey: "token") != nil){
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let machineMirror = Mirror(reflecting: systemInfo.machine)
+            let identifier = machineMirror.children.reduce("") { identifier, element in
+                guard let value = element.value as? Int8 , value != 0 else { return identifier }
+                return identifier + String(UnicodeScalar(UInt8(value)))
+            }
+            let system = identifier + " @ " + ProcessInfo.processInfo.operatingSystemVersionString
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            let parameters:Parameters = [
+                "device_id" : token,
+                "device_model" : system
+            ]
+            Alamofire.request("https://api.nfls.io/device/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
+                debugPrint("registered!")
+            })
+        }
     }
     
 

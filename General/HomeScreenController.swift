@@ -32,19 +32,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
-        getBadge()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            self.registerDevice()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
-            self.registerDevice()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0) {
-            self.registerDevice()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10.0) {
-            self.registerDevice()
-        }
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -60,7 +47,55 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         }
     }
     
-    
+    func getImage(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        if(UserDefaults.standard.value(forKey: "pic_end") as? Date != nil){
+            let date = UserDefaults.standard.value(forKey: "pic_end") as! Date
+            let today = Date()
+            if(today>date){
+                UserDefaults.standard.removeObject(forKey: "pic_path")
+                UserDefaults.standard.removeObject(forKey: "pic_text")
+                UserDefaults.standard.removeObject(forKey: "pic_end")
+                UserDefaults.standard.removeObject(forKey: "pic_id")
+            }
+        }
+        Alamofire.request("https://api.nfls.io/device/pics", headers: headers).responseJSON(completionHandler: {
+            response in
+            switch response.result{
+            case .success(let json):
+                let info = ((json as! [String:AnyObject])["info"]) as! [String:Any]
+                if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
+                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let fileURL = documentsURL.appendingPathComponent("startup.jpg")
+                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+                    }
+                    Alamofire.download((info["url"] as! String), to: destination).response { response in
+                        if response.error == nil, let imagePath = response.destinationURL?.path {
+                            debugPrint("Get a new picture!")
+                            UserDefaults.standard.set("startup.jpg", forKey: "pic_path")
+                            debugPrint(imagePath)
+                            let before = info["invalid_after"] as? String
+                            let text = info["text"] as! String
+                            UserDefaults.standard.set(text, forKey: "pic_text")
+                            let format = DateFormatter()
+                            format.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
+                            if(before != nil){
+                                let date = format.date(from: before! + " GMT+08:00")
+                                UserDefaults.standard.set(date, forKey: "pic_end")
+                            }
+                            UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
+                        }
+                    }
+                }
+                break
+            default:
+                break
+            }
+        })
+    }
     @IBAction func settings(_ sender: Any) {
         let dialog = UIAlertController(title: "选项", message: "您的捐助是我们前进的动力。点击下面按钮给我们捐赠30元，所有款项将被用于服务器支出，您的用户名将公布在我们的感谢榜上。", preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "退出", style: .destructive, handler: {
@@ -140,6 +175,13 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     }
     
     func checkStatus(){
+        if(UserDefaults.standard.string(forKey: "token") == nil){
+            if let bundle = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: bundle)
+            }
+            self.performSegue(withIdentifier: "exit", sender: self)
+            return
+        }
         let headers: HTTPHeaders = [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
@@ -156,6 +198,8 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                     let headers: HTTPHeaders = [
                         "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                     ]
+                    self.getBadge()
+                    self.getImage()
                     Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
                         response in
                         switch response.result{
@@ -213,35 +257,4 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             }
         })
     }
-    func registerDevice(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let token = appDelegate.token
-        if(token != ""){
-            var systemInfo = utsname()
-            uname(&systemInfo)
-            let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8 , value != 0 else { return identifier }
-                return identifier + String(UnicodeScalar(UInt8(value)))
-            }
-            let system = identifier + " @ " + ProcessInfo.processInfo.operatingSystemVersionString
-            let headers: HTTPHeaders = [
-                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-            ]
-            let parameters:Parameters = [
-                "device_id" : token,
-                "device_model" : system
-            ]
-            Alamofire.request("https://api.nfls.io/device/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
-                /*
-                print(response.response)
-                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                    print("Data: \(utf8Text)")
-                }
-                */
-            })
-        }
-    }
-    
-    
 }
