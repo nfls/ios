@@ -87,6 +87,7 @@
 		65DEE0F81F6402E0007735CD /* ICNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICNewsView.swift; sourceTree = "<group>"; };
 		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
 		65DEE0FC1F645C97007735CD /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
+		65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b43d0620-8a58-449b-9fe8-5ac422325900.png"; sourceTree = "<group>"; };
 		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +236,7 @@
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
 				6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
+				65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */,
 				65DEE0F61F63F9CA007735CD /* ib-world-school-logo-2-colour-rev.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
 				65784C7B1F09746800BDC60A /* icons8-Folder-50.png */,
