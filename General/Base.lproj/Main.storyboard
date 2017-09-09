@@ -134,7 +134,7 @@
                                     <navigationItem title="南外人" id="Ied-BX-3xa">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gPO-xK-J33">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
-                                                <rect key="frame" x="253" y="7" width="51" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="选项"/>
                                                 <connections>
@@ -208,7 +208,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="🎥"/>
                                                 <connections>
-                                                    <segue destination="Vf5-hg-DdT" kind="show" id="ImP-cw-AM0"/>
+                                                    <segue destination="aSC-Ix-BeI" kind="show" id="Xyj-PP-lti"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-6A-hp0">
@@ -217,7 +217,7 @@
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Vf5-hg-DdT" kind="show" id="RMU-wg-LOR"/>
+                                                    <segue destination="aSC-Ix-BeI" kind="show" id="1NU-Ek-St7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -259,14 +259,17 @@
                                                     <segue destination="zbU-uo-eoH" kind="showDetail" id="LXt-hi-ZXK"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
                                                 <rect key="frame" x="0.0" y="190" width="74" height="47.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-fS-rTQ">
-                                                <rect key="frame" x="22" y="237.5" width="30" height="47.5"/>
-                                                <state key="normal" title="IB">
+                                                <rect key="frame" x="14" y="237.5" width="46" height="47.5"/>
+                                                <state key="normal" title="国际部">
                                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="Vo3-zz-cFm" kind="show" identifier="showIC" id="aJh-hU-Hhh"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-vz-hrY">
                                                 <rect key="frame" x="2.5" y="285" width="69" height="47.5"/>
@@ -288,6 +291,9 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="4c3-m1-VwW" firstAttribute="height" secondItem="Psf-gj-bnd" secondAttribute="height" id="QpF-Iy-Fdr"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -300,6 +306,8 @@
                     </view>
                     <connections>
                         <outlet property="barItem" destination="gPO-xK-J33" id="LDH-By-bcD"/>
+                        <outlet property="center" destination="Dql-jc-GJn" id="N4F-mE-lIp"/>
+                        <outlet property="ib" destination="4c3-m1-VwW" id="8ED-UK-3Hq"/>
                         <outlet property="optionsButton" destination="gPO-xK-J33" id="8jE-HL-q0b"/>
                         <outlet property="optionsRealButton" destination="jD1-1M-Vi9" id="gIh-gR-QW9"/>
                         <segue destination="Mfd-TQ-No7" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="SlH-j6-mgU"/>
@@ -382,6 +390,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-nZ-SFk">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="RAn-WO-QPS"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="安全隐私" id="tPJ-ZX-cws">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="ikC-gO-UAB">
@@ -411,24 +422,64 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="56r-bd-PoY">
-                                <rect key="frame" x="16" y="64" width="288" height="367"/>
+                                <rect key="frame" x="0.0" y="67" width="320" height="361.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同届校友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gd-vU-PGl">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re1-e6-oCE" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20.5" width="320" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="hPX-1T-HjP"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有校友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7v-SO-peG">
+                                        <rect key="frame" x="0.0" y="120.5" width="320" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEm-bC-hVN" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="141" width="320" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="ncw-1p-ofd"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在校学生" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfZ-hx-pQD">
+                                        <rect key="frame" x="0.0" y="241" width="320" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjT-2b-hbw" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="261.5" width="320" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="2jV-Kt-nxd"/>
+                                        </constraints>
+                                    </pickerView>
+                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="56r-bd-PoY" firstAttribute="top" secondItem="cKe-nZ-SFk" secondAttribute="bottom" id="6Ij-ZV-HNG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="56r-bd-PoY" secondAttribute="trailing" id="9fY-Wc-Fvh"/>
-                            <constraint firstItem="cKe-nZ-SFk" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="A0r-IS-tH4"/>
-                            <constraint firstAttribute="trailing" secondItem="cKe-nZ-SFk" secondAttribute="trailing" id="BIp-2i-NWd"/>
-                            <constraint firstItem="cKe-nZ-SFk" firstAttribute="top" secondItem="UYS-Ac-DXd" secondAttribute="bottom" id="NYR-Sf-cip"/>
-                            <constraint firstItem="56r-bd-PoY" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leadingMargin" id="OT7-zT-S3c"/>
-                            <constraint firstItem="2Oy-1R-3LZ" firstAttribute="top" secondItem="56r-bd-PoY" secondAttribute="bottom" id="fit-Ra-Cs8"/>
+                            <constraint firstAttribute="trailing" secondItem="56r-bd-PoY" secondAttribute="trailing" id="GWC-ke-kBG"/>
+                            <constraint firstItem="56r-bd-PoY" firstAttribute="centerY" secondItem="bGH-44-yne" secondAttribute="centerY" constant="7" id="VUh-MC-qdm"/>
+                            <constraint firstItem="cKe-nZ-SFk" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="e7b-pW-y1D"/>
+                            <constraint firstItem="56r-bd-PoY" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="eGW-0a-rWb"/>
+                            <constraint firstAttribute="trailing" secondItem="cKe-nZ-SFk" secondAttribute="trailing" id="eaK-92-MHU"/>
+                            <constraint firstItem="cKe-nZ-SFk" firstAttribute="top" secondItem="UYS-Ac-DXd" secondAttribute="bottom" id="ey9-j1-0Ur"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="安全隐私" id="N66-yG-fHX"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="allSchoolmate" destination="DEm-bC-hVN" id="DTk-7V-Aw6"/>
                         <outlet property="baritem" destination="ofq-NR-am9" id="Mxe-tH-cg5"/>
+                        <outlet property="inSchoolMate" destination="RjT-2b-hbw" id="ZH9-Ad-n0M"/>
+                        <outlet property="sameLevelSchoolmate" destination="RjT-2b-hbw" id="n19-lw-WzP"/>
                         <segue destination="oWJ-TB-2Xg" kind="show" identifier="showEditing" id="7mu-4n-5G1"/>
                     </connections>
                 </viewController>
@@ -436,50 +487,6 @@
                 <exit id="Ef7-47-Ow2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3344.53125" y="-600"/>
-        </scene>
-        <!--博客详文查看-->
-        <scene sceneID="ryP-T4-j8p">
-            <objects>
-                <viewController title="博客详文查看" id="Dyb-44-D10" customClass="PostDetailViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wVV-zt-jPk"/>
-                        <viewControllerLayoutGuide type="bottom" id="Uyt-ug-rsx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="op5-Pq-VLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi5-gg-1Pt">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Lay-SL-Fjj"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="详情查看" id="azE-ji-hlv"/>
-                                </items>
-                            </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2jx-hC-xY7">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2jx-hC-xY7" firstAttribute="leading" secondItem="op5-Pq-VLQ" secondAttribute="leading" id="4k0-wM-KLI"/>
-                            <constraint firstItem="Gi5-gg-1Pt" firstAttribute="top" secondItem="wVV-zt-jPk" secondAttribute="bottom" id="7JJ-4O-nXk"/>
-                            <constraint firstAttribute="trailing" secondItem="Gi5-gg-1Pt" secondAttribute="trailing" id="9aj-uj-j5g"/>
-                            <constraint firstItem="Gi5-gg-1Pt" firstAttribute="leading" secondItem="op5-Pq-VLQ" secondAttribute="leading" id="QOZ-Zw-vcD"/>
-                            <constraint firstAttribute="trailing" secondItem="2jx-hC-xY7" secondAttribute="trailing" id="usv-RM-YjT"/>
-                            <constraint firstItem="Uyt-ug-rsx" firstAttribute="top" secondItem="2jx-hC-xY7" secondAttribute="bottom" id="xCd-8q-pyI"/>
-                            <constraint firstItem="2jx-hC-xY7" firstAttribute="top" secondItem="Gi5-gg-1Pt" secondAttribute="bottom" id="zls-gp-Q33"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="stackview" destination="2jx-hC-xY7" id="H2N-vF-YP7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vk4-vE-eoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4778" y="-601"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ApG-96-OfX">
@@ -903,10 +910,6 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-DR-FjS">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02C-0e-ven">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
@@ -919,30 +922,36 @@ CountryCode
                                                 <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="7RE-Pz-RA0" kind="unwind" unwindAction="closeCurrentWithSegue:" id="yfv-po-2Jq"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-ee-hUP">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="yVi-ee-hUP" firstAttribute="top" secondItem="02C-0e-ven" secondAttribute="bottom" id="0IO-hh-CmJ"/>
+                            <constraint firstAttribute="trailing" secondItem="yVi-ee-hUP" secondAttribute="trailing" id="43h-Lt-1aq"/>
                             <constraint firstItem="02C-0e-ven" firstAttribute="top" secondItem="Lhn-zP-gCP" secondAttribute="bottom" id="7Tx-2t-w0D"/>
-                            <constraint firstItem="5eM-DR-FjS" firstAttribute="top" secondItem="02C-0e-ven" secondAttribute="bottom" id="Aio-MD-sKR"/>
                             <constraint firstItem="02C-0e-ven" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="L8M-fp-1to"/>
-                            <constraint firstItem="5eM-DR-FjS" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="SAf-fb-rTQ"/>
-                            <constraint firstAttribute="trailing" secondItem="5eM-DR-FjS" secondAttribute="trailing" id="c5t-8m-69H"/>
-                            <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="5eM-DR-FjS" secondAttribute="bottom" id="sjO-cD-qsc"/>
+                            <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="yVi-ee-hUP" secondAttribute="bottom" id="gfI-eh-fbt"/>
+                            <constraint firstItem="yVi-ee-hUP" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="lYD-An-mU0"/>
                             <constraint firstAttribute="trailing" secondItem="02C-0e-ven" secondAttribute="trailing" id="tSH-mN-UD2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="活动" id="FEZ-hL-Hco"/>
                     <connections>
-                        <outlet property="tableview" destination="5eM-DR-FjS" id="vXe-qy-Kkq"/>
-                        <segue destination="Dyb-44-D10" kind="show" identifier="showPost" id="d1s-aj-nqw"/>
+                        <outlet property="stackView" destination="yVi-ee-hUP" id="81b-kc-Ipg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFE-fp-qc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7RE-Pz-RA0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2613.75" y="122.5"/>
         </scene>
@@ -1257,7 +1266,66 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="-656" y="878"/>
         </scene>
-        <!--Live List View Controller-->
+        <!--视频-->
+        <scene sceneID="WWH-at-7vG">
+            <objects>
+                <viewController id="HgZ-bH-2TN" customClass="VideoListViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z8k-d9-y6x"/>
+                        <viewControllerLayoutGuide type="bottom" id="WTS-sh-aqo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xRM-k7-eNk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2n-ku-eoW">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ftl-Aq-0V1"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="视频" id="Npk-6L-BVq">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Gxz-3p-zCV">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vBI-Fx-QwT">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="Qyi-aA-SLi" kind="unwind" unwindAction="closeCurrentWithSegue:" id="ueG-zP-SCx"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0f8-l5-ubk">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0f8-l5-ubk" firstAttribute="leading" secondItem="xRM-k7-eNk" secondAttribute="leading" id="0nU-fC-2G2"/>
+                            <constraint firstAttribute="trailing" secondItem="0f8-l5-ubk" secondAttribute="trailing" id="ED6-Ab-XFH"/>
+                            <constraint firstAttribute="trailing" secondItem="F2n-ku-eoW" secondAttribute="trailing" id="aTK-8r-Tq7"/>
+                            <constraint firstItem="F2n-ku-eoW" firstAttribute="leading" secondItem="xRM-k7-eNk" secondAttribute="leading" id="c98-GQ-XEA"/>
+                            <constraint firstItem="WTS-sh-aqo" firstAttribute="top" secondItem="0f8-l5-ubk" secondAttribute="bottom" id="eFC-oF-vbr"/>
+                            <constraint firstItem="0f8-l5-ubk" firstAttribute="top" secondItem="F2n-ku-eoW" secondAttribute="bottom" id="khC-8C-oLG"/>
+                            <constraint firstItem="F2n-ku-eoW" firstAttribute="top" secondItem="z8k-d9-y6x" secondAttribute="bottom" id="lhx-Np-hlS"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="视频" id="pDe-d8-ddP"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableview" destination="0f8-l5-ubk" id="y9W-1s-2dT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xW-0d-hqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Qyi-aA-SLi" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-656" y="1660"/>
+        </scene>
+        <!--直播-->
         <scene sceneID="RZy-WG-oXY">
             <objects>
                 <viewController id="Vf5-hg-DdT" customClass="LiveListViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -1290,7 +1358,7 @@ CountryCode
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="nC1-os-YoW">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -1305,6 +1373,8 @@ CountryCode
                             <constraint firstItem="Qdv-rE-qEX" firstAttribute="leading" secondItem="YjP-NS-1VY" secondAttribute="leading" id="tpF-9r-vEt"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="直播" id="L1j-6N-kbh"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="baritem" destination="zm7-eu-JQx" id="efM-eF-OmB"/>
                         <outlet property="tableview" destination="nC1-os-YoW" id="xtq-KS-r5j"/>
@@ -1313,7 +1383,63 @@ CountryCode
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJD-SF-w5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="03D-Yd-wdw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="114.375" y="875"/>
+            <point key="canvasLocation" x="116" y="1660"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="xPG-Mi-4U2">
+            <objects>
+                <viewController id="Vo3-zz-cFm" customClass="ICNewsViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HiN-Aq-yw8"/>
+                        <viewControllerLayoutGuide type="bottom" id="aUE-lw-3Vw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Fq-vS-tRd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErT-fC-9fb">
+                                <rect key="frame" x="0.0" y="20" width="320" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="u8B-RS-g8U"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="国际部新鲜事" id="0VE-Wv-AtM"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ErT-fC-9fb" firstAttribute="leading" secondItem="5Fq-vS-tRd" secondAttribute="leading" id="DOT-cC-Rb7"/>
+                            <constraint firstAttribute="trailing" secondItem="ErT-fC-9fb" secondAttribute="trailing" id="mXk-Zb-7KJ"/>
+                            <constraint firstItem="ErT-fC-9fb" firstAttribute="top" secondItem="HiN-Aq-yw8" secondAttribute="bottom" id="qaI-Go-tIx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="EV3-ZN-uYj" kind="unwind" identifier="close" unwindAction="closeCurrentWithSegue:" id="nVI-Pv-rVB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0dY-Vb-4pE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EV3-ZN-uYj" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="943" y="1660"/>
+        </scene>
+        <!--Media View Controller-->
+        <scene sceneID="AiU-Gf-pSc">
+            <objects>
+                <tabBarController id="aSC-Ix-BeI" customClass="MediaViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="npu-ZA-rvK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vf5-hg-DdT" kind="relationship" relationship="viewControllers" id="hCs-r6-Kwe"/>
+                        <segue destination="HgZ-bH-2TN" kind="relationship" relationship="viewControllers" id="3Pr-Un-2lB"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fSe-lQ-y85" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="875"/>
         </scene>
         <!--启动图像-->
         <scene sceneID="0BZ-y6-sIl">
@@ -1997,6 +2123,16 @@ CountryCode
                                 </constraints>
                                 <items>
                                     <navigationItem title="查询" id="v6G-Re-5ym">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="ih8-P6-cRn">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z3J-qq-BII">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <action selector="backWithoutNew:" destination="meq-qJ-GUl" eventType="touchDown" id="TfP-FJ-2n5"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="uhv-ab-wH3">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tbK-Fl-fc2">
                                                 <rect key="frame" x="273" y="7" width="31" height="30"/>
@@ -2057,13 +2193,13 @@ CountryCode
         <image name="ib-world-school-logo-2-colour-rev.png" width="494" height="485"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Al-lY-Kfm"/>
+        <segue reference="fTu-A0-9Ku"/>
         <segue reference="Np1-Rg-Xqt"/>
         <segue reference="yvX-1Z-Kwu"/>
         <segue reference="c4f-hH-u7f"/>
         <segue reference="lFS-WE-bF0"/>
         <segue reference="43D-cO-s6v"/>
-        <segue reference="RMU-wg-LOR"/>
+        <segue reference="Xyj-PP-lti"/>
         <segue reference="LXt-hi-ZXK"/>
         <segue reference="QEp-eT-Zbz"/>
         <segue reference="x8H-nQ-Z2o"/>

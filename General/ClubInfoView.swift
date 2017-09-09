@@ -22,6 +22,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
     var ids = [Int]()
     var action = "edit"
     var id = 0
+    var first = true
     override func viewDidAppear(_ animated: Bool) {
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: ID)
         tableview.dataSource = self
@@ -31,7 +32,9 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
         if(id != 0){
             loadData(id)
         } else if(action == "edit" && selected.isEmpty){
-            loadMessage(true)
+            if(first){
+                loadMessage(true)
+            }
         } else if (action == "edit" && !selected.isEmpty){
             prepareList()
         } else if (action == "new"){

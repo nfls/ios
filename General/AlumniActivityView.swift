@@ -9,74 +9,121 @@
 import Foundation
 import UIKit
 import Alamofire
+import WebKit
 
-class AlumniActivityViewController:UIViewController,UITableViewDelegate,UITableViewDataSource{
-    let ID = "cell"
-    var data = [[String:Any]]()
-    @IBOutlet weak var tableview: UITableView!
+class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
+    
+    @IBOutlet weak var stackView: UIStackView!
+    
+    var webview = WKWebView()
+    var requestCookies = ""
+    var restrcited = false
     override func viewDidLoad() {
-        tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
-        getData()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        super.viewDidLoad()
     }
-    func getData(){
-        let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-        ]
-        Alamofire.request("https://api.nfls.io/alumni/post/list", headers: headers).responseJSON{ response in
-            switch response.result{
-            case .success(let json):
-                //dump(json)
-                if(((json as! [String:AnyObject])["code"] as! Int)==200){
-                    let messages = (json as! [String:AnyObject])["info"] as! [[String:Any]]
-                    var str = [String:Any]()
-                    for message in messages {
-                        str["title"] = message["title"]
-                        let date = Date(timeIntervalSince1970: (TimeInterval(message["modified"] as! Int)))
-                        let dateformatter = DateFormatter()
-                        dateformatter.dateFormat = "yyyy-MM-dd HH:mm"
-                        str["subtitle"] = dateformatter.string(from: date)
-                        str["cid"] = message["cid"]
-                        self.data.append(str)
-                    }
-                    DispatchQueue.main.async{
-                        self.tableview.dataSource = self
-                        self.tableview.delegate = self
-                        self.tableview.reloadData()
-                    }
-                }
-                break
-            default:
-                break
-                /*
-                 self.showAlert(false)
-                 break
-                 */
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(self.presentingViewController is UITabBarController){
+            restrcited = true
+        }
+        getToken()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func previousPage(_ sender: Any) {
+        (stackView.viewWithTag(1) as! WKWebView).goBack()
+    }
+    
+    
+    func getToken(){
+        let cookies:String = "token=" + UserDefaults.standard.string(forKey: "token")!
+        let jsCookies = "document.cookie=\"" + cookies + "\"";
+        self.requestCookies = cookies
+        let cookieScript = WKUserScript(source: jsCookies, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
+        let webviewConfig = WKWebViewConfiguration()
+        let webviewController = WKUserContentController()
+        webviewController.addUserScript(cookieScript)
+        webviewConfig.userContentController = webviewController
+        self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
+        self.startRequest(cookies: cookies)
+    }
+    
+    func startRequest(cookies:String){
+        webview = WKWebView(frame: UIScreen.main.bounds)
+        webview.navigationDelegate = self
+        webview.tag = 1
+        var url = NSURL()
+        if(restrcited){
+            //url = NSURL(string: "https://forum.nfls.io/settings")!
+        } else {
+            url = NSURL(string: "https://alumni.nfls.io")!
+        }
+        let request = NSMutableURLRequest(url: url as URL)
+        request.addValue(cookies, forHTTPHeaderField: "Cookie")
+        webview.load(request as URLRequest)
+        stackView.addArrangedSubview(webview)
+        
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if(navigationAction.request.allHTTPHeaderFields?["Cookie"] == nil){
+            decisionHandler(.cancel)
+            let request = navigationAction.request as! NSMutableURLRequest
+            request.addValue(requestCookies, forHTTPHeaderField: "Cookie")
+            webView.load(request as URLRequest)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let url = webView.url?.absoluteString
+        if(!url!.hasPrefix("https://alumni.nfls.io")){
+            webView.stopLoading()
+            //webView.goBack()
+            if(url!.hasPrefix("https://nfls.io/quickaction.php?action=logout")){
+                let alertController = UIAlertController(title: "错误",
+                                                        message:"请使用APP内置的退出按钮！" ,preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else if(url!.hasPrefix("https://nfls.io")){
+                self.performSegue(withIdentifier: "back", sender: self)
+            } else {
+                let alertController = UIAlertController(title: "外部链接转跳提示",
+                                                        message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
+                    action in
+                    
+                })
+                let okAction = UIAlertAction(title: "好的", style: .default, handler: {
+                    action in
+                    UIApplication.shared.openURL(webView.url!)
+                })
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
-
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
-        cell.textLabel!.text = data[indexPath.row]["title"] as? String
-        cell.detailTextLabel!.text = data[indexPath.row]["subtitle"] as? String
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
-        cell.isSelected = false
-        //print(11)
-        performSegue(withIdentifier: "showPost", sender: data[indexPath.row]["cid"] as Any)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showPost") {
-            //print(111)
-            let secondViewController = segue.destination as! PostDetailViewController
-            let cid = sender as! Int
-            secondViewController.cid = cid
-        }
+    
+    func networkError(){
+        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常。", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert,animated: true)
     }
 
+    
 }

@@ -12,12 +12,23 @@ import Alamofire
 
 class AssociatedServiceView:UIViewController{
     
+    @IBOutlet weak var inSchoolMate: PermissionPicker!
+    @IBOutlet weak var allSchoolmate: PermissionPicker!
+    @IBOutlet weak var sameLevelSchoolmate: PermissionPicker!
     @IBOutlet weak var baritem: UIBarButtonItem!
+    override func viewDidLoad() {
+        //sameLevelSchoolmate.delegate = PermissionPicker.self
+        //sameLevelSchoolmate.delegate = PermissionPicker.self
+        let alert = UIAlertController(title: "错误", message: "您所在的用户组无法设置隐私设置，您仅可在此修改您的安全设置。", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func operate(_ sender: Any) {
         let action = UIAlertController(title: "操作", message: "您可以在此对您的账户安全进行操作", preferredStyle: .actionSheet)
         let editPassword = UIAlertAction(title: "修改邮箱及密码", style: .default) { (action) in
             self.performSegue(withIdentifier: "showEditing", sender: self)
-            
         }
         let logoutDevices = UIAlertAction(title: "下线所有登录设备", style: .destructive) { (action) in
             Alamofire.request("https://api.nfls.io/center/regenToken").responseJSON(completionHandler: { (response) in
@@ -83,4 +94,39 @@ class AssociatedServiceView:UIViewController{
         action.popoverPresentationController?.barButtonItem = baritem
         self.present(action, animated: true, completion: nil)
     }
+}
+
+class PermissionPicker:UIPickerView,UIPickerViewDelegate,UIPickerViewDataSource{
+    
+    let levels = ["所有信息均可见","除手机号外均可见","除联系方式外均可见","显示个人简介及自定义文字","仅显示个人简介","所有信息均不公开"]
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return levels.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return levels[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        return
+    }
+    
+    
 }

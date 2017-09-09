@@ -23,6 +23,7 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
     var id = 0
     var action = "edit"
     var countryCode = "CN"
+    var first = true
     
     override func viewDidAppear(_ animated: Bool) {
         let locale = Locale.current
@@ -31,8 +32,9 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         country.showPhoneNumbers = false
         country.setCountry(countryCode)
         disableFields()
-        if(id == 0 && action == "edit"){
-            loadMessage()
+        if(first){
+            //first = false
+            loadMessage(true)
         } else {
             reloadData()
         }
@@ -175,7 +177,10 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
             self.country.setCountry("US")
             self.enableFields()
         }else if(id == 0){
-            self.performSegue(withIdentifier: "showTableSelect", sender: "university")
+            if(first){
+                first = false
+                self.performSegue(withIdentifier: "showTableSelect", sender: "university")
+            }
         }else {
             let parameters:Parameters = [
                 "id":id

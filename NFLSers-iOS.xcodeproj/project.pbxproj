@@ -33,6 +33,10 @@
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65C360671F037CE200006074 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C360661F037CE200006074 /* PDFView.swift */; };
+		65DEE0F71F63F9D0007735CD /* ib-world-school-logo-2-colour-rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DEE0F61F63F9CA007735CD /* ib-world-school-logo-2-colour-rev.png */; };
+		65DEE0F91F6402E0007735CD /* ICNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0F81F6402E0007735CD /* ICNewsView.swift */; };
+		65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FA1F645C61007735CD /* MediaRootView.swift */; };
+		65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FC1F645C97007735CD /* VideoListView.swift */; };
 		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
 		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
@@ -66,7 +70,6 @@
 		654923A01F452CF2000E22C9 /* LiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveListView.swift; sourceTree = "<group>"; };
 		655D9C9A1F59190D008FA8D8 /* ClubInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubInfoView.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		656B20581F63A40D00D76231 /* ib-world-school-logo-2-colour-rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ib-world-school-logo-2-colour-rev.png"; sourceTree = "<group>"; };
 		656B20591F63AB6200D76231 /* AlumniRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniRoot.swift; sourceTree = "<group>"; };
 		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
 		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
@@ -80,6 +83,10 @@
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65C360661F037CE200006074 /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		65DEE0F61F63F9CA007735CD /* ib-world-school-logo-2-colour-rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ib-world-school-logo-2-colour-rev.png"; path = "../../Desktop/ib-world-school-logo-2-colour-rev.png"; sourceTree = "<group>"; };
+		65DEE0F81F6402E0007735CD /* ICNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICNewsView.swift; sourceTree = "<group>"; };
+		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
+		65DEE0FC1F645C97007735CD /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +154,7 @@
 		65276F4A1F62F6A400DD0FBF /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				65DEE0F81F6402E0007735CD /* ICNewsView.swift */,
 				6571C5C91EFCDFAA00769FF7 /* WikiView.swift */,
 				D6552FAA1E4CCE7700A2B220 /* ForumView.swift */,
 			);
@@ -157,6 +165,9 @@
 		65276F4B1F62F6C200DD0FBF /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				65DEE0FA1F645C61007735CD /* MediaRootView.swift */,
+				65DEE0FC1F645C97007735CD /* VideoListView.swift */,
+				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 			);
 			name = Media;
 			sourceTree = "<group>";
@@ -189,7 +200,6 @@
 				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
 				D6AE17431E44D51600E66B4B /* ViewController.swift */,
 				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
-				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 				6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */,
 			);
 			name = RootPage;
@@ -224,8 +234,8 @@
 			children = (
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
 				6572D83E1F0B1BFF00D00827 /* logo-NFLS.png */,
-				656B20581F63A40D00D76231 /* ib-world-school-logo-2-colour-rev.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
+				65DEE0F61F63F9CA007735CD /* ib-world-school-logo-2-colour-rev.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
 				65784C7B1F09746800BDC60A /* icons8-Folder-50.png */,
 			);
@@ -358,6 +368,7 @@
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
 				6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
+				65DEE0F71F63F9D0007735CD /* ib-world-school-logo-2-colour-rev.png in Resources */,
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
@@ -434,9 +445,12 @@
 				6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */,
 				65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */,
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
+				65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */,
+				65DEE0F91F6402E0007735CD /* ICNewsView.swift in Sources */,
 				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
+				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
 				656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */,
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,

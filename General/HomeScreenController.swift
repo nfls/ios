@@ -15,7 +15,10 @@ import SwiftIconFont
 
 class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver{
     @IBOutlet weak var barItem: UIBarButtonItem!
+    @IBOutlet weak var ibbutton: UIButton!
     
+    @IBOutlet weak var center: UIButton!
+    @IBOutlet weak var ib: UIImageView!
     var productID = ""
     var productsRequest = SKProductsRequest()
     var transactionInProgress = false
@@ -24,6 +27,10 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     
     @IBOutlet weak var optionsButton: UIBarButtonItem!
     override func viewDidLoad() {
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(HomeScreenController.tapDetected))
+        singleTap.numberOfTapsRequired = 1 // you can change this value
+        ib.isUserInteractionEnabled = true
+        ib.addGestureRecognizer(singleTap)
         checkStatus()
         optionsButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
         optionsRealButton.toolbarPlaceholder = "wrench"
@@ -38,6 +45,9 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+    }
+    @objc func tapDetected() {
+        self.performSegue(withIdentifier: "showIC", sender: self)
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -256,6 +266,11 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             case .success(let json):
                 if((json as! [String:AnyObject])["code"]! as! Int == 200){
                     UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
+                    if(UIApplication.shared.applicationIconBadgeNumber != 0){
+                        self.center.setTitle("个人中心[New!]", for: .normal)
+                    }else{
+                        self.center.setTitle("个人中心", for: .normal)
+                    }
                 }
                 break
             default:

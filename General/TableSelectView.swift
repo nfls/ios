@@ -148,6 +148,10 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             self.performSegue(withIdentifier: "backToClub", sender: self)
         }
     }
+    @IBAction func backWithoutNew(_ sender: Any) {
+        self.performSegue(withIdentifier: "backToClub", sender: self)
+        self.performSegue(withIdentifier: "backToUniversity", sender: self)
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         loadData(name.text!,forceRefresh: true)
         return true
