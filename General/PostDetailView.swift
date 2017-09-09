@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 import Alamofire
-
+import WebKit
 class PostDetailViewController:UIViewController{
     var cid:Int = 0
+    @IBOutlet weak var stackview: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print(cid)
     }
+    
 }

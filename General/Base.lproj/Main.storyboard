@@ -134,7 +134,7 @@
                                     <navigationItem title="南外人" id="Ied-BX-3xa">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gPO-xK-J33">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
-                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
+                                                <rect key="frame" x="253" y="7" width="51" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="选项"/>
                                                 <connections>
@@ -226,7 +226,7 @@
                                         <rect key="frame" x="174" y="0.0" width="74" height="380"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRn-UJ-fEN">
-                                                <rect key="frame" x="2.5" y="0.0" width="69" height="63.5"/>
+                                                <rect key="frame" x="2.5" y="0.0" width="69" height="47.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="📒"/>
                                                 <connections>
@@ -234,7 +234,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh3-rb-sjE">
-                                                <rect key="frame" x="21.5" y="63.5" width="31" height="63"/>
+                                                <rect key="frame" x="21.5" y="47.5" width="31" height="47.5"/>
                                                 <state key="normal" title="百科">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -243,7 +243,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqj-Ne-OSw">
-                                                <rect key="frame" x="2.5" y="126.5" width="69" height="63.5"/>
+                                                <rect key="frame" x="2.5" y="95" width="69" height="47.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="🏫"/>
                                                 <connections>
@@ -251,7 +251,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9S-IH-6ZT">
-                                                <rect key="frame" x="14" y="190" width="46" height="63.5"/>
+                                                <rect key="frame" x="14" y="142.5" width="46" height="47.5"/>
                                                 <state key="normal" title="校友会">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -259,8 +259,17 @@
                                                     <segue destination="zbU-uo-eoH" kind="showDetail" id="LXt-hi-ZXK"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
+                                                <rect key="frame" x="0.0" y="190" width="74" height="47.5"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-fS-rTQ">
+                                                <rect key="frame" x="22" y="237.5" width="30" height="47.5"/>
+                                                <state key="normal" title="IB">
+                                                    <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-vz-hrY">
-                                                <rect key="frame" x="2.5" y="253.5" width="69" height="63"/>
+                                                <rect key="frame" x="2.5" y="285" width="69" height="47.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="👩‍👩‍👧‍👦"/>
                                                 <connections>
@@ -268,7 +277,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-jc-GJn">
-                                                <rect key="frame" x="6" y="316.5" width="62" height="63.5"/>
+                                                <rect key="frame" x="6" y="332.5" width="62" height="47.5"/>
                                                 <state key="normal" title="个人中心">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -291,6 +300,8 @@
                     </view>
                     <connections>
                         <outlet property="barItem" destination="gPO-xK-J33" id="LDH-By-bcD"/>
+                        <outlet property="optionsButton" destination="gPO-xK-J33" id="8jE-HL-q0b"/>
+                        <outlet property="optionsRealButton" destination="jD1-1M-Vi9" id="gIh-gR-QW9"/>
                         <segue destination="Mfd-TQ-No7" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="SlH-j6-mgU"/>
                         <segue destination="yOG-PY-KJD" kind="show" identifier="showOpenSource" id="Uwg-ur-hDW"/>
                         <segue destination="deY-Cs-2KE" kind="show" identifier="aboutUs" id="lFS-WE-bF0"/>
@@ -437,8 +448,34 @@
                     <view key="view" contentMode="scaleToFill" id="op5-Pq-VLQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi5-gg-1Pt">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Lay-SL-Fjj"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="详情查看" id="azE-ji-hlv"/>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2jx-hC-xY7">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2jx-hC-xY7" firstAttribute="leading" secondItem="op5-Pq-VLQ" secondAttribute="leading" id="4k0-wM-KLI"/>
+                            <constraint firstItem="Gi5-gg-1Pt" firstAttribute="top" secondItem="wVV-zt-jPk" secondAttribute="bottom" id="7JJ-4O-nXk"/>
+                            <constraint firstAttribute="trailing" secondItem="Gi5-gg-1Pt" secondAttribute="trailing" id="9aj-uj-j5g"/>
+                            <constraint firstItem="Gi5-gg-1Pt" firstAttribute="leading" secondItem="op5-Pq-VLQ" secondAttribute="leading" id="QOZ-Zw-vcD"/>
+                            <constraint firstAttribute="trailing" secondItem="2jx-hC-xY7" secondAttribute="trailing" id="usv-RM-YjT"/>
+                            <constraint firstItem="Uyt-ug-rsx" firstAttribute="top" secondItem="2jx-hC-xY7" secondAttribute="bottom" id="xCd-8q-pyI"/>
+                            <constraint firstItem="2jx-hC-xY7" firstAttribute="top" secondItem="Gi5-gg-1Pt" secondAttribute="bottom" id="zls-gp-Q33"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stackview" destination="2jx-hC-xY7" id="H2N-vF-YP7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vk4-vE-eoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -867,19 +904,39 @@ CountryCode
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-DR-FjS">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02C-0e-ven">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ebk-3y-4jt"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="校友活动" id="rHC-OD-lMn">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="WbU-RT-l69">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x2J-0U-ksn">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5eM-DR-FjS" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="nJl-5m-2tY"/>
-                            <constraint firstItem="5eM-DR-FjS" firstAttribute="top" secondItem="Lhn-zP-gCP" secondAttribute="bottom" id="oNt-gE-KBS"/>
-                            <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="5eM-DR-FjS" secondAttribute="bottom" id="sXU-ZD-c11"/>
-                            <constraint firstAttribute="trailing" secondItem="5eM-DR-FjS" secondAttribute="trailing" id="uEb-rF-kXc"/>
+                            <constraint firstItem="02C-0e-ven" firstAttribute="top" secondItem="Lhn-zP-gCP" secondAttribute="bottom" id="7Tx-2t-w0D"/>
+                            <constraint firstItem="5eM-DR-FjS" firstAttribute="top" secondItem="02C-0e-ven" secondAttribute="bottom" id="Aio-MD-sKR"/>
+                            <constraint firstItem="02C-0e-ven" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="L8M-fp-1to"/>
+                            <constraint firstItem="5eM-DR-FjS" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="SAf-fb-rTQ"/>
+                            <constraint firstAttribute="trailing" secondItem="5eM-DR-FjS" secondAttribute="trailing" id="c5t-8m-69H"/>
+                            <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="5eM-DR-FjS" secondAttribute="bottom" id="sjO-cD-qsc"/>
+                            <constraint firstAttribute="trailing" secondItem="02C-0e-ven" secondAttribute="trailing" id="tSH-mN-UD2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="校友活动" id="FEZ-hL-Hco"/>
+                    <tabBarItem key="tabBarItem" title="活动" id="FEZ-hL-Hco"/>
                     <connections>
                         <outlet property="tableview" destination="5eM-DR-FjS" id="vXe-qy-Kkq"/>
                         <segue destination="Dyb-44-D10" kind="show" identifier="showPost" id="d1s-aj-nqw"/>
@@ -887,7 +944,7 @@ CountryCode
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFE-fp-qc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2615" y="123"/>
+            <point key="canvasLocation" x="2613.75" y="122.5"/>
         </scene>
         <!--校友录-->
         <scene sceneID="bae-T8-O5q">
@@ -1092,13 +1149,14 @@ CountryCode
         <!--!校友会-->
         <scene sceneID="jG7-7b-Hjq">
             <objects>
-                <tabBarController title="!校友会" automaticallyAdjustsScrollViewInsets="NO" id="zbU-uo-eoH" sceneMemberID="viewController">
+                <tabBarController title="!校友会" automaticallyAdjustsScrollViewInsets="NO" id="zbU-uo-eoH" customClass="AlumniRootViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7mS-jD-vFL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="2GH-CM-jsF" kind="relationship" relationship="viewControllers" id="ONJ-Ma-odt"/>
                         <segue destination="m73-2I-9fu" kind="relationship" relationship="viewControllers" id="3NK-eg-s9p"/>
                         <segue destination="HwZ-hc-tY1" kind="relationship" relationship="viewControllers" id="yvX-1Z-Kwu"/>
                         <segue destination="XZD-l4-Bvi" kind="relationship" relationship="viewControllers" id="Np1-Rg-Xqt"/>
@@ -1996,6 +2054,7 @@ CountryCode
     <resources>
         <image name="Edit" width="16" height="16"/>
         <image name="_MG_6142.JPG" width="3456" height="5184"/>
+        <image name="ib-world-school-logo-2-colour-rev.png" width="494" height="485"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
@@ -2006,7 +2065,7 @@ CountryCode
         <segue reference="43D-cO-s6v"/>
         <segue reference="RMU-wg-LOR"/>
         <segue reference="LXt-hi-ZXK"/>
-        <segue reference="bsB-Ir-01b"/>
+        <segue reference="QEp-eT-Zbz"/>
         <segue reference="x8H-nQ-Z2o"/>
     </inferredMetricsTieBreakers>
 </document>

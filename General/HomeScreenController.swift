@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import StoreKit
 import Alamofire
+import SwiftIconFont
 
 
 class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver{
@@ -19,9 +20,14 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var productsRequest = SKProductsRequest()
     var transactionInProgress = false
     var productsArray = [SKProduct]()
+    @IBOutlet weak var optionsRealButton: UIButton!
     
+    @IBOutlet weak var optionsButton: UIBarButtonItem!
     override func viewDidLoad() {
         checkStatus()
+        optionsButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
+        optionsRealButton.toolbarPlaceholder = "wrench"
+        optionsRealButton.parseIcon()
         let application = UIApplication.shared
         let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
         let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
