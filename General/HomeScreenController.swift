@@ -295,9 +295,9 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 if((json as! [String:AnyObject])["code"]! as! Int == 200){
                     UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
                     if(UIApplication.shared.applicationIconBadgeNumber != 0){
-                        self.center.setTitle("个人[New]", for: .normal)
+                        self.center.setTitle("账户[New]", for: .normal)
                     }else{
-                        self.center.setTitle("个人", for: .normal)
+                        self.center.setTitle("账户", for: .normal)
                     }
                 }
                 break

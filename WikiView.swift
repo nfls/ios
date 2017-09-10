@@ -81,14 +81,20 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
         if(!url!.hasPrefix("https://wiki.nfls.io")){
             webView.stopLoading()
             //webView.goBack()
-            if(url!.hasPrefix("https://nfls.io/quickaction.php?action=logout")){
+            if(url!.hasPrefix("https://wiki.nfls.io/index.php?title=特殊:用户退出")){
                 let alertController = UIAlertController(title: "错误",
                                                         message:"请使用APP内置的退出按钮！" ,preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             }
-            else {
+            else if(url!.hasPrefix("https://center.nfls.io")){
+                let alertController = UIAlertController(title: "错误",
+                                                        message:"请使用APP内置的账户功能！" ,preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }else{
                 let alertController = UIAlertController(title: "外部链接转跳提示",
                                                         message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
@@ -103,9 +109,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             }
-        } else {
         }
-    
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
