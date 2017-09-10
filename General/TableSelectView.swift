@@ -149,8 +149,11 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
         }
     }
     @IBAction func backWithoutNew(_ sender: Any) {
-        self.performSegue(withIdentifier: "backToClub", sender: self)
-        self.performSegue(withIdentifier: "backToUniversity", sender: self)
+        if(type == "university"){
+            self.performSegue(withIdentifier: "backToUniversity", sender: self)
+        } else if(type == "club"){
+            self.performSegue(withIdentifier: "backToClub", sender: self)
+        }
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         loadData(name.text!,forceRefresh: true)

@@ -15,7 +15,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var stackView: UIStackView!
     var webview = WKWebView()
     var requestCookies = ""
-    var restrcited = false
+    var in_url = ""
     override func viewDidLoad() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if(self.presentingViewController is UITabBarController){
-            restrcited = true
+            in_url = "settings"
         }
         getToken()
     }
@@ -54,12 +54,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
         webview = WKWebView(frame: UIScreen.main.bounds)
         webview.navigationDelegate = self
         webview.tag = 1
-        var url = NSURL()
-        if(restrcited){
-            url = NSURL(string: "https://forum.nfls.io/settings")!
-        } else {
-            url = NSURL(string: "https://forum.nfls.io")!
-        }
+        let url = NSURL(string: ("https://forum.nfls.io/"+in_url))!
         let request = NSMutableURLRequest(url: url as URL)
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         webview.load(request as URLRequest)

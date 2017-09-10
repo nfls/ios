@@ -34,6 +34,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
         } else if(action == "edit" && selected.isEmpty){
             if(first){
                 loadMessage(true)
+                first = false
             }
         } else if (action == "edit" && !selected.isEmpty){
             prepareList()

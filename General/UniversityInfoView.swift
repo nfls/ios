@@ -95,7 +95,9 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
             })
         let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         menu.addAction(query)
-        menu.addAction(save)
+        if((id != 0 && action == "edit") || action == "add"){
+            menu.addAction(save)
+        }
         menu.addAction(showNotice)
         if(self.presentingViewController is UserCertificationStepView){
             menu.addAction(backWithoutSave)

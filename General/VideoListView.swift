@@ -78,7 +78,7 @@ class VideoListViewController:UIViewController,UITableViewDelegate,UITableViewDa
         openController.popoverPresentationController?.sourceRect = cell.frame
         
         if let url = list[indexPath.row]["url"]{
-            let gotoAction = UIAlertAction(title: "回放", style: .default, handler: {
+            let gotoAction = UIAlertAction(title: "B站观看", style: .default, handler: {
                 action in
                 print(url)
                 UIApplication.shared.openURL(NSURL(string:url)! as URL)

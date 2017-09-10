@@ -18,7 +18,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var stackView: UIStackView!
     var requestCookies = ""
     var webview = WKWebView()
-    var restricted = false
+    var in_url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,12 +66,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
     func startRequest(cookies:String){
         webview.navigationDelegate = self
         webview.tag = 1
-        var url = NSURL()
-        if(restricted){
-            url = NSURL(string: "https://wiki.nfls.io/w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")!
-        }else{
-            url = NSURL(string: "https://wiki.nfls.io")!
-        }
+        let url = NSURL(string: "https://wiki.nfls.io/"+in_url)!
         let request = NSMutableURLRequest(url: url as URL)
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         requestCookies = cookies

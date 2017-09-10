@@ -57,9 +57,16 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //vcCount += 1
         navigationItem.title = nil
-        if(segue.identifier == "aboutUs"){
+        if(segue.identifier == "showWiki"){
             let dest = segue.destination as! WikiViewController
-            dest.restricted = true
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showForum"){
+            let dest = segue.destination as! ForumViewer
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
         }
     }
     
@@ -134,7 +141,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         })
         let aboutUs = UIAlertAction(title:"关于我们", style:.default, handler:{
             action in
-            self.performSegue(withIdentifier: "aboutUs", sender: self)
+            self.performSegue(withIdentifier: "showWiki", sender: "w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")
         })
         let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
         dialog.addAction(donate)
@@ -228,12 +235,33 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                 let id = info["id"]! as! Int
                                 if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
                                     let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
-                                    let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
-                                    let never = UIAlertAction(title: "不再提醒本条", style: .cancel, handler: {
+                                    let ok = UIAlertAction(title: "我知道了", style: .default, handler: nil)
+                                    let never = UIAlertAction(title: "不再提醒", style: .cancel, handler: {
                                         action in
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
-                                    alert.addAction(ok)
+                                    if(info["push"] as! String != ""){
+                                        let show = UIAlertAction(title: "显示详情", style: .default, handler: { (action) in
+                                            let jsonString = info["push"] as! String
+                                            let data = jsonString.data(using: .utf8)!
+                                            let things = try! JSONSerialization.jsonObject(with: data) as! [String:String]
+                                            let type = things["type"]!
+                                            let in_url = things["url"]!
+                                            switch(type){
+                                            case "forum":
+                                                self.performSegue(withIdentifier: "showForum", sender: in_url)
+                                                break
+                                            case "wiki":
+                                                self.performSegue(withIdentifier: "showWiki", sender: in_url)
+                                                break
+                                            default:
+                                                break
+                                            }
+                                        })
+                                        alert.addAction(show)
+                                    } else {
+                                        alert.addAction(ok)
+                                    }
                                     alert.addAction(never)
                                     self.present(alert, animated: true, completion: nil)
                                     
@@ -267,9 +295,9 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 if((json as! [String:AnyObject])["code"]! as! Int == 200){
                     UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
                     if(UIApplication.shared.applicationIconBadgeNumber != 0){
-                        self.center.setTitle("个人中心[New!]", for: .normal)
+                        self.center.setTitle("个人[New]", for: .normal)
                     }else{
-                        self.center.setTitle("个人中心", for: .normal)
+                        self.center.setTitle("个人", for: .normal)
                     }
                 }
                 break
