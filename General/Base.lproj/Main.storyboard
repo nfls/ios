@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,13 +38,13 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcZ-mz-VMG" userLabel="password">
                                                         <rect key="frame" x="0.0" y="45" width="290" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -61,7 +60,7 @@
                                         <rect key="frame" x="0.0" y="242" width="290" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1c6-xX-9aN">
                                         <rect key="frame" x="0.0" y="292" width="290" height="170"/>
@@ -133,8 +132,8 @@
                                 <items>
                                     <navigationItem title="南外人" id="Ied-BX-3xa">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gPO-xK-J33">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="选项"/>
                                                 <connections>
@@ -259,7 +258,7 @@
                                                     <segue destination="zbU-uo-eoH" kind="showDetail" id="LXt-hi-ZXK"/>
                                                 </connections>
                                             </button>
-                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
                                                 <rect key="frame" x="0.0" y="234" width="74" height="58.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-fS-rTQ">
@@ -333,12 +332,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpM-fc-kz3">
-                                <rect key="frame" x="0.0" y="20" width="320" height="48"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="消息通知" id="QhO-lN-8qd">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Hms-f8-OzL">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KeL-qa-v0H">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -350,7 +349,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lCq-Yb-Qjr">
-                                <rect key="frame" x="0.0" y="68" width="320" height="451"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -397,7 +396,7 @@
                                     <navigationItem title="安全隐私" id="tPJ-ZX-cws">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="ikC-gO-UAB">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yoi-EK-mMa">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -407,7 +406,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="ofq-NR-am9">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PbP-bQ-i8q">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="操作"/>
                                                 <connections>
@@ -527,7 +526,7 @@
                                     <navigationItem title="个人信息" id="Q5p-QH-vvq">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="qVa-RR-mN6">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fxe-sZ-92m">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -538,7 +537,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-4D-3lx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-4D-3lx">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
@@ -585,7 +584,7 @@
                                     <navigationItem title="资源中心" id="bAw-cJ-cfg">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="cIT-8E-32y">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tT2-pk-RAO">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -595,7 +594,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="lpk-rc-Rtn">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ncz-FN-ZGp">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="选项"/>
                                                 <connections>
@@ -675,7 +674,7 @@
                                     <navigationItem title="文件预览" id="txf-AJ-Vwy">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="eBD-TC-Srh">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AW7-yo-p61">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -685,7 +684,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="3wQ-hR-Q1z">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CvU-k0-MEd">
-                                                <rect key="frame" x="260" y="9" width="44" height="30"/>
+                                                <rect key="frame" x="260" y="7" width="44" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="打开..."/>
                                                 <connections>
@@ -738,7 +737,7 @@
                                     <navigationItem title="开源组件许可" id="Uxu-gN-mFr">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="9rh-qr-Sj1">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ap1-q9-QyJ">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -919,7 +918,7 @@ CountryCode
                                     <navigationItem title="校友活动" id="rHC-OD-lMn">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="WbU-RT-l69">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x2J-0U-ksn">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -995,7 +994,7 @@ CountryCode
                                     <navigationItem title="实名认证" id="8NO-sw-M8a">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="P4A-pz-tHA">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="igb-U8-LWI">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1005,7 +1004,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="U8G-TU-eMP">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WsF-gX-ZJP">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="进入"/>
                                                 <connections>
@@ -1016,7 +1015,7 @@ CountryCode
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yU2-nT-kFe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yU2-nT-kFe">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1089,7 +1088,7 @@ CountryCode
                                     <navigationItem title="实名认证" id="Pbg-mg-lFC">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Xb7-jP-KXU">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qzv-A9-u41">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1099,7 +1098,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="wys-f6-HHI">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqI-V0-Spd">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="提示"/>
                                             </button>
@@ -1196,7 +1195,7 @@ CountryCode
                                     <navigationItem title="忘记密码" id="DNO-J2-gIt">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="wuc-6G-Vg3">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qc8-zN-nlN">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1214,7 +1213,7 @@ CountryCode
                                         <rect key="frame" x="0.0" y="0.0" width="258" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Bz-mn-hIp">
                                         <rect key="frame" x="0.0" y="50" width="258" height="100"/>
@@ -1226,7 +1225,7 @@ CountryCode
                                         <rect key="frame" x="0.0" y="170" width="258" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-Hb-esz">
                                         <rect key="frame" x="0.0" y="220" width="258" height="30"/>
@@ -1278,14 +1277,14 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DW6-7E-fkZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DW6-7E-fkZ">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="8DF-tx-oEI">
                                         <rect key="frame" x="0.0" y="28" width="320" height="176"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8DF-tx-oEI" id="m92-Yl-dB3">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="8DF-tx-oEI" id="m92-Yl-dB3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="175.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1351,7 +1350,7 @@ CountryCode
                                     <navigationItem title="视频" id="Npk-6L-BVq">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Gxz-3p-zCV">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vBI-Fx-QwT">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1362,7 +1361,7 @@ CountryCode
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0f8-l5-ubk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0f8-l5-ubk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1410,7 +1409,7 @@ CountryCode
                                     <navigationItem title="直播" id="9sa-tp-G3M">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="zm7-eu-JQx">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uds-fP-NCG">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1491,7 +1490,7 @@ CountryCode
         <scene sceneID="AiU-Gf-pSc">
             <objects>
                 <tabBarController id="aSC-Ix-BeI" customClass="MediaViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="npu-ZA-rvK">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="npu-ZA-rvK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1570,25 +1569,25 @@ CountryCode
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2d-ds-E9y">
                                         <rect key="frame" x="0.0" y="45" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76X-tx-WZc">
                                         <rect key="frame" x="0.0" y="90" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="重复密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-iV-XQe">
                                         <rect key="frame" x="0.0" y="135" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ba3-ct-ooi">
                                         <rect key="frame" x="0.0" y="180" width="248" height="100"/>
@@ -1600,7 +1599,7 @@ CountryCode
                                         <rect key="frame" x="0.0" y="295" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-VH-sXE">
                                         <rect key="frame" x="0.0" y="340" width="248" height="30"/>
@@ -1622,8 +1621,8 @@ CountryCode
                                 <items>
                                     <navigationItem title="注册" id="Azn-kN-LSl">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="izk-WQ-Y6k">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1720,7 +1719,7 @@ CountryCode
                                         <barButtonItem key="backBarButtonItem" title="Back" id="d2b-ml-F7D"/>
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="fDc-yO-w4s">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HHZ-R7-G7O">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1730,7 +1729,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="VJE-WZ-TPL">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ELY-9Q-moa">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="回退"/>
                                                 <connections>
@@ -1791,7 +1790,7 @@ CountryCode
                                     <navigationItem title="气象站" id="ZFK-vl-3U0">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="pEO-RX-7zT">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="80U-6f-tVI">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1983,7 +1982,7 @@ CountryCode
                                     <navigationItem title="大学查询及修改" id="M6P-aj-uOS">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Yxm-30-dbJ">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BzG-Hk-Z5U">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -1993,7 +1992,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="DNP-xk-WFr">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oJ7-wC-gYK">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="操作"/>
                                                 <connections>
@@ -2055,7 +2054,7 @@ CountryCode
                                     <navigationItem title="社团查询及修改" id="bhO-OO-lXD">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="J1r-b3-hAY">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WPo-pv-ts9">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -2065,7 +2064,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="cb1-8E-vuj">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="05O-SF-zFa">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="操作"/>
                                                 <connections>
@@ -2177,7 +2176,7 @@ CountryCode
                                     <navigationItem title="查询" id="v6G-Re-5ym">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="ih8-P6-cRn">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z3J-qq-BII">
-                                                <rect key="frame" x="16" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
                                                 <connections>
@@ -2187,7 +2186,7 @@ CountryCode
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="uhv-ab-wH3">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tbK-Fl-fc2">
-                                                <rect key="frame" x="273" y="9" width="31" height="30"/>
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="新建"/>
                                                 <connections>
@@ -2199,7 +2198,7 @@ CountryCode
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-S8-Ddn">
-                                <rect key="frame" x="0.0" y="126" width="320" height="426"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入名称以查询" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCA-CA-q1k">

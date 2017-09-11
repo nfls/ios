@@ -16,6 +16,7 @@
 		65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */; };
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
 		6534D1351F5BFCFB0032F6EE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6534D1341F5BFCFB0032F6EE /* MapKit.framework */; };
+		6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */; };
 		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
 		6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */; };
 		6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */; };
@@ -370,6 +371,7 @@
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
 				6572D83F1F0B1BFF00D00827 /* logo-NFLS.png in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
+				6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */,
 				65DEE0F71F63F9D0007735CD /* ib-world-school-logo-2-colour-rev.png in Resources */,
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
@@ -617,7 +619,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "general/NFLSers-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -647,7 +649,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "general/NFLSers-iOS-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

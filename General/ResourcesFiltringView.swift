@@ -224,8 +224,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append(Int((file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int((file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -244,8 +244,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append(Int((file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int((file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
