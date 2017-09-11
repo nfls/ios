@@ -89,6 +89,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let url = webView.url?.absoluteString
+        let realUrl = webView.url!
         if(!url!.hasPrefix("https://alumni.nfls.io")){
             webView.stopLoading()
             //webView.goBack()
@@ -109,7 +110,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
                 })
                 let okAction = UIAlertAction(title: "好的", style: .default, handler: {
                     action in
-                    UIApplication.shared.openURL(webView.url!)
+                    UIApplication.shared.openURL(realUrl)
                 })
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction)

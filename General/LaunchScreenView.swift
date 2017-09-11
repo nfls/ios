@@ -36,6 +36,11 @@ class LaunchScreenViewController:UIViewController{
             } catch {
                 print("Error loading image : \(error)")
             }
+            if(image.image!.size.width == image.image!.size.height){
+                image.contentMode = .scaleAspectFit
+            }else{
+                image.contentMode = .scaleAspectFill
+            }
             text.text = (UserDefaults.standard.value(forKey: "pic_text") as? String)?.replacingOccurrences(of: "<br/>", with: "\n")
             text.numberOfLines = 0
             text.lineBreakMode = .byWordWrapping
