@@ -70,55 +70,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         }
     }
     
-    func getImage(){
-        let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-        ]
-        if(UserDefaults.standard.value(forKey: "pic_end") as? Date != nil){
-            let date = UserDefaults.standard.value(forKey: "pic_end") as! Date
-            let today = Date()
-            if(today>date){
-                UserDefaults.standard.removeObject(forKey: "pic_path")
-                UserDefaults.standard.removeObject(forKey: "pic_text")
-                UserDefaults.standard.removeObject(forKey: "pic_end")
-                UserDefaults.standard.removeObject(forKey: "pic_id")
-            }
-        }
-        Alamofire.request("https://api.nfls.io/device/pics", headers: headers).responseJSON(completionHandler: {
-            response in
-            switch response.result{
-            case .success(let json):
-                let info = ((json as! [String:AnyObject])["info"]) as! [String:Any]
-                if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
-                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                        let fileURL = documentsURL.appendingPathComponent("startup.jpg")
-                        return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-                    }
-                    Alamofire.download((info["url"] as! String), to: destination).response { response in
-                        if response.error == nil, let imagePath = response.destinationURL?.path {
-                            debugPrint("Get a new picture!")
-                            UserDefaults.standard.set("startup.jpg", forKey: "pic_path")
-                            debugPrint(imagePath)
-                            let before = info["invalid_after"] as? String
-                            let text = info["text"] as! String
-                            UserDefaults.standard.set(text, forKey: "pic_text")
-                            let format = DateFormatter()
-                            format.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
-                            if(before != nil){
-                                let date = format.date(from: before! + " GMT+08:00")
-                                UserDefaults.standard.set(date, forKey: "pic_end")
-                            }
-                            UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
-                        }
-                    }
-                }
-                break
-            default:
-                break
-            }
-        })
-    }
+    
     @IBAction func settings(_ sender: Any) {
         let dialog = UIAlertController(title: "选项", message: "您的捐助是我们前进的动力。点击下面按钮给我们捐赠30元，所有款项将被用于服务器支出，您的用户名将公布在我们的感谢榜上。", preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "退出", style: .destructive, handler: {
@@ -222,7 +174,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                         "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                     ]
                     self.getBadge()
-                    self.getImage()
+                    //self.getImage()
                     Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
                         response in
                         switch response.result{

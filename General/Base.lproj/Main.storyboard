@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -486,24 +487,6 @@
                 <exit id="Ef7-47-Ow2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3344.53125" y="-600"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ApG-96-OfX">
-            <objects>
-                <viewController id="Pk6-Tg-oRW" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eCh-wv-ZkB"/>
-                        <viewControllerLayoutGuide type="bottom" id="nnm-cR-sGl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2PG-Od-i1n">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SGC-kd-Qsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4073" y="-600"/>
         </scene>
         <!--个人信息-->
         <scene sceneID="MJZ-2r-JJd">
@@ -1466,25 +1449,53 @@ CountryCode
                                     <constraint firstAttribute="height" constant="48" id="u8B-RS-g8U"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="国际部新鲜事" id="0VE-Wv-AtM"/>
+                                    <navigationItem title="国际部新鲜事" id="0VE-Wv-AtM">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Xgk-qa-xh8">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lyi-S9-6ox">
+                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="返回"/>
+                                                <connections>
+                                                    <segue destination="EV3-ZN-uYj" kind="unwind" unwindAction="closeCurrentWithSegue:" id="BKc-VT-NOF"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="txC-km-Omo">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mK-7H-xpN">
+                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="回退"/>
+                                                <connections>
+                                                    <action selector="previousPage:" destination="Vo3-zz-cFm" eventType="touchUpInside" id="w64-ML-3oE"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-oV-4Xy">
+                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XBW-oV-4Xy" firstAttribute="top" secondItem="ErT-fC-9fb" secondAttribute="bottom" id="9NV-om-z6R"/>
                             <constraint firstItem="ErT-fC-9fb" firstAttribute="leading" secondItem="5Fq-vS-tRd" secondAttribute="leading" id="DOT-cC-Rb7"/>
+                            <constraint firstItem="aUE-lw-3Vw" firstAttribute="top" secondItem="XBW-oV-4Xy" secondAttribute="bottom" id="F4x-0Z-2aR"/>
+                            <constraint firstItem="XBW-oV-4Xy" firstAttribute="leading" secondItem="5Fq-vS-tRd" secondAttribute="leading" id="LMs-sR-KEz"/>
+                            <constraint firstAttribute="trailing" secondItem="XBW-oV-4Xy" secondAttribute="trailing" id="UqY-db-HsF"/>
                             <constraint firstAttribute="trailing" secondItem="ErT-fC-9fb" secondAttribute="trailing" id="mXk-Zb-7KJ"/>
                             <constraint firstItem="ErT-fC-9fb" firstAttribute="top" secondItem="HiN-Aq-yw8" secondAttribute="bottom" id="qaI-Go-tIx"/>
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="EV3-ZN-uYj" kind="unwind" identifier="close" unwindAction="closeCurrentWithSegue:" id="nVI-Pv-rVB"/>
+                        <outlet property="stackView" destination="XBW-oV-4Xy" id="Upi-UI-sHq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dY-Vb-4pE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EV3-ZN-uYj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="943" y="1660"/>
+            <point key="canvasLocation" x="941.25" y="1659.5070422535211"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="AiU-Gf-pSc">
@@ -1526,12 +1537,22 @@ CountryCode
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2fb-WC-ccL">
+                                <rect key="frame" x="15" y="516" width="37" height="37"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39835497359154931" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="z5l-tj-KSZ"/>
+                                    <constraint firstAttribute="height" constant="37" id="zdR-vR-Lm4"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2fb-WC-ccL" firstAttribute="leading" secondItem="UGS-cv-QO1" secondAttribute="leading" constant="15" id="6IP-3d-oba"/>
                             <constraint firstAttribute="trailing" secondItem="aHt-4m-JIc" secondAttribute="trailing" id="GwE-Nn-892"/>
                             <constraint firstAttribute="trailing" secondItem="KO5-dO-dyp" secondAttribute="trailing" constant="10" id="Npt-SM-9Zk"/>
                             <constraint firstItem="oX6-J6-TxX" firstAttribute="top" secondItem="aHt-4m-JIc" secondAttribute="bottom" id="OA7-2H-iKq"/>
+                            <constraint firstItem="oX6-J6-TxX" firstAttribute="top" secondItem="2fb-WC-ccL" secondAttribute="bottom" constant="15" id="OdG-xl-usx"/>
                             <constraint firstItem="oX6-J6-TxX" firstAttribute="top" secondItem="KO5-dO-dyp" secondAttribute="bottom" constant="10" id="cee-8e-3pR"/>
                             <constraint firstItem="aHt-4m-JIc" firstAttribute="leading" secondItem="UGS-cv-QO1" secondAttribute="leading" id="cqy-R4-A2k"/>
                             <constraint firstItem="aHt-4m-JIc" firstAttribute="top" secondItem="UGS-cv-QO1" secondAttribute="top" id="qGH-DW-0gI"/>
@@ -1545,7 +1566,7 @@ CountryCode
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffg-CC-Xnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1472" y="121"/>
+            <point key="canvasLocation" x="-1473.75" y="120.4225352112676"/>
         </scene>
         <!--注册-->
         <scene sceneID="eOV-cK-mJ4">
@@ -2198,7 +2219,7 @@ CountryCode
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-S8-Ddn">
-                                <rect key="frame" x="0.0" y="126" width="320" height="377"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="426"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入名称以查询" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCA-CA-q1k">

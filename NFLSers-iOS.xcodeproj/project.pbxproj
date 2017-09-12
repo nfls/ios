@@ -141,7 +141,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		650160B31F62F6E800B5F95D /* Essentials */ = {
+		650160B31F62F6E800B5F95D /* Essential */ = {
 			isa = PBXGroup;
 			children = (
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
@@ -150,7 +150,7 @@
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
-			name = Essentials;
+			name = Essential;
 			sourceTree = "<group>";
 		};
 		65276F4A1F62F6A400DD0FBF /* WebView */ = {
@@ -260,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
-				650160B31F62F6E800B5F95D /* Essentials */,
+				650160B31F62F6E800B5F95D /* Essential */,
 				65276F4B1F62F6C200DD0FBF /* Media */,
 				65276F4A1F62F6A400DD0FBF /* WebView */,
 				653B109C1F5B255C00ACDC37 /* Download */,
