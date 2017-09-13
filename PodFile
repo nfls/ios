@@ -15,4 +15,5 @@ target 'NFLSers-iOS' do
   pod 'AlamofireNetworkActivityIndicator'
   pod 'UITableView+FDTemplateLayoutCell'
   pod 'CountryPickerSwift'
+  pod 'FrostedSidebar'
 end

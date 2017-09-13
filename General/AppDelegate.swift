@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var token:String = ""
     var isLaunched = false
+    var isOn = true
     var time = Date().timeIntervalSince1970
     
 
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
         //ZIKCellularAuthorization
+        ZIKCellularAuthorization.request()
         return true
     }
     
@@ -73,29 +75,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application s  upports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         time = Date().timeIntervalSince1970
+        isOn = false
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        let interval = Date().timeIntervalSince1970 - time
+        if(isLaunched && !isOn && interval >= 60){
+            if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? LaunchScreenViewController {
+                if let window = self.window, let rootViewController = window.rootViewController {
+                    var currentController = rootViewController
+                    while let presentedController = currentController.presentedViewController {
+                        currentController = presentedController
+                    }
+                    currentController.present(controller, animated: true, completion: nil)
+                }
+            }
+        } else {
+            isLaunched = true
+        }
     }
     
     
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        let interval = Date().timeIntervalSince1970 - time
-        if(isLaunched && interval > 60){
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyBoard.instantiateInitialViewController() as! LaunchScreenViewController
-            controller.lastView = self.window!.rootViewController!
-            let frame = UIScreen.main.bounds
-            self.window = UIWindow(frame: frame)
-            self.window?.rootViewController = controller
-            self.window?.makeKeyAndVisible()
-        } else {
-            isLaunched = true
-        }
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

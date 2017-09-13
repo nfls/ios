@@ -29,10 +29,17 @@ class LaunchScreenViewController:UIViewController{
         Thread.sleep(forTimeInterval: 3.0)
         if(!appdelegate.isLaunched){
             performSegue(withIdentifier: "jumpToLogin",sender:self)
+            appdelegate.isLaunched = true
         }else{
-            let frame = UIScreen.main.bounds
-            appdelegate.window = UIWindow(frame: frame)
+            //let frame = UIScreen.main.bounds
+            self.dismiss(animated: true, completion: nil)
+            /*
+            appdelegate.window = UIWindow()
+            appdelegate.window!.screen = UIScreen.main
             appdelegate.window!.rootViewController = lastView
+            //appdelegate.window!.addSubview(lastView.view)
+            appdelegate.window!.makeKeyAndVisible()
+            */
         }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         return

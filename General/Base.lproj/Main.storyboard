@@ -1177,7 +1177,7 @@ CountryCode
                                 <items>
                                     <navigationItem title="忘记密码" id="DNO-J2-gIt">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="wuc-6G-Vg3">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qc8-zN-nlN">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qc8-zN-nlN">
                                                 <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>
@@ -1642,7 +1642,7 @@ CountryCode
                                 <items>
                                     <navigationItem title="注册" id="Azn-kN-LSl">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="izk-WQ-Y6k">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
                                                 <rect key="frame" x="16" y="7" width="31" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="返回"/>

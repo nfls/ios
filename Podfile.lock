@@ -6,6 +6,7 @@ PODS:
     - Charts/Core (= 3.0.3)
   - Charts/Core (3.0.3)
   - CountryPickerSwift (1.4.4)
+  - FrostedSidebar (1.0.0)
   - IQKeyboardManagerSwift (4.0.13)
   - SSZipArchive (2.0.4)
   - SwiftIconFont (2.7.1)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator
   - Charts
   - CountryPickerSwift
+  - FrostedSidebar
   - IQKeyboardManagerSwift
   - SSZipArchive
   - SwiftIconFont
@@ -28,12 +30,13 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   Charts: bcde37724c161958c1438dd4883971fcb2d50c06
   CountryPickerSwift: e31e67f2b95eb1fa6ad230e9eb0b49b020526d99
+  FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   SSZipArchive: c77fc6ec8194f4e6d57876da1348e46cd63b90ba
   SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
   SwiftyMarkdown: 6419ed988f458fd85ca62f8f3b621a2288660865
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
-PODFILE CHECKSUM: bd115d4b5fd347fcef536bc240958c36880d365c
+PODFILE CHECKSUM: 708f3969b4df110ef5e6c09d5f9e4e166070d15c
 
 COCOAPODS: 1.2.1
