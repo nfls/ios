@@ -7,6 +7,9 @@ PODS:
   - Charts/Core (3.0.3)
   - CountryPickerSwift (1.4.4)
   - FrostedSidebar (1.0.0)
+  - GCDWebServer (3.4.1):
+    - GCDWebServer/Core (= 3.4.1)
+  - GCDWebServer/Core (3.4.1)
   - IQKeyboardManagerSwift (4.0.13)
   - SSZipArchive (2.0.4)
   - SwiftIconFont (2.7.1)
@@ -19,6 +22,7 @@ DEPENDENCIES:
   - Charts
   - CountryPickerSwift
   - FrostedSidebar
+  - GCDWebServer
   - IQKeyboardManagerSwift
   - SSZipArchive
   - SwiftIconFont
@@ -31,12 +35,13 @@ SPEC CHECKSUMS:
   Charts: bcde37724c161958c1438dd4883971fcb2d50c06
   CountryPickerSwift: e31e67f2b95eb1fa6ad230e9eb0b49b020526d99
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
+  GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   SSZipArchive: c77fc6ec8194f4e6d57876da1348e46cd63b90ba
   SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
   SwiftyMarkdown: 6419ed988f458fd85ca62f8f3b621a2288660865
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
-PODFILE CHECKSUM: 708f3969b4df110ef5e6c09d5f9e4e166070d15c
+PODFILE CHECKSUM: 70b77b7f84075d42f2a73fdf881e1dd954a25087
 
 COCOAPODS: 1.2.1

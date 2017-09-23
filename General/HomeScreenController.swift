@@ -72,30 +72,30 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     
     
     @IBAction func settings(_ sender: Any) {
-        let dialog = UIAlertController(title: "选项", message: "您的捐助是我们前进的动力。点击下面按钮给我们捐赠30元，所有款项将被用于服务器支出，您的用户名将公布在我们的感谢榜上。", preferredStyle: .actionSheet)
-        let exit = UIAlertAction(title: "退出", style: .destructive, handler: {
+        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
+        let exit = UIAlertAction(title: "Logout", style: .destructive, handler: {
             action in
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
             self.performSegue(withIdentifier: "exit", sender: self)
         })
-        let donate = UIAlertAction(title: "请喝咖啡", style: .default, handler: {
+        let donate = UIAlertAction(title: "Buy Us Coffee", style: .default, handler: {
             action in
             let payment = SKPayment(product: self.productsArray[0] as SKProduct)
             SKPaymentQueue.default().add(payment)
             self.transactionInProgress = true
         })
-        let opensourceInfo = UIAlertAction(title: "开源组件许可", style: .default, handler: {
+        let opensourceInfo = UIAlertAction(title: "Open Source Project Licenses", style: .default, handler: {
             action in
             self.performSegue(withIdentifier: "showOpenSource", sender: self)
             
         })
-        let aboutUs = UIAlertAction(title:"关于我们", style:.default, handler:{
+        let aboutUs = UIAlertAction(title:"About Us", style:.default, handler:{
             action in
             self.performSegue(withIdentifier: "showWiki", sender: "w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")
         })
-        let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Back", style: .cancel, handler: nil)
         dialog.addAction(donate)
         dialog.addAction(opensourceInfo)
         dialog.addAction(aboutUs)
@@ -187,13 +187,13 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                 let id = info["id"]! as! Int
                                 if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
                                     let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
-                                    let ok = UIAlertAction(title: "我知道了", style: .default, handler: nil)
-                                    let never = UIAlertAction(title: "不再提醒", style: .cancel, handler: {
+                                    let ok = UIAlertAction(title: "Got It", style: .default, handler: nil)
+                                    let never = UIAlertAction(title: "Never Notice This Again", style: .cancel, handler: {
                                         action in
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
                                     if(info["push"] as! String != ""){
-                                        let show = UIAlertAction(title: "显示详情", style: .default, handler: { (action) in
+                                        let show = UIAlertAction(title: "Show Details", style: .default, handler: { (action) in
                                             let jsonString = info["push"] as! String
                                             let data = jsonString.data(using: .utf8)!
                                             let things = try! JSONSerialization.jsonObject(with: data) as! [String:String]
@@ -227,8 +227,8 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 }
                 break
             default:
-                let alert = UIAlertController(title: "提示", message: "网络连接异常！", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
+                let alert = UIAlertController(title: "Error", message: "Network or server error!", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
                 break
@@ -247,9 +247,9 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 if((json as! [String:AnyObject])["code"]! as! Int == 200){
                     UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
                     if(UIApplication.shared.applicationIconBadgeNumber != 0){
-                        self.center.setTitle("账户[New]", for: .normal)
+                        self.center.setTitle("*Accounts", for: .normal)
                     }else{
-                        self.center.setTitle("账户", for: .normal)
+                        self.center.setTitle("Accounts", for: .normal)
                     }
                 }
                 break

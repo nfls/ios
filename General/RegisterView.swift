@@ -95,12 +95,12 @@ class RegisterView:UIViewController {
                     if (webStatus == 200){
                         let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
                         if(status["status"] as! String == "success"){
-                            let alert = UIAlertController(title: "注册成功", message: "注册成功！请在您的邮箱中检查认证邮件。", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Succeeded", message: "You have registered successfully, now you can login. Please remember to check your confirm email.", preferredStyle: .alert)
                             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(ok)
                             self.present(alert,animated: true)
                         } else {
-                            let alert = UIAlertController(title: "注册失败", message: "注册失败！原因：" + (status["message"] as! String), preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Failed", message: "Registeration failed！Reason:" + (status["message"] as! String), preferredStyle: .alert)
                             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(ok)
                             self.present(alert,animated: true)
@@ -128,7 +128,7 @@ class RegisterView:UIViewController {
     }
     
     func networkError(){
-        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常，或是否在设置中给予了本程序相关互联网访问权限（仅国行iPhone）。", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Network or server error. Please check that you give network permission for this app in Preferences.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         self.present(alert,animated: true)

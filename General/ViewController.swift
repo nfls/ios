@@ -106,7 +106,7 @@ class ViewController: UIViewController {
                             UserDefaults.standard.synchronize()
                             self.performSegue(withIdentifier: "ShowHomePage", sender: self)
                         } else {
-                            let alert = UIAlertController(title: "登陆失败", message: "登陆失败！原因：" + (status["message"] as! String), preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Failed", message: "Login Failed! Reason:" + (status["message"] as! String), preferredStyle: .alert)
                             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(ok)
                             self.present(alert,animated: true)
@@ -130,8 +130,8 @@ class ViewController: UIViewController {
     }
     
     func networkError(){
-        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查您的网络连接。", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "好的", style: .default, handler: nil)
+        let alert = UIAlertController(title: "Error", message: "Network or server error. Please check that you give network permission for this app in Preferences.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         let tips = UIAlertAction(title: "TIPS", style: .cancel, handler: {
             action in
             UIApplication.shared.openURL(NSURL(string: "https://zhuanlan.zhihu.com/p/22738261")! as URL)

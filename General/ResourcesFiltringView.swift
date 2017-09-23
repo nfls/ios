@@ -224,8 +224,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int((file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int((file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -244,8 +244,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int((file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int((file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
+                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -325,6 +325,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func removeFile(filename:String,path:String){
+        
         self.present(operatingController, animated: true, completion: nil)
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(path.removingPercentEncoding!).appendingPathComponent(filename)
@@ -332,11 +333,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         do {
             try fileManager.removeItem(atPath: fileURL.path)
         } catch {
-            print("error")
+            //print("removeError")
         }
         operatingController.dismiss(animated: true, completion: {
             self.listRequest()
         })
+        
     }
     
     func bulkDownload(files:[IndexPath]!){
@@ -415,6 +417,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             self.present(alert,animated:true)
         } else {
             qlpreview.reloadData()
+            print("go to preview")
             self.present(qlpreview, animated: true, completion: nil)
         }
         

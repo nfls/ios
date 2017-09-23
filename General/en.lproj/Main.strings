@@ -1,0 +1,402 @@
+
+/* Class = "UIButton"; normalTitle = "操作"; ObjectID = "05O-SF-zFa"; */
+"05O-SF-zFa.normalTitle" = "操作";
+
+/* Class = "UILabel"; text = "同届校友"; ObjectID = "0Gd-vU-PGl"; */
+"0Gd-vU-PGl.text" = "同届校友";
+
+/* Class = "UINavigationItem"; title = "国际部新鲜事"; ObjectID = "0VE-Wv-AtM"; */
+"0VE-Wv-AtM.title" = "国际部新鲜事";
+
+/* Class = "UITabBarItem"; title = "社团"; ObjectID = "0bJ-ID-ms4"; */
+"0bJ-ID-ms4.title" = "社团";
+
+/* Class = "UILabel"; text = "备注"; ObjectID = "0fM-op-iD5"; */
+"0fM-op-iD5.text" = "备注";
+
+/* Class = "UIViewController"; title = "校友活动"; ObjectID = "2GH-CM-jsF"; */
+"2GH-CM-jsF.title" = "校友活动";
+
+/* Class = "UITabBarItem"; title = "大学"; ObjectID = "2Oh-wY-v50"; */
+"2Oh-wY-v50.title" = "大学";
+
+/* Class = "UILabel"; text = "添加者"; ObjectID = "2tT-5B-P45"; */
+"2tT-5B-P45.text" = "添加者";
+
+/* Class = "UIViewController"; title = "忘记密码"; ObjectID = "31B-3B-515"; */
+"31B-3B-515.title" = "Recover Password";
+
+/* Class = "UIButton"; normalTitle = "气象"; ObjectID = "3XR-n0-BDI"; */
+"3XR-n0-BDI.normalTitle" = "Weather";
+
+/* Class = "UITextField"; placeholder = "邮箱"; ObjectID = "3hK-Xc-Ttp"; */
+"3hK-Xc-Ttp.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "影音"; ObjectID = "3kM-6A-hp0"; */
+"3kM-6A-hp0.normalTitle" = "Media";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "76X-tx-WZc"; */
+"76X-tx-WZc.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "回退"; ObjectID = "7mK-7H-xpN"; */
+"7mK-7H-xpN.normalTitle" = "回退";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "80U-6f-tVI"; */
+"80U-6f-tVI.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "实名认证"; ObjectID = "8NO-sw-M8a"; */
+"8NO-sw-M8a.title" = "实名认证";
+
+/* Class = "UILabel"; text = "国家或地区"; ObjectID = "9J9-ag-YiB"; */
+"9J9-ag-YiB.text" = "国家或地区";
+
+/* Class = "UILabel"; text = "社团名称"; ObjectID = "9ZC-5h-esG"; */
+"9ZC-5h-esG.text" = "社团名称";
+
+/* Class = "UINavigationItem"; title = "直播"; ObjectID = "9sa-tp-G3M"; */
+"9sa-tp-G3M.title" = "直播";
+
+/* Class = "UITextField"; placeholder = "重复密码"; ObjectID = "A4n-iV-XQe"; */
+"A4n-iV-XQe.placeholder" = "Repeat Password";
+
+/* Class = "UILabel"; text = "所有校友"; ObjectID = "A7v-SO-peG"; */
+"A7v-SO-peG.text" = "所有校友";
+L
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "AW7-yo-p61"; */
+"AW7-yo-p61.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "Ap1-q9-QyJ"; */
+"Ap1-q9-QyJ.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "注册"; ObjectID = "Azn-kN-LSl"; */
+"Azn-kN-LSl.title" = "Register";
+
+/* Class = "UITabBarItem"; title = "校友录"; ObjectID = "BPB-rE-DCQ"; */
+"BPB-rE-DCQ.title" = "校友录";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "BcZ-mz-VMG"; */
+"BcZ-mz-VMG.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "BzG-Hk-Z5U"; */
+"BzG-Hk-Z5U.normalTitle" = "Back";
+
+/* Class = "UITextField"; accessibilityHint = "也很美"; ObjectID = "CLK-xz-Vko"; */
+"CLK-xz-Vko.accessibilityHint" = "也很美";
+
+/* Class = "UITextField"; placeholder = "用户名"; ObjectID = "CLK-xz-Vko"; */
+"CLK-xz-Vko.placeholder" = "Username";
+
+/* Class = "UIButton"; normalTitle = "打开..."; ObjectID = "CvU-k0-MEd"; */
+"CvU-k0-MEd.normalTitle" = "打开...";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "DAe-FF-lwT"; */
+"DAe-FF-lwT.placeholder" = "Captcha";
+
+/* Class = "UINavigationItem"; title = "忘记密码"; ObjectID = "DNO-J2-gIt"; */
+"DNO-J2-gIt.title" = "Recover Password";
+
+/* Class = "UITextField"; placeholder = "选填（不要太长）"; ObjectID = "DcI-lW-Mom"; */
+"DcI-lW-Mom.placeholder" = "选填（不要太长）";
+
+/* Class = "UIButton"; normalTitle = "账户"; ObjectID = "Dql-jc-GJn"; */
+"Dql-jc-GJn.normalTitle" = "Account";
+
+/* Class = "UIButton"; normalTitle = "回退"; ObjectID = "ELY-9Q-moa"; */
+"ELY-9Q-moa.normalTitle" = "回退";
+
+/* Class = "UILabel"; text = "学校简写（本地语言）"; ObjectID = "Ecc-5v-Fqq"; */
+"Ecc-5v-Fqq.text" = "学校简写（本地语言）";
+
+/* Class = "UITabBarItem"; title = "活动"; ObjectID = "FEZ-hL-Hco"; */
+"FEZ-hL-Hco.title" = "活动";
+
+/* Class = "UILabel"; text = "学校全名（本地语言）"; ObjectID = "GLe-Aq-2kN"; */
+"GLe-Aq-2kN.text" = "学校全名（本地语言）";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "GlQ-VH-sXE"; */
+"GlQ-VH-sXE.normalTitle" = "Register";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "Gnh-pT-nel"; */
+"Gnh-pT-nel.normalTitle" = "Register";
+
+/* Class = "UINavigationItem"; title = "百科"; ObjectID = "HAb-ju-dJj"; */
+"HAb-ju-dJj.title" = "百科";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "HHZ-R7-G7O"; */
+"HHZ-R7-G7O.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "南外人"; ObjectID = "Ied-BX-3xa"; */
+"Ied-BX-3xa.title" = "南外人";
+
+/* Class = "UIButton"; normalTitle = "发送密码重置邮件"; ObjectID = "JWe-Hb-esz"; */
+"JWe-Hb-esz.normalTitle" = "Send Password Recovery Email";
+
+/* Class = "UITabBarItem"; title = "消息通知"; ObjectID = "JZl-jk-DHz"; */
+"JZl-jk-DHz.title" = "消息通知";
+
+/* Class = "UILabel"; text = "© 2017 杨奕非"; ObjectID = "KO5-dO-dyp"; */
+"KO5-dO-dyp.text" = "© 2017 杨奕非";
+
+/* Class = "UILabel"; text = "学校全名（中文）"; ObjectID = "KOa-Nm-xI5"; */
+"KOa-Nm-xI5.text" = "学校全名（中文）";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "KeL-qa-v0H"; */
+"KeL-qa-v0H.normalTitle" = "Back";
+
+/* Class = "UITabBarItem"; title = "直播"; ObjectID = "L1j-6N-kbh"; */
+"L1j-6N-kbh.title" = "Live";
+
+/* Class = "UIButton"; normalTitle = "国际部"; ObjectID = "L9R-fS-rTQ"; */
+"L9R-fS-rTQ.normalTitle" = "IC";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "Lyi-S9-6ox"; */
+"Lyi-S9-6ox.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "大学查询及修改"; ObjectID = "M6P-aj-uOS"; */
+"M6P-aj-uOS.title" = "大学查询及修改";
+
+/* Class = "UITabBarItem"; title = "安全隐私"; ObjectID = "N66-yG-fHX"; */
+"N66-yG-fHX.title" = "安全隐私";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "NAA-3W-pjB"; */
+"NAA-3W-pjB.placeholder" = "必填";
+
+/* Class = "UINavigationItem"; title = "视频"; ObjectID = "Npk-6L-BVq"; */
+"Npk-6L-BVq.title" = "视频";
+
+/* Class = "UILabel"; text = "备注"; ObjectID = "OnK-Pn-rik"; */
+"OnK-Pn-rik.text" = "备注";
+
+/* Class = "UIButton"; normalTitle = "上一步"; ObjectID = "PWf-JM-aLu"; */
+"PWf-JM-aLu.normalTitle" = "上一步";
+
+/* Class = "UIButton"; normalTitle = "操作"; ObjectID = "PbP-bQ-i8q"; */
+"PbP-bQ-i8q.normalTitle" = "操作";
+
+/* Class = "UINavigationItem"; title = "实名认证"; ObjectID = "Pbg-mg-lFC"; */
+"Pbg-mg-lFC.title" = "实名认证";
+
+/* Class = "UIButton"; normalTitle = "☔️"; ObjectID = "Psf-gj-bnd"; */
+"Psf-gj-bnd.normalTitle" = "☔️";
+
+/* Class = "UINavigationItem"; title = "个人信息"; ObjectID = "Q5p-QH-vvq"; */
+"Q5p-QH-vvq.title" = "个人信息";
+
+/* Class = "UILabel"; text = "在校学生"; ObjectID = "QfZ-hx-pQD"; */
+"QfZ-hx-pQD.text" = "在校学生";
+
+/* Class = "UINavigationItem"; title = "消息通知"; ObjectID = "QhO-lN-8qd"; */
+"QhO-lN-8qd.title" = "消息通知";
+
+/* Class = "UIButton"; normalTitle = "重  置"; ObjectID = "Qoq-Ky-w8M"; */
+"Qoq-Ky-w8M.normalTitle" = "重  置";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "Qzv-A9-u41"; */
+"Qzv-A9-u41.normalTitle" = "Back";
+
+/* Class = "UIViewController"; title = "启动图像"; ObjectID = "Tsv-w8-otD"; */
+"Tsv-w8-otD.title" = "启动图像";
+
+/* Class = "UIButton"; normalTitle = "资源"; ObjectID = "UNp-8c-Qs0"; */
+"UNp-8c-Qs0.normalTitle" = "资源";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "Uds-fP-NCG"; */
+"Uds-fP-NCG.normalTitle" = "Back";
+
+/* Class = "UITextField"; placeholder = "用户名"; ObjectID = "UfS-kn-4dB"; */
+"UfS-kn-4dB.placeholder" = "Username";
+
+/* Class = "UINavigationItem"; title = "开源组件许可"; ObjectID = "Uxu-gN-mFr"; */
+"Uxu-gN-mFr.title" = "开源组件许可";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "WPo-pv-ts9"; */
+"WPo-pv-ts9.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "💬"; ObjectID = "WUl-6G-Xqf"; */
+"WUl-6G-Xqf.normalTitle" = "💬";
+
+/* Class = "UIButton"; normalTitle = "进入"; ObjectID = "WsF-gX-ZJP"; */
+"WsF-gX-ZJP.normalTitle" = "进入";
+
+/* Class = "UIViewController"; title = "PDF"; ObjectID = "YkA-1z-YsK"; */
+"YkA-1z-YsK.title" = "PDF";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "Yoi-EK-mMa"; */
+"Yoi-EK-mMa.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "气象站"; ObjectID = "ZFK-vl-3U0"; */
+"ZFK-vl-3U0.title" = "气象站";
+
+/* Class = "UITextField"; placeholder = "必填（不要太长）"; ObjectID = "aeP-Fn-b6m"; */
+"aeP-Fn-b6m.placeholder" = "必填（不要太长）";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "ah8-Mk-jGN"; */
+"ah8-Mk-jGN.placeholder" = "Captcha";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "alP-ss-iSD"; */
+"alP-ss-iSD.placeholder" = "必填";
+
+/* Class = "UIButton"; normalTitle = "提示"; ObjectID = "aqI-V0-Spd"; */
+"aqI-V0-Spd.normalTitle" = "提示";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "b2n-2U-Kx3"; */
+"b2n-2U-Kx3.placeholder" = "必填";
+
+/* Class = "UINavigationItem"; title = "资源中心"; ObjectID = "bAw-cJ-cfg"; */
+"bAw-cJ-cfg.title" = "资源中心";
+
+/* Class = "UINavigationItem"; title = "社团查询及修改"; ObjectID = "bhO-OO-lXD"; */
+"bhO-OO-lXD.title" = "社团查询及修改";
+
+/* Class = "UIButton"; normalTitle = "保  存"; ObjectID = "cUY-Cc-qv3"; */
+"cUY-Cc-qv3.normalTitle" = "保  存";
+
+/* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "d0b-xb-gwj"; */
+"d0b-xb-gwj.normalTitle" = "下一步";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "d2b-ml-F7D"; */
+"d2b-ml-F7D.title" = "Back";
+
+/* Class = "UITabBarItem"; title = "校友"; ObjectID = "dIw-e4-wGK"; */
+"dIw-e4-wGK.title" = "校友";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "dUJ-zY-yzE"; */
+"dUJ-zY-yzE.placeholder" = "必填";
+
+/* Class = "UITabBarController"; title = "个人中心"; ObjectID = "dce-kE-49C"; */
+"dce-kE-49C.title" = "个人中心";
+
+/* Class = "UIViewController"; title = "百科"; ObjectID = "deY-Cs-2KE"; */
+"deY-Cs-2KE.title" = "百科";
+
+/* Class = "UITextField"; placeholder = "验证码"; ObjectID = "dj0-Wd-2RM"; */
+"dj0-Wd-2RM.placeholder" = "Captcha";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "eBD-TC-Srh"; */
+"eBD-TC-Srh.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "eNt-pY-ne9"; */
+"eNt-pY-ne9.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "百科"; ObjectID = "eh3-rb-sjE"; */
+"eh3-rb-sjE.normalTitle" = "百科";
+
+/* Class = "UITextField"; placeholder = "输入名称以查询"; ObjectID = "fCA-CA-q1k"; */
+"fCA-CA-q1k.placeholder" = "输入名称以查询";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "fxe-sZ-92m"; */
+"fxe-sZ-92m.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "历史数据查询"; ObjectID = "gWT-lW-QTw"; */
+"gWT-lW-QTw.title" = "历史数据查询";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "gmb-f5-gNi"; */
+"gmb-f5-gNi.placeholder" = "必填";
+
+/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "hjE-NG-3gM"; */
+"hjE-NG-3gM.placeholder" = "搜索";
+
+/* Class = "UILabel"; text = "学校简写（中文）"; ObjectID = "iNu-8y-YWf"; */
+"iNu-8y-YWf.text" = "学校简写（中文）";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "igb-U8-LWI"; */
+"igb-U8-LWI.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "选项"; ObjectID = "jD1-1M-Vi9"; */
+"jD1-1M-Vi9.normalTitle" = "Options";
+
+/* Class = "UIButton"; normalTitle = "📒"; ObjectID = "jRn-UJ-fEN"; */
+"jRn-UJ-fEN.normalTitle" = "📒";
+
+/* Class = "UIButton"; normalTitle = "校友"; ObjectID = "k9S-IH-6ZT"; */
+"k9S-IH-6ZT.normalTitle" = "Alumni";
+
+/* Class = "UIButton"; normalTitle = "📁"; ObjectID = "kLW-Jl-mCb"; */
+"kLW-Jl-mCb.normalTitle" = "📁";
+
+/* Class = "UIButton"; normalTitle = "忘记密码"; ObjectID = "kvT-Vy-Usi"; */
+"kvT-Vy-Usi.normalTitle" = "Recover Password";
+
+/* Class = "UITextField"; placeholder = "邮箱"; ObjectID = "l2d-ds-E9y"; */
+"l2d-ds-E9y.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "👩‍👩‍👧‍👦"; ObjectID = "ljg-vz-hrY"; */
+"ljg-vz-hrY.normalTitle" = "👩‍👩‍👧‍👦";
+
+/* Class = "UIViewController"; title = "实名认证"; ObjectID = "m73-2I-9fu"; */
+"m73-2I-9fu.title" = "实名认证";
+
+/* Class = "UIViewController"; title = "HomeScreen"; ObjectID = "mPN-5e-0fP"; */
+"mPN-5e-0fP.title" = "HomeScreen";
+
+/* Class = "UITabBarItem"; title = "个人信息"; ObjectID = "mm9-Qy-RCa"; */
+"mm9-Qy-RCa.title" = "个人信息";
+
+/* Class = "UIButton"; normalTitle = "🎥"; ObjectID = "nRd-he-m3e"; */
+"nRd-he-m3e.normalTitle" = "🎥";
+
+/* Class = "UIButton"; normalTitle = "选项"; ObjectID = "ncz-FN-ZGp"; */
+"ncz-FN-ZGp.normalTitle" = "Options";
+
+/* Class = "UIButton"; normalTitle = "操作"; ObjectID = "oJ7-wC-gYK"; */
+"oJ7-wC-gYK.normalTitle" = "Operation";
+
+/* Class = "UIViewController"; title = "论坛"; ObjectID = "oWJ-TB-2Xg"; */
+"oWJ-TB-2Xg.title" = "论坛";
+
+/* Class = "UIButton"; normalTitle = "🏫"; ObjectID = "oqj-Ne-OSw"; */
+"oqj-Ne-OSw.normalTitle" = "🏫";
+
+/* Class = "UILabel"; text = "当前已选择的社团（单击删除）"; ObjectID = "p01-4j-KwU"; */
+"p01-4j-KwU.text" = "当前已选择的社团（单击删除）";
+
+/* Class = "UITabBarItem"; title = "视频"; ObjectID = "pDe-d8-ddP"; */
+"pDe-d8-ddP.title" = "视频";
+
+/* Class = "UIButton"; normalTitle = "论坛"; ObjectID = "poP-cE-UTI"; */
+"poP-cE-UTI.normalTitle" = "Forum";
+
+/* Class = "UIViewController"; title = "注册"; ObjectID = "qSR-vi-Tvn"; */
+"qSR-vi-Tvn.title" = "Register";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "qc8-zN-nlN"; */
+"qc8-zN-nlN.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "校友活动"; ObjectID = "rHC-OD-lMn"; */
+"rHC-OD-lMn.title" = "校友活动";
+
+/* Class = "UINavigationItem"; title = "安全隐私"; ObjectID = "tPJ-ZX-cws"; */
+"tPJ-ZX-cws.title" = "安全隐私";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "tT2-pk-RAO"; */
+"tT2-pk-RAO.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "新建"; ObjectID = "tbK-Fl-fc2"; */
+"tbK-Fl-fc2.normalTitle" = "新建";
+
+/* Class = "UINavigationItem"; title = "文件预览"; ObjectID = "txf-AJ-Vwy"; */
+"txf-AJ-Vwy.title" = "文件预览";
+
+/* Class = "UINavigationItem"; title = "查询"; ObjectID = "v6G-Re-5ym"; */
+"v6G-Re-5ym.title" = "查询";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "vBI-Fx-QwT"; */
+"vBI-Fx-QwT.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "添加者"; ObjectID = "w5h-bx-utK"; */
+"w5h-bx-utK.text" = "添加者";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "x2J-0U-ksn"; */
+"x2J-0U-ksn.normalTitle" = "Back";
+
+/* Class = "UIViewController"; title = "开源许可"; ObjectID = "yOG-PY-KJD"; */
+"yOG-PY-KJD.title" = "Open Source License";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "z3J-qq-BII"; */
+"z3J-qq-BII.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "登陆"; ObjectID = "zDi-UV-u1e"; */
+"zDi-UV-u1e.normalTitle" = "Login";
+
+/* Class = "UITabBarController"; title = "!校友会"; ObjectID = "zbU-uo-eoH"; */
+"zbU-uo-eoH.title" = "!校友会";

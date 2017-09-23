@@ -16,4 +16,5 @@ target 'NFLSers-iOS' do
   pod 'UITableView+FDTemplateLayoutCell'
   pod 'CountryPickerSwift'
   pod 'FrostedSidebar'
+  pod "GCDWebServer"
 end

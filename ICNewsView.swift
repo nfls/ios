@@ -9,36 +9,105 @@
 import Foundation
 import UIKit
 import WebKit
+import Alamofire
+import SSZipArchive
+import GCDWebServer
 
-class ICNewsViewController:UIViewController,WKNavigationDelegate{
+class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var stackView: UIStackView!
     var requestCookies = ""
     var webview = WKWebView()
+    var server = GCDWebServer()
     var in_url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        server.start(withPort: 12345, bonjourName: "nflsers")
+        
+        //downloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getToken()
+        downloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func previousPage(_ sender: Any) {
-        webview.goBack()
-        webview.reload()
+    override func viewWillDisappear(_ animated: Bool) {
+        server.stop()
     }
     
-    
-    func getToken(){
+    func downloadData(){
+        
+        if(NetworkReachabilityManager()!.isReachable){
+            let downloading = UIAlertController(title: "游戏资源更新",
+                                                message:"正在检测游戏资源更新，请稍后，如果长时间卡住，请考虑离线模式。", preferredStyle: .alert)
+            var request:Alamofire.Request?
+            self.present(downloading, animated: true, completion: nil)
+            let utilityQueue = DispatchQueue.global(qos: .utility)
+            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let fileURL = documentsURL.appendingPathComponent("game.zip")
+                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+            }
+            let parameters:Parameters = [
+                "version":UserDefaults.standard.string(forKey: "fib_version") ?? "0"
+            ]
+            if(UserDefaults.standard.string(forKey: "fib_version") != nil){
+                let offlineMode = UIAlertAction(title: "离线模式", style: .default, handler: { (action) in
+                    request?.cancel()
+                    self.getToken(isOnline: false)
+                })
+                downloading.addAction(offlineMode)
+            }
+            request = Alamofire.download("https://game.nfls.io/offline.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress(queue: utilityQueue) { progress in
+                DispatchQueue.main.async {
+                    if(progress.fractionCompleted != 1.0){
+                        downloading.message = "正在更新游戏资源，请稍后，如果长时间卡住，请考虑离线模式。进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%"
+                    } else {
+                        
+                        downloading.dismiss(animated: false, completion: {
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                            let fileURL = documentsURL.appendingPathComponent("game.zip")
+                            let unzipURL = documentsURL.appendingPathComponent("fib")
+                            
+                            SSZipArchive.unzipFile(atPath: fileURL.path, toDestination: unzipURL.path)
+                            let version = try! String(contentsOf: unzipURL.appendingPathComponent("version.lock"), encoding: String.Encoding.utf8)
+                            UserDefaults.standard.set(version, forKey: "fib_version")
+                            self.updateScore()
+                            self.getToken()
+                        })
+                    }
+                }
+                }
+                .response { response in
+                    downloading.dismiss(animated: true, completion: nil)
+                    if let _ = response.error as? AFError {
+                        self.getToken(isOnline: false)
+                    }else{
+                        self.updateScore()
+                        self.getToken()
+                    }
+            }
+        } else {
+            self.getToken(isOnline: false)
+        }
+
+    }
+    func updateScore(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        debugPrint(UserDefaults.standard.integer(forKey: "fib_last"))
+        Alamofire.request("https://api.nfls.io/center/rank", method: .post, parameters: ["score":UserDefaults.standard.integer(forKey: "fib_last") ], encoding: JSONEncoding.default, headers: headers)
+    }
+    func getToken(isOnline:Bool = true){
         let cookies:String = "token=" + UserDefaults.standard.string(forKey: "token")!
-        let jsCookies = "document.cookie=\"" + cookies + "\"";
+        let jsCookies = "document.cookie=\"" + cookies + "\";var deviceUsername = 'Offline Mode';var token = '" + UserDefaults.standard.string(forKey: "token")! + "';";
         self.requestCookies = cookies
         let cookieScript = WKUserScript(source: jsCookies, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
         let webviewConfig = WKWebViewConfiguration()
@@ -46,7 +115,34 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate{
         webviewController.addUserScript(cookieScript)
         webviewConfig.userContentController = webviewController
         self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
-        self.startRequest(cookies: cookies)
+        self.startRequest(isOnline: isOnline)
+    }
+    
+    
+    func startRequest(isOnline:Bool = true){
+        webview.navigationDelegate = self
+        webview.uiDelegate = self
+        webview.tag = 1
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let unzipURL = documentsURL.appendingPathComponent("fib")
+        debugPrint(unzipURL.path)
+        server.addGETHandler(forBasePath: "/", directoryPath: unzipURL.path, indexFilename: "index.html", cacheAge: 0, allowRangeRequests: true)
+        var url = NSURL()
+        if(isOnline){
+            url = NSURL(string: "https://api.nfls.io/redirect?to=http://127.0.0.1:12345")!
+        }
+        else{
+            url = NSURL(string: "http://127.0.0.1:12345")!
+        }
+        
+        let request = URLRequest(url: url as URL)
+        webview.load(request)
+        stackView.addArrangedSubview(webview)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -58,71 +154,24 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate{
         } else {
             decisionHandler(.allow)
         }
-        
-        
+
     }
     
-    func startRequest(cookies:String){
-        webview.navigationDelegate = self
-        webview.tag = 1
-        let url = NSURL(string: "https://ic.nfls.io/"+in_url)!
-        let request = NSMutableURLRequest(url: url as URL)
-        request.addValue(cookies, forHTTPHeaderField: "Cookie")
-        requestCookies = cookies
-        webview.load(request as URLRequest)
-        stackView.addArrangedSubview(webview)
-        
-    }
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let url = webView.url?.absoluteString
-        let realUrl = webView.url!
-        if(!url!.hasPrefix("https://ic.nfls.io")){
-            webView.stopLoading()
-            //webView.goBack()
-            if(url!.hasPrefix("https://nfls.io/quickaction.php?action=logout")){
-                let alertController = UIAlertController(title: "错误",
-                                                        message:"请使用APP内置的退出按钮！" ,preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-            else if(url!.hasPrefix("https://center.nfls.io")){
-                let alertController = UIAlertController(title: "错误",
-                                                        message:"请使用APP内置的账户功能！" ,preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            }else{
-                let alertController = UIAlertController(title: "外部链接转跳提示",
-                                                        message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
-                    action in
-                    
-                })
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: {
-                    action in
-                    UIApplication.shared.openURL(realUrl)
-                })
-                alertController.addAction(cancelAction)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let score = Int(message)!
+        if(UserDefaults.standard.integer(forKey: "fib_last") < score){
+            UserDefaults.standard.set(score, forKey: "fib_last")
         }
+        completionHandler()
     }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
 
     func networkError(){
-        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常。", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Network or server error. Please check that you give network permission for this app in Preferences.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         self.present(alert,animated: true)
     }
+
 
 
 }

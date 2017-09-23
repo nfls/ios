@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bLd-Q4-sBm">
                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="75"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CLK-xz-Vko" userLabel="username">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CLK-xz-Vko" userLabel="username">
                                                         <rect key="frame" x="0.0" y="0.0" width="290" height="30"/>
                                                         <accessibility key="accessibilityConfiguration" hint="也很美"/>
                                                         <constraints>
@@ -41,7 +41,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcZ-mz-VMG" userLabel="password">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcZ-mz-VMG" userLabel="password">
                                                         <rect key="frame" x="0.0" y="45" width="290" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -57,7 +57,7 @@
                                             <constraint firstAttribute="height" priority="1" constant="100" id="oue-1i-E3Q"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAe-FF-lwT">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Captcha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAe-FF-lwT">
                                         <rect key="frame" x="0.0" y="242" width="290" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -68,18 +68,18 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="login_button" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDi-UV-u1e" userLabel="login_button">
                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="30"/>
-                                                <state key="normal" title="登陆"/>
+                                                <state key="normal" title="Login"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnh-pT-nel">
                                                 <rect key="frame" x="0.0" y="50" width="290" height="30"/>
-                                                <state key="normal" title="注册"/>
+                                                <state key="normal" title="Register"/>
                                                 <connections>
                                                     <segue destination="qSR-vi-Tvn" kind="show" id="bq9-YY-Nq0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvT-Vy-Usi">
                                                 <rect key="frame" x="0.0" y="100" width="290" height="30"/>
-                                                <state key="normal" title="忘记密码"/>
+                                                <state key="normal" title="Recover Password"/>
                                                 <connections>
                                                     <segue destination="31B-3B-515" kind="show" id="95z-3k-dae"/>
                                                 </connections>
@@ -134,9 +134,9 @@
                                     <navigationItem title="南外人" id="Ied-BX-3xa">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="gPO-xK-J33">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jD1-1M-Vi9">
-                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
+                                                <rect key="frame" x="228" y="7" width="76" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="选项"/>
+                                                <state key="normal" title="Operations"/>
                                                 <connections>
                                                     <action selector="settings:" destination="mPN-5e-0fP" eventType="touchDragInside" id="HZ4-ST-ISX"/>
                                                     <action selector="settings:" destination="mPN-5e-0fP" eventType="touchUpInside" id="xm7-jW-XmO"/>
@@ -161,8 +161,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poP-cE-UTI">
-                                                <rect key="frame" x="21.5" y="58.5" width="31" height="58.5"/>
-                                                <state key="normal" title="论坛">
+                                                <rect key="frame" x="15" y="58.5" width="44" height="58.5"/>
+                                                <state key="normal" title="Forum">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -178,8 +178,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNp-8c-Qs0">
-                                                <rect key="frame" x="21.5" y="175.5" width="31" height="58.5"/>
-                                                <state key="normal" title="资源">
+                                                <rect key="frame" x="1" y="175.5" width="72" height="58.5"/>
+                                                <state key="normal" title="Resources">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -195,8 +195,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-n0-BDI">
-                                                <rect key="frame" x="21.5" y="292.5" width="31" height="58.5"/>
-                                                <state key="normal" title="气象">
+                                                <rect key="frame" x="8" y="292.5" width="58" height="58.5"/>
+                                                <state key="normal" title="Weather">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -212,8 +212,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-6A-hp0">
-                                                <rect key="frame" x="21.5" y="409.5" width="31" height="58.5"/>
-                                                <state key="normal" title="影音">
+                                                <rect key="frame" x="16" y="409.5" width="42" height="58.5"/>
+                                                <state key="normal" title="Media">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -234,8 +234,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh3-rb-sjE">
-                                                <rect key="frame" x="21.5" y="58.5" width="31" height="58.5"/>
-                                                <state key="normal" title="百科">
+                                                <rect key="frame" x="22" y="58.5" width="30" height="58.5"/>
+                                                <state key="normal" title="Wiki">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -251,8 +251,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9S-IH-6ZT">
-                                                <rect key="frame" x="21.5" y="175.5" width="31" height="58.5"/>
-                                                <state key="normal" title="校友">
+                                                <rect key="frame" x="13.5" y="175.5" width="47" height="58.5"/>
+                                                <state key="normal" title="Alumni">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -263,8 +263,8 @@
                                                 <rect key="frame" x="0.0" y="234" width="74" height="58.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-fS-rTQ">
-                                                <rect key="frame" x="14" y="292.5" width="46" height="58.5"/>
-                                                <state key="normal" title="国际部">
+                                                <rect key="frame" x="5.5" y="292.5" width="63" height="58.5"/>
+                                                <state key="normal" title="Flappy IB">
                                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -280,8 +280,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-jc-GJn">
-                                                <rect key="frame" x="21.5" y="409.5" width="31" height="58.5"/>
-                                                <state key="normal" title="账户">
+                                                <rect key="frame" x="0.5" y="409.5" width="73" height="58.5"/>
+                                                <state key="normal" title="Account*3">
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -1175,12 +1175,12 @@ CountryCode
                                     <constraint firstAttribute="height" constant="44" id="5p6-Ga-5H6"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="忘记密码" id="DNO-J2-gIt">
+                                    <navigationItem title="Recover Password" id="DNO-J2-gIt">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="wuc-6G-Vg3">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qc8-zN-nlN">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qc8-zN-nlN">
+                                                <rect key="frame" x="16" y="7" width="34" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
+                                                <state key="normal" title="Back"/>
                                                 <connections>
                                                     <segue destination="rq2-zt-0oc" kind="unwind" unwindAction="returnLoginWithSegue:" id="soZ-jR-k58"/>
                                                 </connections>
@@ -1192,7 +1192,7 @@ CountryCode
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DEl-tn-6xx">
                                 <rect key="frame" x="31" y="161" width="258" height="290"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hK-Xc-Ttp">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hK-Xc-Ttp">
                                         <rect key="frame" x="0.0" y="0.0" width="258" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1204,7 +1204,7 @@ CountryCode
                                             <constraint firstAttribute="height" constant="100" id="DP2-Vf-PFN"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-Mk-jGN">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Captcha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-Mk-jGN">
                                         <rect key="frame" x="0.0" y="170" width="258" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1212,7 +1212,7 @@ CountryCode
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-Hb-esz">
                                         <rect key="frame" x="0.0" y="220" width="258" height="30"/>
-                                        <state key="normal" title="发送密码重置邮件"/>
+                                        <state key="normal" title="Send Password Recovery Email"/>
                                         <connections>
                                             <action selector="recover:" destination="31B-3B-515" eventType="touchUpInside" id="peV-IT-6xT"/>
                                         </connections>
@@ -1449,24 +1449,14 @@ CountryCode
                                     <constraint firstAttribute="height" constant="48" id="u8B-RS-g8U"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="国际部新鲜事" id="0VE-Wv-AtM">
+                                    <navigationItem title="Flappy IBO" id="0VE-Wv-AtM">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="Xgk-qa-xh8">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lyi-S9-6ox">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="34" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
+                                                <state key="normal" title="Back"/>
                                                 <connections>
                                                     <segue destination="EV3-ZN-uYj" kind="unwind" unwindAction="closeCurrentWithSegue:" id="BKc-VT-NOF"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="txC-km-Omo">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mK-7H-xpN">
-                                                <rect key="frame" x="273" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="回退"/>
-                                                <connections>
-                                                    <action selector="previousPage:" destination="Vo3-zz-cFm" eventType="touchUpInside" id="w64-ML-3oE"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -1583,7 +1573,7 @@ CountryCode
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xyx-Dt-x6q">
                                 <rect key="frame" x="36" y="114.5" width="248" height="405"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UfS-kn-4dB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UfS-kn-4dB">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="dwE-CD-EBN"/>
@@ -1592,19 +1582,19 @@ CountryCode
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2d-ds-E9y">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2d-ds-E9y">
                                         <rect key="frame" x="0.0" y="45" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76X-tx-WZc">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="76X-tx-WZc">
                                         <rect key="frame" x="0.0" y="90" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="重复密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-iV-XQe">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-iV-XQe">
                                         <rect key="frame" x="0.0" y="135" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1616,7 +1606,7 @@ CountryCode
                                             <constraint firstAttribute="height" constant="100" id="PXH-Kt-7gu"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-Wd-2RM">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Captcha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-Wd-2RM">
                                         <rect key="frame" x="0.0" y="295" width="248" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1624,7 +1614,7 @@ CountryCode
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-VH-sXE">
                                         <rect key="frame" x="0.0" y="340" width="248" height="30"/>
-                                        <state key="normal" title="注册"/>
+                                        <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="register:" destination="qSR-vi-Tvn" eventType="touchUpInside" id="A2O-Fp-5b1"/>
                                         </connections>
@@ -1640,12 +1630,12 @@ CountryCode
                                     <constraint firstAttribute="height" constant="44" id="Q6D-jZ-mwD"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="注册" id="Azn-kN-LSl">
+                                    <navigationItem title="Register" id="Azn-kN-LSl">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="izk-WQ-Y6k">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNt-pY-ne9">
+                                                <rect key="frame" x="16" y="7" width="34" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
+                                                <state key="normal" title="Back"/>
                                                 <connections>
                                                     <segue destination="DNg-n9-t7G" kind="unwind" unwindAction="returnLoginWithSegue:" id="a4M-KG-8JP"/>
                                                 </connections>
