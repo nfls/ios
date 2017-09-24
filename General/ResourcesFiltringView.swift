@@ -77,7 +77,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     override func viewDidAppear(_ animated: Bool) {
         listRequest()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        MobClick.beginLogPageView("Resources")
+    }
     override func viewWillDisappear(_ animated: Bool) {
+        MobClick.endLogPageView("Resources")
         removeFile(filename: "", path: "temp")
     }
     @IBAction func actionButtonPressed(_ sender: Any) {

@@ -17,31 +17,38 @@ class LaunchScreenViewController:UIViewController{
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var text: UILabel!
     var lastView = UIViewController()
+    var continued = false
     func loadImage(){
         //if(UserDefaults.standard.value(forKey: ""))
+    }
+    
+    @IBAction func skip(_ sender: Any) {
+        next()
+    }
+    func next(){
+        if(!continued){
+             let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            continued = true
+            if(!appdelegate.isLaunched){
+                Thread.sleep(forTimeInterval: 2.0)
+                performSegue(withIdentifier: "jumpToLogin",sender:self)
+                appdelegate.isLaunched = true
+            }else{
+                Thread.sleep(forTimeInterval: 1.0)
+                self.dismiss(animated: true, completion: nil)
+            }
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         loadPic()
         getImage()
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+       
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        Thread.sleep(forTimeInterval: 3.0)
-        if(!appdelegate.isLaunched){
-            performSegue(withIdentifier: "jumpToLogin",sender:self)
-            appdelegate.isLaunched = true
-        }else{
-            //let frame = UIScreen.main.bounds
-            self.dismiss(animated: true, completion: nil)
-            /*
-            appdelegate.window = UIWindow()
-            appdelegate.window!.screen = UIScreen.main
-            appdelegate.window!.rootViewController = lastView
-            //appdelegate.window!.addSubview(lastView.view)
-            appdelegate.window!.makeKeyAndVisible()
-            */
-        }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+        next()
         return
     }
     func loadPic(){

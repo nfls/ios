@@ -2,19 +2,20 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - Charts (3.0.3):
-    - Charts/Core (= 3.0.3)
-  - Charts/Core (3.0.3)
-  - CountryPickerSwift (1.4.4)
+  - Charts (3.0.4):
+    - Charts/Core (= 3.0.4)
+  - Charts/Core (3.0.4)
+  - CountryPickerSwift (1.4.5)
   - FrostedSidebar (1.0.0)
   - GCDWebServer (3.4.1):
     - GCDWebServer/Core (= 3.4.1)
   - GCDWebServer/Core (3.4.1)
-  - IQKeyboardManagerSwift (4.0.13)
-  - SSZipArchive (2.0.4)
+  - IQKeyboardManagerSwift (5.0.1)
+  - SSZipArchive (2.0.7)
   - SwiftIconFont (2.7.1)
-  - SwiftyMarkdown (0.3.6)
+  - SwiftyMarkdown (0.4.0)
   - UITableView+FDTemplateLayoutCell (1.6)
+  - UMengAnalytics-NO-IDFA (4.2.5)
 
 DEPENDENCIES:
   - Alamofire
@@ -28,20 +29,22 @@ DEPENDENCIES:
   - SwiftIconFont
   - SwiftyMarkdown
   - UITableView+FDTemplateLayoutCell
+  - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  Charts: bcde37724c161958c1438dd4883971fcb2d50c06
-  CountryPickerSwift: e31e67f2b95eb1fa6ad230e9eb0b49b020526d99
+  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
-  IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
-  SSZipArchive: c77fc6ec8194f4e6d57876da1348e46cd63b90ba
+  IQKeyboardManagerSwift: 434f22d48340525bf1b92e0481a8c2539cc4a77e
+  SSZipArchive: 8c197761d66bd33e7f8b5b51ee57dff303971150
   SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
-  SwiftyMarkdown: 6419ed988f458fd85ca62f8f3b621a2288660865
+  SwiftyMarkdown: 79cc313137a36ff30d811c3786e2bba7117d55cb
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 70b77b7f84075d42f2a73fdf881e1dd954a25087
+PODFILE CHECKSUM: 3c754ddc762a7a70b7b03a62bc576f2a44b6e02b
 
 COCOAPODS: 1.2.1

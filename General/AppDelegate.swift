@@ -24,15 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
-        //ZIKCellularAuthorization
         ZIKCellularAuthorization.request()
+        UMAnalyticsConfig.sharedInstance().appKey = "59c733a1c895764c1100001c"
+        UMAnalyticsConfig.sharedInstance().channelId = "App Store"
+        MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        MobClick.setAppVersion(version as! String)
+        MobClick.setEncryptEnabled(true)
+        //MobClick.setLogEnabled(true)
         return true
     }
-    
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()

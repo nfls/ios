@@ -30,6 +30,7 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         downloadData()
     }
     
@@ -37,8 +38,16 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        MobClick.beginLogPageView("Flappy IBO")
+    }
+    
+
+    @IBAction func exit(_ sender: Any) {
+        MobClick.endLogPageView("Flappy IBO")
         server.stop()
+        self.performSegue(withIdentifier: "exit", sender: self)
     }
     
     func downloadData(){

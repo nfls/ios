@@ -170,6 +170,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                     }
                     self.performSegue(withIdentifier: "exit", sender: self)
                 } else {
+                    MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
                     let headers: HTTPHeaders = [
                         "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                     ]

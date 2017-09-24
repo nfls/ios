@@ -17,4 +17,5 @@ target 'NFLSers-iOS' do
   pod 'CountryPickerSwift'
   pod 'FrostedSidebar'
   pod "GCDWebServer"
+  pod 'UMengAnalytics-NO-IDFA'
 end
