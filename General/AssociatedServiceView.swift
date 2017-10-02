@@ -15,17 +15,20 @@ class AssociatedServiceView:UIViewController{
     @IBOutlet weak var inSchoolMate: PermissionPicker!
     @IBOutlet weak var allSchoolmate: PermissionPicker!
     @IBOutlet weak var sameLevelSchoolmate: PermissionPicker!
-    @IBOutlet weak var baritem: UIBarButtonItem!
     override func viewDidLoad() {
         //sameLevelSchoolmate.delegate = PermissionPicker.self
         //sameLevelSchoolmate.delegate = PermissionPicker.self
-        let alert = UIAlertController(title: "错误", message: "您所在的用户组无法设置隐私设置，您仅可在此修改您的安全设置。", preferredStyle: .alert)
+        let alert = UIAlertController(title: "提示", message: "您所在的用户组无法设置隐私，您仅可在此修改您的安全设置。", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
+        rightButton.icon(from: .FontAwesome, code: "unlock", ofSize: 20)
+        navigationItem.rightBarButtonItem = rightButton
+        
     }
     
-    @IBAction func operate(_ sender: Any) {
+    @objc func settings(_ sender: Any) {
         let action = UIAlertController(title: "操作", message: "您可以在此对您的账户安全进行操作", preferredStyle: .actionSheet)
         let editPassword = UIAlertAction(title: "修改邮箱及密码", style: .default) { (action) in
             self.performSegue(withIdentifier: "showEditing", sender: self)
@@ -91,7 +94,7 @@ class AssociatedServiceView:UIViewController{
         action.addAction(editUsername)
         //action.addAction(fa)
         action.addAction(cancel)
-        action.popoverPresentationController?.barButtonItem = baritem
+        action.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         self.present(action, animated: true, completion: nil)
     }
 }

@@ -43,11 +43,10 @@ class LaunchScreenViewController:UIViewController{
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
         loadPic()
         getImage()
-       
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
         next()
         return
     }

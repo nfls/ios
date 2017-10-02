@@ -13,19 +13,19 @@ import Alamofire
 import SSZipArchive
 import GCDWebServer
 
-class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var barButton: UIBarButtonItem!
+class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
     @IBOutlet weak var stackView: UIStackView!
     var requestCookies = ""
     var webview = WKWebView()
     var server = GCDWebServer()
     var in_url = ""
+    var location = "fib"
+    var name = "Flappy IBO"
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        server.start(withPort: 12345, bonjourName: "nflsers")
-        
+        server.start(withPort: 6699, bonjourName: "nflsers")
+        navigationItem.title = name
         //downloadData()
     }
     
@@ -40,21 +40,21 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MobClick.beginLogPageView("Flappy IBO")
+        MobClick.beginLogPageView("Gaming")
     }
     
-
-    @IBAction func exit(_ sender: Any) {
-        MobClick.endLogPageView("Flappy IBO")
+    override func viewWillDisappear(_ animated: Bool) {
+        MobClick.endLogPageView("Gaming")
         server.stop()
-        self.performSegue(withIdentifier: "exit", sender: self)
+        super.viewWillDisappear(animated)
     }
+
     
     func downloadData(){
         
         if(NetworkReachabilityManager()!.isReachable){
-            let downloading = UIAlertController(title: "游戏资源更新",
-                                                message:"正在检测游戏资源更新，请稍后，如果长时间卡住，请考虑离线模式。", preferredStyle: .alert)
+            let downloading = UIAlertController(title: "Resources Updating",
+                                                message:"Updating resources now, please wait for a while.", preferredStyle: .alert)
             var request:Alamofire.Request?
             self.present(downloading, animated: true, completion: nil)
             let utilityQueue = DispatchQueue.global(qos: .utility)
@@ -64,29 +64,29 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
             let parameters:Parameters = [
-                "version":UserDefaults.standard.string(forKey: "fib_version") ?? "0"
+                "version":UserDefaults.standard.string(forKey: location + "_version") ?? "0"
             ]
-            if(UserDefaults.standard.string(forKey: "fib_version") != nil){
-                let offlineMode = UIAlertAction(title: "离线模式", style: .default, handler: { (action) in
+            if(UserDefaults.standard.string(forKey: location + "_version") != nil){
+                let offlineMode = UIAlertAction(title: "Offline Mode", style: .default, handler: { (action) in
                     request?.cancel()
                     self.getToken(isOnline: false)
                 })
                 downloading.addAction(offlineMode)
             }
-            request = Alamofire.download("https://game.nfls.io/offline.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress(queue: utilityQueue) { progress in
+            request = Alamofire.download("https://game.nfls.io/" + location + "/offline.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress(queue: utilityQueue) { progress in
                 DispatchQueue.main.async {
                     if(progress.fractionCompleted != 1.0){
-                        downloading.message = "正在更新游戏资源，请稍后，如果长时间卡住，请考虑离线模式。进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%"
+                        downloading.message = "Updating resources now, please wait for a while. Progress: " + String(format: "%.2f", progress.fractionCompleted * 100) + "%"
                     } else {
                         
                         downloading.dismiss(animated: false, completion: {
                             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                             let fileURL = documentsURL.appendingPathComponent("game.zip")
-                            let unzipURL = documentsURL.appendingPathComponent("fib")
+                            let unzipURL = documentsURL.appendingPathComponent(self.location)
                             
                             SSZipArchive.unzipFile(atPath: fileURL.path, toDestination: unzipURL.path)
                             let version = try! String(contentsOf: unzipURL.appendingPathComponent("version.lock"), encoding: String.Encoding.utf8)
-                            UserDefaults.standard.set(version, forKey: "fib_version")
+                            UserDefaults.standard.set(version, forKey: self.location + "_version")
                             self.updateScore()
                             self.getToken()
                         })
@@ -108,11 +108,13 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
 
     }
     func updateScore(){
+        /*
         let headers: HTTPHeaders = [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
         debugPrint(UserDefaults.standard.integer(forKey: "fib_last"))
         Alamofire.request("https://api.nfls.io/center/rank", method: .post, parameters: ["score":UserDefaults.standard.integer(forKey: "fib_last") ], encoding: JSONEncoding.default, headers: headers)
+         */
     }
     func getToken(isOnline:Bool = true){
         let cookies:String = "token=" + UserDefaults.standard.string(forKey: "token")!
@@ -134,15 +136,15 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         webview.tag = 1
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let unzipURL = documentsURL.appendingPathComponent("fib")
+        let unzipURL = documentsURL.appendingPathComponent(location)
         debugPrint(unzipURL.path)
         server.addGETHandler(forBasePath: "/", directoryPath: unzipURL.path, indexFilename: "index.html", cacheAge: 0, allowRangeRequests: true)
         var url = NSURL()
         if(isOnline){
-            url = NSURL(string: "https://api.nfls.io/redirect?to=http://127.0.0.1:12345")!
+            url = NSURL(string: "https://api.nfls.io/redirect?to=http://localhost:6699")!
         }
         else{
-            url = NSURL(string: "http://127.0.0.1:12345")!
+            url = NSURL(string: "http://localhost:6699")!
         }
         
         let request = URLRequest(url: url as URL)
@@ -168,8 +170,8 @@ class ICNewsViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let score = Int(message)!
-        if(UserDefaults.standard.integer(forKey: "fib_last") < score){
-            UserDefaults.standard.set(score, forKey: "fib_last")
+        if(UserDefaults.standard.integer(forKey: location + "_last") < score){
+            UserDefaults.standard.set(score, forKey: location + "_last")
         }
         completionHandler()
     }

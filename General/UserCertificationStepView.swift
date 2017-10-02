@@ -212,7 +212,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "英文名", identifyName: "english_name")
                 break
             case .primaryInfo:
-                self.addFormItem(rootStackView: self.container, type: .picker, name: "小学学校" ,identifyName:"primary_school_no", ["其他学校","基础教育课程"])
+                self.addFormItem(rootStackView: self.container, type: .picker, name: "小学学校" ,identifyName:"primary_school_no", ["其他学校","南外基础教育课程"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "小学就读学校", identifyName:"primary_school_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "小学班级号", identifyName:"primary_class")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "小学毕业年份", identifyName:"primary_school_graduated_year")
@@ -220,7 +220,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "备注", identifyName:"primary_remark")
                 break
             case .juniorInfo:
-                self.addFormItem(rootStackView: self.container, type: .picker, name: "初中学校",identifyName: "junior_school_no",["其他学校","普通初中课程","基础教育初中课程"])
+                self.addFormItem(rootStackView: self.container, type: .picker, name: "初中学校",identifyName: "junior_school_no",["其他学校","南外普通初中课程","南外基础教育初中课程"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中就读学校", identifyName:"junior_school_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中毕业年份", identifyName:"junior_school_graduated_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "初中入学年份", identifyName:"junior_school_enter_year")
@@ -228,7 +228,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "备注", identifyName:"junior_remark")
                 break
             case .seniorInfo:
-                self.addFormItem(rootStackView: self.container, type: .picker, name: "高中学校",identifyName: "senior_school_no", ["无高中学历","其他国内学校","其他国外学校（如美高）","普通高中课程","IB国际课程","A-Level国际课程","中加国际课程","新南威尔士大学预科课程","日语代培课程","中师课程","基础教育高中课程"])
+                self.addFormItem(rootStackView: self.container, type: .picker, name: "高中学校",identifyName: "senior_school_no", ["无高中学历","其他国内学校","其他国外学校（如美高）","南外普通高中课程","南外IB国际课程","南外A-Level国际课程","南外中加国际课程","南外新南威尔士大学预科课程","南外日语代培课程","南外中师课程","南外基础教育高中课程"])
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "高中就读学校",identifyName:"senior_school_name")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "高中毕业年份",identifyName:"senior_school_graduated_year")
                 self.addFormItem(rootStackView: self.container, type: .textField, name: "高中入学年份",identifyName:"senior_school_enter_year")

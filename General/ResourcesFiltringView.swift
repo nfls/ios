@@ -15,9 +15,6 @@ import QuickLook
 
 class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource{
     
-    @IBOutlet weak var confuguireButton: UIButton!
-    
-    @IBOutlet weak var barItem: UIBarButtonItem!
     @IBOutlet weak var searchField: UITextField!
     let ID = "Cell"
     var filenames = [String]()
@@ -35,10 +32,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var fileurls = [NSURL]()
     var useNew = true
     
-    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(setting))
+        rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
+        navigationItem.rightBarButtonItem = rightButton
         loadingController = UIAlertController(title: "加载中", message: "数据加载中，请稍后", preferredStyle: .alert)
         operatingController = UIAlertController(title: "请稍后", message: "操作进行中", preferredStyle: .alert)
         errorController = UIAlertController(title: "加载错误", message: "网络或服务器故障，请稍后再试！", preferredStyle: .alert)
@@ -67,13 +66,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             cell.accessoryType = .checkmark
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showPDF") {
-            let secondViewController = segue.destination as! PDFViewController
-            let path = sender as! String
-            secondViewController.path = path
-        }
-    }
     override func viewDidAppear(_ animated: Bool) {
         listRequest()
     }
@@ -82,9 +74,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     override func viewWillDisappear(_ animated: Bool) {
         MobClick.endLogPageView("Resources")
-        removeFile(filename: "", path: "temp")
+        //removeFile(filename: "", path: "temp")
     }
-    @IBAction func actionButtonPressed(_ sender: Any) {
+    @objc func setting() {
         var mutipleSelectAction = UIAlertAction()
         let alertController = UIAlertController(title: "选项", message: "小提示，文件夹可以在多选模式批量下载哦！多选模式也可以一次预览多个文件，卷子与答案一起预览，左右滑动切换！", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil)
@@ -159,17 +151,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 })
                 alertController.addAction(previewAll)
             }
-            let changeMode = UIAlertAction(title: "切换至旧版预览", style: .default, handler: { (alert) in
-                self.useNew = false
-            })
-            alertController.addAction(changeMode)
-        } else {
-            let changeMode = UIAlertAction(title: "切换至新版预览", style: .default, handler: { (alert) in
-                self.useNew = true
-            })
-            alertController.addAction(changeMode)
         }
-        alertController.popoverPresentationController?.barButtonItem = barItem
+        alertController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
 
@@ -266,7 +249,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 self.tableview.delegate = self
                 self.tableview.dataSource = self
                 self.tableview.reloadData()
-                self.navigationBar.title = "资源中心"
                 self.loadingController.dismiss(animated: true, completion: nil)
                 self.showHeaderFooter()
                 break
@@ -280,7 +262,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func localRequest(){
         searchField.isEnabled = false
         searchField.placeholder = ""
-        navigationBar.title = "资源中心（离线）"
+        navigationController!.title = "资源中心（离线）"
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("downloads")
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl.appendingPathComponent(currentFolder.removingPercentEncoding!), includingPropertiesForKeys: nil, options: [])
@@ -421,8 +403,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             self.present(alert,animated:true)
         } else {
             qlpreview.reloadData()
-            print("go to preview")
-            self.present(qlpreview, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(self.qlpreview, animated: true)
+            }
         }
         
     }
@@ -492,9 +475,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             fileurls.append(url as NSURL)
             qlpreview.currentPreviewItemIndex = 0
             qlpreview.reloadData()
-            self.present(qlpreview, animated: true, completion: nil)
-        } else {
-            self.performSegue(withIdentifier: "showPDF", sender: url.path)
+            DispatchQueue.main.async {
+                self.navigationController!.pushViewController(self.qlpreview, animated: true)
+            }
         }
         
     }

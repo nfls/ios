@@ -12,29 +12,23 @@ import StoreKit
 import Alamofire
 import SwiftIconFont
 
-
 class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver{
-    @IBOutlet weak var barItem: UIBarButtonItem!
-    @IBOutlet weak var ibbutton: UIButton!
-    
     @IBOutlet weak var center: UIButton!
     @IBOutlet weak var ib: UIImageView!
     var productID = ""
     var productsRequest = SKProductsRequest()
     var transactionInProgress = false
     var productsArray = [SKProduct]()
-    @IBOutlet weak var optionsRealButton: UIButton!
-    
-    @IBOutlet weak var optionsButton: UIBarButtonItem!
     override func viewDidLoad() {
+        removeFile(filename: "", path: "temp")
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
+        rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
+        navigationItem.rightBarButtonItem = rightButton
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(HomeScreenController.tapDetected))
         singleTap.numberOfTapsRequired = 1 // you can change this value
         ib.isUserInteractionEnabled = true
         ib.addGestureRecognizer(singleTap)
         checkStatus()
-        optionsButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
-        optionsRealButton.toolbarPlaceholder = "wrench"
-        optionsRealButton.parseIcon()
         let application = UIApplication.shared
         let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
         let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
@@ -70,9 +64,21 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         }
     }
     
+    func removeFile(filename:String,path:String){
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(path.removingPercentEncoding!).appendingPathComponent(filename)
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: fileURL.path)
+        } catch {
+            //print("removeError")
+        }
+        
+    }
     
-    @IBAction func settings(_ sender: Any) {
-        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
+    @objc func settings() {
+        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us Some Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "Logout", style: .destructive, handler: {
             action in
             if let bundle = Bundle.main.bundleIdentifier {
@@ -80,7 +86,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             }
             self.performSegue(withIdentifier: "exit", sender: self)
         })
-        let donate = UIAlertAction(title: "Buy Us Coffee", style: .default, handler: {
+        let donate = UIAlertAction(title: "Buy Us Some Coffee", style: .default, handler: {
             action in
             let payment = SKPayment(product: self.productsArray[0] as SKProduct)
             SKPaymentQueue.default().add(payment)
@@ -95,13 +101,22 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             action in
             self.performSegue(withIdentifier: "showWiki", sender: "w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")
         })
+        var title = "Accounts"
+        if(UIApplication.shared.applicationIconBadgeNumber > 0){
+            title += " ["+String(describing:UIApplication.shared.applicationIconBadgeNumber)+" New Message(s)]"
+        }
+        let userCenter = UIAlertAction(title:title, style:.default, handler:{
+            action in
+            self.performSegue(withIdentifier: "showUserCenter", sender: self)
+        })
         let cancel = UIAlertAction(title: "Back", style: .cancel, handler: nil)
         dialog.addAction(donate)
         dialog.addAction(opensourceInfo)
+        dialog.addAction(userCenter)
         dialog.addAction(aboutUs)
         dialog.addAction(exit)
         dialog.addAction(cancel)
-        dialog.popoverPresentationController?.barButtonItem = barItem
+        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         self.present(dialog, animated: true)
     }
     
@@ -247,11 +262,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             case .success(let json):
                 if((json as! [String:AnyObject])["code"]! as! Int == 200){
                     UIApplication.shared.applicationIconBadgeNumber = ((json as! [String:Any])["info"] as! Int)
-                    if(UIApplication.shared.applicationIconBadgeNumber != 0){
-                        self.center.setTitle("*Accounts", for: .normal)
-                    }else{
-                        self.center.setTitle("Accounts", for: .normal)
-                    }
                 }
                 break
             default:

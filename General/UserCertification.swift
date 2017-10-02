@@ -18,7 +18,7 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
     let ID = "cell"
     override func viewDidLoad() {
         tableview.register(DetailCell.self, forCellReuseIdentifier: ID)
-        enterButton.isEnabled = false
+        //enterButton.isEnabled = false
         checkVersion()
     }
     func checkVersion(){
@@ -34,7 +34,7 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
                 let code = (json as! [String:Int])["code"]
                 //print(code)
                 if(code == 200){
-                    self.enterButton.isEnabled = true
+                    //self.enterButton.isEnabled = true
                     self.loadData()
                 } else {
                     let alert = UIAlertController(title: "错误", message: "联网检测本地认证数据库版本失败！请尝试将App升级至最新版本后再试。", preferredStyle: .alert)
