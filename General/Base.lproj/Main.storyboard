@@ -172,7 +172,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="☔️"/>
                                                 <connections>
-                                                    <segue destination="aML-ls-6Ug" kind="show" id="c4f-hH-u7f"/>
+                                                    <segue destination="aML-ls-6Ug" kind="show" identifier="showWeather" id="c4f-hH-u7f"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-n0-BDI">
@@ -189,7 +189,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                 <state key="normal" title="🎥"/>
                                                 <connections>
-                                                    <segue destination="aSC-Ix-BeI" kind="show" id="Xyj-PP-lti"/>
+                                                    <segue destination="aSC-Ix-BeI" kind="show" identifier="showMedia" id="Xyj-PP-lti"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-6A-hp0">
@@ -237,7 +237,7 @@
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="zbU-uo-eoH" kind="show" id="a2U-t6-jBB"/>
+                                                    <segue destination="zbU-uo-eoH" kind="show" identifier="showAlumni" id="a2U-t6-jBB"/>
                                                 </connections>
                                             </button>
                                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ib-world-school-logo-2-colour-rev.png" translatesAutoresizingMaskIntoConstraints="NO" id="4c3-m1-VwW">
@@ -266,7 +266,7 @@
                                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="gXj-XB-XNt" kind="show" id="KSO-wB-d9J"/>
+                                                    <segue destination="gXj-XB-XNt" kind="show" identifier="showGame" id="KSO-wB-d9J"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -395,7 +395,7 @@
                             <constraint firstItem="56r-bd-PoY" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="eGW-0a-rWb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="安全隐私" id="N66-yG-fHX"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="安全隐私" id="N66-yG-fHX"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="allSchoolmate" destination="DEm-bC-hVN" id="DTk-7V-Aw6"/>
@@ -1844,9 +1844,9 @@ CountryCode
         <segue reference="2Al-lY-Kfm"/>
         <segue reference="Np1-Rg-Xqt"/>
         <segue reference="NCu-xf-gAI"/>
-        <segue reference="JGm-pL-cxc"/>
+        <segue reference="c4f-hH-u7f"/>
         <segue reference="0Bj-lN-DmH"/>
-        <segue reference="43D-cO-s6v"/>
+        <segue reference="7mu-4n-5G1"/>
         <segue reference="Xyj-PP-lti"/>
         <segue reference="KSO-wB-d9J"/>
         <segue reference="a2U-t6-jBB"/>

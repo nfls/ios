@@ -45,15 +45,4 @@ class CenterTabRootViewController:UITabBarController{
             }
         }
     }
-
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if(selectedViewController is AssociatedServiceView){
-            let vc = selectedViewController as! AssociatedServiceView
-            let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(vc.settings))
-            rightButton.icon(from: .FontAwesome, code: "unlock", ofSize: 20)
-            navigationItem.rightBarButtonItem = rightButton
-        }else{
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
 }

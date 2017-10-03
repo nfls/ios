@@ -85,14 +85,9 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
         let realUrl = webView.url!
         if(!url!.hasPrefix("https://forum.nfls.io")){
             webView.stopLoading()
-            //webView.goBack()
-            if(url!.hasPrefix("https://nfls.io/quickaction.php?action=logout")){
-                let alertController = UIAlertController(title: "错误",
-                                                        message:"请使用APP内置的退出按钮！" ,preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            } else if(url!.hasPrefix("https://nfls.io")){
+            if(url!.contains("nfls.io")){
+                let nav = self.presentingViewController as! UINavigationController
+                (nav.viewControllers.last as! HomeScreenController).handleUrl = url!
                 self.performSegue(withIdentifier: "back", sender: self)
             } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",

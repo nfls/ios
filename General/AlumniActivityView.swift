@@ -17,8 +17,9 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     
     var webview = WKWebView()
     var requestCookies = ""
-    var restrcited = false
+    var in_url = ""
     override func viewDidLoad() {
+        in_url = (tabBarController! as! AlumniRootViewController).in_url
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         super.viewDidLoad()
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
@@ -27,9 +28,6 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if(self.presentingViewController is UITabBarController){
-            restrcited = true
-        }
         getToken()
     }
     
@@ -59,12 +57,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         webview = WKWebView(frame: UIScreen.main.bounds)
         webview.navigationDelegate = self
         webview.tag = 1
-        var url = NSURL()
-        if(restrcited){
-            //url = NSURL(string: "https://forum.nfls.io/settings")!
-        } else {
-            url = NSURL(string: "https://alumni.nfls.io")!
-        }
+        let url = NSURL(string: "https://alumni.nfls.io/" + in_url)!
         let request = NSMutableURLRequest(url: url as URL)
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         webview.load(request as URLRequest)
@@ -96,18 +89,11 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         if(!url!.hasPrefix("https://alumni.nfls.io")){
             webView.stopLoading()
             //webView.goBack()
-            if(url!.hasPrefix("https://nfls.io/quickaction.php?action=logout")){
-                let alertController = UIAlertController(title: "错误",
-                                                        message:"请使用APP内置的退出按钮！" ,preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            } else if(url!.hasPrefix("https://nfls.io")){
-                self.performSegue(withIdentifier: "back", sender: self)
-            } else if(url!.hasPrefix("https://center.nfls.io")){
+            if(url!.hasPrefix("https://center.nfls.io")){
                 tabBarController?.selectedIndex = 1
-            } else if(url!.hasPrefix("https://media.nfls.io")){
-                
+            } else if(url!.contains("nfls.io")){
+                (tabBarController?.navigationController?.viewControllers[(tabBarController?.navigationController!.viewControllers.count)! - 2] as! HomeScreenController).handleUrl = url!
+                tabBarController?.navigationController?.popViewController(animated: true)
             } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",
                                                         message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)

@@ -16,6 +16,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     @IBOutlet weak var center: UIButton!
     @IBOutlet weak var ib: UIImageView!
     var productID = ""
+    var handleUrl = ""
     var productsRequest = SKProductsRequest()
     var transactionInProgress = false
     var productsArray = [SKProduct]()
@@ -41,6 +42,10 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         productsRequest.delegate = self
         productsRequest.start()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        internalHandler(url: handleUrl)
+    }
     @objc func tapDetected() {
         self.performSegue(withIdentifier: "showICNews", sender: self)
     }
@@ -49,25 +54,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showWiki"){
-            let dest = segue.destination as! WikiViewController
-            if(sender as? String != nil){
-                dest.in_url = sender as! String
-            }
-        } else if (segue.identifier == "showForum"){
-            let dest = segue.destination as! ForumViewer
-            if(sender as? String != nil){
-                dest.in_url = sender as! String
-            }
-        } else if (segue.identifier == "showICNews"){
-            let dest = segue.destination as! ICNewsViewController
-            if(sender as? String != nil){
-                dest.in_url = sender as! String
-            }
-        }
-    }
-    
     func removeFile(filename:String,path:String){
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -219,19 +205,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                             let things = try! JSONSerialization.jsonObject(with: data) as! [String:String]
                                             let type = things["type"]!
                                             let in_url = things["url"]!
-                                            switch(type){
-                                            case "forum":
-                                                self.performSegue(withIdentifier: "showForum", sender: in_url)
-                                                break
-                                            case "wiki":
-                                                self.performSegue(withIdentifier: "showWiki", sender: in_url)
-                                                break
-                                            case "ic":
-                                                self.performSegue(withIdentifier: "showICNews", sender: in_url)
-                                                break
-                                            default:
-                                                break
-                                            }
+                                            self.jumpToSection(type: type, in_url: in_url)
                                         })
                                         alert.addAction(show)
                                     } else {
@@ -259,6 +233,79 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
 
         })
     }
+    func internalHandler(url:String){
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        handleUrl = ""
+        if(url.contains("nfls.io")){
+            if(!url.contains("https://nfls.io")){
+                let tUrl = url.replacingOccurrences(of: "https://", with: "")
+                let typeEndIndex = tUrl.index(of: ".nfls.io")!
+                var in_url = ""
+                if(!url.hasSuffix(".nfls.io")){
+                    let urlStartIndex = tUrl.endIndex(of: ".nfls.io/")!
+                    in_url = String(tUrl[urlStartIndex...])
+                }
+                
+                let type = tUrl[..<typeEndIndex]
+                print(type)
+                jumpToSection(type: String(type), in_url: String(in_url))
+            }
+        }
+    }
+    func jumpToSection(type:String,in_url:String){
+        print(type)
+        switch(type){
+        case "forum":
+            print("go")
+            self.performSegue(withIdentifier: "showForum", sender: in_url)
+            break
+        case "wiki":
+            self.performSegue(withIdentifier: "showWiki", sender: in_url)
+            break
+        case "ic":
+            self.performSegue(withIdentifier: "showICNews", sender: in_url)
+            break
+        case "alumni":
+            self.performSegue(withIdentifier: "showAlumni", sender: in_url)
+            break
+        case "media","live","video":
+            self.performSegue(withIdentifier: "showMedia", sender: self)
+            break
+        case "weather":
+            self.performSegue(withIdentifier: "showWeather", sender: self)
+            break
+        case "game":
+            self.performSegue(withIdentifier: "showGame", sender: self)
+            break
+        default:
+            print(type)
+            break
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showWiki"){
+            let dest = segue.destination as! WikiViewController
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showForum"){
+            let dest = segue.destination as! ForumViewer
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showICNews"){
+            let dest = segue.destination as! ICNewsViewController
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showAlumni"){
+            let dest = segue.destination as! AlumniRootViewController
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        }
+    }
+    
     func getBadge(){
         let headers: HTTPHeaders = [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
@@ -275,5 +322,32 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 break
             }
         })
+    }
+}
+
+extension String {
+    func index(of string: String, options: CompareOptions = .literal) -> Index? {
+        return range(of: string, options: options)?.lowerBound
+    }
+    func endIndex(of string: String, options: CompareOptions = .literal) -> Index? {
+        return range(of: string, options: options)?.upperBound
+    }
+    func indexes(of string: String, options: CompareOptions = .literal) -> [Index] {
+        var result: [Index] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(range.lowerBound)
+            start = range.upperBound
+        }
+        return result
+    }
+    func ranges(of string: String, options: CompareOptions = .literal) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(range)
+            start = range.upperBound
+        }
+        return result
     }
 }

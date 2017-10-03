@@ -11,6 +11,7 @@ import UIKit
 import SwiftIconFont
 
 class AlumniRootViewController:UITabBarController{
+    var in_url = ""
     override func viewDidLoad() {
         for controller in self.viewControllers!{
             if(controller is AlumniActivityViewController){
@@ -25,4 +26,5 @@ class AlumniRootViewController:UITabBarController{
             }
         }
     }
+    
 }
