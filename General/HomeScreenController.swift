@@ -41,9 +41,10 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+       // self.performSegue(withIdentifier: "ForumConnector", sender: "")
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         internalHandler(url: handleUrl)
     }
     @objc func tapDetected() {
@@ -247,17 +248,14 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 }
                 
                 let type = tUrl[..<typeEndIndex]
-                print(type)
                 jumpToSection(type: String(type), in_url: String(in_url))
             }
         }
     }
     func jumpToSection(type:String,in_url:String){
-        print(type)
         switch(type){
         case "forum":
-            print("go")
-            self.performSegue(withIdentifier: "showForum", sender: in_url)
+            self.performSegue(withIdentifier: "ForumConnector", sender: in_url)
             break
         case "wiki":
             self.performSegue(withIdentifier: "showWiki", sender: in_url)
@@ -288,7 +286,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             if(sender as? String != nil){
                 dest.in_url = sender as! String
             }
-        } else if (segue.identifier == "showForum"){
+        } else if (segue.identifier == "ForumConnector"){
             let dest = segue.destination as! ForumViewer
             if(sender as? String != nil){
                 dest.in_url = sender as! String
