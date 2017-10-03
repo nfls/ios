@@ -104,6 +104,10 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
                 self.present(alertController, animated: true, completion: nil)
             } else if(url!.hasPrefix("https://nfls.io")){
                 self.performSegue(withIdentifier: "back", sender: self)
+            } else if(url!.hasPrefix("https://center.nfls.io")){
+                tabBarController?.selectedIndex = 1
+            } else if(url!.hasPrefix("https://media.nfls.io")){
+                
             } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",
                                                         message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)

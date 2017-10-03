@@ -74,6 +74,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         if(operatingField == 0){
             initialize(true)
         } else {
+            dump(inputData)
             if(inputData != nil){
                 if(inputData is Int){
                     (self.container.viewWithTag(operatingField) as! UITextField).text = String(inputData as! Int)

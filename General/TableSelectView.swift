@@ -118,7 +118,6 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let parent = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 2]
-        dump(parent)
         if(type == "university"){
             if(parent is UITabBarController){
                 let parent_view = (parent as! UITabBarController).selectedViewController

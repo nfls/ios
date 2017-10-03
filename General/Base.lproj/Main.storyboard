@@ -248,6 +248,9 @@
                                                 <state key="normal" title="IC News">
                                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="Meg-V2-KG3" kind="show" identifier="showICNews" id="q84-H4-C0J"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-vz-hrY">
                                                 <rect key="frame" x="16.5" y="392.5" width="69" height="65"/>
@@ -1160,10 +1163,42 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="1806" y="1659"/>
         </scene>
-        <!--Media-->
+        <!--International Center News-->
+        <scene sceneID="ChY-UQ-G09">
+            <objects>
+                <viewController title="International Center News" id="Meg-V2-KG3" customClass="ICNewsViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8mb-f7-j5o"/>
+                        <viewControllerLayoutGuide type="bottom" id="MXa-3V-abi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vu8-mM-asF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KMe-Td-JZU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MXa-3V-abi" firstAttribute="top" secondItem="KMe-Td-JZU" secondAttribute="bottom" id="BA8-uo-NEJ"/>
+                            <constraint firstItem="KMe-Td-JZU" firstAttribute="leading" secondItem="vu8-mM-asF" secondAttribute="leading" id="H7c-rp-imU"/>
+                            <constraint firstItem="KMe-Td-JZU" firstAttribute="top" secondItem="8mb-f7-j5o" secondAttribute="bottom" id="QnT-kS-O1i"/>
+                            <constraint firstAttribute="trailing" secondItem="KMe-Td-JZU" secondAttribute="trailing" id="dTR-UQ-8M5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="stackView" destination="KMe-Td-JZU" id="E0T-8Z-OBE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a97-wJ-nB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2614" y="1658"/>
+        </scene>
+        <!--影音-->
         <scene sceneID="AiU-Gf-pSc">
             <objects>
-                <tabBarController title="Media" id="aSC-Ix-BeI" customClass="MediaViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController title="影音" id="aSC-Ix-BeI" customClass="MediaViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="npu-ZA-rvK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1400,10 +1435,10 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="941.60000000000002" y="875.71214392803608"/>
         </scene>
-        <!--Wiki-->
+        <!--百科-->
         <scene sceneID="Hcb-L3-rkL">
             <objects>
-                <viewController title="Wiki" id="deY-Cs-2KE" customClass="WikiViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="百科" id="deY-Cs-2KE" customClass="WikiViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4RW-Ga-eMk"/>
                         <viewControllerLayoutGuide type="bottom" id="8xI-at-bca"/>
@@ -1434,10 +1469,10 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="1806" y="877"/>
         </scene>
-        <!--Weather-->
+        <!--气象站-->
         <scene sceneID="fn4-dR-bcs">
             <objects>
-                <viewController title="Weather" id="aML-ls-6Ug" customClass="WeatherViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="气象站" id="aML-ls-6Ug" customClass="WeatherViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BDo-O1-qtq"/>
                         <viewControllerLayoutGuide type="bottom" id="icY-CS-cRb"/>
@@ -1806,7 +1841,7 @@ CountryCode
         <image name="ib-world-school-logo-2-colour-rev.png" width="494" height="485"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fTu-A0-9Ku"/>
+        <segue reference="2Al-lY-Kfm"/>
         <segue reference="Np1-Rg-Xqt"/>
         <segue reference="NCu-xf-gAI"/>
         <segue reference="JGm-pL-cxc"/>

@@ -26,7 +26,7 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
         let parameters:Parameters = [
             "version":Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         ]
-        print(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
+        //print(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)
         Alamofire.request("https://api.nfls.io/device/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
             response in
             //dump(response)

@@ -20,6 +20,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var transactionInProgress = false
     var productsArray = [SKProduct]()
     override func viewDidLoad() {
+        navigationItem.title = "Homepage"
         removeFile(filename: "", path: "temp")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
@@ -41,7 +42,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         productsRequest.start()
     }
     @objc func tapDetected() {
-        self.performSegue(withIdentifier: "showIC", sender: self)
+        self.performSegue(withIdentifier: "showICNews", sender: self)
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -49,8 +50,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //vcCount += 1
-        navigationItem.title = nil
         if(segue.identifier == "showWiki"){
             let dest = segue.destination as! WikiViewController
             if(sender as? String != nil){
@@ -58,6 +57,11 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             }
         } else if (segue.identifier == "showForum"){
             let dest = segue.destination as! ForumViewer
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showICNews"){
+            let dest = segue.destination as! ICNewsViewController
             if(sender as? String != nil){
                 dest.in_url = sender as! String
             }
@@ -78,7 +82,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     }
     
     @objc func settings() {
-        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us Some Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
+        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us A Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "Logout", style: .destructive, handler: {
             action in
             if let bundle = Bundle.main.bundleIdentifier {
@@ -86,18 +90,18 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
             }
             self.performSegue(withIdentifier: "exit", sender: self)
         })
-        let donate = UIAlertAction(title: "Buy Us Some Coffee", style: .default, handler: {
+        let donate = UIAlertAction(title: "Buy Us A Coffee", style: .default, handler: {
             action in
             let payment = SKPayment(product: self.productsArray[0] as SKProduct)
             SKPaymentQueue.default().add(payment)
             self.transactionInProgress = true
         })
-        let opensourceInfo = UIAlertAction(title: "Open Source Project Licenses", style: .default, handler: {
+        let opensourceInfo = UIAlertAction(title: "Licenses", style: .default, handler: {
             action in
             self.performSegue(withIdentifier: "showOpenSource", sender: self)
             
         })
-        let aboutUs = UIAlertAction(title:"About Us", style:.default, handler:{
+        let aboutUs = UIAlertAction(title:"About", style:.default, handler:{
             action in
             self.performSegue(withIdentifier: "showWiki", sender: "w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")
         })
@@ -208,7 +212,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                         action in
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
-                                    if(info["push"] as! String != ""){
+                                    if(info["push"] as? String != nil && info["push"] as? String != ""){
                                         let show = UIAlertAction(title: "Show Details", style: .default, handler: { (action) in
                                             let jsonString = info["push"] as! String
                                             let data = jsonString.data(using: .utf8)!
@@ -221,6 +225,9 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                                 break
                                             case "wiki":
                                                 self.performSegue(withIdentifier: "showWiki", sender: in_url)
+                                                break
+                                            case "ic":
+                                                self.performSegue(withIdentifier: "showICNews", sender: in_url)
                                                 break
                                             default:
                                                 break

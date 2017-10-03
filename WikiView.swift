@@ -17,7 +17,6 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
     var in_url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
         rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)

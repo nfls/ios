@@ -40,16 +40,16 @@ class UniversityInfoViewController:UIViewController,CountryPickerDelegate{
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(showMenu))
         rightButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
         self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
-        
+        self.navigationItem.rightBarButtonItem = rightButton
     }
-    @IBAction func exit(_ sender: Any) {
-        if(self.presentingViewController is UserCertificationStepView){
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let parent = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 1]
+        if(parent is UserCertificationStepView){
             if(self.saveData()){
-                self.performSegue(withIdentifier: "backToCertification", sender: self)
-                (self.presentingViewController as! UserCertificationStepView).inputData = id
+                (parent as! UserCertificationStepView).inputData = id
             }
-        } else {
-            self.performSegue(withIdentifier: "back", sender: self)
         }
     }
     

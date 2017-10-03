@@ -16,16 +16,17 @@ class AssociatedServiceView:UIViewController{
     @IBOutlet weak var allSchoolmate: PermissionPicker!
     @IBOutlet weak var sameLevelSchoolmate: PermissionPicker!
     override func viewDidLoad() {
+        super.viewDidLoad()
         //sameLevelSchoolmate.delegate = PermissionPicker.self
         //sameLevelSchoolmate.delegate = PermissionPicker.self
         let alert = UIAlertController(title: "提示", message: "您所在的用户组无法设置隐私，您仅可在此修改您的安全设置。", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
-        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
-        rightButton.icon(from: .FontAwesome, code: "unlock", ofSize: 20)
-        navigationItem.rightBarButtonItem = rightButton
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     @objc func settings(_ sender: Any) {
@@ -94,7 +95,7 @@ class AssociatedServiceView:UIViewController{
         action.addAction(editUsername)
         //action.addAction(fa)
         action.addAction(cancel)
-        action.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        action.popoverPresentationController?.barButtonItem = tabBarController!.navigationItem.rightBarButtonItem
         self.present(action, animated: true, completion: nil)
     }
 }

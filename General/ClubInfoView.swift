@@ -44,6 +44,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(showMenu))
         rightButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
         self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     @objc func showMenu() {
         let menu = UIAlertController(title: "操作", message: "新建社团前请先进入查询社团模块", preferredStyle: .actionSheet)
@@ -82,16 +83,18 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
         menu.popoverPresentationController?.barButtonItem = tabBarController?.navigationItem.rightBarButtonItem
         self.present(menu, animated: true)
     }
-
-    @IBAction func exit(_ sender: Any) {
-        if(self.presentingViewController is UserCertificationStepView){
-            self.performSegue(withIdentifier: "backToCertification", sender: self)
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let parent = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 1]
+        dump(parent)
+        if(parent is UserCertificationStepView){
             ids.sort()
-            (self.presentingViewController as! UserCertificationStepView).inputData = ids
-        } else {
-            self.performSegue(withIdentifier: "back", sender: self)
+            (parent as! UserCertificationStepView).inputData = ids
         }
+        super.viewWillDisappear(animated)
     }
+
     func cleanFields(){
         self.name.text = ""
         self.comment.text = ""
