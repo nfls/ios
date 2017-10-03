@@ -26,7 +26,10 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         server.start(withPort: 6699, bonjourName: "nflsers")
         navigationItem.title = name
-        //downloadData()
+        let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
+        let date = NSDate(timeIntervalSince1970: 0)
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -146,7 +149,6 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         else{
             url = NSURL(string: "http://localhost:6699")!
         }
-        
         let request = URLRequest(url: url as URL)
         webview.load(request)
         stackView.addArrangedSubview(webview)

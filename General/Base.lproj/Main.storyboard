@@ -681,13 +681,14 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-ee-hUP">
-                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-ee-hUP">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="yVi-ee-hUP" secondAttribute="trailing" id="43h-Lt-1aq"/>
+                            <constraint firstItem="yVi-ee-hUP" firstAttribute="top" secondItem="Lhn-zP-gCP" secondAttribute="bottom" id="LKx-nN-tmm"/>
                             <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="yVi-ee-hUP" secondAttribute="bottom" id="gfI-eh-fbt"/>
                             <constraint firstItem="yVi-ee-hUP" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="lYD-An-mU0"/>
                         </constraints>
@@ -748,16 +749,17 @@ CountryCode
                     <tabBarItem key="tabBarItem" title="校友" id="dIw-e4-wGK"/>
                     <connections>
                         <outlet property="tableview" destination="yU2-nT-kFe" id="w3K-Ru-NBr"/>
+                        <segue destination="AVQ-d2-UbF" kind="show" identifier="showForm" id="auX-v1-mjI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKI-bw-0Pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4087" y="117"/>
+            <point key="canvasLocation" x="4073" y="123"/>
         </scene>
-        <!--User Certification Step View-->
+        <!--实名认证-->
         <scene sceneID="0I2-gp-g7t">
             <objects>
-                <viewController id="AVQ-d2-UbF" customClass="UserCertificationStepView" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="实名认证" id="AVQ-d2-UbF" customClass="UserCertificationStepView" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4tS-rp-SmO"/>
                         <viewControllerLayoutGuide type="bottom" id="c8b-Sh-ST8"/>
@@ -767,7 +769,7 @@ CountryCode
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4SH-e9-s4v">
-                                <rect key="frame" x="52.5" y="74" width="270" height="30"/>
+                                <rect key="frame" x="52.5" y="72" width="270" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qoq-Ky-w8M">
                                         <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
@@ -790,33 +792,6 @@ CountryCode
                                     </activityIndicatorView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6EO-ib-OYU">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="dgN-Vt-RzQ"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="实名认证" id="Pbg-mg-lFC">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Xb7-jP-KXU">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qzv-A9-u41">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
-                                                <connections>
-                                                    <segue destination="x71-EA-e9m" kind="unwind" unwindAction="backToAlumniWithSegue:" id="gtQ-Mm-SbG"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="wys-f6-HHI">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqI-V0-Spd">
-                                                <rect key="frame" x="328" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="提示"/>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGY-UV-WiF">
                                 <rect key="frame" x="10" y="114" width="355" height="612"/>
                                 <subviews>
@@ -838,32 +813,26 @@ CountryCode
                             <constraint firstItem="aGY-UV-WiF" firstAttribute="leading" secondItem="yE2-8t-n9L" secondAttribute="leading" constant="10" id="7qc-O7-W34"/>
                             <constraint firstItem="c8b-Sh-ST8" firstAttribute="top" secondItem="aGY-UV-WiF" secondAttribute="bottom" constant="10" id="CIM-W9-b7r"/>
                             <constraint firstItem="c8b-Sh-ST8" firstAttribute="top" secondItem="aGY-UV-WiF" secondAttribute="bottom" constant="10" id="JHd-FK-3ZS"/>
-                            <constraint firstItem="4SH-e9-s4v" firstAttribute="top" secondItem="6EO-ib-OYU" secondAttribute="bottom" constant="10" id="WcD-YD-7Ii"/>
+                            <constraint firstItem="4SH-e9-s4v" firstAttribute="top" secondItem="4tS-rp-SmO" secondAttribute="bottom" constant="8" id="ZJJ-86-vlm"/>
                             <constraint firstItem="4SH-e9-s4v" firstAttribute="centerX" secondItem="yE2-8t-n9L" secondAttribute="centerX" id="dfP-cN-oAA"/>
-                            <constraint firstAttribute="trailing" secondItem="6EO-ib-OYU" secondAttribute="trailing" id="j1y-IF-o7s"/>
-                            <constraint firstItem="6EO-ib-OYU" firstAttribute="leading" secondItem="yE2-8t-n9L" secondAttribute="leading" id="kX6-r7-LBN"/>
-                            <constraint firstItem="6EO-ib-OYU" firstAttribute="top" secondItem="4tS-rp-SmO" secondAttribute="bottom" id="oHf-RO-mYf"/>
                             <constraint firstItem="aGY-UV-WiF" firstAttribute="top" secondItem="4SH-e9-s4v" secondAttribute="bottom" constant="10" id="uwP-Tw-uCp"/>
                             <constraint firstAttribute="trailing" secondItem="aGY-UV-WiF" secondAttribute="trailing" constant="10" id="ycR-Js-0ec"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="yiD-d2-UVT" id="kar-C1-lgg"/>
-                        <outlet property="backButton" destination="Qzv-A9-u41" id="IIb-U7-YNR"/>
                         <outlet property="container" destination="DMa-B3-hMo" id="Kbv-kL-TSO"/>
                         <outlet property="nextButton" destination="d0b-xb-gwj" id="9rK-vf-e60"/>
                         <outlet property="previousButton" destination="PWf-JM-aLu" id="T9X-ve-PCY"/>
                         <outlet property="resetButton" destination="Qoq-Ky-w8M" id="GLS-pB-9mE"/>
                         <outlet property="saveButton" destination="cUY-Cc-qv3" id="6ig-4r-zAD"/>
-                        <outlet property="showIntro" destination="aqI-V0-Spd" id="8zb-AW-gKo"/>
                         <segue destination="HwZ-hc-tY1" kind="show" identifier="showUniversitySelect" id="NCu-xf-gAI"/>
                         <segue destination="XZD-l4-Bvi" kind="show" identifier="showClubSelect" id="uew-Bm-T5Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEu-ck-OyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="x71-EA-e9m" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4778" y="122"/>
+            <point key="canvasLocation" x="4767" y="122"/>
         </scene>
         <!--校友会-->
         <scene sceneID="jG7-7b-Hjq">
@@ -1175,10 +1144,12 @@ CountryCode
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aUE-lw-3Vw" firstAttribute="top" secondItem="XBW-oV-4Xy" secondAttribute="bottom" id="4aS-gT-Z6z"/>
                             <constraint firstItem="aUE-lw-3Vw" firstAttribute="top" secondItem="XBW-oV-4Xy" secondAttribute="bottom" id="F4x-0Z-2aR"/>
                             <constraint firstItem="XBW-oV-4Xy" firstAttribute="leading" secondItem="5Fq-vS-tRd" secondAttribute="leading" id="LMs-sR-KEz"/>
                             <constraint firstAttribute="trailing" secondItem="XBW-oV-4Xy" secondAttribute="trailing" id="UqY-db-HsF"/>
                             <constraint firstItem="XBW-oV-4Xy" firstAttribute="top" secondItem="HiN-Aq-yw8" secondAttribute="bottom" id="cJt-xZ-Q7i"/>
+                            <constraint firstItem="aUE-lw-3Vw" firstAttribute="top" secondItem="XBW-oV-4Xy" secondAttribute="bottom" id="etQ-jr-Btf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1644,59 +1615,24 @@ CountryCode
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-VY-oOF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="aT5-Hc-NyM"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="大学查询及修改" id="M6P-aj-uOS">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="Yxm-30-dbJ">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BzG-Hk-Z5U">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
-                                                <connections>
-                                                    <action selector="exit:" destination="HwZ-hc-tY1" eventType="touchUpInside" id="2bz-Ul-dV4"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="DNP-xk-WFr">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oJ7-wC-gYK">
-                                                <rect key="frame" x="328" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="操作"/>
-                                                <connections>
-                                                    <action selector="showMenu:" destination="HwZ-hc-tY1" eventType="touchDown" id="1Aw-zM-zeo"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ySN-VY-oOF" firstAttribute="leading" secondItem="Kmt-Cj-ZMS" secondAttribute="leading" id="2Lj-pb-7FY"/>
                             <constraint firstItem="ogO-cP-tvK" firstAttribute="leading" secondItem="Kmt-Cj-ZMS" secondAttribute="leading" constant="8" id="DUi-a3-4bY"/>
-                            <constraint firstItem="ySN-VY-oOF" firstAttribute="top" secondItem="Fmj-k0-C3Y" secondAttribute="bottom" id="Qml-je-4Le"/>
-                            <constraint firstAttribute="trailing" secondItem="ySN-VY-oOF" secondAttribute="trailing" id="VCY-jC-2jb"/>
                             <constraint firstItem="ogO-cP-tvK" firstAttribute="centerY" secondItem="Kmt-Cj-ZMS" secondAttribute="centerY" constant="6" id="iZl-PE-RHR"/>
                             <constraint firstAttribute="trailing" secondItem="ogO-cP-tvK" secondAttribute="trailing" constant="8" id="jqO-zM-eyw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="大学" id="2Oh-wY-v50"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="added_by" destination="n1M-2K-KI5" id="bTY-DH-aPZ"/>
-                        <outlet property="barbutton" destination="DNP-xk-WFr" id="5CJ-sy-8Yf"/>
                         <outlet property="chineseName" destination="dUJ-zY-yzE" id="iXJ-z8-lD5"/>
                         <outlet property="chineseShortName" destination="alP-ss-iSD" id="HBr-C7-TcJ"/>
                         <outlet property="comment" destination="DcI-lW-Mom" id="3Rd-2o-zX0"/>
                         <outlet property="country" destination="iQa-wW-dSX" id="DyO-iD-K18"/>
                         <outlet property="name" destination="gmb-f5-gNi" id="ow0-Zo-qFo"/>
                         <outlet property="shortName" destination="b2n-2U-Kx3" id="Z4Z-C5-JYb"/>
-                        <segue destination="meq-qJ-GUl" kind="showDetail" identifier="showTableSelect" action="showViewController:sender:" id="fTu-A0-9Ku"/>
+                        <segue destination="meq-qJ-GUl" kind="show" identifier="showTableSelect" id="fTu-A0-9Ku"/>
                         <segue destination="Eon-0r-Nrg" kind="unwind" identifier="backToCertification" unwindAction="backToCertificationViewWithSegue:" id="1FL-Pb-Car"/>
                         <segue destination="Eon-0r-Nrg" kind="unwind" identifier="back" unwindAction="closeCurrentWithSegue:" id="Ex2-5m-MdX"/>
                     </connections>
@@ -1718,34 +1654,6 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9G-Ui-ESL">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="社团查询及修改" id="bhO-OO-lXD">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="J1r-b3-hAY">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WPo-pv-ts9">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
-                                                <connections>
-                                                    <action selector="exit:" destination="XZD-l4-Bvi" eventType="touchDown" id="mLk-1c-i6m"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="cb1-8E-vuj">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="05O-SF-zFa">
-                                                <rect key="frame" x="328" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="操作"/>
-                                                <connections>
-                                                    <action selector="showMenu:" destination="XZD-l4-Bvi" eventType="touchDown" id="JOw-kt-M7z"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Kad-yP-Sgh">
                                 <rect key="frame" x="24" y="162.5" width="327" height="342"/>
                                 <subviews>
@@ -1809,14 +1717,12 @@ CountryCode
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="社团" id="0bJ-ID-ms4"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="added_by" destination="Z7b-c5-h6h" id="RTu-WK-T3p"/>
-                        <outlet property="barbutton" destination="cb1-8E-vuj" id="E9n-Tc-jF5"/>
                         <outlet property="comment" destination="aeP-Fn-b6m" id="phv-p2-rtd"/>
                         <outlet property="name" destination="NAA-3W-pjB" id="lCQ-iL-DcG"/>
                         <outlet property="tableview" destination="smR-r2-met" id="QAT-cV-xxM"/>
-                        <segue destination="meq-qJ-GUl" kind="showDetail" identifier="showTableSelect2" id="2Al-lY-Kfm"/>
+                        <segue destination="meq-qJ-GUl" kind="show" identifier="showTableSelect2" id="2Al-lY-Kfm"/>
                         <segue destination="Way-rR-y3g" kind="unwind" identifier="back" unwindAction="closeCurrentWithSegue:" id="4Yw-cr-Tlf"/>
                         <segue destination="Way-rR-y3g" kind="unwind" identifier="backToCertification" unwindAction="backToCertificationViewWithSegue:" id="umP-YW-BY7"/>
                     </connections>
@@ -1826,10 +1732,10 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="4779" y="876"/>
         </scene>
-        <!--Table Select View Controller-->
+        <!--信息查询-->
         <scene sceneID="lEA-Oz-3eJ">
             <objects>
-                <viewController id="meq-qJ-GUl" customClass="TableSelectViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="信息查询" id="meq-qJ-GUl" customClass="TableSelectViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CYa-bf-1pS"/>
                         <viewControllerLayoutGuide type="bottom" id="u2m-Tg-K7e"/>
@@ -1838,36 +1744,6 @@ CountryCode
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NmC-7j-foC">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="TJH-W7-6KS"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="查询" id="v6G-Re-5ym">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="ih8-P6-cRn">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z3J-qq-BII">
-                                                <rect key="frame" x="16" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="返回"/>
-                                                <connections>
-                                                    <action selector="backWithoutNew:" destination="meq-qJ-GUl" eventType="touchDown" id="TfP-FJ-2n5"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="uhv-ab-wH3">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tbK-Fl-fc2">
-                                                <rect key="frame" x="328" y="7" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="新建"/>
-                                                <connections>
-                                                    <action selector="new:" destination="meq-qJ-GUl" eventType="touchDown" id="lS9-cH-VLU"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-S8-Ddn">
                                 <rect key="frame" x="0.0" y="126" width="375" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1885,15 +1761,12 @@ CountryCode
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Yc8-S8-Ddn" secondAttribute="trailing" id="23s-Du-3sN"/>
-                            <constraint firstAttribute="trailing" secondItem="NmC-7j-foC" secondAttribute="trailing" id="2z1-Ti-1tN"/>
                             <constraint firstAttribute="trailing" secondItem="fCA-CA-q1k" secondAttribute="trailing" constant="8" id="Tvy-PK-6CC"/>
                             <constraint firstItem="u2m-Tg-K7e" firstAttribute="top" secondItem="Yc8-S8-Ddn" secondAttribute="bottom" constant="16" id="Vn9-vP-obA"/>
                             <constraint firstItem="Yc8-S8-Ddn" firstAttribute="leading" secondItem="LcL-Hk-SCS" secondAttribute="leading" id="c0D-hg-55f"/>
                             <constraint firstItem="fCA-CA-q1k" firstAttribute="leading" secondItem="LcL-Hk-SCS" secondAttribute="leading" constant="8" id="dqE-1z-hGt"/>
-                            <constraint firstItem="NmC-7j-foC" firstAttribute="top" secondItem="CYa-bf-1pS" secondAttribute="bottom" id="i0T-l6-ofg"/>
-                            <constraint firstItem="fCA-CA-q1k" firstAttribute="top" secondItem="NmC-7j-foC" secondAttribute="bottom" constant="16" id="jHm-x7-iKa"/>
                             <constraint firstItem="Yc8-S8-Ddn" firstAttribute="top" secondItem="fCA-CA-q1k" secondAttribute="bottom" constant="16" id="lSW-Dh-uhX"/>
-                            <constraint firstItem="NmC-7j-foC" firstAttribute="leading" secondItem="LcL-Hk-SCS" secondAttribute="leading" id="usT-FI-zWU"/>
+                            <constraint firstItem="fCA-CA-q1k" firstAttribute="top" secondItem="CYa-bf-1pS" secondAttribute="bottom" constant="16" id="qYw-g6-fPr"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1935,10 +1808,10 @@ CountryCode
     <inferredMetricsTieBreakers>
         <segue reference="fTu-A0-9Ku"/>
         <segue reference="Np1-Rg-Xqt"/>
-        <segue reference="yvX-1Z-Kwu"/>
+        <segue reference="NCu-xf-gAI"/>
         <segue reference="JGm-pL-cxc"/>
         <segue reference="0Bj-lN-DmH"/>
-        <segue reference="7mu-4n-5G1"/>
+        <segue reference="43D-cO-s6v"/>
         <segue reference="Xyj-PP-lti"/>
         <segue reference="KSO-wB-d9J"/>
         <segue reference="a2U-t6-jBB"/>

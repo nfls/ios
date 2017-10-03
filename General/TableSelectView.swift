@@ -117,10 +117,9 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let parent = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 2]
+        dump(parent)
         if(type == "university"){
-            guard let parent = self.presentingViewController else{
-                return
-            }
             if(parent is UITabBarController){
                 let parent_view = (parent as! UITabBarController).selectedViewController
                 (parent_view as! UniversityInfoViewController).id = ids[indexPath.row]
@@ -133,9 +132,6 @@ class TableSelectViewController:UIViewController,UITableViewDelegate,UITableView
             
             self.performSegue(withIdentifier: "backToUniversity", sender: self)
         } else if(type == "club"){
-            guard let parent = self.presentingViewController else{
-                return
-            }
             if(parent is UITabBarController){
                 let parent_view = (parent as! UITabBarController).selectedViewController
                 (parent_view as! ClubInfoViewController).id = ids[indexPath.row]

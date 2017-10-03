@@ -21,6 +21,9 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     override func viewDidLoad() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         super.viewDidLoad()
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
+        rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
+        self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +37,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func previousPage(_ sender: Any) {
+    @objc func previousPage() {
         (stackView.viewWithTag(1) as! WKWebView).goBack()
     }
     

@@ -11,10 +11,6 @@ import WebKit
 import Alamofire
 
 class WikiViewController: UIViewController, WKNavigationDelegate {
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var stackView: UIStackView!
     var requestCookies = ""
     var webview = WKWebView()
@@ -23,6 +19,9 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
+        rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,7 +32,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func previousPage(_ sender: Any) {
+    @objc func previousPage() {
         webview.goBack()
         webview.reload()
     }

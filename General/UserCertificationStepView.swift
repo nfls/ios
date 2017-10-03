@@ -20,9 +20,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var showIntro: UIButton!
     var pickerOption = 0
     var pickerData: [String] = [String]()
     var currentStep:Step = .basicInfo
@@ -67,7 +64,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         saveButton.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         saveButton.tag = 0
         resetButton.addTarget(self, action: #selector(reset(button:)), for: .touchUpInside)
-        showIntro.addTarget(self, action: #selector(showIntroductions(button:)), for: .touchUpInside)
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(showIntroductions))
+        rightButton.icon(from: .FontAwesome, code: "info", ofSize: 20)
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     
@@ -173,8 +172,6 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             if(self.currentStep != .basicInfo){
                 self.previousButton.isEnabled = true
             }
-            self.showIntro.isEnabled = true
-            self.backButton.isEnabled = true
             if(self.currentStep != .end){
                 self.nextButton.isEnabled = true
                 self.saveButton.isEnabled = true
@@ -189,8 +186,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             self.nextButton.isEnabled = false
             self.previousButton.isEnabled = false
             self.saveButton.isEnabled = false
-            self.showIntro.isEnabled = false
-            self.backButton.isEnabled = false
+
         }
     }
     
@@ -725,7 +721,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func showIntroductions(button:UIButton){
+    @objc func showIntroductions(){
         disableButtons()
         showBasicInstructions(false)
     }

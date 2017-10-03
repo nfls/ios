@@ -16,7 +16,6 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var comment: UITextField!
     @IBOutlet weak var added_by: UITextField!
-    @IBOutlet weak var barbutton: UIBarButtonItem!
     var selected = [Int]()
     var names = [String]()
     var ids = [Int]()
@@ -42,8 +41,11 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
             self.cleanFields()
             self.enableFields()
         }
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(showMenu))
+        rightButton.icon(from: .FontAwesome, code: "wrench", ofSize: 20)
+        self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
     }
-    @IBAction func showMenu(_ sender: Any) {
+    @objc func showMenu() {
         let menu = UIAlertController(title: "操作", message: "新建社团前请先进入查询社团模块", preferredStyle: .actionSheet)
         let query = UIAlertAction(title: "查询社团", style: .default, handler: {
             action in
@@ -77,7 +79,7 @@ class ClubInfoViewController:UIViewController,UITableViewDelegate,UITableViewDat
             menu.addAction(exitWithoutSave)
         }
         menu.addAction(cancel)
-        menu.popoverPresentationController?.barButtonItem = barbutton
+        menu.popoverPresentationController?.barButtonItem = tabBarController?.navigationItem.rightBarButtonItem
         self.present(menu, animated: true)
     }
 

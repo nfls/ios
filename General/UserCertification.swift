@@ -20,6 +20,7 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
         tableview.register(DetailCell.self, forCellReuseIdentifier: ID)
         //enterButton.isEnabled = false
         checkVersion()
+       
     }
     func checkVersion(){
         let parameters:Parameters = [
@@ -35,6 +36,9 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
                 //print(code)
                 if(code == 200){
                     //self.enterButton.isEnabled = true
+                    let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.enter))
+                    rightButton.icon(from: .FontAwesome, code: "vcard", ofSize: 20)
+                    self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
                     self.loadData()
                 } else {
                     let alert = UIAlertController(title: "错误", message: "联网检测本地认证数据库版本失败！请尝试将App升级至最新版本后再试。", preferredStyle: .alert)
@@ -85,6 +89,9 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statusData.count
+    }
+    @objc func enter(){
+        self.performSegue(withIdentifier: "showForm", sender: self)
     }
     @IBAction func backToAlumni(segue: UIStoryboardSegue){
         

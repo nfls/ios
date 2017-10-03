@@ -10,10 +10,10 @@ PODS:
   - GCDWebServer (3.4.1):
     - GCDWebServer/Core (= 3.4.1)
   - GCDWebServer/Core (3.4.1)
-  - IQKeyboardManagerSwift (5.0.1)
-  - SSZipArchive (2.0.7)
+  - IQKeyboardManagerSwift (5.0.3)
+  - SSZipArchive (2.0.8)
   - SwiftIconFont (2.7.1)
-  - SwiftyMarkdown (0.4.0)
+  - SwiftyMarkdown (0.5.0)
   - UITableView+FDTemplateLayoutCell (1.6)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
@@ -38,13 +38,13 @@ SPEC CHECKSUMS:
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
-  IQKeyboardManagerSwift: 434f22d48340525bf1b92e0481a8c2539cc4a77e
-  SSZipArchive: 8c197761d66bd33e7f8b5b51ee57dff303971150
+  IQKeyboardManagerSwift: e257e513744cf32123eca7061272acea0246fc83
+  SSZipArchive: e6ab66e1936fac7e3b5073e9f5eb364d91dfbfc7
   SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
-  SwiftyMarkdown: 79cc313137a36ff30d811c3786e2bba7117d55cb
+  SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 3c754ddc762a7a70b7b03a62bc576f2a44b6e02b
+PODFILE CHECKSUM: 473ad8e208593b12c9bbe0b589a8e5c74de08a7c
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0.beta.1
