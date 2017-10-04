@@ -22,11 +22,15 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var productsArray = [SKProduct]()
     override func viewDidLoad() {
         navigationItem.title = "Homepage"
+        
         removeFile(filename: "", path: "temp")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         navigationItem.rightBarButtonItem = rightButton
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(HomeScreenController.tapDetected))
+        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(showUpdates))
+        leftButton.icon(from: .FontAwesome, code: "rss", ofSize: 20)
+        navigationItem.leftBarButtonItem = leftButton
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
         singleTap.numberOfTapsRequired = 1 // you can change this value
         ib.isUserInteractionEnabled = true
         ib.addGestureRecognizer(singleTap)
@@ -49,6 +53,10 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     }
     @objc func tapDetected() {
         self.performSegue(withIdentifier: "showICNews", sender: self)
+    }
+    
+    @objc func showUpdates(){
+        self.performSegue(withIdentifier: "showUpdates", sender: self)
     }
     
     @IBAction func closeCurrent(segue: UIStoryboardSegue){
@@ -222,6 +230,19 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                             break
                         }
                     })
+                    Alamofire.request("https://api.nfls.io/center/username",headers: headers).responseJSON(completionHandler: {
+                        response in
+                        switch(response.result){
+                        case .success(let json):
+                            let username = (json as! [String:Any])["info"] as! String
+                            UserDefaults.standard.set(username, forKey: "username")
+                            self.navigationItem.prompt = "Welcome back, " + username
+                            break
+                        default:
+                            break
+                        }
+                    })
+                    self.performSegue(withIdentifier: "showUpdates", sender: self)
                 }
                 break
             default:
@@ -231,7 +252,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                 self.present(alert, animated: true, completion: nil)
                 break
             }
-
+            
         })
     }
     func internalHandler(url:String){

@@ -137,7 +137,7 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         webview.navigationDelegate = self
         webview.uiDelegate = self
         webview.tag = 1
-        
+        webview.scrollView.isScrollEnabled = false
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let unzipURL = documentsURL.appendingPathComponent(location)
         debugPrint(unzipURL.path)

@@ -32,6 +32,8 @@
 		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
 		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
+		6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 6580C0CF1F83E60300BD7501 /* DSC03693.JPG */; };
+		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
 		65859EC31F82157000124805 /* ib-world-school-logo-2-colour-rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */; };
 		65859EC51F82AC6F00124805 /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65859EC41F82AC6F00124805 /* GameCenterView.swift */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
@@ -82,6 +84,8 @@
 		65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
 		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
+		6580C0CF1F83E60300BD7501 /* DSC03693.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC03693.JPG; sourceTree = "<group>"; };
+		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ib-world-school-logo-2-colour-rev.png"; path = "../../Downloads/ib-world-school-logo-2-colour-rev.png"; sourceTree = "<group>"; };
 		65859EC41F82AC6F00124805 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterView.swift; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */,
 				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
 				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
+				6580C0D11F83ED4F00BD7501 /* NewsView.swift */,
 				D6AE17431E44D51600E66B4B /* ViewController.swift */,
 				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
 				6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */,
@@ -239,6 +244,7 @@
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
 				65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
+				6580C0CF1F83E60300BD7501 /* DSC03693.JPG */,
 				65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
 				65784C7B1F09746800BDC60A /* icons8-Folder-50.png */,
@@ -368,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */,
 				D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */,
 				D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */,
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
@@ -462,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */,
+				6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */,
 				D606F2C71EE997B800564191 /* UserCertification.swift in Sources */,
 				65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */,
 				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
