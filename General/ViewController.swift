@@ -8,8 +8,11 @@
 
 import UIKit
 import Alamofire
+import ReCaptcha
 
 class ViewController: UIViewController {
+    
+    let recaptcha = try! ReCaptcha()
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var username: UITextField!
@@ -22,8 +25,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var captcha: UITextField!
     var session = ""
     
+    override func viewDidLoad() {
+        recaptcha.configureWebView { [weak self] webview in
+            webview.frame = self?.view.bounds ?? CGRect.zero
+        }
+
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        
         self.login_button.isEnabled = false;
         self.registerButton.isEnabled = false;
         self.recoverButton.isEnabled = false;
@@ -46,11 +55,11 @@ class ViewController: UIViewController {
         self.loadingBar.isHidden=false
         username.resignFirstResponder()
         password.resignFirstResponder()
+
         let post_data=["username":username.text!,"password":password.text!,"captcha":captcha.text!,"session":session]
         self.LoginAction(post_data: post_data )
-    
-        
     }
+    
     
     func requestCaptcha(){
         self.loadingBar.isHidden = false
@@ -80,13 +89,13 @@ class ViewController: UIViewController {
             }
         })
     }
-
     
     @IBAction func returnLogin(segue: UIStoryboardSegue){
         
     }
     
-    func LoginAction(post_data:[String: String]=[String: String]()) {
+    func LoginAction(post_data:[String: String]) {
+
         let parameters = post_data as Parameters
         Alamofire.request("https://api.nfls.io/center/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
             response in
@@ -110,7 +119,7 @@ class ViewController: UIViewController {
                             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alert.addAction(ok)
                             self.present(alert,animated: true)
-                            self.requestCaptcha()
+                            //self.requestCaptcha()
                             self.captcha.text = ""
                         }
                     } else {

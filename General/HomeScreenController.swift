@@ -22,7 +22,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
     var productsArray = [SKProduct]()
     override func viewDidLoad() {
         navigationItem.title = "Homepage"
-        
         removeFile(filename: "", path: "temp")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
@@ -45,11 +44,20 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+        
        // self.performSegue(withIdentifier: "ForumConnector", sender: "")
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         internalHandler(url: handleUrl)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String{
+            self.navigationItem.prompt = "Welcome back, " + username
+        } else {
+            self.navigationItem.prompt = "Welcome to NFLS.IO"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.navigationItem.prompt = "南外人"
+        })
     }
     @objc func tapDetected() {
         self.performSegue(withIdentifier: "showICNews", sender: self)
@@ -205,6 +213,7 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                                     let ok = UIAlertAction(title: "Got It", style: .default, handler: nil)
                                     let never = UIAlertAction(title: "Never Notice This Again", style: .cancel, handler: {
                                         action in
+                                        UIApplication.shared.applicationIconBadgeNumber = 0
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
                                     if(info["push"] as? String != nil && info["push"] as? String != ""){
@@ -236,7 +245,6 @@ class HomeScreenController:UIViewController,SKProductsRequestDelegate,SKPaymentT
                         case .success(let json):
                             let username = (json as! [String:Any])["info"] as! String
                             UserDefaults.standard.set(username, forKey: "username")
-                            self.navigationItem.prompt = "Welcome back, " + username
                             break
                         default:
                             break

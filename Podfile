@@ -18,6 +18,7 @@ target 'NFLSers-iOS' do
   pod 'FrostedSidebar'
   pod "GCDWebServer"
   pod 'UMengAnalytics-NO-IDFA'
+  pod "ReCaptcha"
   pod 'FrostedSidebar'
 
 
