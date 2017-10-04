@@ -320,7 +320,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
                 self.specialTextFields.append("clubs")
                 break
             case .end:
-                print(1)
+                //print(1)
                 break
             }
             //self.addContainerSpacing(rootStackView: self.container, itemNum: 4)
@@ -416,9 +416,9 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
     func operateGroups(group:[String],operation:Bool){
         //dump(tagMap)
         for field in group{
-            print(field)
+            //print(field)
             let tag = findTagForIdentification(field)
-            print(tag)
+            //print(tag)
             self.container.viewWithTag(tag)?.isHidden = !operation
             self.container.viewWithTag(-tag)?.isHidden = !operation
         }
@@ -761,7 +761,7 @@ class UserCertificationStepView:UIViewController, UIPickerViewDelegate, UIPicker
             }
         } else if segue.identifier == "showUniversitySelect" {
             if let destinationVC = segue.destination as? UniversityInfoViewController {
-                if(sender != nil){
+                if(sender as? String != nil && sender as? String != ""){
                     destinationVC.id = Int(sender as! String)!
                 }
                 //destinationVC.type = sender as! String
