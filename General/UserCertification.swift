@@ -91,7 +91,7 @@ class UserCertificationView:UIViewController,UITableViewDelegate,UITableViewData
         return statusData.count
     }
     @objc func enter(){
-        self.performSeguXRe(withIdentifier: "showForm", sender: self)
+        self.performSegue(withIdentifier: "showForm", sender: self)
     }
     @IBAction func backToAlumni(segue: UIStoryboardSegue){
         
