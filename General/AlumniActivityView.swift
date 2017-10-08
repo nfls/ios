@@ -92,7 +92,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
             if(url!.hasPrefix("https://center.nfls.io")){
                 tabBarController?.selectedIndex = 1
             } else if(url!.contains("nfls.io")){
-                (tabBarController?.navigationController?.viewControllers[(tabBarController?.navigationController!.viewControllers.count)! - 2] as! HomeScreenController).handleUrl = url!
+                (tabBarController?.navigationController?.viewControllers[(tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = url!
                 tabBarController?.navigationController?.popViewController(animated: true)
             } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",

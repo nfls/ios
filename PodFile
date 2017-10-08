@@ -19,4 +19,9 @@ target 'NFLSers-iOS' do
   pod "GCDWebServer"
   pod 'UMengAnalytics-NO-IDFA'
   pod 'FrostedSidebar'
+  pod 'Kingfisher'
+  pod 'EZSwiftExtensions'
+  pod 'Permission/Camera'
+  pod 'Permission/Notifications'
+  pod 'Permission/Photos'
 end

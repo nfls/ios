@@ -44,7 +44,7 @@ class AssociatedServiceView:UIViewController{
     @objc func settings(_ sender: Any) {
         let action = UIAlertController(title: "操作", message: "您可以在此对您的账户安全进行操作", preferredStyle: .actionSheet)
         let editPassword = UIAlertAction(title: "修改邮箱及密码", style: .default) { (action) in
-            (self.tabBarController?.navigationController?.viewControllers[(self.tabBarController?.navigationController!.viewControllers.count)! - 2] as! HomeScreenController).handleUrl = "https://forum.nfls.io/settings"
+            (self.tabBarController?.navigationController?.viewControllers[(self.tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = "https://forum.nfls.io/settings"
             self.tabBarController?.navigationController?.popViewController(animated: true)
         }
         let logoutDevices = UIAlertAction(title: "下线所有登录设备", style: .destructive) { (action) in

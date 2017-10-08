@@ -83,7 +83,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
             webView.stopLoading()
             //webView.goBack()
             if(url!.contains("nfls.io")){
-                (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! HomeScreenController).handleUrl = url!
+                (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = url!
                 navigationController?.popViewController(animated: true)
             }else{
                 let alertController = UIAlertController(title: "外部链接转跳提示",

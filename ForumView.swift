@@ -87,7 +87,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
             webView.stopLoading()
             if(url!.contains("nfls.io")){
                 let nav = self.presentingViewController as! UINavigationController
-                (nav.viewControllers.last as! HomeScreenController).handleUrl = url!
+                (nav.viewControllers.last as! NewsViewController).handleUrl = url!
                 self.performSegue(withIdentifier: "back", sender: self)
             } else {
                 let alertController = UIAlertController(title: "外部链接转跳提示",
