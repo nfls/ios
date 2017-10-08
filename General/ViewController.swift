@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.barStyle = .black
         Alamofire.request("https://api.nfls.io/weather/ping")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
         rightButton.icon(from: .FontAwesome, code: "users", ofSize: 20)

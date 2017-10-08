@@ -35,6 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.setAppVersion(version as! String)
         MobClick.setEncryptEnabled(true)
         //MobClick.setLogEnabled(true)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance().largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: UIColor.white
+            ]
+        }
+        //UINavigationBar.appearance().tintColor = UIColor.orange
+        //UINavigationBar.appearance().backgroundColor = UIColor.orange
         return true
     }
 

@@ -46,6 +46,13 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     }
 
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 92/255, green: 184/255, blue: 92/255, alpha: 1.0) // a lovely red
+        self.navigationController?.navigationBar.tintColor = UIColor.white // for titles, buttons, etc.
+        self.navigationController?.navigationBar.isTranslucent = false
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
         checkStatus()
         loadNews()
         navigationItem.title = "Homepage"
@@ -79,6 +86,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             self.navigationItem.prompt = nil
         })
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

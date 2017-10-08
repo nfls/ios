@@ -1195,7 +1195,7 @@ CountryCode
                         <segue destination="aML-ls-6Ug" kind="show" identifier="showWeather" id="bqB-su-hgV"/>
                         <segue destination="IkS-ib-9hb" kind="show" identifier="showResources" id="RwA-l2-91A"/>
                         <segue destination="Meg-V2-KG3" kind="show" identifier="showIC" id="ZiK-jt-mRn"/>
-                        <segue destination="oWJ-TB-2Xg" kind="show" identifier="showForum" id="MRN-qW-dXD"/>
+                        <segue destination="oWJ-TB-2Xg" kind="showDetail" identifier="showForum" action="showViewController:sender:" id="MRN-qW-dXD"/>
                         <segue destination="deY-Cs-2KE" kind="show" identifier="showWiki" id="Iqn-PX-JAR"/>
                         <segue destination="aSC-Ix-BeI" kind="show" identifier="showMedia" id="2sk-Kx-Wl4"/>
                         <segue destination="gXj-XB-XNt" kind="show" identifier="showGame" id="FhP-0e-VhR"/>
