@@ -10,7 +10,7 @@ target 'NFLSers-iOS' do
   pod 'Alamofire'
   pod 'SSZipArchive'
   pod 'SwiftyMarkdown'
-  pod 'SwiftIconFont'
+  pod 'SwiftIconFont', :git => 'https://github.com/0x73/SwiftIconFont.git'
   pod 'Charts'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'UITableView+FDTemplateLayoutCell'
@@ -18,8 +18,5 @@ target 'NFLSers-iOS' do
   pod 'FrostedSidebar'
   pod "GCDWebServer"
   pod 'UMengAnalytics-NO-IDFA'
-  pod "ReCaptcha"
   pod 'FrostedSidebar'
-
-
 end

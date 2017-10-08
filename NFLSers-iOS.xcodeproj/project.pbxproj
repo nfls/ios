@@ -32,6 +32,7 @@
 		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
 		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
+		657CE9171F89EE0500433578 /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 657CE9161F89EDEB00433578 /* forum.png */; };
 		6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 6580C0CF1F83E60300BD7501 /* DSC03693.JPG */; };
 		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
 		65859EC31F82157000124805 /* ib-world-school-logo-2-colour-rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */; };
@@ -84,6 +85,7 @@
 		65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
 		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
+		657CE9161F89EDEB00433578 /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forum.png; sourceTree = "<group>"; };
 		6580C0CF1F83E60300BD7501 /* DSC03693.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC03693.JPG; sourceTree = "<group>"; };
 		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ib-world-school-logo-2-colour-rev.png"; path = "../../Downloads/ib-world-school-logo-2-colour-rev.png"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		65784C7A1F0973DD00BDC60A /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				657CE9161F89EDEB00433578 /* forum.png */,
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
 				65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
@@ -377,6 +380,7 @@
 				6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */,
 				D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */,
 				D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */,
+				657CE9171F89EE0500433578 /* forum.png in Resources */,
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
 				6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */,
@@ -404,8 +408,6 @@
 				"${BUILT_PRODUCTS_DIR}/FrostedSidebar/FrostedSidebar.framework",
 				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
@@ -420,8 +422,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FrostedSidebar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReCaptcha.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",

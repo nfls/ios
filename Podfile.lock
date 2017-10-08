@@ -11,11 +11,6 @@ PODS:
     - GCDWebServer/Core (= 3.4.1)
   - GCDWebServer/Core (3.4.1)
   - IQKeyboardManagerSwift (5.0.3)
-  - ReCaptcha (0.2.0):
-    - ReCaptcha/Core (= 0.2.0)
-  - ReCaptcha/Core (0.2.0):
-    - Result (~> 3.0)
-  - Result (3.2.4)
   - SSZipArchive (2.0.8)
   - SwiftIconFont (2.7.1)
   - SwiftyMarkdown (0.5.0)
@@ -30,12 +25,20 @@ DEPENDENCIES:
   - FrostedSidebar
   - GCDWebServer
   - IQKeyboardManagerSwift
-  - ReCaptcha
   - SSZipArchive
-  - SwiftIconFont
+  - SwiftIconFont (from `https://github.com/0x73/SwiftIconFont.git`)
   - SwiftyMarkdown
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics-NO-IDFA
+
+EXTERNAL SOURCES:
+  SwiftIconFont:
+    :git: https://github.com/0x73/SwiftIconFont.git
+
+CHECKOUT OPTIONS:
+  SwiftIconFont:
+    :commit: e4f9dd1f1b79cf92a812ec4ee6e4832111533590
+    :git: https://github.com/0x73/SwiftIconFont.git
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -45,14 +48,12 @@ SPEC CHECKSUMS:
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   IQKeyboardManagerSwift: e257e513744cf32123eca7061272acea0246fc83
-  ReCaptcha: 85b27e9773d25a56458eb722f4496bddfca67d2f
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SSZipArchive: e6ab66e1936fac7e3b5073e9f5eb364d91dfbfc7
-  SwiftIconFont: 33d13d656c2dd7ed8464169a815b5b81d7250878
+  SwiftIconFont: 0127ae4f73d91803c1bcbb714a21931a8b2ce9c4
   SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: ddc789ba01250363467ae7fae7bfe23bb328e71e
+PODFILE CHECKSUM: f598786a6f00670d41152359418b4bde3edd6224
 
 COCOAPODS: 1.4.0.beta.1

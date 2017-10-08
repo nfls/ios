@@ -17,13 +17,61 @@ class NewsCell:UITableViewCell{
     @IBOutlet weak var subtitle: UILabel!
 }
 class NewsViewController:UITableViewController{
-
+    
     var names = [String]()
     var subtitles = [String]()
     var descriptions = [String]()
     var urls = [String]()
     var images = [String]()
     var pictures = [Data]()
+    
+    let barImages = [UIImage(named:"forum.png")]
+    let barColors = [UIColor.orange]
+    let bar:FrostedSidebar
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        bar = FrostedSidebar(itemImages: barImages as! [UIImage], colors: barColors, selectionStyle: .single)
+        super.init(coder: aDecoder)
+    }
+    
+    @objc func menu(){
+        bar.showInViewController(self, animated: true)
+    }
+
+    override func viewDidLoad() {
+        
+        bar.actionForIndex[0] = {
+            debugPrint("1")
+        }
+        
+        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(menu))
+        leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
+        navigationItem.leftBarButtonItem = leftButton
+        
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/news",headers: headers).responseJSON { response in
+            switch(response.result){
+            case .success(let json):
+                
+                let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
+                for detail in info {
+                    self.names.append(detail["title"] as! String)
+                    self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
+                    self.descriptions.append(detail["detail"] as! String)
+                    self.urls.append(detail["conf"] as? String ?? "")
+                    self.images.append(detail["img"] as! String)
+                }
+                self.getPictures(index: 0)
+                break
+            default:
+                break
+            }
+        }
+    }
     
     
     func getPictures(index:Int){
@@ -54,30 +102,7 @@ class NewsViewController:UITableViewController{
         return newImage
     }
     
-    override func viewDidLoad() {
-        
-        let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-        ]
-        Alamofire.request("https://api.nfls.io/center/news",headers: headers).responseJSON { response in
-            switch(response.result){
-            case .success(let json):
-                
-                let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
-                for detail in info {
-                    self.names.append(detail["title"] as! String)
-                    self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
-                    self.descriptions.append(detail["detail"] as! String)
-                    self.urls.append(detail["conf"] as? String ?? "")
-                    self.images.append(detail["img"] as! String)
-                }
-                self.getPictures(index: 0)
-                break
-            default:
-                break
-            }
-        }
-    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
