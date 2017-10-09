@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import FrostedSidebar
 import StoreKit
-
+import SCLAlertView
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
@@ -36,6 +36,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var transactionInProgress = false
     var productsArray = [SKProduct]()
     
+    let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+        showCloseButton: false
+    ))
+    
+    
     required init?(coder aDecoder: NSCoder) {
         bar = FrostedSidebar(itemImages: barImages as! [UIImage], colors: barColors, selectionStyle: .single)
         super.init(coder: aDecoder)
@@ -53,40 +58,24 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
+        Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
-        loadNews()
-        navigationItem.title = "Homepage"
-        removeFile(filename: "", path: "temp")
-        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(settings))
+        self.navigationItem.title = "Homepage"
+        self.removeFile(filename: "", path: "temp")
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
-        navigationItem.rightBarButtonItem = rightButton
-        bar.actionForIndex[0] = {
+        self.navigationItem.rightBarButtonItem = rightButton
+        self.bar.actionForIndex[0] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
-        
-        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(menu))
+        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
         leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
-        navigationItem.leftBarButtonItem = leftButton
-        
-        let application = UIApplication.shared
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
+        self.navigationItem.leftBarButtonItem = leftButton
         SKPaymentQueue.default().add(self)
         let productID:NSSet = NSSet(object: "2")
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
-        if let username = UserDefaults.standard.value(forKey: "username") as? String{
-            self.navigationItem.prompt = "Welcome back, " + username
-        } else {
-            self.navigationItem.prompt = "Welcome to NFLS.IO"
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-            self.navigationItem.prompt = nil
-        })
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -280,10 +269,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     
     func checkStatus(){
         if(UserDefaults.standard.string(forKey: "token") == nil){
-            if let bundle = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundle)
-            }
-            self.performSegue(withIdentifier: "exit", sender: self)
+            self.showLogin()
             return
         }
         let headers: HTTPHeaders = [
@@ -297,7 +283,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                     if let bundle = Bundle.main.bundleIdentifier {
                         UserDefaults.standard.removePersistentDomain(forName: bundle)
                     }
-                    self.performSegue(withIdentifier: "exit", sender: self)
+                    self.showLogin()
                 } else {
                     MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
                     let headers: HTTPHeaders = [
@@ -356,6 +342,21 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                         default:
                             break
                         }
+                    })
+                    self.loadNews()
+                    
+                    let application = UIApplication.shared
+                    let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+                    let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+                    application.registerUserNotificationSettings(pushNotificationSettings)
+                    application.registerForRemoteNotifications()
+                    if let username = UserDefaults.standard.value(forKey: "username") as? String{
+                        self.navigationItem.prompt = "Welcome back, " + username
+                    } else {
+                        self.navigationItem.prompt = "Welcome to NFLS.IO"
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                        self.navigationItem.prompt = nil
                     })
                 }
                 break
@@ -453,6 +454,165 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                 }
                 break
             default:
+                break
+            }
+        })
+    }
+    
+    func showLogin(info:String? = nil,username:String? = nil,password:String? = nil){
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        let _username = alert.addTextField("Username")
+        _username.text = username
+        let _password = alert.addTextField("Password")
+        _password.text = password
+        alert.addButton("Submit") {
+            self.login(username: _username.text!, password: _password.text!)
+        }
+        alert.addButton("Register") {
+            self.showRegister()
+        }
+        alert.addButton("Reset Password") {
+            self.showReset()
+        }
+        alert.showInfo("Login", subTitle: info ?? "")
+    }
+    func showReset(info:String? = nil,email:String? = nil){
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        let username = alert.addTextField("Email")
+        username.text = email
+        alert.addButton("Submit") {
+            self.resetPassword(email: username.text!)
+        }
+        alert.addButton("Cancel") {
+            self.showLogin()
+        }
+        alert.showInfo("Reset Password", subTitle: info ?? "")
+    }
+    func resetPassword(email:String){
+        let responder = alert.showWait("Loading", subTitle: "Please wait")
+        let parameters: Parameters = [
+            "email" : email,
+            "session" : "app"
+        ]
+        Alamofire.request("https://api.nfls.io/center/recover", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
+            response in
+            responder.close()
+            switch(response.result){
+            case .success(let json):
+                let webStatus = (json as! [String:AnyObject])["code"] as! Int
+                if (webStatus == 200){
+                    let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
+                    if(status["status"] as! String == "success"){
+                        SCLAlertView().showSuccess("Succeeded", subTitle: "Please check the letter in your email.")
+                        self.showLogin()
+                    } else {
+                        self.showReset(info: (status["message"] as! String), email: email)
+                    }
+                } else {
+                    self.showReset(info: "Something went wrong, please try again later.", email: email)
+                }
+                break
+            default:
+                self.showReset(info: "Something went wrong, please try again later.", email: email)
+                break
+            }
+        })
+    }
+    func showRegister(info:String? = nil,username:String? = nil,email:String? = nil,password:String? = nil,rePassword:String? = nil){
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        let _username = alert.addTextField("Username")
+        _username.text = username
+        let _email = alert.addTextField("Email")
+        _email.text = email
+        let _password = alert.addTextField("Password")
+        _password.isSecureTextEntry = true
+        _password.text = password
+        let _rePassword = alert.addTextField("Repeat Password")
+        _rePassword.isSecureTextEntry = true
+        _rePassword.text = rePassword
+        alert.addButton("Submit") {
+            self.registerAccount(username: _username.text!, password: _password.text!, rePassword: _rePassword.text!, email: _email.text!)
+        }
+        alert.addButton("Cancel") {
+            self.showLogin()
+        }
+        alert.showInfo("Register", subTitle: info ?? "", closeButtonTitle: "Cancel")
+    }
+    func registerAccount(username:String,password:String,rePassword:String,email:String){
+        if(rePassword != password){
+            self.showRegister(info: "Password does not match!", username: username, email: email, password: password, rePassword: rePassword)
+        }
+        let responder = alert.showWait("Loading", subTitle: "Please wait")
+        let parameters: Parameters = [
+            "username" : username,
+            "password" : password,
+            "email" : email,
+            "session" : "app"
+        ]
+        Alamofire.request("https://api.nfls.io/center/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
+            response in
+            responder.close()
+            switch(response.result){
+            case .success(let json):
+                let webStatus = (json as! [String:AnyObject])["code"] as! Int
+                if (webStatus == 200){
+                    let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
+                    if(status["status"] as! String == "success"){
+                        SCLAlertView().showSuccess("Succeeded", subTitle: "You can now login.")
+                        self.showLogin(info: nil,username: username,password: password)
+                    } else {
+                        self.showRegister(info: (status["message"] as! String), username: username, email: email, password: password, rePassword: rePassword)
+                    }
+                } else {
+                    self.showRegister(info: "Something went wrong, please try again later.", username: username, email: email, password: password, rePassword: rePassword)
+                }
+                break
+            default:
+                self.showRegister(info: "Something went wrong, please try again later.", username: username, email: email, password: password, rePassword: rePassword)
+                break
+            }
+        })
+    }
+    
+    func login(username:String,password:String) {
+        let responder = alert.showWait("Loading", subTitle: "Please wait")
+        let parameters:Parameters = [
+            "username":username,
+            "password":password,
+            "session":"app"
+        ]
+        Alamofire.request("https://api.nfls.io/center/login", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
+            response in
+            responder.close()
+            switch(response.result){
+            case .success(let json):
+                if((json as! [String:AnyObject])["code"] as? Int != 200){
+                    self.showLogin(info: "Something went wrong, please try again later.", username: username, password: password)
+                } else {
+                    let webStatus = (json as! [String:AnyObject])["code"] as! Int
+                    if (webStatus == 200){
+                        let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
+                        if(status["status"] as! String == "success"){
+                            
+                        } else {
+                            self.showLogin(info: (status["message"] as! String), username: username, password: password)
+                        }
+                    } else {
+                        self.showLogin(info: "Something went wrong, please try again later.", username: username, password: password)
+                    }
+                }
+                break
+            default:
+                self.showLogin(info: "Something went wrong, please try again later.", username: username, password: password)
                 break
             }
         })

@@ -29,12 +29,18 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate{
         let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
         let date = NSDate(timeIntervalSince1970: 0)
         WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        downloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        downloadData()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     override func didReceiveMemoryWarning() {

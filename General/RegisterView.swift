@@ -33,44 +33,7 @@ class RegisterView:UIViewController {
             self.present(alert,animated: true)
             self.registerButton.isEnabled = true
         } else {
-            let parameters: Parameters = [
-                "username" : username.text ?? "",
-                "password" : password.text ?? "",
-                "email" : email.text ?? "",
-                "session" : "app"
-            ]
-            Alamofire.request("https://api.nfls.io/center/register", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
-                response in
-                switch(response.result){
-                case .success(let json):
-                    let webStatus = (json as! [String:AnyObject])["code"] as! Int
-                    if (webStatus == 200){
-                        let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
-                        if(status["status"] as! String == "success"){
-                            let alert = UIAlertController(title: "Succeeded", message: "You have registered successfully, now you can login. Please remember to check your confirm email.", preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alert.addAction(ok)
-                            self.present(alert,animated: true)
-                        } else {
-                            let alert = UIAlertController(title: "Failed", message: "Registeration failed！Reason:" + (status["message"] as! String), preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alert.addAction(ok)
-                            self.present(alert,animated: true)
-                        }
-                        //success / failure
-                    } else {
-                        self.networkError()
-                    }
-                    break
-                default:
-                    self.networkError()
-                    break
-                }
-                DispatchQueue.main.async {
-                    self.registerButton.isEnabled = true
-                }
-                
-            })
+            
         }
         
 

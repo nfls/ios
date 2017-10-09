@@ -24,4 +24,5 @@ target 'NFLSers-iOS' do
   pod 'Permission/Camera'
   pod 'Permission/Notifications'
   pod 'Permission/Photos'
+  pod 'SCLAlertView'
 end

@@ -20,6 +20,7 @@ PODS:
     - Permission/Core
   - Permission/Photos (2.0.4):
     - Permission/Core
+  - SCLAlertView (0.7.0)
   - SSZipArchive (2.0.8)
   - SwiftIconFont (2.7.1)
   - SwiftyMarkdown (0.5.0)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - Permission/Camera
   - Permission/Notifications
   - Permission/Photos
+  - SCLAlertView
   - SSZipArchive
   - SwiftIconFont (from `https://github.com/0x73/SwiftIconFont.git`)
   - SwiftyMarkdown
@@ -65,12 +67,13 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: e257e513744cf32123eca7061272acea0246fc83
   Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SSZipArchive: e6ab66e1936fac7e3b5073e9f5eb364d91dfbfc7
   SwiftIconFont: 0127ae4f73d91803c1bcbb714a21931a8b2ce9c4
   SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 0cf1549c1b4be77210f685756e9659a99f1fdf35
+PODFILE CHECKSUM: 47189bf0c78bdd72105b38b7aea44a6aac4de341
 
 COCOAPODS: 1.4.0.beta.1
