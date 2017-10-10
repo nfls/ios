@@ -12,6 +12,7 @@ import Alamofire
 import SSZipArchive
 import SwiftyMarkdown
 import QuickLook
+import SCLAlertView
 
 class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource{
     
@@ -23,14 +24,15 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var isFolder = [Bool]()
     var isDownloaded = [Bool]()
     var currentFolder = ""
-    var loadingController = UIAlertController()
-    var operatingController = UIAlertController()
-    var errorController = UIAlertController()
     var reactWithClick = true
     var onlineMode = true
     let qlpreview = QLPreviewController()
     var fileurls = [NSURL]()
     var useNew = true
+    
+    let operating = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+        showCloseButton: false
+    ))
     
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
@@ -38,21 +40,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(setting))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         navigationItem.rightBarButtonItem = rightButton
-        loadingController = UIAlertController(title: "加载中", message: "数据加载中，请稍后", preferredStyle: .alert)
-        operatingController = UIAlertController(title: "请稍后", message: "操作进行中", preferredStyle: .alert)
-        errorController = UIAlertController(title: "加载错误", message: "网络或服务器故障，请稍后再试！", preferredStyle: .alert)
-        let retryAction = UIAlertAction(title: "重试", style: .cancel, handler: {
-            action in
-            self.listRequest()
-        })
-        let listAction = UIAlertAction(title: "查看离线列表", style: .default, handler: {
-            action in
-            self.onlineMode = false
-            self.listRequest()
-        })
         tableview.allowsMultipleSelection = true
-        errorController.addAction(retryAction)
-        errorController.addAction(listAction)
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
         qlpreview.delegate = self
         qlpreview.dataSource = self
@@ -179,7 +167,14 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             localRequest()
             return
         }
-        self.present(loadingController, animated: true)
+        let loading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        ))
+        loading.addButton("离线模式") {
+            self.onlineMode = false
+            self.listRequest()
+        }
+        let responder = loading.showWait("请稍后", subTitle: "数据加载中")
         searchField.placeholder = "过滤 " + currentFolder.removingPercentEncoding! + "/"
         let requestDetail:Parameters = [
             "href":currentFolder + "/",
@@ -249,11 +244,22 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 self.tableview.delegate = self
                 self.tableview.dataSource = self
                 self.tableview.reloadData()
-                self.loadingController.dismiss(animated: true, completion: nil)
+                responder.close()
                 self.showHeaderFooter()
                 break
             default:
-                self.loadingController.dismiss(animated: false, completion: {self.present(self.errorController, animated: true)})
+                responder.close()
+                let error = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                ))
+                error.addButton("重试") {
+                    self.listRequest()
+                }
+                error.addButton("离线模式") {
+                    self.onlineMode = false
+                    self.listRequest()
+                }
+                error.showError("错误", subTitle: "列表加载失败")
                 break
             }
         }
@@ -292,7 +298,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         } catch let error as NSError {
-            print(error)
+            //print(error)
         }
         self.tableview.delegate = self
         self.tableview.dataSource = self
@@ -312,7 +318,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func removeFile(filename:String,path:String){
         
-        self.present(operatingController, animated: true, completion: nil)
+        let responder = operating.showWait("请稍后", subTitle: "操作进行中")
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(path.removingPercentEncoding!).appendingPathComponent(filename)
         let fileManager = FileManager.default
@@ -321,10 +327,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         } catch {
             //print("removeError")
         }
-        operatingController.dismiss(animated: true, completion: {
-            self.listRequest()
-        })
-        
+        responder.close()
+        self.listRequest()
     }
     
     func bulkDownload(files:[IndexPath]!){
@@ -342,20 +346,18 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 count += 1
             }
         }
-        
-        let downloading = UIAlertController(title: "文件下载",
-                                            message: "您正在批量下载" + String(count) + "个文件，请不要退出APP！", preferredStyle: .alert)
-        var request:Alamofire.Request?
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
-            action in
-            if(request != nil){
-                request!.cancel()
-            }
-            self.listRequest()
-        })
-        downloading.addAction(cancelAction)
         if(count >= 1){
-            self.present(downloading, animated: true, completion: nil)
+            var request:Alamofire.Request?
+            let downloading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            ))
+            downloading.addButton("取消", action: {
+                if(request != nil){
+                    request!.cancel()
+                }
+                self.listRequest()
+            })
+            let responder = downloading.showWait("下载中", subTitle: "您正在批量下载" + String(count) + "个文件，请不要关闭App！")
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent("temp/temp.zip")
             let unzipURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(self.currentFolder.removingPercentEncoding!)
@@ -370,16 +372,15 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                     response in
                     SSZipArchive.unzipFile(atPath: fileURL.path, toDestination: unzipURL.path)
                     self.removeFile(filename: "temp.zip", path: documentsURL.appendingPathComponent("temp").path)
-                    let finished = UIAlertController(title: "下载完成", message: String(count) + "个文件已下载完成", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "完成", style: .cancel, handler: {
-                        action in
-                            self.listRequest()
-                    })
-                    finished.addAction(okAction)
-                    downloading.dismiss(animated: true, completion: {
-                        self.present(finished, animated: true, completion: nil)
+                    responder.close()
+                    let done = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                    ))
+                    done.addButton("完成", action: {
                         self.reactWithClick = true
+                        self.listRequest()
                     })
+                    done.showInfo("下载完成", subTitle: String(count) + " 个文件已下载完成")
             })
         } else {
             self.listRequest()
@@ -397,10 +398,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             }
         }
         if(fileurls.count != files.count || files.count == 0){
-            let alert = UIAlertController(title: "提示", message: "仅能预览已经缓存的文件！", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(ok)
-            self.present(alert,animated:true)
+            SCLAlertView().showError("错误", subTitle: "仅能预览已缓存的文件！")
         } else {
             qlpreview.reloadData()
             DispatchQueue.main.async {
@@ -418,21 +416,18 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         }else{
             fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(path.removingPercentEncoding!).appendingPathComponent(filename)
         }
-        debugPrint("The file will be downloaded to:" + fileURL.path)
         if (!isFileExists(filename: filename, path: path) || force || temp) {
-            let downloading = UIAlertController(title: "文件下载",
-                                                message: "您正在下载以下文件：" + filename, preferredStyle: .alert)
             var request:Alamofire.Request?
-            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
-                action in
+            let downloading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            ))
+            downloading.addButton("取消", action: {
                 if(request != nil){
                     request!.cancel()
                 }
                 self.listRequest()
             })
-            downloading.addAction(cancelAction)
-            
-            self.present(downloading, animated: true, completion: nil)
+            let responder = downloading.showWait("下载中", subTitle: "您正在下载以下文件：" + filename)
             let utilityQueue = DispatchQueue.global(qos: .utility)
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
@@ -440,28 +435,15 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             request = Alamofire.download(url,to: destination).downloadProgress(queue: utilityQueue) { progress in
                 DispatchQueue.main.async {
                     if(progress.fractionCompleted != 1.0){
-                        downloading.message = "您正在下载以下文件：" + filename + "，进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%"
+                        responder.setSubTitle("您正在下载以下文件：" + filename + "，进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%")
                     } else {
-                        downloading.dismiss(animated: false, completion: {
-                            let finished = UIAlertController(title: "下载完成", message: filename + "已下载完成", preferredStyle: .alert)
-                            let okAction = UIAlertAction(title: "打开", style: .cancel, handler: {
-                                action in
-                                self.goToView(url: fileURL)
-                            })
-                            let doneAction = UIAlertAction(title: "完成", style: .default, handler: {
-                                action in
-                                self.listRequest()
-                            })
-                            finished.addAction(okAction)
-                            finished.addAction(doneAction)
-                            self.present(finished, animated: true, completion: nil)
-                        })
+                        responder.close()
+                        self.goToView(url: fileURL)
                     }
                 }
             }
         } else {
             self.goToView(url: fileURL)
-            
         }
     }
     
@@ -470,14 +452,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func goToView(url:URL){
-        if(useNew){
-            fileurls.removeAll()
-            fileurls.append(url as NSURL)
-            qlpreview.currentPreviewItemIndex = 0
-            qlpreview.reloadData()
-            DispatchQueue.main.async {
-                self.navigationController!.pushViewController(self.qlpreview, animated: true)
-            }
+        fileurls.removeAll()
+        fileurls.append(url as NSURL)
+        qlpreview.currentPreviewItemIndex = 0
+        qlpreview.reloadData()
+        DispatchQueue.main.async {
+            self.navigationController!.pushViewController(self.qlpreview, animated: true)
         }
         
     }
@@ -543,16 +523,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true)
                 }
-
-                //print(headerPhrased.attributedString())
-                //print(footerPhrased.attributedString())
             default:
                 break
 
             }
-            
         })
-        //let md = SwiftyMarkdown
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -659,7 +634,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             return []
         }
         if(isFolder[indexPath.row]){
-            let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删除该文件夹下所有缓存", handler:{action, indexPath in
+            let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删空缓存", handler:{action, indexPath in
                 self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
             })
             return [deleteRowAction]

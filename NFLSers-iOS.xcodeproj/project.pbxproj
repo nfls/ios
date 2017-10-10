@@ -27,29 +27,30 @@
 		656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656B20591F63AB6200D76231 /* AlumniRoot.swift */; };
 		6571C5CA1EFCDFAA00769FF7 /* WikiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5C91EFCDFAA00769FF7 /* WikiView.swift */; };
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
-		6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */; };
 		65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7B1F09746800BDC60A /* icons8-Folder-50.png */; };
 		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
 		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
 		657CE9171F89EE0500433578 /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 657CE9161F89EDEB00433578 /* forum.png */; };
-		6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 6580C0CF1F83E60300BD7501 /* DSC03693.JPG */; };
 		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
 		65859EC31F82157000124805 /* ib-world-school-logo-2-colour-rev.png in Resources */ = {isa = PBXBuildFile; fileRef = 65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */; };
 		65859EC51F82AC6F00124805 /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65859EC41F82AC6F00124805 /* GameCenterView.swift */; };
+		6585ADB51F8B7A9300ECCBB9 /* alumni.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB11F8B79BB00ECCBB9 /* alumni.png */; };
+		6585ADB61F8B7A9B00ECCBB9 /* games.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB01F8B79BA00ECCBB9 /* games.png */; };
+		6585ADB71F8B7A9E00ECCBB9 /* media.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADAF1F8B79BA00ECCBB9 /* media.png */; };
+		6585ADB81F8B7AA200ECCBB9 /* resources.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB21F8B79BC00ECCBB9 /* resources.png */; };
+		6585ADB91F8B7AA600ECCBB9 /* weather.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB31F8B79BC00ECCBB9 /* weather.png */; };
+		6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB41F8B79BC00ECCBB9 /* wiki.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65DEE0F91F6402E0007735CD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0F81F6402E0007735CD /* GameView.swift */; };
 		65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FA1F645C61007735CD /* MediaRootView.swift */; };
 		65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FC1F645C97007735CD /* VideoListView.swift */; };
 		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
-		D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2BB1EE86CD800564191 /* RegisterView.swift */; };
 		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
 		D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */; };
 		D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6552FAA1E4CCE7700A2B220 /* ForumView.swift */; };
-		D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D01B31EE7972600DC0642 /* HomeScreenController.swift */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
-		D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17431E44D51600E66B4B /* ViewController.swift */; };
 		D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6AE17481E44D51600E66B4B /* Assets.xcassets */; };
 		D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */; };
 		D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F7A0031EF2393E0047CF5D /* StoreKit.framework */; };
@@ -78,7 +79,6 @@
 		656B20591F63AB6200D76231 /* AlumniRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniRoot.swift; sourceTree = "<group>"; };
 		6571C5C91EFCDFAA00769FF7 /* WikiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiView.swift; sourceTree = "<group>"; };
 		6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralInfoView.swift; sourceTree = "<group>"; };
-		6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRecoverView.swift; sourceTree = "<group>"; };
 		65784C7B1F09746800BDC60A /* icons8-Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Folder-50.png"; sourceTree = "<group>"; };
 		65784C7D1F09762400BDC60A /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Documents-50.png"; sourceTree = "<group>"; };
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -86,10 +86,15 @@
 		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
 		657CE9161F89EDEB00433578 /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forum.png; sourceTree = "<group>"; };
-		6580C0CF1F83E60300BD7501 /* DSC03693.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC03693.JPG; sourceTree = "<group>"; };
 		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ib-world-school-logo-2-colour-rev.png"; path = "../../Downloads/ib-world-school-logo-2-colour-rev.png"; sourceTree = "<group>"; };
 		65859EC41F82AC6F00124805 /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterView.swift; sourceTree = "<group>"; };
+		6585ADAF1F8B79BA00ECCBB9 /* media.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = media.png; sourceTree = "<group>"; };
+		6585ADB01F8B79BA00ECCBB9 /* games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = games.png; sourceTree = "<group>"; };
+		6585ADB11F8B79BB00ECCBB9 /* alumni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alumni.png; sourceTree = "<group>"; };
+		6585ADB21F8B79BC00ECCBB9 /* resources.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resources.png; sourceTree = "<group>"; };
+		6585ADB31F8B79BC00ECCBB9 /* weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather.png; sourceTree = "<group>"; };
+		6585ADB41F8B79BC00ECCBB9 /* wiki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiki.png; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65DEE0F81F6402E0007735CD /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
@@ -102,15 +107,12 @@
 		81238CB6B663B8C8706E3A62 /* Pods-NFLSers-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		D606F2BB1EE86CD800564191 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		D606F2BF1EE9027900564191 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/NFLSers-iOS-gfmjxostdafotgcwdloyrmomfuzy/Build/Products/Debug-iphoneos/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"; sourceTree = "<group>"; };
 		D606F2C11EE9039D00564191 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NFLSers_iOS.framework; path = "Pods/../build/Release-iphoneos/Pods_NFLSers_iOS.framework"; sourceTree = "<group>"; };
 		D606F2C61EE997B800564191 /* UserCertification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertification.swift; sourceTree = "<group>"; };
 		D606F2C81EEA14F000564191 /* UserCertificationStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCertificationStepView.swift; sourceTree = "<group>"; };
 		D6552FAA1E4CCE7700A2B220 /* ForumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
-		D66D01B31EE7972600DC0642 /* HomeScreenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		D6AE17411E44D51600E66B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D6AE17431E44D51600E66B4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D6AE17481E44D51600E66B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6AE174B1E44D51600E66B4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6AE174D1E44D51600E66B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,12 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */,
-				D606F2BB1EE86CD800564191 /* RegisterView.swift */,
-				D66D01B31EE7972600DC0642 /* HomeScreenController.swift */,
 				6580C0D11F83ED4F00BD7501 /* NewsView.swift */,
-				D6AE17431E44D51600E66B4B /* ViewController.swift */,
 				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
-				6572D8401F0B1DE700D00827 /* PasswordRecoverView.swift */,
 			);
 			name = RootPage;
 			sourceTree = "<group>";
@@ -244,9 +242,14 @@
 			children = (
 				657CE9161F89EDEB00433578 /* forum.png */,
 				653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */,
+				6585ADB11F8B79BB00ECCBB9 /* alumni.png */,
+				6585ADB01F8B79BA00ECCBB9 /* games.png */,
+				6585ADAF1F8B79BA00ECCBB9 /* media.png */,
+				6585ADB21F8B79BC00ECCBB9 /* resources.png */,
+				6585ADB31F8B79BC00ECCBB9 /* weather.png */,
+				6585ADB41F8B79BC00ECCBB9 /* wiki.png */,
 				65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
-				6580C0CF1F83E60300BD7501 /* DSC03693.JPG */,
 				65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */,
 				65784C831F0A59CE00BDC60A /* icons8-Back-50.png */,
 				65784C7B1F09746800BDC60A /* icons8-Folder-50.png */,
@@ -375,17 +378,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6580C0D01F83E60C00BD7501 /* DSC03693.JPG in Resources */,
 				D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */,
+				6585ADB61F8B7A9B00ECCBB9 /* games.png in Resources */,
 				D6AE17491E44D51600E66B4B /* Assets.xcassets in Resources */,
+				6585ADB81F8B7AA200ECCBB9 /* resources.png in Resources */,
 				657CE9171F89EE0500433578 /* forum.png in Resources */,
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
 				6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */,
+				6585ADB51F8B7A9300ECCBB9 /* alumni.png in Resources */,
 				65859EC31F82157000124805 /* ib-world-school-logo-2-colour-rev.png in Resources */,
+				6585ADB91F8B7AA600ECCBB9 /* weather.png in Resources */,
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
+				6585ADB71F8B7A9E00ECCBB9 /* media.png in Resources */,
+				6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,14 +486,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6AE17441E44D51600E66B4B /* ViewController.swift in Sources */,
 				6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */,
 				D606F2C71EE997B800564191 /* UserCertification.swift in Sources */,
 				65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */,
 				D6552FAB1E4CCE7700A2B220 /* ForumView.swift in Sources */,
 				6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */,
-				D66D01B41EE7972600DC0642 /* HomeScreenController.swift in Sources */,
-				D606F2BC1EE86CD800564191 /* RegisterView.swift in Sources */,
 				65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */,
 				6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */,
 				6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */,
@@ -500,7 +505,6 @@
 				65DEE0F91F6402E0007735CD /* GameView.swift in Sources */,
 				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
-				6572D8411F0B1DE700D00827 /* PasswordRecoverView.swift in Sources */,
 				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
 				656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */,

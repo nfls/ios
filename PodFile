@@ -25,4 +25,5 @@ target 'NFLSers-iOS' do
   pod 'Permission/Notifications'
   pod 'Permission/Photos'
   pod 'SCLAlertView'
+  pod 'UIColor-Pantone'
 end

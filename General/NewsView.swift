@@ -17,7 +17,7 @@ class NewsCell:UITableViewCell{
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var subtitle: UILabel!
 }
-class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver{
+class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver,FrostedSidebarDelegate{
     
     var names = [String]()
     var subtitles = [String]()
@@ -26,8 +26,8 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var images = [String]()
     var pictures = [Data]()
     
-    let barImages = [UIImage(named:"forum.png")]
-    let barColors = [UIColor.orange]
+    let barImages = [UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"resources.png"),UIImage(named:"alumni.png"),UIImage(named:"weather.png"),UIImage(named:"ib-world-school-logo-2-colour-rev.png"),UIImage(named:"media.png"),UIImage(named:"games.png")]
+    let barColors = [UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange]
     let bar:FrostedSidebar
     
     var productID = ""
@@ -47,16 +47,27 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     }
     
     @objc func menu(){
-        bar.showInViewController(self, animated: true)
+        if(!bar.isCurrentlyOpen){
+            bar.showInViewController(self, animated: true)
+        }else{
+            bar.dismissAnimated(true, completion: nil)
+        }
+        
+        
     }
 
     override func viewDidLoad() {
+        bar.delegate = self
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 92/255, green: 184/255, blue: 92/255, alpha: 1.0) // a lovely red
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 92/255, green: 184/255, blue: 92/255, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = UIColor.white // for titles, buttons, etc.
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: UIColor.white
+            ]
         }
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
@@ -68,19 +79,47 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         self.bar.actionForIndex[0] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
+        self.bar.actionForIndex[1] = {
+            self.performSegue(withIdentifier: "showWiki", sender: self)
+        }
+        self.bar.actionForIndex[2] = {
+            self.performSegue(withIdentifier: "showResources", sender: self)
+        }
+        self.bar.actionForIndex[3] = {
+            self.performSegue(withIdentifier: "showAlumni", sender: self)
+        }
+        self.bar.actionForIndex[4] = {
+            self.performSegue(withIdentifier: "showWeather", sender: self)
+        }
+        self.bar.actionForIndex[5] = {
+            self.performSegue(withIdentifier: "showIC", sender: self)
+        }
+        self.bar.actionForIndex[6] = {
+            self.performSegue(withIdentifier: "showMedia", sender: self)
+        }
+        self.bar.actionForIndex[7] = {
+            self.performSegue(withIdentifier: "showGame", sender: self)
+        }
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
         leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
         self.navigationItem.leftBarButtonItem = leftButton
-        SKPaymentQueue.default().add(self)
+        
         let productID:NSSet = NSSet(object: "2")
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+        tableView.isScrollEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SKPaymentQueue.default().add(self)
         internalHandler(url: handleUrl)
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SKPaymentQueue.default().remove(self)
     }
     
     func loadNews(){
@@ -187,7 +226,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
-            self.performSegue(withIdentifier: "exit", sender: self)
+            self.checkStatus()
         })
         let donate = UIAlertAction(title: "Buy Us A Coffee", style: .default, handler: {
             action in
@@ -235,7 +274,6 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         for transaction in transactions {
             switch transaction.transactionState {
             case SKPaymentTransactionState.purchased:
-                print("Transaction completed successfully.")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 transactionInProgress = false
                 let receiptURL = Bundle.main.appStoreReceiptURL;
@@ -246,23 +284,13 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                 let headers: HTTPHeaders = [
                     "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                 ]
-                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
-                    /*
-                     print(response.response)
-                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                     print("Data: \(utf8Text)")
-                     }
-                     */
-                })
-                
-                
+                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             case SKPaymentTransactionState.failed:
                 print("Transaction Failed");
                 SKPaymentQueue.default().finishTransaction(transaction)
                 transactionInProgress = false
-                
             default:
-                print(transaction.transactionState.rawValue)
+                break
             }
         }
     }
@@ -302,29 +330,29 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                                 let title = info["title"]! as! String
                                 let id = info["id"]! as! Int
                                 if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
-                                    let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
-                                    let ok = UIAlertAction(title: "Got It", style: .default, handler: nil)
-                                    let never = UIAlertAction(title: "Never Notice This Again", style: .cancel, handler: {
-                                        action in
+                                    let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                                        showCloseButton: false
+                                    ))                                
+                                    if(info["push"] as? String != nil && info["push"] as? String != ""){
+                                        alert.addButton("Show Details", action: {
+                                            let jsonString = info["push"] as! String
+                                            let data = jsonString.data(using: .utf8)!
+                                            do{
+                                                let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
+                                                let type = things["type"]!
+                                                let in_url = things["url"]!
+                                                self.jumpToSection(type: type, in_url: in_url)
+                                            } catch {
+                                                self.handleUrl = info["push"] as! String
+                                                self.internalHandler(url: self.handleUrl)
+                                            }
+                                        })
+                                    }
+                                    alert.addButton("Got It", action: {
                                         UIApplication.shared.applicationIconBadgeNumber = 0
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
                                     })
-                                    if(info["push"] as? String != nil && info["push"] as? String != ""){
-                                        let show = UIAlertAction(title: "Show Details", style: .default, handler: { (action) in
-                                            let jsonString = info["push"] as! String
-                                            let data = jsonString.data(using: .utf8)!
-                                            let things = try! JSONSerialization.jsonObject(with: data) as! [String:String]
-                                            let type = things["type"]!
-                                            let in_url = things["url"]!
-                                            self.jumpToSection(type: type, in_url: in_url)
-                                        })
-                                        alert.addAction(show)
-                                    } else {
-                                        alert.addAction(ok)
-                                    }
-                                    alert.addAction(never)
-                                    self.present(alert, animated: true, completion: nil)
-                                    
+                                    alert.showInfo(title, subTitle: text)
                                 }
                             }
                             break
@@ -361,10 +389,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                 }
                 break
             default:
-                let alert = UIAlertController(title: "Error", message: "Network or server error!", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+                SCLAlertView().showNotice("No Internet", subTitle: "Some functions are limited.")
                 break
             }
             
@@ -468,6 +493,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         _username.text = username
         let _password = alert.addTextField("Password")
         _password.text = password
+        _password.isSecureTextEntry = true
         alert.addButton("Submit") {
             self.login(username: _username.text!, password: _password.text!)
         }
@@ -602,7 +628,10 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                     if (webStatus == 200){
                         let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
                         if(status["status"] as! String == "success"){
-                            
+                            let token = status["token"]! as! String
+                            UserDefaults.standard.set(token, forKey: "token")
+                            UserDefaults.standard.synchronize()
+                            self.checkStatus()
                         } else {
                             self.showLogin(info: (status["message"] as! String), username: username, password: password)
                         }
@@ -617,6 +646,31 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
             }
         })
     }
+    func sidebar(_ sidebar: FrostedSidebar, willShowOnScreenAnimated animated: Bool) {
+        return
+    }
+    
+    func sidebar(_ sidebar: FrostedSidebar, didShowOnScreenAnimated animated: Bool) {
+        tableView.isScrollEnabled = false
+    }
+    
+    func sidebar(_ sidebar: FrostedSidebar, willDismissFromScreenAnimated animated: Bool) {
+        return
+    }
+    
+    func sidebar(_ sidebar: FrostedSidebar, didDismissFromScreenAnimated animated: Bool) {
+        tableView.isScrollEnabled = true
+    }
+    
+    func sidebar(_ sidebar: FrostedSidebar, didTapItemAtIndex index: Int) {
+        return
+    }
+    
+    func sidebar(_ sidebar: FrostedSidebar, didEnable itemEnabled: Bool, itemAtIndex index: Int) {
+        return
+    }
+    
+    
 
 }
 extension String {

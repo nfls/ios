@@ -123,6 +123,7 @@ class GameCenterViewController:UITableViewController{
         let dest = segue.destination as! GameViewController
         dest.location = urls[index]
         dest.name = names[index]
+        dest.id = index + 1
     }
     
 }
