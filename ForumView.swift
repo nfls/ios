@@ -91,9 +91,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
                 (nav.viewControllers.last as! NewsViewController).handleUrl = url!
                 self.performSegue(withIdentifier: "back", sender: self)
             } else {
-                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                    showCloseButton: false
-                ))
+                let alert = SCLAlertView()
                 alert.addButton("好的", action: {
                     UIApplication.shared.openURL(realUrl)
                 })

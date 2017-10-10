@@ -26,7 +26,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var images = [String]()
     var pictures = [Data]()
     
-    let barImages = [UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"resources.png"),UIImage(named:"alumni.png"),UIImage(named:"weather.png"),UIImage(named:"ib-world-school-logo-2-colour-rev.png"),UIImage(named:"media.png"),UIImage(named:"games.png")]
+    let barImages = [UIImage(named:"resources.png"),UIImage(named:"games.png"),UIImage(named:"alumni.png"),UIImage(named:"ib-world-school-logo-2-colour-rev.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
     let barColors = [UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange]
     let bar:FrostedSidebar
     
@@ -74,28 +74,28 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
-        self.bar.actionForIndex[0] = {
+        self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
-        self.bar.actionForIndex[1] = {
+        self.bar.actionForIndex[6] = {
             self.performSegue(withIdentifier: "showWiki", sender: self)
         }
-        self.bar.actionForIndex[2] = {
+        self.bar.actionForIndex[0] = {
             self.performSegue(withIdentifier: "showResources", sender: self)
         }
-        self.bar.actionForIndex[3] = {
+        self.bar.actionForIndex[2] = {
             self.performSegue(withIdentifier: "showAlumni", sender: self)
         }
         self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showWeather", sender: self)
         }
-        self.bar.actionForIndex[5] = {
+        self.bar.actionForIndex[3] = {
             self.performSegue(withIdentifier: "showIC", sender: self)
         }
-        self.bar.actionForIndex[6] = {
+        self.bar.actionForIndex[7] = {
             self.performSegue(withIdentifier: "showMedia", sender: self)
         }
-        self.bar.actionForIndex[7] = {
+        self.bar.actionForIndex[1] = {
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
@@ -127,7 +127,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         Alamofire.request("https://api.nfls.io/center/news",headers: headers).responseJSON { response in
             switch(response.result){
             case .success(let json):
-                
+                self.names.removeAll()
+                self.subtitles.removeAll()
+                self.descriptions.removeAll()
+                self.urls.removeAll()
+                self.images.removeAll()
                 let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
                 for detail in info {
                     self.names.append(detail["title"] as! String)

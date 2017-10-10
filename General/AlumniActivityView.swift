@@ -96,9 +96,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
                 (tabBarController?.navigationController?.viewControllers[(tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = url!
                 tabBarController?.navigationController?.popViewController(animated: true)
             } else {
-                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                    showCloseButton: false
-                ))
+                let alert = SCLAlertView()
                 alert.addButton("好的", action: {
                     UIApplication.shared.openURL(realUrl)
                 })
