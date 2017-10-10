@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import WebKit
+import SCLAlertView
 
 class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     
@@ -95,29 +96,14 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
                 (tabBarController?.navigationController?.viewControllers[(tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = url!
                 tabBarController?.navigationController?.popViewController(animated: true)
             } else {
-                let alertController = UIAlertController(title: "外部链接转跳提示",
-                                                        message: "您即将以系统浏览器访问该链接："+url!, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {
-                    action in
-                    
-                })
-                let okAction = UIAlertAction(title: "好的", style: .default, handler: {
-                    action in
+                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                ))
+                alert.addButton("好的", action: {
                     UIApplication.shared.openURL(realUrl)
                 })
-                alertController.addAction(cancelAction)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
+                alert.showInfo("外部链接", subTitle: "您即将以系统浏览器访问该外部链接："+url!, closeButtonTitle: "取消")
             }
         }
     }
-    
-    func networkError(){
-        let alert = UIAlertController(title: "错误", message: "服务器或网络故障，请检查网络连接是否正常。", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        self.present(alert,animated: true)
-    }
-
-    
 }

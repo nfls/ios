@@ -52,8 +52,6 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         }else{
             bar.dismissAnimated(true, completion: nil)
         }
-        
-        
     }
 
     override func viewDidLoad() {
