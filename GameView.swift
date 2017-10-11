@@ -20,7 +20,6 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
     var products = [SKProduct]()
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let myProduct = response.products
-        print("received!")
         for product in myProduct {
             names.append(product.localizedTitle + " " + product.localizedPrice())
             ids.append(product.productIdentifier)
@@ -63,6 +62,7 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
                 ]
                 Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
                 hideLoading()
+                webview.evaluateJavaScript("onPurchased(true);", completionHandler: nil)
                 break
             case .failed:
                 hideLoading()
@@ -102,9 +102,6 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
             let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productID)
             request.delegate = self
             request.start()
-            print("start")
-        }else{
-            print("error")
         }
     }
     
@@ -168,12 +165,12 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
                 "version":UserDefaults.standard.string(forKey: location + "_version") ?? "0"
             ]
             if(UserDefaults.standard.string(forKey: location + "_version") != nil){
-                downloading.addButton("Offline Mode", action: {
+                downloading.addButton("离线模式", action: {
                     request?.cancel()
                     self.getToken(isOnline: false)
                 })
             }
-            let responder = downloading.showWait("资源更新中", subTitle: "更新资源中，请稍后...")
+            let responder = downloading.showWait("资源更新中", subTitle: "更新资源中，请稍后，当前进度 00.00%")
             request = Alamofire.download("https://game.nfls.io/" + location + "/offline.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress(queue: utilityQueue) { progress in
                 DispatchQueue.main.async {
                     if(progress.fractionCompleted != 1.0){
@@ -268,19 +265,24 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
     }
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        let score = Int(message)!
+        switch(message){
+        case "double":
+            listProducts()
+            break
+        case "recover":
+            listProducts()
+            break
+        default:
+            break
+        }
+        /*
         if(UserDefaults.standard.integer(forKey: location + "_last") < score){
             UserDefaults.standard.set(score, forKey: location + "_last")
         }
+ */
         completionHandler()
     }
 
-    func networkError(){
-        let alert = UIAlertController(title: "Error", message: "Network or server error. Please check that you give network permission for this app in Preferences.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-        self.present(alert,animated: true)
-    }
 }
 extension SKProduct {
     

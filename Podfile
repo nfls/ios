@@ -26,4 +26,5 @@ target 'NFLSers-iOS' do
   pod 'Permission/Photos'
   pod 'SCLAlertView'
   pod 'UIColor-Pantone'
+  pod 'InAppSettingsKit'
 end

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isLaunched = false
     var isOn = true
     var time = Date().timeIntervalSince1970
+    var theme = ThemeManager()
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -86,6 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        // let _ = ThemeManager.init()
         let interval = Date().timeIntervalSince1970 - time
         if(isLaunched && !isOn && interval >= 60){
             if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? LaunchScreenViewController {

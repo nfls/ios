@@ -220,18 +220,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8j0-1f-vpN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="X7B-Jh-b9J"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="开源组件许可" id="Uxu-gN-mFr"/>
-                                </items>
-                            </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-T7-77B">
-                                <rect key="frame" x="0.0" y="108" width="320" height="372"/>
-                            </scrollView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gLE-zm-Iaa">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -336,17 +324,10 @@ CountryCode
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8j0-1f-vpN" secondAttribute="trailing" id="8To-GA-6AD"/>
-                            <constraint firstAttribute="trailing" secondItem="gLE-zm-Iaa" secondAttribute="trailing" id="983-f8-LJN"/>
-                            <constraint firstItem="zCf-AZ-ifT" firstAttribute="top" secondItem="wZv-T7-77B" secondAttribute="bottom" id="Dd1-NM-JDQ"/>
-                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="G7o-eb-2wq"/>
-                            <constraint firstItem="wZv-T7-77B" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="Vef-kU-cGK"/>
-                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="top" secondItem="Zch-4R-QnA" secondAttribute="top" constant="64" id="Ybc-Vy-ok7"/>
-                            <constraint firstItem="8j0-1f-vpN" firstAttribute="top" secondItem="LBR-nw-DSn" secondAttribute="bottom" id="kHc-hp-WEM"/>
-                            <constraint firstItem="8j0-1f-vpN" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="kmy-mp-AD0"/>
-                            <constraint firstItem="zCf-AZ-ifT" firstAttribute="top" secondItem="gLE-zm-Iaa" secondAttribute="bottom" id="p4u-hY-VAN"/>
-                            <constraint firstAttribute="trailing" secondItem="wZv-T7-77B" secondAttribute="trailing" id="ylS-Xx-bHO"/>
-                            <constraint firstItem="wZv-T7-77B" firstAttribute="top" secondItem="8j0-1f-vpN" secondAttribute="bottom" id="zoN-L3-csx"/>
+                            <constraint firstItem="zCf-AZ-ifT" firstAttribute="top" secondItem="gLE-zm-Iaa" secondAttribute="bottom" id="Fyh-6O-3Kj"/>
+                            <constraint firstAttribute="trailing" secondItem="gLE-zm-Iaa" secondAttribute="trailing" id="bZs-Pg-qlz"/>
+                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="top" secondItem="LBR-nw-DSn" secondAttribute="bottom" id="cyl-Nl-ln2"/>
+                            <constraint firstItem="gLE-zm-Iaa" firstAttribute="leading" secondItem="Zch-4R-QnA" secondAttribute="leading" id="pBQ-Vq-8HY"/>
                         </constraints>
                     </view>
                     <connections>
@@ -745,6 +726,34 @@ CountryCode
             </objects>
             <point key="canvasLocation" x="2614" y="-1304"/>
         </scene>
+        <!--设置-->
+        <scene sceneID="hiS-aX-Fvy">
+            <objects>
+                <tableViewController title="设置" id="wxE-ot-QSB" customClass="SettingViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q9a-f7-D7M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sG2-HZ-tT6">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sG2-HZ-tT6" id="PJj-Se-jVR">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wxE-ot-QSB" id="dKB-eN-3kK"/>
+                            <outlet property="delegate" destination="wxE-ot-QSB" id="dcW-Ks-gu7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7e-Hw-I3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4834" y="-1304"/>
+        </scene>
         <!--影音-->
         <scene sceneID="AiU-Gf-pSc">
             <objects>
@@ -847,15 +856,15 @@ CountryCode
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dbA-eh-T8m">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dbA-eh-T8m" firstAttribute="leading" secondItem="wYj-lI-JA8" secondAttribute="leading" id="5Kk-Mb-thy"/>
-                            <constraint firstAttribute="trailing" secondItem="dbA-eh-T8m" secondAttribute="trailing" id="DUL-1f-WFo"/>
-                            <constraint firstAttribute="bottom" secondItem="dbA-eh-T8m" secondAttribute="bottom" id="IQ7-EB-SlH"/>
-                            <constraint firstItem="dbA-eh-T8m" firstAttribute="top" secondItem="wYj-lI-JA8" secondAttribute="top" id="Pg2-sd-hIv"/>
+                            <constraint firstItem="Z9H-wE-yzv" firstAttribute="top" secondItem="dbA-eh-T8m" secondAttribute="bottom" id="6Ya-96-eU2"/>
+                            <constraint firstItem="dbA-eh-T8m" firstAttribute="leading" secondItem="wYj-lI-JA8" secondAttribute="leading" id="U6W-li-xCN"/>
+                            <constraint firstAttribute="trailing" secondItem="dbA-eh-T8m" secondAttribute="trailing" id="hTg-XM-pMW"/>
+                            <constraint firstItem="dbA-eh-T8m" firstAttribute="top" secondItem="nL8-sz-CL4" secondAttribute="bottom" id="uzC-7V-muE"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -869,7 +878,7 @@ CountryCode
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAV-mC-4G5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BiR-br-H5k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3342" y="-1304"/>
+            <point key="canvasLocation" x="3341.25" y="-1305"/>
         </scene>
         <!--百科-->
         <scene sceneID="Hcb-L3-rkL">
@@ -995,6 +1004,7 @@ CountryCode
                         <segue destination="aSC-Ix-BeI" kind="show" identifier="showMedia" id="2sk-Kx-Wl4"/>
                         <segue destination="gXj-XB-XNt" kind="show" identifier="showGame" id="FhP-0e-VhR"/>
                         <segue destination="RUS-bb-dSR" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="9Xs-Iy-D7T"/>
+                        <segue destination="wxE-ot-QSB" kind="show" identifier="showSettings" id="f3I-r9-qrI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKQ-AZ-24W" userLabel="First Responder" sceneMemberID="firstResponder"/>

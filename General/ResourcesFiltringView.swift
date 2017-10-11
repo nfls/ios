@@ -13,6 +13,7 @@ import SSZipArchive
 import SwiftyMarkdown
 import QuickLook
 import SCLAlertView
+import Kingfisher
 
 class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource{
     
@@ -23,6 +24,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var sizes = [Int]()
     var isFolder = [Bool]()
     var isDownloaded = [Bool]()
+    var images = [String?]()
     var currentFolder = ""
     var reactWithClick = true
     var onlineMode = true
@@ -40,10 +42,20 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(setting))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         navigationItem.rightBarButtonItem = rightButton
+        navigationItem.leftItemsSupplementBackButton = true
+        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(back))
+        leftButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
+        navigationItem.leftBarButtonItem = leftButton
         tableview.allowsMultipleSelection = true
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
         qlpreview.delegate = self
         qlpreview.dataSource = self
+    }
+    
+    @objc func back(){
+        if(!currentFolder.isEmpty){
+            changeCurrentDir(newDir: "", false)
+        }
     }
     
     func handleSwipeLeft(gesture:UIGestureRecognizer){
@@ -153,16 +165,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         sizes = [Int]()
         isFolder = [Bool]()
         isDownloaded = [Bool]()
-        if(self.currentFolder.isEmpty){
-            filenames.append(" ")
-        } else {
-            filenames.append("返回上级目录")
-        }
-        
-        times.append(0)
-        sizes.append(0)
-        isFolder.append(true)
-        isDownloaded.append(false)
+        images = [String?]()
         if(!onlineMode){
             localRequest()
             return
@@ -246,6 +249,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 self.tableview.reloadData()
                 responder.close()
                 self.showHeaderFooter()
+                self.thumbRequest()
                 break
             default:
                 responder.close()
@@ -264,7 +268,34 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             }
         }
     }
-    
+    func thumbRequest(){
+        var requestImages = [Parameters]()
+        for file in filenames{
+            let parameters:Parameters = [
+                "type":"doc",
+                "href":currentFolder.removingPercentEncoding! + "/" + file,
+                "width":400,
+                "height":400
+            ]
+            requestImages.append(parameters)
+        }
+        let parameters:Parameters = [
+            "action":"get",
+            "thumbs":requestImages
+        ]
+        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch(response.result){
+            case .success(let json):
+                self.images = (json as! [String:AnyObject])["thumbs"] as! [String?]
+                self.tableview.reloadData()
+                break
+            case .failure(let _):
+                break
+            }
+        }
+
+        
+    }
     func localRequest(){
         searchField.isEnabled = false
         searchField.placeholder = ""
@@ -297,9 +328,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                     filenames.append(name)
                 }
             }
-        } catch let error as NSError {
+        } catch {
             //print(error)
         }
+        
         self.tableview.delegate = self
         self.tableview.dataSource = self
         self.tableview.reloadData()
@@ -427,7 +459,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 }
                 self.listRequest()
             })
-            let responder = downloading.showWait("下载中", subTitle: "您正在下载以下文件：" + filename)
+            let responder = downloading.showWait("下载中", subTitle: "您正在下载以下文件：" + filename + "，进度：00.00%")
             let utilityQueue = DispatchQueue.global(qos: .utility)
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
@@ -477,8 +509,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             dir = (dir as NSString).substring(from: index)
             currentFolder = String(dir.characters.reversed())
         }
-        print(currentFolder)
-        
         listRequest()
     }
     
@@ -542,30 +572,36 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
         let name = filenames[indexPath.row]
         let size = sizes[indexPath.row] / 1000
-        
-        if(indexPath.row != 0){
-            if(onlineMode){
-                let time = Date(timeIntervalSince1970: TimeInterval(times[indexPath.row]/1000))
-                let dateFormatter = DateFormatter()
-                dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-                dateFormatter.locale = NSLocale.current
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
-                let strDate = dateFormatter.string(from: time)
-                cell.detailTextLabel!.text = strDate + " - " + calculateSize(bytes: size)
-                if(isDownloaded[indexPath.row]){
-                    cell.detailTextLabel!.text! += " - 已缓存"
-                }
-            } else {
-                cell.detailTextLabel!.text = calculateSize(bytes: size)
+        if(onlineMode){
+            let time = Date(timeIntervalSince1970: TimeInterval(times[indexPath.row]/1000))
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
+            let strDate = dateFormatter.string(from: time)
+            cell.detailTextLabel!.text = strDate + " - " + calculateSize(bytes: size)
+            if(isDownloaded[indexPath.row]){
+                cell.detailTextLabel!.text! += " - 已缓存"
             }
-            if(isFolder[indexPath.row]){
-                cell.imageView!.image = UIImage(named: "icons8-Folder-50.png")
-            } else {
-                cell.imageView!.image = UIImage(named: "icons8-Documents-50.png")
-            }
+        } else {
+            cell.detailTextLabel!.text = calculateSize(bytes: size)
         }
-        
-        
+        var placeHolder = UIImage()
+        if(isFolder[indexPath.row]){
+            placeHolder = UIImage(named: "icons8-Folder-50.png")!
+        } else {
+            placeHolder = UIImage(named: "icons8-Documents-50.png")!
+        }
+        if(indexPath.row < images.count){
+            if let url = images[indexPath.row] {
+                cell.imageView!.kf.cancelDownloadTask()
+                cell.imageView!.kf.setImage(with: (URL(string:"https://dl.nfls.io" + url) as! Resource), placeholder: placeHolder, options: nil, progressBlock: nil)
+            }else{
+                cell.imageView!.image = placeHolder
+            }
+        }else{
+            cell.imageView!.image = placeHolder
+        }
         cell.textLabel!.text = name
         let selectedIndexPaths = tableView.indexPathsForSelectedRows
         let rowIsSelected = selectedIndexPaths != nil && selectedIndexPaths!.contains(indexPath)
@@ -610,13 +646,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
             if(isFolder[indexPath.row]){
-                if(indexPath.row != 0){
-                    changeCurrentDir(newDir : filenames[indexPath.row])
-                } else {
-                    if(!currentFolder.isEmpty){
-                        changeCurrentDir(newDir: "", false)
-                    }
-                }
+                changeCurrentDir(newDir : filenames[indexPath.row])
             } else {
                 downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:filenames[indexPath.row], path:currentFolder)
             }
@@ -630,9 +660,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if(indexPath.row == 0){
-            return []
-        }
+
         if(isFolder[indexPath.row]){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删空缓存", handler:{action, indexPath in
                 self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)

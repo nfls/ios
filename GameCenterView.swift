@@ -78,7 +78,6 @@ class GameCenterViewController:UITableViewController{
                     self.urls.append(detail["url"] as! String)
                     self.images.append(detail["icon"] as! String)
                 }
-
                 self.getPictures(index: 0)
                 break
             default:

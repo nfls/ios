@@ -56,16 +56,19 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
 
     override func viewDidLoad() {
         bar.delegate = self
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 92/255, green: 184/255, blue: 92/255, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.white // for titles, buttons, etc.
+        let theme = ThemeManager()
+        self.navigationController?.navigationBar.barStyle = theme.normalTheme.style
+        self.navigationController?.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
+        self.navigationController?.navigationBar.tintColor = theme.normalTheme.titleButtonColor
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
+            ]
+        }
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ]
         }
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
@@ -77,7 +80,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
-        self.bar.actionForIndex[6] = {
+        self.bar.actionForIndex[5] = {
             self.performSegue(withIdentifier: "showWiki", sender: self)
         }
         self.bar.actionForIndex[0] = {
@@ -86,13 +89,13 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         self.bar.actionForIndex[2] = {
             self.performSegue(withIdentifier: "showAlumni", sender: self)
         }
-        self.bar.actionForIndex[4] = {
+        self.bar.actionForIndex[7] = {
             self.performSegue(withIdentifier: "showWeather", sender: self)
         }
         self.bar.actionForIndex[3] = {
             self.performSegue(withIdentifier: "showIC", sender: self)
         }
-        self.bar.actionForIndex[7] = {
+        self.bar.actionForIndex[6] = {
             self.performSegue(withIdentifier: "showMedia", sender: self)
         }
         self.bar.actionForIndex[1] = {
@@ -112,6 +115,16 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SKPaymentQueue.default().add(self)
+        let theme = ThemeManager()
+        self.navigationController?.navigationBar.barStyle = theme.normalTheme.style
+        self.navigationController?.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
+        self.navigationController?.navigationBar.tintColor = theme.normalTheme.titleButtonColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
+            ]
+        }
         internalHandler(url: handleUrl)
     }
     
@@ -232,9 +245,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         })
         let donate = UIAlertAction(title: "Buy Us A Coffee", style: .default, handler: {
             action in
-            let payment = SKPayment(product: self.productsArray[0] as SKProduct)
-            SKPaymentQueue.default().add(payment)
-            self.transactionInProgress = true
+            if(!self.productsArray.isEmpty){
+                let payment = SKPayment(product: self.productsArray[0] as SKProduct)
+                SKPaymentQueue.default().add(payment)
+                self.transactionInProgress = true
+            }
         })
         let opensourceInfo = UIAlertAction(title: "Licenses", style: .default, handler: {
             action in
@@ -251,7 +266,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         }
         let userCenter = UIAlertAction(title:title, style:.default, handler:{
             action in
-            self.performSegue(withIdentifier: "showCenter", sender: self)
+            self.performSegue(withIdentifier: "showSettings", sender: self)
         })
         let cancel = UIAlertAction(title: "Back", style: .cancel, handler: nil)
         dialog.addAction(donate)

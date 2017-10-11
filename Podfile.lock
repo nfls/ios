@@ -11,6 +11,7 @@ PODS:
   - GCDWebServer (3.4.1):
     - GCDWebServer/Core (= 3.4.1)
   - GCDWebServer/Core (3.4.1)
+  - InAppSettingsKit (2.8.1)
   - IQKeyboardManagerSwift (5.0.3)
   - Kingfisher (4.1.0)
   - Permission/Camera (2.0.4):
@@ -24,6 +25,7 @@ PODS:
   - SSZipArchive (2.0.8)
   - SwiftIconFont (2.7.1)
   - SwiftyMarkdown (0.5.0)
+  - UIColor-Pantone (1.0)
   - UITableView+FDTemplateLayoutCell (1.6)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
@@ -35,6 +37,7 @@ DEPENDENCIES:
   - EZSwiftExtensions
   - FrostedSidebar
   - GCDWebServer
+  - InAppSettingsKit
   - IQKeyboardManagerSwift
   - Kingfisher
   - Permission/Camera
@@ -44,6 +47,7 @@ DEPENDENCIES:
   - SSZipArchive
   - SwiftIconFont (from `https://github.com/0x73/SwiftIconFont.git`)
   - SwiftyMarkdown
+  - UIColor-Pantone
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics-NO-IDFA
 
@@ -64,6 +68,7 @@ SPEC CHECKSUMS:
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
+  InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   IQKeyboardManagerSwift: e257e513744cf32123eca7061272acea0246fc83
   Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
@@ -71,9 +76,10 @@ SPEC CHECKSUMS:
   SSZipArchive: e6ab66e1936fac7e3b5073e9f5eb364d91dfbfc7
   SwiftIconFont: 0127ae4f73d91803c1bcbb714a21931a8b2ce9c4
   SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
+  UIColor-Pantone: b6e5ab4c032f704f75453cfc0e8a07f68624cff5
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 47189bf0c78bdd72105b38b7aea44a6aac4de341
+PODFILE CHECKSUM: f8b2b4a78fe6816fd81caa3498a3b7eae6b75612
 
 COCOAPODS: 1.4.0.beta.1
