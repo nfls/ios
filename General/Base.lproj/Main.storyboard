@@ -171,42 +171,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hjE-NG-3gM">
-                                <rect key="frame" x="5" y="72" width="310" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="y40-pe-wul"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="filtre:" destination="IkS-ib-9hb" eventType="editingDidEnd" id="jOq-lD-DcA"/>
-                                </connections>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JBr-6t-fDA">
-                                <rect key="frame" x="0.0" y="107" width="320" height="368"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="360"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="e8U-SY-QlL">
+                                <rect key="frame" x="0.0" y="64" width="320" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="q3c-0o-1Dp"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PJy-PB-42q" firstAttribute="top" secondItem="JBr-6t-fDA" secondAttribute="bottom" constant="5" id="7f1-jk-cTP"/>
-                            <constraint firstAttribute="trailing" secondItem="hjE-NG-3gM" secondAttribute="trailing" constant="5" id="Rj3-2H-271"/>
-                            <constraint firstItem="hjE-NG-3gM" firstAttribute="top" secondItem="mzv-Ge-lTV" secondAttribute="bottom" constant="8" id="Zh1-TH-PnW"/>
+                            <constraint firstItem="JBr-6t-fDA" firstAttribute="leading" secondItem="sw1-ra-TN2" secondAttribute="leading" id="K2v-Ce-ZaR"/>
+                            <constraint firstItem="e8U-SY-QlL" firstAttribute="top" secondItem="mzv-Ge-lTV" secondAttribute="bottom" id="M0I-j3-Uqo"/>
+                            <constraint firstItem="JBr-6t-fDA" firstAttribute="top" secondItem="e8U-SY-QlL" secondAttribute="bottom" id="PYP-hG-3HL"/>
                             <constraint firstItem="JBr-6t-fDA" firstAttribute="leading" secondItem="sw1-ra-TN2" secondAttribute="leading" id="cfO-Tx-NYx"/>
                             <constraint firstAttribute="trailing" secondItem="JBr-6t-fDA" secondAttribute="trailing" id="cnR-4n-lCt"/>
-                            <constraint firstItem="JBr-6t-fDA" firstAttribute="top" secondItem="hjE-NG-3gM" secondAttribute="bottom" constant="5" id="tWJ-m9-IUp"/>
-                            <constraint firstItem="hjE-NG-3gM" firstAttribute="leading" secondItem="sw1-ra-TN2" secondAttribute="leading" constant="5" id="xoD-HD-GeJ"/>
+                            <constraint firstAttribute="trailing" secondItem="JBr-6t-fDA" secondAttribute="trailing" id="dL2-eD-Y1M"/>
+                            <constraint firstItem="PJy-PB-42q" firstAttribute="top" secondItem="JBr-6t-fDA" secondAttribute="bottom" id="iPf-Tm-6EA"/>
+                            <constraint firstAttribute="trailing" secondItem="e8U-SY-QlL" secondAttribute="trailing" id="oHv-dY-LRw"/>
+                            <constraint firstItem="e8U-SY-QlL" firstAttribute="leading" secondItem="sw1-ra-TN2" secondAttribute="leading" id="oQa-Gq-Nii"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchField" destination="hjE-NG-3gM" id="4jU-gY-mrZ"/>
+                        <outlet property="searchBar" destination="e8U-SY-QlL" id="MdK-h2-mjl"/>
                         <outlet property="tableview" destination="JBr-6t-fDA" id="2xJ-ws-9CE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3f-Qq-nAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1806" y="-1303"/>
+            <point key="canvasLocation" x="1805.625" y="-1303.75"/>
         </scene>
         <!--Licenses-->
         <scene sceneID="oDB-Wz-jfb">

@@ -16,42 +16,17 @@ class GameCenterViewController:UITableViewController{
     var descriptions = [String]()
     var urls = [String]()
     var images = [String]()
-    var pictures = [Data]()
     
     func loadFromLocal(){
         if(UserDefaults.standard.value(forKey: "game_names") as? [String]) != nil{
             names = UserDefaults.standard.value(forKey: "game_names") as! [String]
             urls = UserDefaults.standard.value(forKey: "game_urls") as! [String]
             descriptions = UserDefaults.standard.value(forKey: "game_descriptions") as! [String]
-            pictures = UserDefaults.standard.value(forKey: "game_pictures") as! [Data]
+            images = UserDefaults.standard.value(forKey: "game_img") as! [String]
             tableView.reloadData()
         }
     }
-    
-    func getPictures(index:Int){
-        if(index >= images.count){
-            UserDefaults.standard.set(self.names, forKey: "game_names")
-            UserDefaults.standard.set(self.urls, forKey: "game_urls")
-            UserDefaults.standard.set(self.pictures, forKey: "game_pictures")
-            UserDefaults.standard.set(self.descriptions, forKey:"game_descriptions")
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            return
-        }
-        Alamofire.request(images[index]).responseData { (response) in
-            switch(response.result){
-            case .success(let data):
-                self.pictures.append(data)
-                self.getPictures(index: index + 1)
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    
+
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
@@ -71,14 +46,17 @@ class GameCenterViewController:UITableViewController{
                 self.descriptions.removeAll()
                 self.urls.removeAll()
                 self.images.removeAll()
-                self.pictures.removeAll()
                 for detail in info {
                     self.names.append(detail["name"] as! String)
                     self.descriptions.append(detail["description"] as! String)
                     self.urls.append(detail["url"] as! String)
                     self.images.append(detail["icon"] as! String)
                 }
-                self.getPictures(index: 0)
+                UserDefaults.standard.set(self.names, forKey: "game_names")
+                UserDefaults.standard.set(self.urls, forKey: "game_urls")
+                UserDefaults.standard.set(self.descriptions, forKey:"game_descriptions")
+                UserDefaults.standard.set(self.images, forKey:"game_img")
+                self.tableView.reloadData()
                 break
             default:
                 break
@@ -105,11 +83,11 @@ class GameCenterViewController:UITableViewController{
         cell.detailTextLabel?.text = descriptions[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
-        cell.imageView?.image = imageWithImage(image: UIImage(data: pictures[indexPath.row])!, scaledToSize: CGSize(width: 50, height: 50))
+        cell.imageView?.kf.setImage(with: URL(string: images[indexPath.row]), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
+            cell.imageView?.image = image!.kf.resize(to: CGSize(width: 50, height: 50))
+        })
         cell.textLabel!.font = UIFont(name: "HelveticaBold", size: 18)
         cell.detailTextLabel!.font = UIFont(name: "Helvetica", size: 14)
-        
-        
         return cell
     }
     

@@ -17,6 +17,7 @@
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
 		6534D1351F5BFCFB0032F6EE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6534D1341F5BFCFB0032F6EE /* MapKit.framework */; };
 		6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */; };
+		653CE9CD1F8FA76F00A56B57 /* ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 653CE9CC1F8FA75900A56B57 /* ic.png */; };
 		653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */; };
 		6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */; };
 		6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */; };
@@ -71,6 +72,7 @@
 		65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		6534D1341F5BFCFB0032F6EE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		653CE9CC1F8FA75900A56B57 /* ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic.png; sourceTree = "<group>"; };
 		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
 		6544765B1F57DA3D00CDEBD8 /* UniversityInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityInfoView.swift; sourceTree = "<group>"; };
 		6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSelectView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				6585ADAF1F8B79BA00ECCBB9 /* media.png */,
 				6585ADB21F8B79BC00ECCBB9 /* resources.png */,
 				6585ADB31F8B79BC00ECCBB9 /* weather.png */,
+				653CE9CC1F8FA75900A56B57 /* ic.png */,
 				6585ADB41F8B79BC00ECCBB9 /* wiki.png */,
 				65859EC21F82153A00124805 /* ib-world-school-logo-2-colour-rev.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
@@ -394,6 +397,7 @@
 				6585ADB81F8B7AA200ECCBB9 /* resources.png in Resources */,
 				657CE9171F89EE0500433578 /* forum.png in Resources */,
 				653F1F7D1F4602950023A4F5 /* _MG_6142.JPG in Resources */,
+				653CE9CD1F8FA76F00A56B57 /* ic.png in Resources */,
 				65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */,
 				6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */,
 				6585ADB51F8B7A9300ECCBB9 /* alumni.png in Resources */,

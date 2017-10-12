@@ -151,10 +151,7 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
             let downloading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
                 showCloseButton: false
             ))
-            //let downloading = UIAlertController(title: "Resources Updating",
-            //                                    message:"Updating resources now, please wait for a while.", preferredStyle: .alert)
             var request:Alamofire.Request?
-            //self.present(downloading, animated: true, completion: nil)
             let utilityQueue = DispatchQueue.global(qos: .utility)
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

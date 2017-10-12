@@ -23,10 +23,9 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var subtitles = [String]()
     var descriptions = [String]()
     var urls = [String]()
-    var images = [String]()
-    var pictures = [Data]()
+    var images = [URL]()
     
-    let barImages = [UIImage(named:"resources.png"),UIImage(named:"games.png"),UIImage(named:"alumni.png"),UIImage(named:"ib-world-school-logo-2-colour-rev.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
+    let barImages = [UIImage(named:"resources.png"),UIImage(named:"games.png"),UIImage(named:"alumni.png"),UIImage(named:"ic.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
     let barColors = [UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange]
     let bar:FrostedSidebar
     
@@ -53,9 +52,21 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
             bar.dismissAnimated(true, completion: nil)
         }
     }
-
-    override func viewDidLoad() {
-        bar.delegate = self
+    @objc func gestureMenu(){
+        if(!bar.isCurrentlyOpen){
+            bar.showInViewController(self, animated: true)
+        }
+    }
+    @objc func closeGestureMenu(){
+        if(bar.isCurrentlyOpen){
+            bar.dismissAnimated(true, completion: nil)
+        }
+    }
+    
+    func setUpUI(){
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
         let theme = ThemeManager()
         self.navigationController?.navigationBar.barStyle = theme.normalTheme.style
         self.navigationController?.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
@@ -67,12 +78,13 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                 NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
             ]
         }
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
+    }
+
+    override func viewDidLoad() {
+        bar.delegate = self
+        setUpUI()
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
-        self.navigationItem.title = "Homepage"
         self.removeFile(filename: "", path: "temp")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
@@ -105,29 +117,34 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
         self.navigationItem.leftBarButtonItem = leftButton
         
+        let edgePan = UISwipeGestureRecognizer(target: self, action: #selector(gestureMenu))
+        edgePan.direction = .right
+        view.addGestureRecognizer(edgePan)
+        
+        let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(closeGestureMenu))
+        swipeBack.direction = .left
+        view.addGestureRecognizer(swipeBack)
         let productID:NSSet = NSSet(object: "2")
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
-        tableView.isScrollEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SKPaymentQueue.default().add(self)
-        let theme = ThemeManager()
-        self.navigationController?.navigationBar.barStyle = theme.normalTheme.style
-        self.navigationController?.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
-        self.navigationController?.navigationBar.tintColor = theme.normalTheme.titleButtonColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
-            ]
-        }
+        setUpUI()
+        
+        self.navigationItem.title = "南外人"
         internalHandler(url: handleUrl)
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = false
+        }
+        self.navigationItem.title = nil
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         SKPaymentQueue.default().remove(self)
@@ -151,35 +168,16 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                     self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
                     self.descriptions.append(detail["detail"] as! String)
                     self.urls.append(detail["conf"] as? String ?? "")
-                    self.images.append(detail["img"] as! String)
+                    self.images.append(URL(string: detail["img"] as! String)!)
                 }
-                self.getPictures(index: 0)
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    func getPictures(index:Int){
-        if(index >= images.count){
-            DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-            return
-        }
-        Alamofire.request(images[index]).responseData { (response) in
-            switch(response.result){
-            case .success(let data):
-                self.pictures.append(data)
-                self.getPictures(index: index + 1)
                 break
             default:
                 break
             }
         }
+        
     }
-    
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -206,7 +204,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         cell.cellTitle.text = names[indexPath.row]
         cell.subtitle.text = subtitles[indexPath.row]
         cell.detail.text = descriptions[indexPath.row]
-        cell.myImage.image = UIImage(data: pictures[indexPath.row])
+        cell.myImage!.kf.setImage(with: images[indexPath.row])
         return cell
     }
     
@@ -402,6 +400,9 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                         self.navigationItem.prompt = nil
+                        self.navigationController?.navigationBar.setNeedsLayout()
+                        self.navigationController?.navigationBar.layoutIfNeeded()
+                        self.navigationController?.navigationBar.setNeedsDisplay()
                     })
                 }
                 break
@@ -680,7 +681,8 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     }
     
     func sidebar(_ sidebar: FrostedSidebar, didTapItemAtIndex index: Int) {
-        return
+        sidebar.dismissAnimated(true, completion: nil
+        )
     }
     
     func sidebar(_ sidebar: FrostedSidebar, didEnable itemEnabled: Bool, itemAtIndex index: Int) {

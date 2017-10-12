@@ -15,9 +15,9 @@ import QuickLook
 import SCLAlertView
 import Kingfisher
 
-class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource{
+class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource,UISearchBarDelegate{
     
-    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     let ID = "Cell"
     var filenames = [String]()
     var times = [Int]()
@@ -44,12 +44,16 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         navigationItem.rightBarButtonItem = rightButton
         navigationItem.leftItemsSupplementBackButton = true
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(back))
-        leftButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
+        leftButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         navigationItem.leftBarButtonItem = leftButton
         tableview.allowsMultipleSelection = true
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
         qlpreview.delegate = self
         qlpreview.dataSource = self
+        searchBar.delegate = self
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
     
     @objc func back(){
@@ -74,6 +78,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     override func viewWillDisappear(_ animated: Bool) {
         MobClick.endLogPageView("Resources")
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         //removeFile(filename: "", path: "temp")
     }
     @objc func setting() {
@@ -120,7 +127,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 (alert: UIAlertAction!) in
                 self.removeFile(filename: "", path: "")
             })
-
+            
             alertController.addAction(deleteAction)
         } else {
             mutipleSelectAction = UIAlertAction(title: "单选模式", style: UIAlertActionStyle.default, handler: {
@@ -155,7 +162,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         alertController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-
+        
     }
     
     
@@ -178,7 +185,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             self.listRequest()
         }
         let responder = loading.showWait("请稍后", subTitle: "数据加载中")
-        searchField.placeholder = "过滤 " + currentFolder.removingPercentEncoding! + "/"
+        searchBar.placeholder = "过滤 " + currentFolder.removingPercentEncoding! + "/"
         let requestDetail:Parameters = [
             "href":currentFolder + "/",
             "what":1
@@ -193,7 +200,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             response in
             switch response.result{
             case .success(let json):
-    
+                
                 let data = (json as! [String:AnyObject])["items"]! as! NSArray
                 for file in data{
                     var name = (file as! [String:Any])["href"] as! String
@@ -206,7 +213,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         name = name.replacingOccurrences(of: "/", with: "")
                         name = name.removingPercentEncoding!
                         if(!name.isEmpty){
-                            if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
+                            if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
                                 self.filenames.append(name)
                                 self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
@@ -226,7 +233,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         name = name.replacingOccurrences(of: "/", with: "")
                         name = name.removingPercentEncoding!
                         if(!name.isEmpty){
-                            if((self.searchField.text?.isEmpty)! || name.range(of: self.searchField.text!) != nil)
+                            if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
                                 self.filenames.append(name)
                                 self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
@@ -240,16 +247,17 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                                 }
                             }
                         }
-
+                        
                     }
-                   
+                    
                 }
                 self.tableview.delegate = self
                 self.tableview.dataSource = self
                 self.tableview.reloadData()
                 responder.close()
-                self.showHeaderFooter()
                 self.thumbRequest()
+                self.showHeaderFooter()
+                
                 break
             default:
                 responder.close()
@@ -286,19 +294,25 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
             switch(response.result){
             case .success(let json):
-                self.images = (json as! [String:AnyObject])["thumbs"] as! [String?]
+                if let images = json as? [String:AnyObject]{
+                    let thumbs = images["thumbs"] as! [String?]
+                    self.images = thumbs
+                } else {
+                    self.images.removeAll()
+                }
+            
                 self.tableview.reloadData()
                 break
-            case .failure(let _):
+            case .failure(_):
                 break
             }
         }
-
+        
         
     }
     func localRequest(){
-        searchField.isEnabled = false
-        searchField.placeholder = ""
+        searchBar.isHidden = true
+        searchBar.placeholder = ""
         navigationController!.title = "资源中心（离线）"
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("downloads")
         do {
@@ -413,7 +427,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         self.listRequest()
                     })
                     done.showInfo("下载完成", subTitle: String(count) + " 个文件已下载完成")
-            })
+                })
         } else {
             self.listRequest()
         }
@@ -478,11 +492,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             self.goToView(url: fileURL)
         }
     }
-    
-    @IBAction func filtre(_ sender: Any) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         listRequest()
     }
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        listRequest()
+    }
     func goToView(url:URL){
         fileurls.removeAll()
         fileurls.append(url as NSURL)
@@ -494,11 +509,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         
     }
     
-    
-    
     func changeCurrentDir(newDir:String,_ add:Bool = true){
-        searchField.text = nil
-        searchField.resignFirstResponder()
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
         if(add){
             let escapedString = newDir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
             currentFolder += "/" + escapedString!
@@ -514,19 +527,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func showTips(force: Bool = false){
         if(true){
-        let tips = "1.向左滑动行可执行更多操作，具体可自行探索\n" +
-                   "2.如想下载整个文件夹，请使用多选模式，然后选中单个或多个文件夹下载即可\n" +
-                   "3.打开文件时默认会将文件缓存至本地，如果您的手机空间捉急，可选择“临时下载”\n" +
-                   "4.当然，如果您觉得您的手机存储空间足够大，可以缓存所有文件\n" +
-                   "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）\n" +
-                   "6.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
-        let tipsController = UIAlertController(title: "Tips", message: tips, preferredStyle: .alert)
-        (tipsController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left
-        let doneAction = UIAlertAction(title: "我知道了", style: .default, handler: {
-            (action: UIAlertAction) in
-        })
-        tipsController.addAction(doneAction)
-        self.present(tipsController, animated: true, completion: nil)
+            let tips = "1.向左滑动行可执行更多操作，具体可自行探索\n" +
+                "2.如想下载整个文件夹，请使用多选模式，然后选中单个或多个文件夹下载即可\n" +
+                "3.打开文件时默认会将文件缓存至本地，如果您的手机空间捉急，可选择“临时下载”\n" +
+                "4.当然，如果您觉得您的手机存储空间足够大，可以缓存所有文件\n" +
+                "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）\n" +
+            "6.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
+            let tipsController = UIAlertController(title: "Tips", message: tips, preferredStyle: .alert)
+            (tipsController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left
+            let doneAction = UIAlertAction(title: "我知道了", style: .default, handler: {
+                (action: UIAlertAction) in
+            })
+            tipsController.addAction(doneAction)
+            self.present(tipsController, animated: true, completion: nil)
         }
     }
     
@@ -555,7 +568,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 }
             default:
                 break
-
+                
             }
         })
     }
@@ -570,6 +583,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
+        cell.imageView!.kf.cancelDownloadTask()
         let name = filenames[indexPath.row]
         let size = sizes[indexPath.row] / 1000
         if(onlineMode){
@@ -594,8 +608,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         }
         if(indexPath.row < images.count){
             if let url = images[indexPath.row] {
-                cell.imageView!.kf.cancelDownloadTask()
-                cell.imageView!.kf.setImage(with: (URL(string:"https://dl.nfls.io" + url) as! Resource), placeholder: placeHolder, options: nil, progressBlock: nil)
+                cell.imageView!.kf.setImage(with: URL(string:"https://dl.nfls.io" + url)!, placeholder: placeHolder, options: nil, progressBlock: nil)
             }else{
                 cell.imageView!.image = placeHolder
             }
@@ -660,7 +673,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
+        
         if(isFolder[indexPath.row]){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删空缓存", handler:{action, indexPath in
                 self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
@@ -679,7 +692,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 
                 
                 return [deleteRowAction, moreRowAction]
-
+                
             } else {
                 return [deleteRowAction]
             }
@@ -694,11 +707,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         }
         
     }
-
+    
     @IBAction func closePDF(segue: UIStoryboardSegue){
         
     }
-
+    
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
         return fileurls.count
     }
@@ -706,7 +719,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         return fileurls[index]
     }
-
+    
 }
 
 class DownloadCell:UITableViewCell{
