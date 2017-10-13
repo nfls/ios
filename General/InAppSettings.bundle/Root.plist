@@ -10,7 +10,37 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>UI 界面设置</string>
+			<string>关于</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>请喝咖啡</string>
+			<key>Key</key>
+			<string>app.donate</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>开源项目许可证</string>
+			<key>Key</key>
+			<string>app.license</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>作者</string>
+			<key>File</key>
+			<string>Authors</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>界面</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -27,10 +57,10 @@
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
-			<key>Key</key>
-			<string>settings.night.auto</string>
 			<key>DefaultValue</key>
 			<false/>
+			<key>Key</key>
+			<string>settings.night.auto</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -83,6 +113,28 @@
 				<string>normal</string>
 				<string>graduates</string>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>用户</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>个人中心</string>
+			<key>Key</key>
+			<string>app.user</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>退出</string>
+			<key>Key</key>
+			<string>app.logout</string>
 		</dict>
 	</array>
 </dict>

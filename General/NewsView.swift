@@ -11,6 +11,7 @@ import Alamofire
 import FrostedSidebar
 import StoreKit
 import SCLAlertView
+import Permission
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
@@ -25,7 +26,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var urls = [String]()
     var images = [URL]()
     
-    let barImages = [UIImage(named:"resources.png"),UIImage(named:"games.png"),UIImage(named:"alumni.png"),UIImage(named:"ic.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
+    let barImages = [UIImage(named:"resources.png"),UIImage(named:"game.png"),UIImage(named:"alumni.png"),UIImage(named:"ic.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
     let barColors = [UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange]
     let bar:FrostedSidebar
     
@@ -134,9 +135,28 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         super.viewDidDisappear(animated)
         SKPaymentQueue.default().add(self)
         setUpUI()
-        
         self.navigationItem.title = "南外人"
         internalHandler(url: handleUrl)
+    }
+    
+    func requestPermission(){
+        print("entered")
+        let permision:Permission = .notifications
+        let alert = permision.prePermissionAlert
+        alert.title = "权限请求"
+        alert.message = "为了确保收到最新的活动通知，请允许我们给您发送推送消息"
+        alert.cancel = "取消"
+        alert.confirm = "好的"
+        let denied = permision.deniedAlert
+        denied.title = "缺少权限"
+        denied.message = "您没有开启推送权限，我们无法给您发送最新的活动通知"
+        denied.settings = "设置"
+        denied.cancel = "取消"
+        permision.request { (status) in
+            print("requested")
+            dump(status)
+        }
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -366,8 +386,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                                     alert.addButton("Got It", action: {
                                         UIApplication.shared.applicationIconBadgeNumber = 0
                                         UserDefaults.standard.set(id, forKey: "sysmes_id")
+                                        self.requestPermission()
                                     })
                                     alert.showInfo(title, subTitle: text)
+                                }else{
+                                    self.requestPermission()
                                 }
                             }
                             break
@@ -387,12 +410,13 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                         }
                     })
                     self.loadNews()
-                    
+                    /*
                     let application = UIApplication.shared
                     let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
                     let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
                     application.registerUserNotificationSettings(pushNotificationSettings)
                     application.registerForRemoteNotifications()
+                     */
                     if let username = UserDefaults.standard.value(forKey: "username") as? String{
                         self.navigationItem.prompt = "Welcome back, " + username
                     } else {

@@ -39,12 +39,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(setting))
-        rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(setting))
         navigationItem.rightBarButtonItem = rightButton
-        navigationItem.leftItemsSupplementBackButton = true
-        let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(back))
-        leftButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
+        //navigationItem.leftItemsSupplementBackButton = true
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(back))
+        //leftButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         navigationItem.leftBarButtonItem = leftButton
         tableview.allowsMultipleSelection = true
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
@@ -59,6 +58,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     @objc func back(){
         if(!currentFolder.isEmpty){
             changeCurrentDir(newDir: "", false)
+        }else{
+            navigationController?.popViewController(animated: true)
         }
     }
     
