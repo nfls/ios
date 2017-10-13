@@ -22,6 +22,20 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
         rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
+        setUpUI()
+    }
+    
+    func setUpUI(){
+        let theme = ThemeManager()
+        self.navigationController?.navigationBar.barStyle = theme.typechoTheme.style
+        self.navigationController?.navigationBar.barTintColor = theme.typechoTheme.titleBackgroundColor
+        self.navigationController?.navigationBar.tintColor = theme.typechoTheme.titleButtonColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.typechoTheme.titleButtonColor ?? UIColor.black]
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: theme.typechoTheme.titleButtonColor ?? UIColor.black
+            ]
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

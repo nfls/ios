@@ -23,12 +23,18 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if(self.presentingViewController is UITabBarController){
             in_url = "settings"
         }
         getToken()
+        self.view.backgroundColor = UIColor(red: 252/255, green: 83/255, blue: 40/255, alpha: 1.0)
+        //UIApplication.shared.status
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.view.backgroundColor = UIColor.white
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

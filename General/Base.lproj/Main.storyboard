@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="1805.625" y="-1303.75"/>
         </scene>
-        <!--Licenses-->
+        <!--开源项目许可证-->
         <scene sceneID="oDB-Wz-jfb">
             <objects>
-                <viewController title="Licenses" id="yOG-PY-KJD" customClass="OpenSourceLicenseViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="开源项目许可证" id="yOG-PY-KJD" customClass="OpenSourceLicenseViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LBR-nw-DSn"/>
                         <viewControllerLayoutGuide type="bottom" id="zCf-AZ-ifT"/>
@@ -333,7 +333,7 @@ CountryCode
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57K-gm-mfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1338.75" y="-600"/>
+            <point key="canvasLocation" x="5616" y="-1305"/>
         </scene>
         <!--个人中心-->
         <scene sceneID="icj-ah-7Ge">
@@ -746,6 +746,10 @@ CountryCode
                             <outlet property="delegate" destination="wxE-ot-QSB" id="dcW-Ks-gu7"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="yOG-PY-KJD" kind="show" identifier="showLicenses" id="MVX-AE-O0x"/>
+                        <segue destination="dce-kE-49C" kind="show" identifier="showCenter" id="40F-Er-dbx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7e-Hw-I3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -991,8 +995,6 @@ CountryCode
                     <navigationItem key="navigationItem" id="b2p-FL-WSy"/>
                     <connections>
                         <segue destination="zbU-uo-eoH" kind="show" identifier="showAlumni" id="sdd-Pq-mtV"/>
-                        <segue destination="dce-kE-49C" kind="show" identifier="showCenter" id="1GQ-1P-aHR"/>
-                        <segue destination="yOG-PY-KJD" kind="show" identifier="showLicenses" id="WVB-s5-Glq"/>
                         <segue destination="aML-ls-6Ug" kind="show" identifier="showWeather" id="bqB-su-hgV"/>
                         <segue destination="IkS-ib-9hb" kind="show" identifier="showResources" id="RwA-l2-91A"/>
                         <segue destination="Meg-V2-KG3" kind="show" identifier="showIC" id="ZiK-jt-mRn"/>

@@ -9,16 +9,16 @@
 import Foundation
 import Alamofire
 import FrostedSidebar
-import StoreKit
 import SCLAlertView
 import Permission
+
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var subtitle: UILabel!
 }
-class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPaymentTransactionObserver,FrostedSidebarDelegate{
+class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     var names = [String]()
     var subtitles = [String]()
@@ -26,24 +26,68 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     var urls = [String]()
     var images = [URL]()
     
-    let barImages = [UIImage(named:"resources.png"),UIImage(named:"game.png"),UIImage(named:"alumni.png"),UIImage(named:"ic.png"),UIImage(named:"forum.png"),UIImage(named:"wiki.png"),UIImage(named:"media.png"),UIImage(named:"weather.png")]
-    let barColors = [UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange,UIColor.orange]
-    let bar:FrostedSidebar
-    
+    var bar:FrostedSidebar
     var productID = ""
     var handleUrl = ""
-    var productsRequest = SKProductsRequest()
     var transactionInProgress = false
-    var productsArray = [SKProduct]()
+    
     
     let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
         showCloseButton: false
     ))
     
-    
     required init?(coder aDecoder: NSCoder) {
-        bar = FrostedSidebar(itemImages: barImages as! [UIImage], colors: barColors, selectionStyle: .single)
+        let theme = ThemeManager()
+        var barColors = [UIColor]()
+        let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
+        var barImages = [UIImage]()
+        for image in images{
+            barImages.append(UIImage(named: image+".png")!)
+        }
+        for _ in 1...8 {
+            barColors.append(theme.normalTheme.titleBackgroundColor!)
+        }
+        bar = FrostedSidebar(itemImages: barImages, colors: barColors, selectionStyle: .single)
         super.init(coder: aDecoder)
+    }
+    
+    func setUpBars(){
+        let theme = ThemeManager()
+        var barColors = [UIColor]()
+        let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
+        var barImages = [UIImage]()
+        for image in images{
+            barImages.append(UIImage(named: image+".png")!)
+        }
+        for _ in 1...8 {
+            barColors.append(theme.normalTheme.titleBackgroundColor!)
+        }
+        self.bar = FrostedSidebar(itemImages: barImages, colors: barColors, selectionStyle: .single)
+        self.bar.actionForIndex[4] = {
+            self.performSegue(withIdentifier: "showForum", sender: self)
+        }
+        self.bar.actionForIndex[5] = {
+            self.performSegue(withIdentifier: "showWiki", sender: self)
+        }
+        self.bar.actionForIndex[0] = {
+            self.performSegue(withIdentifier: "showResources", sender: self)
+        }
+        self.bar.actionForIndex[2] = {
+            self.performSegue(withIdentifier: "showAlumni", sender: self)
+        }
+        self.bar.actionForIndex[7] = {
+            self.performSegue(withIdentifier: "showWeather", sender: self)
+        }
+        self.bar.actionForIndex[3] = {
+            self.performSegue(withIdentifier: "showIC", sender: self)
+        }
+        self.bar.actionForIndex[6] = {
+            self.performSegue(withIdentifier: "showMedia", sender: self)
+        }
+        self.bar.actionForIndex[1] = {
+            self.performSegue(withIdentifier: "showGame", sender: self)
+        }
+        self.bar.delegate = self
     }
     
     @objc func menu(){
@@ -79,10 +123,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                 NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
             ]
         }
+        setUpBars()
+        self.bar.itemBackgroundColor = theme.normalTheme.titleBackgroundColor!
     }
-
+    
     override func viewDidLoad() {
-        bar.delegate = self
         setUpUI()
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
@@ -90,30 +135,6 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
-        self.bar.actionForIndex[4] = {
-            self.performSegue(withIdentifier: "showForum", sender: self)
-        }
-        self.bar.actionForIndex[5] = {
-            self.performSegue(withIdentifier: "showWiki", sender: self)
-        }
-        self.bar.actionForIndex[0] = {
-            self.performSegue(withIdentifier: "showResources", sender: self)
-        }
-        self.bar.actionForIndex[2] = {
-            self.performSegue(withIdentifier: "showAlumni", sender: self)
-        }
-        self.bar.actionForIndex[7] = {
-            self.performSegue(withIdentifier: "showWeather", sender: self)
-        }
-        self.bar.actionForIndex[3] = {
-            self.performSegue(withIdentifier: "showIC", sender: self)
-        }
-        self.bar.actionForIndex[6] = {
-            self.performSegue(withIdentifier: "showMedia", sender: self)
-        }
-        self.bar.actionForIndex[1] = {
-            self.performSegue(withIdentifier: "showGame", sender: self)
-        }
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
         leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
         self.navigationItem.leftBarButtonItem = leftButton
@@ -125,15 +146,10 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
         let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(closeGestureMenu))
         swipeBack.direction = .left
         view.addGestureRecognizer(swipeBack)
-        let productID:NSSet = NSSet(object: "2")
-        let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
-        productsRequest.delegate = self
-        productsRequest.start()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SKPaymentQueue.default().add(self)
         setUpUI()
         self.navigationItem.title = "南外人"
         internalHandler(url: handleUrl)
@@ -164,10 +180,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
             self.navigationController?.navigationBar.prefersLargeTitles = false
         }
         self.navigationItem.title = nil
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        SKPaymentQueue.default().remove(self)
+        //self.navigationController?.navigationBar.isTranslucent = true
     }
     
     func loadNews(){
@@ -253,81 +266,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     }
     
     @objc func settings() {
-        let dialog = UIAlertController(title: "Operations", message: "You can click on the 'Buy Us A Coffee' to donate 30 RMB for us. Your name will be on the list of donators, and the use of that money will be publicized.", preferredStyle: .actionSheet)
-        let exit = UIAlertAction(title: "Logout", style: .destructive, handler: {
-            action in
-            if let bundle = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundle)
-            }
-            self.checkStatus()
-        })
-        let donate = UIAlertAction(title: "Buy Us A Coffee", style: .default, handler: {
-            action in
-            if(!self.productsArray.isEmpty){
-                let payment = SKPayment(product: self.productsArray[0] as SKProduct)
-                SKPaymentQueue.default().add(payment)
-                self.transactionInProgress = true
-            }
-        })
-        let opensourceInfo = UIAlertAction(title: "Licenses", style: .default, handler: {
-            action in
-            self.performSegue(withIdentifier: "showLicenses", sender: self)
-            
-        })
-        let aboutUs = UIAlertAction(title:"About", style:.default, handler:{
-            action in
-            self.performSegue(withIdentifier: "showWiki", sender: "w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC")
-        })
-        var title = "Accounts"
-        if(UIApplication.shared.applicationIconBadgeNumber > 0){
-            title += " ["+String(describing:UIApplication.shared.applicationIconBadgeNumber)+" New Message(s)]"
-        }
-        let userCenter = UIAlertAction(title:title, style:.default, handler:{
-            action in
-            self.performSegue(withIdentifier: "showSettings", sender: self)
-        })
-        let cancel = UIAlertAction(title: "Back", style: .cancel, handler: nil)
-        dialog.addAction(donate)
-        dialog.addAction(opensourceInfo)
-        dialog.addAction(userCenter)
-        dialog.addAction(aboutUs)
-        dialog.addAction(exit)
-        dialog.addAction(cancel)
-        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        self.present(dialog, animated: true)
-    }
-    
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        if response.products.count != 0 {
-            for product in response.products {
-                productsArray.append(product)
-            }
-        }
-    }
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            switch transaction.transactionState {
-            case SKPaymentTransactionState.purchased:
-                SKPaymentQueue.default().finishTransaction(transaction)
-                transactionInProgress = false
-                let receiptURL = Bundle.main.appStoreReceiptURL;
-                let receipt = NSData(contentsOf: receiptURL!)
-                let parameters: Parameters = [
-                    "receipt": receipt!.base64EncodedString(options: .endLineWithCarriageReturn)
-                ]
-                let headers: HTTPHeaders = [
-                    "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-                ]
-                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            case SKPaymentTransactionState.failed:
-                print("Transaction Failed");
-                SKPaymentQueue.default().finishTransaction(transaction)
-                transactionInProgress = false
-            default:
-                break
-            }
-        }
+        self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     
     func checkStatus(){
@@ -367,7 +306,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                                 if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
                                     let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
                                         showCloseButton: false
-                                    ))                                
+                                    ))
                                     if(info["push"] as? String != nil && info["push"] as? String != ""){
                                         alert.addButton("Show Details", action: {
                                             let jsonString = info["push"] as! String
@@ -411,11 +350,11 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
                     })
                     self.loadNews()
                     /*
-                    let application = UIApplication.shared
-                    let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-                    let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-                    application.registerUserNotificationSettings(pushNotificationSettings)
-                    application.registerForRemoteNotifications()
+                     let application = UIApplication.shared
+                     let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+                     let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+                     application.registerUserNotificationSettings(pushNotificationSettings)
+                     application.registerForRemoteNotifications()
                      */
                     if let username = UserDefaults.standard.value(forKey: "username") as? String{
                         self.navigationItem.prompt = "Welcome back, " + username
@@ -440,6 +379,10 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     func internalHandler(url:String){
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         handleUrl = ""
+        if(url == "logout"){
+            checkStatus()
+            return
+        }
         if(url.contains("nfls.io")){
             if(!url.contains("https://nfls.io")){
                 let tUrl = url.replacingOccurrences(of: "https://", with: "")
@@ -714,7 +657,7 @@ class NewsViewController:UITableViewController,SKProductsRequestDelegate,SKPayme
     }
     
     
-
+    
 }
 extension String {
     func index(of string: String, options: CompareOptions = .literal) -> Index? {
@@ -742,4 +685,29 @@ extension String {
         return result
     }
 }
-
+extension UIImage {
+    
+    func tint(with color: UIColor) -> UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return self }
+        
+        // flip the image
+        context.scaleBy(x: 1.0, y: -1.0)
+        context.translateBy(x: 0.0, y: -self.size.height)
+        
+        // multiply blend mode
+        context.setBlendMode(.multiply)
+        
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        context.clip(to: rect, mask: self.cgImage!)
+        color.setFill()
+        context.fill(rect)
+        
+        // create UIImage
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}

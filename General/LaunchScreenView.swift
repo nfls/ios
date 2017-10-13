@@ -74,6 +74,9 @@ class LaunchScreenViewController:UIViewController{
     }
     func getImage(){
         loadPic()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.loadPic(true)
+        }
         if(NetworkReachabilityManager()?.isReachable)!{
             if(UserDefaults.standard.string(forKey: "token") == nil){
                 return

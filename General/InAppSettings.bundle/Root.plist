@@ -10,36 +10,6 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>关于</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>请喝咖啡</string>
-			<key>Key</key>
-			<string>app.donate</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>开源项目许可证</string>
-			<key>Key</key>
-			<string>app.license</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>作者</string>
-			<key>File</key>
-			<string>Authors</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
 			<string>界面</string>
 		</dict>
 		<dict>
@@ -58,7 +28,7 @@
 			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>settings.night.auto</string>
 		</dict>
@@ -88,7 +58,7 @@
 			<key>Title</key>
 			<string>主题</string>
 			<key>DefaultValue</key>
-			<string>0</string>
+			<string>green</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -98,7 +68,7 @@
 			<key>Key</key>
 			<string>settings.identification</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>none</string>
 			<key>Titles</key>
 			<array>
 				<string>未指定</string>
@@ -108,7 +78,7 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<string>unknown</string>
+				<string>none</string>
 				<string>ic</string>
 				<string>normal</string>
 				<string>graduates</string>
@@ -135,6 +105,36 @@
 			<string>退出</string>
 			<key>Key</key>
 			<string>app.logout</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>关于</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>请喝咖啡</string>
+			<key>Key</key>
+			<string>app.donate</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>开源项目许可证</string>
+			<key>Key</key>
+			<string>app.license</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>作者</string>
+			<key>File</key>
+			<string>Authors</string>
 		</dict>
 	</array>
 </dict>

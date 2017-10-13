@@ -26,6 +26,18 @@ class GameCenterViewController:UITableViewController{
             tableView.reloadData()
         }
     }
+    func setUpUI(){
+        let theme = ThemeManager()
+        self.navigationController?.navigationBar.barStyle = theme.gameTheme.style
+        self.navigationController?.navigationBar.barTintColor = theme.gameTheme.titleBackgroundColor
+        self.navigationController?.navigationBar.tintColor = theme.gameTheme.titleButtonColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.gameTheme.titleButtonColor ?? UIColor.black]
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: theme.gameTheme.titleButtonColor ?? UIColor.black
+            ]
+        }
+    }
 
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -36,6 +48,7 @@ class GameCenterViewController:UITableViewController{
     }
     
     override func viewDidLoad() {
+        setUpUI()
         loadFromLocal()
         Alamofire.request("https://api.nfls.io/game/list").responseJSON { response in
             switch(response.result){

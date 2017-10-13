@@ -19,7 +19,7 @@ class ThemeManager{
     struct ThemeSetting{
         let orange = Theme(style: .black, titleBackgroundColor: UIColor.pantoneOrange021(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let blue = Theme(style: .black, titleBackgroundColor: UIColor.pantonePMS2748(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
-        let green = Theme(style: .black , titleBackgroundColor: UIColor.pantonePMS375(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
+        let green = Theme(style: .black , titleBackgroundColor: UIColor(red: 77/255, green: 151/255, blue: 70/255, alpha: 1.0), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let black = Theme(style: .black, titleBackgroundColor: UIColor.black, titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let white = Theme(style: .default, titleBackgroundColor: UIColor.white, titleTextColor: UIColor.black, titleButtonColor: UIColor.black)
         let killYourEye = Theme(style: .default, titleBackgroundColor: UIColor.green, titleTextColor: UIColor.red, titleButtonColor: UIColor.red)
@@ -54,19 +54,27 @@ class ThemeManager{
                 normalTheme = ThemeSetting().killYourEye
                 typechoTheme = ThemeSetting().killYourEye
             default:
-                normalTheme = ThemeSetting().black
-                typechoTheme = ThemeSetting().black
+                normalTheme = ThemeSetting().green
+                typechoTheme = ThemeSetting().green
                 break
             }
         }else{
-            normalTheme = ThemeSetting().black
-            typechoTheme = ThemeSetting().black
+            normalTheme = ThemeSetting().green
+            typechoTheme = ThemeSetting().green
         }
         gameTheme = ThemeSetting().black
         if(UserDefaults.standard.bool(forKey: "settings.night.isEnabled")){
             normalTheme = ThemeSetting().black
             typechoTheme = ThemeSetting().black
             gameTheme = ThemeSetting().black
+        }
+        if(UserDefaults.standard.bool(forKey: "settings.night.auto")){
+            let hour = NSCalendar.current.component(.hour, from: Date())
+            if(hour>20 || hour<6){
+                normalTheme = ThemeSetting().black
+                typechoTheme = ThemeSetting().black
+                gameTheme = ThemeSetting().black
+            }
         }
     }
 }
