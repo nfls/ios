@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isOn = true
     var time = Date().timeIntervalSince1970
     var theme = ThemeManager()
+    var url:String? = nil
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -36,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.setAppVersion(version as! String)
         MobClick.setEncryptEnabled(true)
         //MobClick.setLogEnabled(true)
+        if let options = launchOptions{
+            dump(options[UIApplicationLaunchOptionsKey.remoteNotification])
+        }
         return true
     }
 
@@ -89,14 +93,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         // let _ = ThemeManager.init()
         let interval = Date().timeIntervalSince1970 - time
-        if(isLaunched && !isOn && interval >= 60){
-            if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? LaunchScreenViewController {
-                if let window = self.window, let rootViewController = window.rootViewController {
-                    var currentController = rootViewController
-                    while let presentedController = currentController.presentedViewController {
-                        currentController = presentedController
+        if(isLaunched){
+            if(!isOn && interval >= 60){
+                if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? LaunchScreenViewController {
+                    if let window = self.window, let rootViewController = window.rootViewController {
+                        var currentController = rootViewController
+                        while let presentedController = currentController.presentedViewController {
+                            currentController = presentedController
+                        }
+                        currentController.present(controller, animated: true, completion: nil)
                     }
-                    currentController.present(controller, animated: true, completion: nil)
                 }
             }
         } else {
@@ -116,6 +122,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if(isLaunched){
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                if let nav = currentController as? UINavigationController{
+                    while(nav.viewControllers.count > 1){
+                        nav.popViewController(animated: true)
+                    }
+                    let home = (nav.viewControllers[0] as! NewsViewController)
+                    home.internalHandler(url: userActivity.webpageURL!.absoluteString)
+                }
+            }
+        }else{
+            url = userActivity.webpageURL?.absoluteString
+        }
+        return true
+    }
 }
 
 

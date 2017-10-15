@@ -12,9 +12,6 @@ import Charts
 import Alamofire
 
 class WeatherHistoryViewController:UIViewController{
-    
-    
-    
     @IBOutlet var chart: LineChartView!
     
     var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

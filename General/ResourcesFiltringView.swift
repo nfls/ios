@@ -622,6 +622,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         cell.accessoryType = rowIsSelected ? .checkmark : .none
         cell.textLabel!.font = UIFont(name: "HelveticaBold", size: 18)
         cell.detailTextLabel!.font = UIFont(name: "Helvetica", size: 14)
+
         return cell
     }
     

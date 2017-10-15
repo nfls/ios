@@ -309,7 +309,63 @@ CountryCode
 -----------
   https://github.com/4taras4/CountryCode
   © 2016 4taras4 &lt;4taras4@gmail.com&gt;
-  Licensed under MIT License</string>
+  Licensed under MIT License
+
+-----------
+FrostedSidebar
+-----------
+  https://github.com/edekhayser/FrostedSidebar
+  © 2014 Evan Dekhayser
+  Licensed under MIT License
+
+-----------
+GCDWebServer
+-----------
+  https://github.com/swisspol/GCDWebServer
+  © 2012-2014 Pierre-Olivier Latour
+  Licensed under BSD-3 License
+
+-----------
+Kingfisher
+-----------
+  https://github.com/onevcat/Kingfisher
+  © 2017 Wei Wang
+  Licensed under MIT License
+
+-----------
+EZSwiftExtensions
+-----------
+  https://github.com/goktugyil/EZSwiftExtensions
+  © 2015 Goktug Yilmaz
+  Licensed under MIT License
+
+-----------
+Permission
+-----------
+  https://github.com/delba/Permission
+  © 2015-2016 Damien (http://delba.io)
+  Licensed under MIT License
+
+-----------
+SCLAlertView
+-----------
+  https://github.com/dogo/SCLAlertView
+  © 2013-2014 Diogo Autilio
+  Licensed under MIT License
+
+-----------
+UIColor-Pantone
+-----------
+  https://github.com/CaptainRedmuff/UIColor-Pantone
+  © 2017 CaptainRedmuff
+  Licensed under MIT License
+
+-----------
+InAppSettingsKit
+-----------
+  https://github.com/futuretap/InAppSettingsKit
+  © 2009-2014 Luc Vandal, Ortwin Gentz
+  Licensed under BSD License</string>
                                         <attributes>
                                             <font key="NSFont" size="12" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -1039,6 +1095,7 @@ CountryCode
                     </view>
                     <connections>
                         <outlet property="tableview" destination="Frv-Rh-4Wf" id="rFj-1F-GKA"/>
+                        <segue destination="GoJ-4g-syQ" kind="show" id="PnA-oX-ANj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J65-TX-ceQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1089,6 +1146,36 @@ CountryCode
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DRK-pu-6gU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2614" y="878"/>
+        </scene>
+        <!--位置-->
+        <scene sceneID="BFp-av-34A">
+            <objects>
+                <viewController title="位置" id="GoJ-4g-syQ" customClass="MapViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wX8-ZX-NGS"/>
+                        <viewControllerLayoutGuide type="bottom" id="JUb-PY-8uX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y8a-C0-edK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cb9-7J-RGq" customClass="MKMapView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cb9-7J-RGq" firstAttribute="leading" secondItem="y8a-C0-edK" secondAttribute="leading" id="WJB-q9-1Ye"/>
+                            <constraint firstAttribute="trailing" secondItem="cb9-7J-RGq" secondAttribute="trailing" id="ec8-cH-Pof"/>
+                            <constraint firstItem="cb9-7J-RGq" firstAttribute="top" secondItem="wX8-ZX-NGS" secondAttribute="bottom" id="fhr-rc-GUS"/>
+                            <constraint firstItem="JUb-PY-8uX" firstAttribute="top" secondItem="cb9-7J-RGq" secondAttribute="bottom" id="wwX-gj-53f"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jx8-Y3-oBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3341" y="878"/>
         </scene>
         <!--大学-->
         <scene sceneID="dQu-Ew-f3Z">
@@ -1384,7 +1471,7 @@ CountryCode
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
-        <segue reference="Np1-Rg-Xqt"/>
-        <segue reference="yvX-1Z-Kwu"/>
+        <segue reference="uew-Bm-T5Z"/>
+        <segue reference="NCu-xf-gAI"/>
     </inferredMetricsTieBreakers>
 </document>

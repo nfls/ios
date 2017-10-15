@@ -24,6 +24,8 @@
 		6544765E1F57FA0200CDEBD8 /* TableSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */; };
 		6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6546E68A1EF84A29008CBBCA /* Main.storyboard */; };
 		654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654923A01F452CF2000E22C9 /* LiveListView.swift */; };
+		655968DB1F92EF7600A5893A /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DA1F92EF7600A5893A /* PassKit.framework */; };
+		655968DD1F92EF8A00A5893A /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DC1F92EF8A00A5893A /* NetworkExtension.framework */; };
 		655B13851F837CCF007F2247 /* ICNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655B13841F837CCF007F2247 /* ICNewsView.swift */; };
 		655D9C9B1F59190D008FA8D8 /* ClubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D9C9A1F59190D008FA8D8 /* ClubInfoView.swift */; };
 		656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656B20591F63AB6200D76231 /* AlumniRoot.swift */; };
@@ -78,6 +80,9 @@
 		6544765D1F57FA0200CDEBD8 /* TableSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSelectView.swift; sourceTree = "<group>"; };
 		6546E68B1EF84A29008CBBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		654923A01F452CF2000E22C9 /* LiveListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveListView.swift; sourceTree = "<group>"; };
+		655968DA1F92EF7600A5893A /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		655968DC1F92EF8A00A5893A /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		655968DE1F93016D00A5893A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		655B13841F837CCF007F2247 /* ICNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICNewsView.swift; sourceTree = "<group>"; };
 		655D9C9A1F59190D008FA8D8 /* ClubInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubInfoView.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,8 +137,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655968DB1F92EF7600A5893A /* PassKit.framework in Frameworks */,
 				80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */,
 				6534D1351F5BFCFB0032F6EE /* MapKit.framework in Frameworks */,
+				655968DD1F92EF8A00A5893A /* NetworkExtension.framework in Frameworks */,
 				D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +151,8 @@
 		0349413280DA2E07E819AAA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				655968DC1F92EF8A00A5893A /* NetworkExtension.framework */,
+				655968DA1F92EF7600A5893A /* PassKit.framework */,
 				6534D1341F5BFCFB0032F6EE /* MapKit.framework */,
 				D6F7A0031EF2393E0047CF5D /* StoreKit.framework */,
 				D606F2C11EE9039D00564191 /* Pods_NFLSers_iOS.framework */,
@@ -279,6 +288,7 @@
 		D6AE17401E44D51600E66B4B /* General */ = {
 			isa = PBXGroup;
 			children = (
+				655968DE1F93016D00A5893A /* MapView.swift */,
 				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
 				650160B31F62F6E800B5F95D /* Essential */,
 				65276F4B1F62F6C200DD0FBF /* Media */,
@@ -348,6 +358,9 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.HotspotConfiguration = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -358,6 +371,9 @@
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
 								enabled = 1;
 							};
 						};

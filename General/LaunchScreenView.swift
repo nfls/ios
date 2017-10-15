@@ -18,9 +18,6 @@ class LaunchScreenViewController:UIViewController{
     @IBOutlet weak var text: UILabel!
     var lastView = UIViewController()
     var continued = false
-    func loadImage(){
-        //if(UserDefaults.standard.value(forKey: ""))
-    }
     
     @IBAction func skip(_ sender: Any) {
         nextStep()
@@ -58,6 +55,7 @@ class LaunchScreenViewController:UIViewController{
                 }else{
                     self.image.contentMode = .scaleAspectFill
                 }
+
                 if(con){
                     self.nextStep()
                 }
@@ -74,7 +72,7 @@ class LaunchScreenViewController:UIViewController{
     }
     func getImage(){
         loadPic()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.loadPic(true)
         }
         if(NetworkReachabilityManager()?.isReachable)!{
@@ -90,7 +88,6 @@ class LaunchScreenViewController:UIViewController{
                 case .success(let json):
                     let info = ((json as! [String:AnyObject])["info"]) as! [String:Any]
                     if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
-                        print("new img!")
                         UserDefaults.standard.set(info["url"] as! String, forKey: "pic_url")
                         let text = info["text"] as! String
                         UserDefaults.standard.set(text, forKey: "pic_text")
@@ -106,6 +103,5 @@ class LaunchScreenViewController:UIViewController{
         }else{
             loadPic(true)
         }
-        
     }
 }

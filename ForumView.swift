@@ -28,7 +28,7 @@ class ForumViewer: UIViewController, WKNavigationDelegate {
             in_url = "settings"
         }
         getToken()
-        self.view.backgroundColor = UIColor(red: 252/255, green: 83/255, blue: 40/255, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 255/255, green: 84/255, blue: 37/255, alpha: 1.0)
         //UIApplication.shared.status
     }
     override func viewDidDisappear(_ animated: Bool) {

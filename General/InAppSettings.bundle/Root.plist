@@ -28,7 +28,7 @@
 			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 			<key>Key</key>
 			<string>settings.night.auto</string>
 		</dict>
@@ -40,7 +40,6 @@
 				<string>green</string>
 				<string>orange</string>
 				<string>blue</string>
-				<string>white</string>
 				<string>black</string>
 				<string>kill</string>
 			</array>
@@ -49,7 +48,6 @@
 				<string>原谅绿</string>
 				<string>南外橙</string>
 				<string>校服蓝</string>
-				<string>原版白</string>
 				<string>夜间黑</string>
 				<string>瞎眼睛</string>
 			</array>
@@ -132,7 +130,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>作者</string>
+			<string>关于</string>
 			<key>File</key>
 			<string>Authors</string>
 		</dict>

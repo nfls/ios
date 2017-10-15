@@ -17,8 +17,7 @@ target 'NFLSers-iOS' do
   pod 'CountryPickerSwift'
   pod 'FrostedSidebar'
   pod "GCDWebServer"
-  pod 'UMengAnalytics-NO-IDFA'
-  pod 'FrostedSidebar'
+  pod 'UMengAnalytics-NO-IDFA' 
   pod 'Kingfisher'
   pod 'EZSwiftExtensions'
   pod 'Permission/Camera'

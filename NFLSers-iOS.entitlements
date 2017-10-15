@@ -5,6 +5,26 @@
 	<key>aps-environment</key>
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
-	<array/>
+	<array>
+		<string>applinks:nfls.io</string>
+		<string>applinks:video.nfls.io</string>
+		<string>applinks:mc.nfls.io</string>
+		<string>applinks:alumni.nfls.io</string>
+		<string>applinks:app.nfls.io</string>
+		<string>applinks:media.nfls.io</string>
+		<string>applinks:live.nfls.io</string>
+		<string>applinks:forum.nfls.io</string>
+		<string>applinks:center.nfls.io</string>
+		<string>applinks:wiki.nfls.io</string>
+		<string>applinks:ic.nfls.io</string>
+		<string>applinks:game.nfls.io</string>
+		<string>applinks:dl.nfls.io</string>
+	</array>
+	<key>com.apple.developer.networking.HotspotConfiguration</key>
+	<true/>
+	<key>com.apple.developer.pass-type-identifiers</key>
+	<array>
+		<string>$(TeamIdentifierPrefix)*</string>
+	</array>
 </dict>
 </plist>

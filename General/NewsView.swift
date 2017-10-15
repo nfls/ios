@@ -37,32 +37,16 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let theme = ThemeManager()
-        var barColors = [UIColor]()
         let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
         }
-        for _ in 1...8 {
-            barColors.append(theme.normalTheme.titleBackgroundColor!)
-        }
-        bar = FrostedSidebar(itemImages: barImages, colors: barColors, selectionStyle: .single)
+        bar = FrostedSidebar(itemImages: barImages, colors: nil, selectionStyle: .single)
         super.init(coder: aDecoder)
     }
     
     func setUpBars(){
-        let theme = ThemeManager()
-        var barColors = [UIColor]()
-        let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
-        var barImages = [UIImage]()
-        for image in images{
-            barImages.append(UIImage(named: image+".png")!)
-        }
-        for _ in 1...8 {
-            barColors.append(theme.normalTheme.titleBackgroundColor!)
-        }
-        self.bar = FrostedSidebar(itemImages: barImages, colors: barColors, selectionStyle: .single)
         self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
@@ -88,6 +72,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
         self.bar.delegate = self
+        tableView.setContentOffset(CGPoint.zero, animated: true)
     }
     
     @objc func menu(){
@@ -149,14 +134,20 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        setUpUI()
-        self.navigationItem.title = "南外人"
+        if let url = (UIApplication.shared.delegate as! AppDelegate).url {
+            (UIApplication.shared.delegate as! AppDelegate).url = nil
+            handleUrl = url
+        }
         internalHandler(url: handleUrl)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpUI()
+        self.navigationItem.title = "南外人"
+    }
+    
     func requestPermission(){
-        print("entered")
         let permision:Permission = .notifications
         let alert = permision.prePermissionAlert
         alert.title = "权限请求"
@@ -168,9 +159,27 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         denied.message = "您没有开启推送权限，我们无法给您发送最新的活动通知"
         denied.settings = "设置"
         denied.cancel = "取消"
+        let disabled = permision.disabledAlert
+        disabled.title = "缺少权限"
+        disabled.message = "您没有开启推送权限，我们无法给您发送最新的活动通知"
+        disabled.settings = "设置"
+        disabled.cancel = "取消"
+        permision.presentDeniedAlert = true
+        permision.presentPrePermissionAlert = true
+        permision.presentDisabledAlert = true
+        
         permision.request { (status) in
-            print("requested")
-            dump(status)
+            switch(status){
+            case .authorized:
+                let application = UIApplication.shared
+                let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+                let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+                application.registerUserNotificationSettings(pushNotificationSettings)
+                application.registerForRemoteNotifications()
+                break
+            default:
+                break
+            }
         }
         
     }
@@ -260,7 +269,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         do {
             try fileManager.removeItem(atPath: fileURL.path)
         } catch {
-            //print("removeError")
+            //print("Error")
         }
         
     }
@@ -349,13 +358,6 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                         }
                     })
                     self.loadNews()
-                    /*
-                     let application = UIApplication.shared
-                     let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-                     let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-                     application.registerUserNotificationSettings(pushNotificationSettings)
-                     application.registerForRemoteNotifications()
-                     */
                     if let username = UserDefaults.standard.value(forKey: "username") as? String{
                         self.navigationItem.prompt = "Welcome back, " + username
                     } else {
@@ -578,8 +580,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 if (webStatus == 200){
                     let status = (json as! [String:AnyObject])["info"] as! [String:AnyObject]
                     if(status["status"] as! String == "success"){
-                        SCLAlertView().showSuccess("Succeeded", subTitle: "You can now login.")
-                        self.showLogin(info: nil,username: username,password: password)
+                        self.showLogin(info: "You registered successfully, and now you can login" ,username: username,password: password)
                     } else {
                         self.showRegister(info: (status["message"] as! String), username: username, email: email, password: password, rePassword: rePassword)
                     }

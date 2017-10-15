@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import UITableView_FDTemplateLayoutCell
 
 class GameCenterViewController:UITableViewController{
     
@@ -17,8 +18,11 @@ class GameCenterViewController:UITableViewController{
     var urls = [String]()
     var images = [String]()
     
+    
+    
     func loadFromLocal(){
-        if(UserDefaults.standard.value(forKey: "game_names") as? [String]) != nil{
+
+        if(UserDefaults.standard.value(forKey: "game_img") as? [String]) != nil{
             names = UserDefaults.standard.value(forKey: "game_names") as! [String]
             urls = UserDefaults.standard.value(forKey: "game_urls") as! [String]
             descriptions = UserDefaults.standard.value(forKey: "game_descriptions") as! [String]
@@ -49,7 +53,10 @@ class GameCenterViewController:UITableViewController{
     
     override func viewDidLoad() {
         setUpUI()
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableViewAutomaticDimension
         loadFromLocal()
+        
         Alamofire.request("https://api.nfls.io/game/list").responseJSON { response in
             switch(response.result){
             case .success(let json):
@@ -96,11 +103,15 @@ class GameCenterViewController:UITableViewController{
         cell.detailTextLabel?.text = descriptions[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
-        cell.imageView?.kf.setImage(with: URL(string: images[indexPath.row]), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
-            cell.imageView?.image = image!.kf.resize(to: CGSize(width: 50, height: 50))
-        })
         cell.textLabel!.font = UIFont(name: "HelveticaBold", size: 18)
         cell.detailTextLabel!.font = UIFont(name: "Helvetica", size: 14)
+        cell.imageView?.kf.setImage(with: URL(string: images[indexPath.row]), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
+            DispatchQueue.main.async {
+                cell.imageView?.image = image!.kf.resize(to: CGSize(width: 75, height: 75))
+            }
+
+        })
+
         return cell
     }
     
@@ -115,5 +126,7 @@ class GameCenterViewController:UITableViewController{
         dest.name = names[index]
         dest.id = index + 1
     }
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
 }

@@ -17,22 +17,21 @@ class ThemeManager{
         var titleButtonColor:UIColor?
     }
     struct ThemeSetting{
-        let orange = Theme(style: .black, titleBackgroundColor: UIColor.pantoneOrange021(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
+        let orange = Theme(style: .black, titleBackgroundColor: UIColor.pantonePMS1665(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let blue = Theme(style: .black, titleBackgroundColor: UIColor.pantonePMS2748(), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let green = Theme(style: .black , titleBackgroundColor: UIColor(red: 77/255, green: 151/255, blue: 70/255, alpha: 1.0), titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
         let black = Theme(style: .black, titleBackgroundColor: UIColor.black, titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
-        let white = Theme(style: .default, titleBackgroundColor: UIColor.white, titleTextColor: UIColor.black, titleButtonColor: UIColor.black)
         let killYourEye = Theme(style: .default, titleBackgroundColor: UIColor.green, titleTextColor: UIColor.red, titleButtonColor: UIColor.red)
     }
     var normalTheme:Theme
-    var typechoTheme:Theme = ThemeSetting().white
-    var gameTheme:Theme = ThemeSetting().white
+    var typechoTheme:Theme = ThemeSetting().black
+    var gameTheme:Theme = ThemeSetting().black
     init(){
         if let theme = UserDefaults.standard.string(forKey: "settings.theme"){
             switch(theme){
             case "orange":
                 normalTheme = ThemeSetting().orange
-                typechoTheme = ThemeSetting().white
+                typechoTheme = ThemeSetting().black
                 break
             case "blue":
                 normalTheme = ThemeSetting().blue
@@ -41,10 +40,6 @@ class ThemeManager{
             case "green":
                 normalTheme = ThemeSetting().green
                 typechoTheme = ThemeSetting().green
-                break
-            case "white":
-                normalTheme = ThemeSetting().white
-                typechoTheme = ThemeSetting().white
                 break
             case "black":
                 normalTheme = ThemeSetting().black

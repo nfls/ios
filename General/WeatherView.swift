@@ -17,7 +17,6 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     var weatherData = [[[String:String]]]()
     
     @IBOutlet weak var tableview: UITableView!
-    
     override func viewDidAppear(_ animated: Bool) {
         tableview.register(DetailCell.self, forCellReuseIdentifier: ID)
         getStationList()
