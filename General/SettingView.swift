@@ -64,9 +64,14 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         SKPaymentQueue.default().add(self)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SKPaymentQueue.default().remove(self)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SKPaymentQueue.default().remove(self)
     }
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         switch(specifier.key()){

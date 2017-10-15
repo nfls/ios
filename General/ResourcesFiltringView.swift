@@ -312,8 +312,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         
     }
     func localRequest(){
-        searchBar.isHidden = true
-        searchBar.placeholder = ""
+        //searchBar.isHidden = true
+        searchBar.placeholder = "离线模式下搜索不可用"
         navigationController!.title = "资源中心（离线）"
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("downloads")
         do {
@@ -585,6 +585,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
         cell.imageView!.kf.cancelDownloadTask()
+        if(indexPath.row >= filenames.count){
+            SCLAlertView().showError("错误", subTitle: "发生了内部错误，如果遇到奇怪问题请退出重试")
+            return cell
+        }
         let name = filenames[indexPath.row]
         let size = sizes[indexPath.row] / 1000
         if(onlineMode){

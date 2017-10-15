@@ -30,6 +30,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     var productID = ""
     var handleUrl = ""
     var transactionInProgress = false
+    var setView:SettingViewController
     
     
     let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
@@ -43,6 +44,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             barImages.append(UIImage(named: image+".png")!)
         }
         bar = FrostedSidebar(itemImages: barImages, colors: nil, selectionStyle: .single)
+        setView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settings") as! SettingViewController
         super.init(coder: aDecoder)
     }
     
@@ -72,7 +74,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
         self.bar.delegate = self
-        tableView.setContentOffset(CGPoint.zero, animated: true)
+        
     }
     
     @objc func menu(){
@@ -108,12 +110,13 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
             ]
         }
-        setUpBars()
+        tableView.setContentOffset(CGPoint.zero, animated: true)
         self.bar.itemBackgroundColor = theme.normalTheme.titleBackgroundColor!
     }
     
     override func viewDidLoad() {
         setUpUI()
+        setUpBars()
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
         self.removeFile(filename: "", path: "temp")
@@ -134,6 +137,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        setUpUI()
+        self.navigationItem.title = "南外人"
         if let url = (UIApplication.shared.delegate as! AppDelegate).url {
             (UIApplication.shared.delegate as! AppDelegate).url = nil
             handleUrl = url
@@ -143,8 +148,6 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpUI()
-        self.navigationItem.title = "南外人"
     }
     
     func requestPermission(){
@@ -275,7 +278,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     @objc func settings() {
-        self.performSegue(withIdentifier: "showSettings", sender: self)
+        self.navigationController?.pushViewController(setView, animated: true)
+        //self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     
     func checkStatus(){
