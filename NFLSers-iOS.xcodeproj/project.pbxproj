@@ -10,6 +10,7 @@
 		650160B51F6300B600B5F95D /* CenterTabRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650160B41F6300B600B5F95D /* CenterTabRootView.swift */; };
 		650206991EF89CDF0056F22A /* AssociatedServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650206981EF89CDF0056F22A /* AssociatedServiceView.swift */; };
 		6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */; };
+		651BC4EF1F93AFE900869D9F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651BC4EE1F93AFE900869D9F /* NavigationController.swift */; };
 		65234A811F4608CF00E084A2 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A801F4608CF00E084A2 /* LaunchScreenView.swift */; };
 		65234A831F460B9A00E084A2 /* AlumniActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A821F460A6500E084A2 /* AlumniActivityView.swift */; };
 		65234A851F46120B00E084A2 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A841F46120B00E084A2 /* PostDetailView.swift */; };
@@ -67,6 +68,7 @@
 		650160B41F6300B600B5F95D /* CenterTabRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTabRootView.swift; sourceTree = "<group>"; };
 		650206981EF89CDF0056F22A /* AssociatedServiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedServiceView.swift; sourceTree = "<group>"; };
 		6510A3211F00DB68000D3468 /* ResourcesFiltringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesFiltringView.swift; sourceTree = "<group>"; };
+		651BC4EE1F93AFE900869D9F /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = ../NavigationController.swift; sourceTree = "<group>"; };
 		65234A801F4608CF00E084A2 /* LaunchScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		65234A821F460A6500E084A2 /* AlumniActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniActivityView.swift; sourceTree = "<group>"; };
 		65234A841F46120B00E084A2 /* PostDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 		6585ADB41F8B79BC00ECCBB9 /* wiki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiki.png; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
-		65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		65DEE0F81F6402E0007735CD /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
 		65DEE0FC1F645C97007735CD /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
 				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
+				651BC4EE1F93AFE900869D9F /* NavigationController.swift */,
 				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
@@ -433,6 +436,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AMScrollingNavbar/AMScrollingNavbar.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -453,6 +457,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMScrollingNavbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
@@ -538,6 +543,7 @@
 				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
 				658551BB1F8DCFC000FC9A8C /* SettingView.swift in Sources */,
+				651BC4EF1F93AFE900869D9F /* NavigationController.swift in Sources */,
 				656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */,
 				6510A3221F00DB68000D3468 /* ResourcesFiltringView.swift in Sources */,
 				65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */,

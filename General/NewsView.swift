@@ -95,27 +95,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         }
     }
     
-    func setUpUI(){
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
-        let theme = ThemeManager()
-        self.navigationController?.navigationBar.barStyle = theme.normalTheme.style
-        self.navigationController?.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
-        self.navigationController?.navigationBar.tintColor = theme.normalTheme.titleButtonColor
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
-            ]
-        }
-        tableView.setContentOffset(CGPoint.zero, animated: true)
-        self.bar.itemBackgroundColor = theme.normalTheme.titleBackgroundColor!
-    }
-    
     override func viewDidLoad() {
-        setUpUI()
         setUpBars()
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
@@ -137,7 +117,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        setUpUI()
+        //setUpUI()
+        self.bar.itemBackgroundColor = (navigationController?.navigationBar.barTintColor)!
         self.navigationItem.title = "南外人"
         if let url = (UIApplication.shared.delegate as! AppDelegate).url {
             (UIApplication.shared.delegate as! AppDelegate).url = nil
@@ -147,6 +128,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.setContentOffset(CGPoint.zero, animated: true)
         super.viewWillAppear(animated)
     }
     
@@ -278,6 +260,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     @objc func settings() {
+        self.bar.dismissAnimated(true, completion: nil)
         self.navigationController?.pushViewController(setView, animated: true)
         //self.performSegue(withIdentifier: "showSettings", sender: self)
     }
@@ -304,6 +287,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     let headers: HTTPHeaders = [
                         "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                     ]
+                    self.getAuthStatus()
                     self.getBadge()
                     //self.getImage()
                     Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
@@ -661,7 +645,156 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         return
     }
     
-    
+    enum AuthStatus{
+        case phoneNumber
+        case phoneCode
+        case identity
+    }
+    func getAuthStatus(checkIC:Bool = false){
+        Alamofire.request("https://api.nfls.io/center/auth?token="+UserDefaults.standard.string(forKey: "token")!).responseJSON { (response) in
+            switch(response.result){
+            case .success(let json):
+                let data = (json as! [String:AnyObject])["info"] as! [String:Bool]
+                if(!data["phone"]!){
+                    self.realnameAuth(withStep: .phoneNumber)
+                }else if(!data["ic"]! && checkIC){
+                    self.realnameAuth(withStep: .identity)
+                }
+            default:
+                break
+            }
+            
+        }
+    }
+    var phoneText = ""
+    func realnameAuth(withStep step:AuthStatus,info:AnyObject? = nil){
+        let message = SCLAlertView()
+        switch(step){
+        case .phoneNumber:
+            let phoneNumber = message.addTextField("手机号")
+            message.addButton("提交", action: {
+                let responder = self.alert.showWait("提交中", subTitle: "请稍后")
+                let headers: HTTPHeaders = [
+                    "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+                ]
+                let parameters: Parameters = [
+                    "phone": phoneNumber.text!,
+                    "captcha":"app"
+                ]
+                Alamofire.request("https://api.nfls.io/center/phone", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+                    responder.close()
+                    switch(response.result){
+                    case .failure(_):
+
+                        break
+                    case .success(let json):
+                        if((json as! [String:AnyObject])["code"] as! Int == 200){
+                            self.phoneText = phoneNumber.text!
+                            self.realnameAuth(withStep: .phoneCode)
+                        }else{
+                            SCLAlertView().showEdit("错误", subTitle: "手机号无效", closeButtonTitle: "重试").setDismissBlock {
+                                self.realnameAuth(withStep: .phoneNumber)
+                            }
+                        }
+                        
+                        break
+                    }
+                })
+            })
+            message.showInfo("手机号验证", subTitle: "根据网信办相关规定，在使用本站服务前，您需要绑定您的手机号并提交相关信息。", closeButtonTitle: "跳过")
+            break
+        case .phoneCode:
+            let code = message.addTextField("6位验证码")
+            message.addButton("提交", action: {
+                let responder = self.alert.showWait("提交中", subTitle: "请稍后")
+                let headers: HTTPHeaders = [
+                    "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+                ]
+                let parameters: Parameters = [
+                    "phone": self.phoneText,
+                    "code": code.text!,
+                    "captcha":"app"
+                ]
+                Alamofire.request("https://api.nfls.io/center/phone", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+                    responder.close()
+                    switch(response.result){
+                    case .failure(_):
+                        SCLAlertView().showError("错误", subTitle: "验证码无效").setDismissBlock {
+                            self.realnameAuth(withStep: .phoneCode)
+                        }
+                        break
+                    case .success(let json):
+                        if((json as! [String:AnyObject])["code"] as! Int == 200){
+                            SCLAlertView().showSuccess("成功", subTitle: "您已成功绑定您的手机，如果您不是国际部在校学生，可跳过下一步", closeButtonTitle: "继续").setDismissBlock {
+                                self.realnameAuth(withStep: .identity)
+                            }
+                            self.phoneText = ""
+                        }else{
+                            SCLAlertView().showEdit("错误", subTitle: "6位数验证码无效", closeButtonTitle: "重试").setDismissBlock {
+                                self.realnameAuth(withStep: .phoneCode)
+                            }
+                        }
+                        
+                        break
+                    }
+                })
+            })
+            message.showInfo("手机号验证", subTitle: "请输入短信中的6位验证码", closeButtonTitle: "取消")
+            break
+        case .identity:
+            let chnName = message.addTextField("中文名")
+            let engName = message.addTextField("英文名")
+            let tmpClass = message.addTextField("班级")
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            message.addButton("提交", action: {
+                let responder = self.alert.showWait("提交中", subTitle: "请稍后")
+                let parameters:Parameters = [
+                    "chnName":chnName.text ?? "",
+                    "engName":engName.text ?? "",
+                    "tmpClass":tmpClass.text ?? "",
+                    
+                ]
+                Alamofire.request("https://api.nfls.io/center/realname", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+                    responder.close()
+                    switch(response.result){
+                    case .success(_):
+                        self.realnameAuth(withStep: .identity)
+                        break
+                    case .failure(_):
+                        SCLAlertView().showError("错误", subTitle: "提交错误，请重试").setDismissBlock {
+                            self.realnameAuth(withStep: .identity)
+                        }
+                    }
+                })
+            })
+            Alamofire.request("https://api.nfls.io/center/realname", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+                switch(response.result){
+                case .success(let json):
+                    let data = (json as! [String:AnyObject])["info"] as! [String:Any]
+                    chnName.text = data["chnName"]! as? String
+                    engName.text = data["engName"]! as? String
+                    tmpClass.text = data["tmpClass"]! as? String
+                    var msg = ""
+                    if(data["enabled"]! as! Bool){
+                        msg = "当前状态：已通过（所有功能可正常使用，不可修改）"
+                    }else if(data["enabled"]! as! Bool){
+                        msg = "当前状态：已提交，待审核（所有功能可正常使用，可以修改）"
+                    }else{
+                        msg = "当前状态：未提交（无法访问往卷下载）"
+                    }
+                    message.showInfo("个人信息认证", subTitle: "请在下面填写您的班级信息以启用资源下载功能，注意：恶意填写将导致封号；非国际部在校学生可跳过该步骤，您已完成所有基础认证项目。" + msg, closeButtonTitle: "完成")
+                    break
+                case .failure(_):
+                    break
+                }
+            })
+            
+            break
+            
+        }
+    }
     
 }
 extension String {

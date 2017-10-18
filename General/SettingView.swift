@@ -67,7 +67,6 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SKPaymentQueue.default().remove(self)
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

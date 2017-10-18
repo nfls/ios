@@ -733,6 +733,7 @@ class DownloadCell:UITableViewCell{
         super.init(coder: aDecoder)
     }
     
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }

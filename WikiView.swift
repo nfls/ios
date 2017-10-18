@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import Alamofire
 import SCLAlertView
+import AMScrollingNavbar
 
 class WikiViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var stackView: UIStackView!
@@ -22,6 +23,7 @@ class WikiViewController: UIViewController, WKNavigationDelegate {
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
         rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

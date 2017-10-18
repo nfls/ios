@@ -14,9 +14,9 @@ import SCLAlertView
 
 class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     
-    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var webview: WKWebView!
     
-    var webview = WKWebView()
+    
     var requestCookies = ""
     var in_url = ""
     override func viewDidLoad() {
@@ -26,22 +26,15 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
         rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         self.tabBarController?.navigationItem.rightBarButtonItem = rightButton
-        setUpUI()
     }
-    func setUpUI(){
-        let theme = ThemeManager()
-        self.navigationController?.navigationBar.barStyle = theme.typechoTheme.style
-        self.navigationController?.navigationBar.barTintColor = theme.typechoTheme.titleBackgroundColor
-        self.navigationController?.navigationBar.tintColor = theme.typechoTheme.titleButtonColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.typechoTheme.titleButtonColor ?? UIColor.black]
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: theme.typechoTheme.titleButtonColor ?? UIColor.black
-            ]
-        }
-    }
+    
     override func viewDidAppear(_ animated: Bool) {
         getToken()
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        (navigationController as! NavController).stopFollowingScrollView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,7 +42,7 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     }
     
     @objc func previousPage() {
-        (stackView.viewWithTag(1) as! WKWebView).goBack()
+        webview.goBack()
     }
     
     
@@ -64,18 +57,18 @@ class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
         webviewConfig.userContentController = webviewController
         self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
         self.startRequest(cookies: cookies)
+        self.view.addSubview(webview)
+        webview.bindFrameToSuperviewBounds()
+        (navigationController as! NavController).followScrollView(webview, delay: 10.0)
     }
     
     func startRequest(cookies:String){
-        webview = WKWebView(frame: UIScreen.main.bounds)
         webview.navigationDelegate = self
         webview.tag = 1
         let url = NSURL(string: "https://alumni.nfls.io/" + in_url)!
         let request = NSMutableURLRequest(url: url as URL)
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         webview.load(request as URLRequest)
-        stackView.addArrangedSubview(webview)
-        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

@@ -13,6 +13,8 @@ import SwiftIconFont
 class AlumniRootViewController:UITabBarController{
     var in_url = ""
     override func viewDidLoad() {
+        let theme = ThemeManager()
+        tabBar.tintColor = theme.normalTheme.titleBackgroundColor
         for controller in self.viewControllers!{
             if(controller is AlumniActivityViewController){
                 controller.tabBarItem!.icon(from: .FontAwesome, code: "plug", iconColor: .black, imageSize: CGSize(width: 20, height: 20), ofSize: 20)

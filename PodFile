@@ -10,7 +10,7 @@ target 'NFLSers-iOS' do
   pod 'Alamofire'
   pod 'SSZipArchive'
   pod 'SwiftyMarkdown'
-  pod 'SwiftIconFont', :git => 'https://github.com/0x73/SwiftIconFont.git'
+  pod 'SwiftIconFont'
   pod 'Charts'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'UITableView+FDTemplateLayoutCell'
@@ -26,4 +26,5 @@ target 'NFLSers-iOS' do
   pod 'SCLAlertView'
   pod 'UIColor-Pantone'
   pod 'InAppSettingsKit'
+  pod 'AMScrollingNavbar'
 end

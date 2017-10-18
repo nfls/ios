@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
+  - AMScrollingNavbar (4.0.2)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
@@ -12,7 +13,7 @@ PODS:
     - GCDWebServer/Core (= 3.4.1)
   - GCDWebServer/Core (3.4.1)
   - InAppSettingsKit (2.8.1)
-  - IQKeyboardManagerSwift (5.0.3)
+  - IQKeyboardManagerSwift (5.0.4)
   - Kingfisher (4.1.0)
   - Permission/Camera (2.0.4):
     - Permission/Core
@@ -22,8 +23,8 @@ PODS:
   - Permission/Photos (2.0.4):
     - Permission/Core
   - SCLAlertView (0.7.0)
-  - SSZipArchive (2.0.8)
-  - SwiftIconFont (2.7.1)
+  - SSZipArchive (2.1.1)
+  - SwiftIconFont (2.7.2)
   - SwiftyMarkdown (0.5.0)
   - UIColor-Pantone (1.0)
   - UITableView+FDTemplateLayoutCell (1.6)
@@ -32,6 +33,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
+  - AMScrollingNavbar
   - Charts
   - CountryPickerSwift
   - EZSwiftExtensions
@@ -45,41 +47,33 @@ DEPENDENCIES:
   - Permission/Photos
   - SCLAlertView
   - SSZipArchive
-  - SwiftIconFont (from `https://github.com/0x73/SwiftIconFont.git`)
+  - SwiftIconFont
   - SwiftyMarkdown
   - UIColor-Pantone
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics-NO-IDFA
 
-EXTERNAL SOURCES:
-  SwiftIconFont:
-    :git: https://github.com/0x73/SwiftIconFont.git
-
-CHECKOUT OPTIONS:
-  SwiftIconFont:
-    :commit: e4f9dd1f1b79cf92a812ec4ee6e4832111533590
-    :git: https://github.com/0x73/SwiftIconFont.git
-
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  AMScrollingNavbar: 5c36344fe5e262022257f2e6c6d574f0c6d35b24
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
-  IQKeyboardManagerSwift: e257e513744cf32123eca7061272acea0246fc83
+  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   Kingfisher: f14df8cbe576bf55f211fa589e9869bceb4ea87d
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SSZipArchive: e6ab66e1936fac7e3b5073e9f5eb364d91dfbfc7
-  SwiftIconFont: 0127ae4f73d91803c1bcbb714a21931a8b2ce9c4
+  SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+  SwiftIconFont: e13dc39c257121e1141375bb338c02e686ef410b
   SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
   UIColor-Pantone: b6e5ab4c032f704f75453cfc0e8a07f68624cff5
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: f8b2b4a78fe6816fd81caa3498a3b7eae6b75612
+PODFILE CHECKSUM: cf9c5d4fa81f4f0707f8bbe5b4406916841bd092
 
 COCOAPODS: 1.4.0.beta.1

@@ -422,23 +422,9 @@ InAppSettingsKit
                     <view key="view" contentMode="scaleToFill" id="Bnv-D4-2Qh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-ee-hUP">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="yVi-ee-hUP" secondAttribute="trailing" id="43h-Lt-1aq"/>
-                            <constraint firstItem="yVi-ee-hUP" firstAttribute="top" secondItem="Lhn-zP-gCP" secondAttribute="bottom" id="LKx-nN-tmm"/>
-                            <constraint firstItem="O3z-8g-dpF" firstAttribute="top" secondItem="yVi-ee-hUP" secondAttribute="bottom" id="gfI-eh-fbt"/>
-                            <constraint firstItem="yVi-ee-hUP" firstAttribute="leading" secondItem="Bnv-D4-2Qh" secondAttribute="leading" id="lYD-An-mU0"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="活动" id="FEZ-hL-Hco"/>
-                    <connections>
-                        <outlet property="stackView" destination="yVi-ee-hUP" id="81b-kc-Ipg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFE-fp-qc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -758,22 +744,8 @@ InAppSettingsKit
                     <view key="view" contentMode="scaleToFill" id="vu8-mM-asF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KMe-Td-JZU">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MXa-3V-abi" firstAttribute="top" secondItem="KMe-Td-JZU" secondAttribute="bottom" id="BA8-uo-NEJ"/>
-                            <constraint firstItem="KMe-Td-JZU" firstAttribute="leading" secondItem="vu8-mM-asF" secondAttribute="leading" id="H7c-rp-imU"/>
-                            <constraint firstItem="KMe-Td-JZU" firstAttribute="top" secondItem="8mb-f7-j5o" secondAttribute="bottom" id="QnT-kS-O1i"/>
-                            <constraint firstAttribute="trailing" secondItem="KMe-Td-JZU" secondAttribute="trailing" id="dTR-UQ-8M5"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="stackView" destination="KMe-Td-JZU" id="E0T-8Z-OBE"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a97-wJ-nB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1448,7 +1420,7 @@ InAppSettingsKit
         <!--南外人-->
         <scene sceneID="Jtz-6r-3P4">
             <objects>
-                <navigationController title="南外人" automaticallyAdjustsScrollViewInsets="NO" id="Oqq-CB-W0U" sceneMemberID="viewController">
+                <navigationController title="南外人" automaticallyAdjustsScrollViewInsets="NO" id="Oqq-CB-W0U" customClass="NavController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D2M-6M-cOF">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>

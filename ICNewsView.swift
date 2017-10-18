@@ -10,11 +10,13 @@ import UIKit
 import WebKit
 import Alamofire
 import SCLAlertView
+import AMScrollingNavbar
 
 class ICNewsViewController: UIViewController, WKNavigationDelegate {
-    @IBOutlet weak var stackView: UIStackView!
-    var requestCookies = ""
+ 
     var webview = WKWebView()
+    
+    var requestCookies = ""
     var in_url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,23 +24,13 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(previousPage))
         rightButton.icon(from: .FontAwesome, code: "reply", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
-        setUpUI()
     }
-    
-    func setUpUI(){
-        let theme = ThemeManager()
-        self.navigationController?.navigationBar.barStyle = theme.typechoTheme.style
-        self.navigationController?.navigationBar.barTintColor = theme.typechoTheme.titleBackgroundColor
-        self.navigationController?.navigationBar.tintColor = theme.typechoTheme.titleButtonColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.typechoTheme.titleButtonColor ?? UIColor.black]
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: theme.typechoTheme.titleButtonColor ?? UIColor.black
-            ]
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (navigationController as! NavController).stopFollowingScrollView(showingNavbar: true)
     }
-    
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getToken()
     }
     
@@ -63,6 +55,9 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
         webviewConfig.userContentController = webviewController
         self.webview = WKWebView(frame: UIScreen.main.bounds ,configuration: webviewConfig)
         self.startRequest(cookies: cookies)
+        self.view.addSubview(webview)
+        webview.bindFrameToSuperviewBounds()
+        (navigationController as! NavController).followScrollView(webview, delay: 10.0)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -86,7 +81,6 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
         request.addValue(cookies, forHTTPHeaderField: "Cookie")
         requestCookies = cookies
         webview.load(request as URLRequest)
-        stackView.addArrangedSubview(webview)
         
     }
     
@@ -114,3 +108,19 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
+extension UIView {
+    
+    /// Adds constraints to this `UIView` instances `superview` object to make sure this always has the same size as the superview.
+    /// Please note that this has no effect if its `superview` is `nil` – add this `UIView` instance as a subview before calling this.
+    func bindFrameToSuperviewBounds() {
+        guard let superview = self.superview else {
+            print("Error! `superview` was nil – call `addSubview(view: UIView)` before calling `bindFrameToSuperviewBounds()` to fix this.")
+            return
+        }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": self]))
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": self]))
+    }
+}
+
