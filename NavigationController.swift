@@ -59,12 +59,12 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
         }
         if(excution){
             switch(state){
-            case .collapsed:
+            case .collapsed,.scrolling:
                 self.navigationBar.barStyle = theme.typechoTheme.style
                 self.navigationBar.barTintColor = UIColor(red: 39/255, green: 194/255, blue: 76/255, alpha: 1.0)
                 self.navigationBar.tintColor = UIColor(red: 39/255, green: 194/255, blue: 76/255, alpha: 1.0)
                 break
-            default:
+            case .expanded:
                 self.navigationBar.barStyle = theme.normalTheme.style
                 self.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
                 self.navigationBar.tintColor = theme.normalTheme.titleButtonColor

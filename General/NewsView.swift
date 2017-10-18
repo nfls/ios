@@ -56,7 +56,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showWiki", sender: self)
         }
         self.bar.actionForIndex[0] = {
-            self.performSegue(withIdentifier: "showResources", sender: self)
+            self.getAuthStatus(checkIC: true, segueName: "showResources")
+            
         }
         self.bar.actionForIndex[2] = {
             self.performSegue(withIdentifier: "showAlumni", sender: self)
@@ -266,6 +267,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     func checkStatus(){
+        checkUpdate()
         if(UserDefaults.standard.string(forKey: "token") == nil){
             self.showLogin()
             return
@@ -650,7 +652,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         case phoneCode
         case identity
     }
-    func getAuthStatus(checkIC:Bool = false){
+    func getAuthStatus(checkIC:Bool = false,segueName:String? = nil){
         Alamofire.request("https://api.nfls.io/center/auth?token="+UserDefaults.standard.string(forKey: "token")!).responseJSON { (response) in
             switch(response.result){
             case .success(let json):
@@ -659,8 +661,15 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.realnameAuth(withStep: .phoneNumber)
                 }else if(!data["ic"]! && checkIC){
                     self.realnameAuth(withStep: .identity)
+                }else{
+                    if let name = segueName {
+                        self.performSegue(withIdentifier: name, sender: self)
+                    }
                 }
             default:
+                if let name = segueName {
+                    self.performSegue(withIdentifier: name, sender: self)
+                }
                 break
             }
             
@@ -779,7 +788,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     var msg = ""
                     if(data["enabled"]! as! Bool){
                         msg = "当前状态：已通过（所有功能可正常使用，不可修改）"
-                    }else if(data["enabled"]! as! Bool){
+                    }else if(data["submitted"]! as! Bool){
                         msg = "当前状态：已提交，待审核（所有功能可正常使用，可以修改）"
                     }else{
                         msg = "当前状态：未提交（无法访问往卷下载）"
@@ -794,6 +803,30 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             break
             
         }
+    }
+    
+    
+    func checkUpdate(){
+        let parameters:Parameters = [
+            "version":Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        ]
+        Alamofire.request("https://api.nfls.io/device/update", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
+            response in
+            switch(response.result){
+            case .success(let json):
+                let code = (json as! [String:Int])["code"]
+                if(code == 201){
+                    SCLAlertView().showInfo("检测到更新", subTitle: "请在App Store中下载最新更新")
+                } else if (code == 202) {
+                    SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                    )).showInfo("不受支持的App版本", subTitle: "服务器已不再支持您的App版本，请考虑升级")
+                }
+            default:
+                break
+            }
+            
+        })
     }
     
 }

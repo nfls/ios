@@ -14,9 +14,7 @@ import SCLAlertView
 
 class AlumniActivityViewController:UIViewController,WKNavigationDelegate{
     
-    @IBOutlet weak var webview: WKWebView!
-    
-    
+    var webview: WKWebView!
     var requestCookies = ""
     var in_url = ""
     override func viewDidLoad() {
