@@ -353,8 +353,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     } else {
                         self.navigationItem.prompt = "Welcome to NFLS.IO"
                     }
+                    self.tableView.setContentOffset(CGPoint.zero, animated: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                         self.navigationItem.prompt = nil
+                        self.tableView.setContentOffset(CGPoint.zero, animated: true)
                         self.navigationController?.navigationBar.setNeedsLayout()
                         self.navigationController?.navigationBar.layoutIfNeeded()
                         self.navigationController?.navigationBar.setNeedsDisplay()
