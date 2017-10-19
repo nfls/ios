@@ -197,7 +197,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             "items":requestDetail
         ]
         
-        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{
             response in
             switch response.result{
             case .success(let json):
@@ -292,7 +295,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             "action":"get",
             "thumbs":requestImages
         ]
-        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             switch(response.result){
             case .success(let json):
                 if let images = json as? [String:AnyObject]{
@@ -411,7 +417,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
-            request = Alamofire.download("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress { progress in
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            request = Alamofire.download("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers, to: destination).downloadProgress { progress in
                 if(progress.fractionCompleted == 1.0){
                     SSZipArchive.unzipFile(atPath: fileURL.path, toDestination: unzipURL.path)
                 }
@@ -549,7 +558,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             "action": "get",
             "custom": "/" + currentFolder
         ]
-        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: {
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://dl.nfls.io/?", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: {
             response in
             switch(response.result){
             case .success(let json):
