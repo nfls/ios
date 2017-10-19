@@ -15,6 +15,8 @@ class CenterTabRootViewController:UITabBarController{
     
     @IBOutlet weak var tabbar: UITabBar!
     override func viewDidLoad() {
+        let theme = ThemeManager()
+        tabBar.tintColor = theme.normalTheme.titleBackgroundColor
         for controller in self.viewControllers!{
             if (controller is GeneralInfoView){
                 controller.tabBarItem!.icon(from: .FontAwesome, code: "cog", iconColor: .black, imageSize: CGSize(width: 20, height: 20), ofSize: 20)

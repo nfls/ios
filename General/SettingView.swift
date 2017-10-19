@@ -86,12 +86,17 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                 SKPaymentQueue.default().add(payment)
             }
             break
+        case "app.realname":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "realname"
+            navigationController?.popViewController(animated: true)
+            break
         case "app.logout":
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
             (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "logout"
             navigationController?.popViewController(animated: true)
+            break
         default:
             break
         }

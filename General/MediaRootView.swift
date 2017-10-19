@@ -12,6 +12,8 @@ import SwiftIconFont
 
 class MediaViewController:UITabBarController{
     override func viewDidLoad() {
+        let theme = ThemeManager()
+        tabBar.tintColor = theme.normalTheme.titleBackgroundColor
         for controller in self.viewControllers!{
             if(controller is VideoListViewController){
                 controller.tabBarItem!.icon(from: .FontAwesome, code: "film", iconColor: .black, imageSize: CGSize(width:10, height:20), ofSize: 20)

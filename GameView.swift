@@ -60,21 +60,21 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
                 let headers: HTTPHeaders = [
                     "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
                 ]
-                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-                hideLoading()
-                print(transaction.payment.productIdentifier)
-                switch(transaction.payment.productIdentifier){
-                case "1011","1012":
-                    webview.evaluateJavaScript("onPurchased(true,\"recover\",true);", completionHandler:{(any, error) in
-                        print("complete")
-                        dump(error)
-                    })
-                case "1013","1014":
-                    webview.evaluateJavaScript("onPurchased(true,\"double\",true);", completionHandler: nil)
-                default:
-                    break
-                }
-                
+                Alamofire.request("https://api.nfls.io/device/purchase", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { (response) in
+                    self.hideLoading()
+                    print(transaction.payment.productIdentifier)
+                    switch(transaction.payment.productIdentifier){
+                    case "1011","1012":
+                        self.webview.evaluateJavaScript("onPurchased(true,\"recover\",true);", completionHandler:{(any, error) in
+                            print("complete")
+                            dump(error)
+                        })
+                    case "1013","1014":
+                        self.webview.evaluateJavaScript("onPurchased(true,\"double\",true);", completionHandler: nil)
+                    default:
+                        break
+                    }
+                })
                 break
             case .failed:
                 hideLoading()
@@ -184,7 +184,10 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
         
     }
     func downloadData(){
-        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let unzipURL = documentsURL.appendingPathComponent(self.location)
+        self.server.addGETHandler(forBasePath: "/", directoryPath: unzipURL.path, indexFilename: "index.html", cacheAge: 0, allowRangeRequests: true)
+        self.server.start(withPort: 6699, bonjourName: "nflsers")
         if(NetworkReachabilityManager()!.isReachable){
             let downloading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
                 showCloseButton: false
@@ -202,10 +205,11 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
             if(UserDefaults.standard.string(forKey: location + "_version") != nil){
                 downloading.addButton("离线模式", action: {
                     request?.cancel()
+                    
                     self.getToken(isOnline: false)
                 })
             }
-            let responder = downloading.showWait("资源更新中", subTitle: "更新资源中，请稍后，当前进度 00.00%")
+            let responder = downloading.showWait("资源更新中", subTitle: "更新资源中，请稍后，当前进度 0.00%")
             request = Alamofire.download("https://game.nfls.io/" + location + "/offline.php", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, to: destination).downloadProgress(queue: utilityQueue) { progress in
                 DispatchQueue.main.async {
                     if(progress.fractionCompleted != 1.0){
@@ -216,10 +220,9 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
                         let unzipURL = documentsURL.appendingPathComponent(self.location)
                         //self.removeFile(filename: "", path: self.location)
                         SSZipArchive.unzipFile(atPath: fileURL.path, toDestination: unzipURL.path)
-                        self.server.addGETHandler(forBasePath: "/", directoryPath: unzipURL.path, indexFilename: "index.html", cacheAge: 0, allowRangeRequests: true)
-                        self.server.start(withPort: 6699, bonjourName: "nflsers")
-                        let version = try! String(contentsOf: unzipURL.appendingPathComponent("version.lock"), encoding: String.Encoding.utf8)
-                        UserDefaults.standard.set(version, forKey: self.location + "_version")
+                        if let version = try? String(contentsOf: unzipURL.appendingPathComponent("version.lock"), encoding: String.Encoding.utf8){
+                            UserDefaults.standard.set(version, forKey: self.location + "_version")
+                        }
                         self.getToken()
                         responder.close()
                     }

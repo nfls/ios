@@ -474,7 +474,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 }
                 self.listRequest()
             })
-            let responder = downloading.showWait("下载中", subTitle: "您正在下载以下文件：" + filename + "，进度：00.00%")
+            let responder = downloading.showWait("下载中", subTitle: "您正在下载以下文件：" + filename + "，进度：0.00%")
             let utilityQueue = DispatchQueue.global(qos: .utility)
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])

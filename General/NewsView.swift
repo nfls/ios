@@ -374,6 +374,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         if(url == "logout"){
             checkStatus()
             return
+        }else if (url == "realname"){
+            realnameAuth(withStep: .identity)
+            return
         }
         if(url.contains("nfls.io")){
             if(!url.contains("https://nfls.io")){
@@ -653,27 +656,33 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         case identity
     }
     func getAuthStatus(checkIC:Bool = false,segueName:String? = nil){
-        Alamofire.request("https://api.nfls.io/center/auth?token="+UserDefaults.standard.string(forKey: "token")!).responseJSON { (response) in
-            switch(response.result){
-            case .success(let json):
-                let data = (json as! [String:AnyObject])["info"] as! [String:Bool]
-                if(!data["phone"]!){
-                    self.realnameAuth(withStep: .phoneNumber)
-                }else if(!data["ic"]! && checkIC){
-                    self.realnameAuth(withStep: .identity)
-                }else{
+        if(NetworkReachabilityManager()!.isReachable){
+            Alamofire.request("https://api.nfls.io/center/auth?token="+UserDefaults.standard.string(forKey: "token")!).responseJSON { (response) in
+                switch(response.result){
+                case .success(let json):
+                    let data = (json as! [String:AnyObject])["info"] as! [String:Bool]
+                    if(!data["phone"]! && (checkIC || UserDefaults.standard.value(forKey: "app.notified") == nil)){
+                        self.realnameAuth(withStep: .phoneNumber)
+                    }else if(!data["ic"]! && checkIC){
+                        self.realnameAuth(withStep: .identity)
+                    }else{
+                        if let name = segueName {
+                            self.performSegue(withIdentifier: name, sender: self)
+                        }
+                    }
+                default:
                     if let name = segueName {
                         self.performSegue(withIdentifier: name, sender: self)
                     }
+                    break
                 }
-            default:
-                if let name = segueName {
-                    self.performSegue(withIdentifier: name, sender: self)
-                }
-                break
             }
-            
+        }else{
+            if let name = segueName {
+                self.performSegue(withIdentifier: name, sender: self)
+            }
         }
+       
     }
     var phoneText = ""
     func realnameAuth(withStep step:AuthStatus,info:AnyObject? = nil){
@@ -711,6 +720,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 })
             })
             message.showInfo("手机号验证", subTitle: "根据网信办相关规定，在使用本站服务前，您需要绑定您的手机号并提交相关信息。", closeButtonTitle: "跳过")
+            UserDefaults.standard.set(true, forKey: "app.notified")
             break
         case .phoneCode:
             let code = message.addTextField("6位验证码")
@@ -769,7 +779,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     responder.close()
                     switch(response.result){
                     case .success(_):
-                        self.realnameAuth(withStep: .identity)
+                        SCLAlertView().showSuccess("成功", subTitle: "您已成功提交！如需要修改，请在设置中点击相关选项")
                         break
                     case .failure(_):
                         SCLAlertView().showError("错误", subTitle: "提交错误，请重试").setDismissBlock {
@@ -793,7 +803,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     }else{
                         msg = "当前状态：未提交（无法访问往卷下载）"
                     }
-                    message.showInfo("个人信息认证", subTitle: "请在下面填写您的班级信息以启用资源下载功能，注意：恶意填写将导致封号；非国际部在校学生可跳过该步骤，您已完成所有基础认证项目。" + msg, closeButtonTitle: "完成")
+                    message.showInfo("个人信息认证", subTitle: "请在下面填写您的班级信息以启用资源下载功能，注意：恶意填写将导致封号；非国际部在校学生可跳过该步骤，您已完成所有基础认证项目。" + msg, closeButtonTitle: "返回")
                     break
                 case .failure(_):
                     break

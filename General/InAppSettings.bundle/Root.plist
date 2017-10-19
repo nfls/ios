@@ -104,6 +104,14 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
+			<string>国际部在校学生实名认证</string>
+			<key>Key</key>
+			<string>app.realname</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
 			<string>个人中心</string>
 			<key>Key</key>
 			<string>app.user</string>
