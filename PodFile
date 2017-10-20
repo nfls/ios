@@ -28,4 +28,5 @@ target 'NFLSers-iOS' do
   pod 'InAppSettingsKit'
   pod 'AMScrollingNavbar'
   pod 'SVGKit'
+  pod 'JWGeohashKit'
 end

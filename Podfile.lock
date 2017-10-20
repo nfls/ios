@@ -20,6 +20,7 @@ PODS:
   - GCDWebServer/Core (3.4.1)
   - InAppSettingsKit (2.8.1)
   - IQKeyboardManagerSwift (5.0.4)
+  - JWGeohashKit (0.2)
   - Kingfisher (4.1.1)
   - Permission/Camera (2.0.4):
     - Permission/Core
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - GCDWebServer
   - InAppSettingsKit
   - IQKeyboardManagerSwift
+  - JWGeohashKit
   - Kingfisher
   - Permission/Camera
   - Permission/Notifications
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
+  JWGeohashKit: 65c65662b9f51947424ec44ff4ec89c3d182e840
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
@@ -85,6 +88,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: f33c4482eb9eec0780660561a16022e565bc3532
+PODFILE CHECKSUM: b6dc6bdb540e99af8f74ad64f3cc4204969bf10c
 
 COCOAPODS: 1.4.0.beta.1
