@@ -171,9 +171,6 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = false
-        }
         self.navigationItem.title = nil
         //self.navigationController?.navigationBar.isTranslucent = true
     }

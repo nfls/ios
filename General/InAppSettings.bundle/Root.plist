@@ -150,7 +150,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>关于</string>
+			<string>开发组</string>
 			<key>File</key>
 			<string>Authors</string>
 		</dict>

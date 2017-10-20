@@ -50,9 +50,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         qlpreview.delegate = self
         qlpreview.dataSource = self
         searchBar.delegate = self
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        }
     }
     
     @objc func back(){
@@ -79,10 +76,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     override func viewWillDisappear(_ animated: Bool) {
         MobClick.endLogPageView("Resources")
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
-        //removeFile(filename: "", path: "temp")
     }
     @objc func setting() {
         var mutipleSelectAction = UIAlertAction()

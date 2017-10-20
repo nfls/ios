@@ -27,4 +27,5 @@ target 'NFLSers-iOS' do
   pod 'UIColor-Pantone'
   pod 'InAppSettingsKit'
   pod 'AMScrollingNavbar'
+  pod 'SVGKit'
 end
