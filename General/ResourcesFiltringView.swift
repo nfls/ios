@@ -387,10 +387,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         ]
         var count = 0
         for file in files{
-            if(file.row != 0){
-                parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
                 count += 1
-            }
         }
         if(count >= 1){
             var request:Alamofire.Request?
@@ -661,12 +659,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
-        if(indexPath.row != 0){
-            cell.accessoryType = .checkmark
-        } else {
-            cell.isSelected = false
-        }
-        
+        cell.accessoryType = .checkmark
         tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
             if(isFolder[indexPath.row]){

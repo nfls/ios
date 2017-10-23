@@ -1442,7 +1442,7 @@ InAppSettingsKit
         <!--View Controller-->
         <scene sceneID="Ss7-b8-5up">
             <objects>
-                <viewController id="SeE-VV-a3s" customClass="ViewController" customModule="RussianHeat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SeE-VV-a3s" customClass="ViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ijz-XZ-sXw"/>
                         <viewControllerLayoutGuide type="bottom" id="t4K-cQ-SLH"/>
