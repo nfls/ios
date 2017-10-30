@@ -11,6 +11,8 @@ import UIKit
 import InAppSettingsKit
 import StoreKit
 import Alamofire
+import PassKit
+import SCLAlertView
 
 class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver{
     var productsRequest = SKProductsRequest()
@@ -96,6 +98,28 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             }
             (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "logout"
             navigationController?.popViewController(animated: true)
+            break
+        case "app.ticket":
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            Alamofire.request("https://api.nfls.io/ic/ticket", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseData(completionHandler: { (response) in
+                if(response.response?.statusCode != 200){
+                    SCLAlertView().showError("错误", subTitle: "您的账户下暂时没有可用的入场券")
+                    return
+                }
+                switch(response.result){
+                case .success(let data):
+                    let pass = PKPass(data: data, error: nil)
+                    let passview = PKAddPassesViewController(pass: pass)
+                    SCLAlertView().showInfo("检测到可用门票", subTitle: "请在下面的窗口中选择“添加”，之后，您可以在系统自带的Wallet应用中查看该门票").setDismissBlock {
+                        self.present(passview, animated:true)
+                    }
+                    //self.navigationController?.pushViewController(passview, animated: true)
+                default:
+                    SCLAlertView().showError("错误", subTitle: "您的账户下暂时没有可用的入场券")
+                }
+            })
             break
         default:
             break
