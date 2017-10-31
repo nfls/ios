@@ -29,4 +29,5 @@ target 'NFLSers-iOS' do
   pod 'AMScrollingNavbar'
 #  pod 'SVGKit'
   pod 'JWGeohashKit'
+  pod 'ChromaColorPicker'
 end

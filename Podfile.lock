@@ -6,6 +6,7 @@ PODS:
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
+  - ChromaColorPicker (1.5.1)
   - CountryPickerSwift (1.4.5)
   - EZSwiftExtensions (1.11)
   - FrostedSidebar (1.0.0)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator
   - AMScrollingNavbar
   - Charts
+  - ChromaColorPicker
   - CountryPickerSwift
   - EZSwiftExtensions
   - FrostedSidebar
@@ -60,6 +62,7 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AMScrollingNavbar: 3f35e65f5c97918c31be2179bda9ecb25dc5a3df
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
@@ -77,6 +80,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: e697136b886ec1280c92eff5375f3bcaf5adde20
+PODFILE CHECKSUM: 2eb3a18a9e515cc3ecf0a7d53d7f98f777ce498e
 
 COCOAPODS: 1.4.0.beta.1

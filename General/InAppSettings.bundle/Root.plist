@@ -16,16 +16,6 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>夜间模式</string>
-			<key>Key</key>
-			<string>settings.night.isEnabled</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
 			<false/>
@@ -48,6 +38,7 @@
 				<string>fogBlue</string>
 				<string>black</string>
 				<string>kill</string>
+				<string>customize</string>
 			</array>
 			<key>Titles</key>
 			<array>
@@ -62,6 +53,7 @@
 				<string>雾霾蓝</string>
 				<string>夜间黑</string>
 				<string>瞎眼睛</string>
+				<string>自定义</string>
 			</array>
 			<key>Key</key>
 			<string>settings.theme</string>
@@ -72,27 +64,11 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
+			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>身份</string>
+			<string>自定义主题</string>
 			<key>Key</key>
-			<string>settings.identification</string>
-			<key>DefaultValue</key>
-			<string>none</string>
-			<key>Titles</key>
-			<array>
-				<string>未指定</string>
-				<string>IB&amp;A-Level在校学生</string>
-				<string>普初普高及中加在校学生</string>
-				<string>毕业校友</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>none</string>
-				<string>ic</string>
-				<string>normal</string>
-				<string>graduates</string>
-			</array>
+			<string>settings.theme.pick</string>
 		</dict>
 		<dict>
 			<key>Type</key>

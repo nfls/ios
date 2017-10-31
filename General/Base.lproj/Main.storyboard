@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -395,6 +395,41 @@ InAppSettingsKit
             </objects>
             <point key="canvasLocation" x="5616" y="-1305"/>
         </scene>
+        <!--自定义主题-->
+        <scene sceneID="pMT-OH-Ndl">
+            <objects>
+                <viewController title="自定义主题" id="txe-cI-1CS" customClass="PickerViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="09t-CH-QzH"/>
+                        <viewControllerLayoutGuide type="bottom" id="NiP-aS-dJD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jVM-P2-pQh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lv-Zv-JW3">
+                                <rect key="frame" x="60" y="160" width="200" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="8i6-OK-Bhd"/>
+                                    <constraint firstAttribute="width" constant="200" id="dM2-ee-miT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3lv-Zv-JW3" firstAttribute="centerY" secondItem="jVM-P2-pQh" secondAttribute="centerY" constant="20" id="Ca6-Gg-el7"/>
+                            <constraint firstItem="3lv-Zv-JW3" firstAttribute="centerX" secondItem="jVM-P2-pQh" secondAttribute="centerX" id="MB9-Yc-cVp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="3lv-Zv-JW3" id="3cU-Iu-mCd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cpc-cz-n0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6341" y="-1304"/>
+        </scene>
         <!--个人中心-->
         <scene sceneID="icj-ah-7Ge">
             <objects>
@@ -781,6 +816,7 @@ InAppSettingsKit
                     <connections>
                         <segue destination="yOG-PY-KJD" kind="show" identifier="showLicenses" id="MVX-AE-O0x"/>
                         <segue destination="dce-kE-49C" kind="show" identifier="showCenter" id="40F-Er-dbx"/>
+                        <segue destination="txe-cI-1CS" kind="show" identifier="showPicker" id="fDf-SG-8hO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7e-Hw-I3c" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -59,6 +59,7 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,11 +70,13 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SKPaymentQueue.default().remove(self)
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
+    
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         switch(specifier.key()){
         case "app.license":
@@ -121,8 +124,12 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                 }
             })
             break
+        case "settings.theme.pick":
+            self.performSegue(withIdentifier: "showPicker", sender: self)
+            break
         default:
             break
         }
     }
+    
 }
