@@ -754,7 +754,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             })
             moreRowAction.backgroundColor = UIColor.blue
             return [moreRowAction]
-            //return []
         }
         
     }
