@@ -14,8 +14,21 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
     override func viewDidLoad() {
         self.delegate = self
         self.scrollingNavbarDelegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: UserDefaults.didChangeNotification, object: nil)
+        //UserDefaults.standard.addObserver(self, forKeyPath: "settings.night.auto", options: NSKeyValueObservingOptions.new, context: nil)
     }
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        updateNav(viewController)
+    }
+    @objc func update(){
+        updateNav()
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
+     //UserDefaults.standard.removeObserver(self, forKeyPath: "settings.night.auto")
+    }
+    
+    func updateNav(_ viewController:UIViewController? = nil){
         self.scrollingNavbarDelegate = self
         let theme = ThemeManager()
         self.navigationBar.isTranslucent = false

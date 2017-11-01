@@ -28,7 +28,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var currentFolder = ""
     var reactWithClick = true
     var onlineMode = true
-    let qlpreview = QLPreviewController()
+    
     var fileurls = [NSURL]()
     var useNew = true
     
@@ -47,8 +47,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         navigationItem.leftBarButtonItem = leftButton
         tableview.allowsMultipleSelection = true
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
-        qlpreview.delegate = self
-        qlpreview.dataSource = self
         searchBar.delegate = self
     }
     
@@ -387,10 +385,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         ]
         var count = 0
         for file in files{
-            if(file.row != 0){
-                parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
                 count += 1
-            }
         }
         if(count >= 1){
             var request:Alamofire.Request?
@@ -449,9 +445,14 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         if(fileurls.count != files.count || files.count == 0){
             SCLAlertView().showError("错误", subTitle: "仅能预览已缓存的文件！")
         } else {
+            let qlpreview = QLPreviewController()
+            qlpreview.dataSource = self
+            qlpreview.delegate = self
             qlpreview.reloadData()
             DispatchQueue.main.async {
-                self.navigationController!.pushViewController(self.qlpreview, animated: true)
+                if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.navigationController!.pushViewController(qlpreview, animated: true)
+                }
             }
         }
         
@@ -487,12 +488,52 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         responder.setSubTitle("您正在下载以下文件：" + filename + "，进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%")
                     } else {
                         responder.close()
-                        self.goToView(url: fileURL)
+                        self.goToView(url: fileURL, filename: filename)
                     }
                 }
             }
         } else {
-            self.goToView(url: fileURL)
+            self.goToView(url: fileURL, filename: filename)
+        }
+    }
+    func findAnswer(filename:String) -> Bool{
+        if(fileurls.count == 2){
+            return false
+        }
+        if(filename.contains("qp")){
+            let answer = filename.replacingOccurrences(of: "qp", with: "ms")
+            if(filenames.contains(answer)){
+                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + answer.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:answer, path:currentFolder)
+                return true
+            }else{
+                return false
+            }
+        }else if(filename.contains("ms")){
+            let answer = filename.replacingOccurrences(of: "ms", with: "qp")
+            if(filenames.contains(answer)){
+                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + answer.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:answer, path:currentFolder)
+                return true
+            }else{
+                return false
+            }
+        }else if(filename.contains("._markscheme.pdf")){
+            let answer = filename.replacingOccurrences(of: "._markscheme.pdf", with: ".pdf")
+            if(filenames.contains(answer)){
+                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + answer.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:answer, path:currentFolder)
+                return true
+            }else{
+                return false
+            }
+        }else if(filename.contains(".pdf")){
+            let answer = filename.replacingOccurrences(of: ".pdf", with: "_markscheme.pdf")
+            if(filenames.contains(answer)){
+                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + answer.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:answer, path:currentFolder)
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
         }
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -501,15 +542,20 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         listRequest()
     }
-    func goToView(url:URL){
-        fileurls.removeAll()
+    func goToView(url:URL,filename:String){
         fileurls.append(url as NSURL)
-        qlpreview.currentPreviewItemIndex = 0
-        qlpreview.reloadData()
-        DispatchQueue.main.async {
-            self.navigationController!.pushViewController(self.qlpreview, animated: true)
+        if(!self.findAnswer(filename: filename)){
+            let qlpreview = QLPreviewController()
+            qlpreview.dataSource = self
+            qlpreview.delegate = self
+            qlpreview.reloadData()
+            qlpreview.currentPreviewItemIndex = 0
+            DispatchQueue.main.async {
+                if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.navigationController!.pushViewController(qlpreview, animated: true)
+                }
+            }
         }
-        
     }
     
     func changeCurrentDir(newDir:String,_ add:Bool = true){
@@ -661,12 +707,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
-        if(indexPath.row != 0){
-            cell.accessoryType = .checkmark
-        } else {
-            cell.isSelected = false
-        }
-        
+        cell.accessoryType = .checkmark
         tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
             if(isFolder[indexPath.row]){
@@ -680,7 +721,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         cell.accessoryType = .none
-        // cell.accessoryView.hidden = true  // if using a custom image
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -714,12 +754,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             })
             moreRowAction.backgroundColor = UIColor.blue
             return [moreRowAction]
-            //return []
         }
-        
-    }
-    
-    @IBAction func closePDF(segue: UIStoryboardSegue){
         
     }
     
@@ -731,13 +766,15 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         return fileurls[index]
     }
     
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        fileurls.removeAll()
+    }
 }
 
 class DownloadCell:UITableViewCell{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)

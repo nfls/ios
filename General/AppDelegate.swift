@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
-        ZIKCellularAuthorization.request()
+        //ZIKCellularAuthorization.request()
         UMAnalyticsConfig.sharedInstance().appKey = "59c733a1c895764c1100001c"
         UMAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
@@ -143,5 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
 
 
