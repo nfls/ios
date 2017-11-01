@@ -61,6 +61,14 @@ class ThemeManager{
                 normalTheme = ThemeSetting().grass
             case "fogBlue":
                 normalTheme = ThemeSetting().fogBlue
+            case "customize":
+                let color = UserDefaults.standard.colorForKey(key: "settings.theme.color")
+                if let c = color{
+                    let theme = Theme(style: .black, titleBackgroundColor: c, titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
+                    normalTheme = theme
+                }else{
+                    normalTheme = ThemeSetting().pink
+                }
             default:
                 normalTheme = ThemeSetting().pink
                 break
@@ -78,5 +86,25 @@ class ThemeManager{
             }
         }
     }
+}
+
+extension UserDefaults {
+    
+    func colorForKey(key: String) -> UIColor? {
+        var color: UIColor?
+        if let colorData = data(forKey: key) {
+            color = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+        }
+        return color
+    }
+    
+    func setColor(color: UIColor?, forKey key: String) {
+        var colorData: NSData?
+        if let color = color {
+            colorData = NSKeyedArchiver.archivedData(withRootObject: color) as NSData
+        }
+        set(colorData, forKey: key)
+    }
+    
 }
 

@@ -12,16 +12,24 @@ import ChromaColorPicker
 
 class PickerViewController:UIViewController,ChromaColorPickerDelegate{
     func colorPickerDidChooseColor(_ colorPicker: ChromaColorPicker, color: UIColor) {
-        dump(color)
+        UserDefaults.standard.setColor(color: color, forKey: "settings.theme.color")
+        UserDefaults.standard.set("customize", forKey: "settings.theme")
     }
-    
     
     @IBOutlet weak var container: UIView!
     override func viewDidLoad() {
-        let picker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        view.backgroundColor = UIColor.gray
+        container.backgroundColor = UIColor.gray
+        let picker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
         picker.delegate = self
         picker.padding = 5
         picker.stroke = 3
+        if let color = UserDefaults.standard.colorForKey(key: "settings.theme.color"){
+            picker.adjustToColor(color)
+        }
+        //picker.addButton.isHidden = true
         container.addSubview(picker)
     }
+    
+    
 }
