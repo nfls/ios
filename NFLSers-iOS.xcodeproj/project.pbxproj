@@ -34,7 +34,6 @@
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
 		65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7B1F09746800BDC60A /* icons8-Folder-50.png */; };
 		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
-		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
 		657CE9171F89EE0500433578 /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 657CE9161F89EDEB00433578 /* forum.png */; };
 		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
@@ -45,6 +44,7 @@
 		6585ADB81F8B7AA200ECCBB9 /* resources.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB21F8B79BC00ECCBB9 /* resources.png */; };
 		6585ADB91F8B7AA600ECCBB9 /* weather.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB31F8B79BC00ECCBB9 /* weather.png */; };
 		6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB41F8B79BC00ECCBB9 /* wiki.png */; };
+		658C1ED71FA9E446001A3F73 /* 未标题-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 658C1ED61FA9E446001A3F73 /* 未标题-1.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65AD5EC91F8D9681008EE0F8 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */; };
 		65AD5ECB1F8D9ADE008EE0F8 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */; };
@@ -52,6 +52,8 @@
 		65DEE0F91F6402E0007735CD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0F81F6402E0007735CD /* GameView.swift */; };
 		65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FA1F645C61007735CD /* MediaRootView.swift */; };
 		65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FC1F645C97007735CD /* VideoListView.swift */; };
+		65E9B46B1FAEBEC100A0DFFE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */; };
+		65E9B46F1FAEBEC100A0DFFE /* pushNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
 		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
@@ -62,6 +64,30 @@
 		D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */; };
 		D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F7A0031EF2393E0047CF5D /* StoreKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65E9B46D1FAEBEC100A0DFFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6AE17361E44D51600E66B4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65E9B4671FAEBEC100A0DFFE;
+			remoteInfo = pushNotification;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65E9B4731FAEBEC100A0DFFE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				65E9B46F1FAEBEC100A0DFFE /* pushNotification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +121,6 @@
 		65784C7B1F09746800BDC60A /* icons8-Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Folder-50.png"; sourceTree = "<group>"; };
 		65784C7D1F09762400BDC60A /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Documents-50.png"; sourceTree = "<group>"; };
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
-		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
 		657CE9161F89EDEB00433578 /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forum.png; sourceTree = "<group>"; };
 		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -107,6 +131,7 @@
 		6585ADB21F8B79BC00ECCBB9 /* resources.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resources.png; sourceTree = "<group>"; };
 		6585ADB31F8B79BC00ECCBB9 /* weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather.png; sourceTree = "<group>"; };
 		6585ADB41F8B79BC00ECCBB9 /* wiki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiki.png; sourceTree = "<group>"; };
+		658C1ED61FA9E446001A3F73 /* 未标题-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未标题-1.png"; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -115,6 +140,9 @@
 		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
 		65DEE0FC1F645C97007735CD /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b43d0620-8a58-449b-9fe8-5ac422325900.png"; sourceTree = "<group>"; };
+		65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = pushNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		65E9B46C1FAEBEC100A0DFFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +165,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		65E9B4651FAEBEC100A0DFFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173B1E44D51600E66B4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,9 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
-				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
 				651BC4EE1F93AFE900869D9F /* NavigationController.swift */,
-				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
@@ -270,6 +303,7 @@
 				653CE9CE1F8FB73100A56B57 /* game.png */,
 				6585ADB21F8B79BC00ECCBB9 /* resources.png */,
 				6585ADB31F8B79BC00ECCBB9 /* weather.png */,
+				658C1ED61FA9E446001A3F73 /* 未标题-1.png */,
 				653CE9CC1F8FA75900A56B57 /* ic.png */,
 				6585ADB41F8B79BC00ECCBB9 /* wiki.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
@@ -280,14 +314,25 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		65E9B4691FAEBEC100A0DFFE /* pushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */,
+				65E9B46C1FAEBEC100A0DFFE /* Info.plist */,
+			);
+			path = pushNotification;
+			sourceTree = "<group>";
+		};
 		D6AE17351E44D51600E66B4B = {
 			isa = PBXGroup;
 			children = (
 				D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */,
 				D6AE17401E44D51600E66B4B /* General */,
 				E014B762E1B339252796E5D2 /* Pods */,
+				65E9B4691FAEBEC100A0DFFE /* pushNotification */,
 				0349413280DA2E07E819AAA2 /* Frameworks */,
 				656AEC931F3096F100F0801A /* NFLSers-iOS.app */,
+				65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,6 +373,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		65E9B4671FAEBEC100A0DFFE /* pushNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65E9B4721FAEBEC100A0DFFE /* Build configuration list for PBXNativeTarget "pushNotification" */;
+			buildPhases = (
+				65E9B4641FAEBEC100A0DFFE /* Sources */,
+				65E9B4651FAEBEC100A0DFFE /* Frameworks */,
+				65E9B4661FAEBEC100A0DFFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pushNotification;
+			productName = pushNotification;
+			productReference = 65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D6AE173D1E44D51600E66B4B /* NFLSers-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */;
@@ -338,10 +400,12 @@
 				D6AE173C1E44D51600E66B4B /* Resources */,
 				22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */,
 				6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */,
+				65E9B4731FAEBEC100A0DFFE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				65E9B46E1FAEBEC100A0DFFE /* PBXTargetDependency */,
 			);
 			name = "NFLSers-iOS";
 			productName = general;
@@ -354,10 +418,15 @@
 		D6AE17361E44D51600E66B4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "胡清阳";
 				TargetAttributes = {
+					65E9B4671FAEBEC100A0DFFE = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = K2P3533G4D;
+						ProvisioningStyle = Automatic;
+					};
 					D6AE173D1E44D51600E66B4B = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K2P3533G4D;
@@ -400,11 +469,19 @@
 			projectRoot = "";
 			targets = (
 				D6AE173D1E44D51600E66B4B /* NFLSers-iOS */,
+				65E9B4671FAEBEC100A0DFFE /* pushNotification */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		65E9B4661FAEBEC100A0DFFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173C1E44D51600E66B4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,6 +501,7 @@
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
+				658C1ED71FA9E446001A3F73 /* 未标题-1.png in Resources */,
 				6585ADB71F8B7A9E00ECCBB9 /* media.png in Resources */,
 				6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */,
 			);
@@ -524,6 +602,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		65E9B4641FAEBEC100A0DFFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65E9B46B1FAEBEC100A0DFFE /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173A1E44D51600E66B4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,7 +632,6 @@
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */,
 				65DEE0F91F6402E0007735CD /* GameView.swift in Sources */,
-				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
@@ -564,6 +649,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65E9B46E1FAEBEC100A0DFFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65E9B4671FAEBEC100A0DFFE /* pushNotification */;
+			targetProxy = 65E9B46D1FAEBEC100A0DFFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6546E68A1EF84A29008CBBCA /* Main.storyboard */ = {
@@ -585,6 +678,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		65E9B4701FAEBEC100A0DFFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = pushNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.pushNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65E9B4711FAEBEC100A0DFFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = pushNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.pushNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D6AE17641E44D51600E66B4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -694,6 +831,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
@@ -726,6 +864,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
@@ -756,6 +895,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		65E9B4721FAEBEC100A0DFFE /* Build configuration list for PBXNativeTarget "pushNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65E9B4701FAEBEC100A0DFFE /* Debug */,
+				65E9B4711FAEBEC100A0DFFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D6AE17391E44D51600E66B4B /* Build configuration list for PBXProject "NFLSers-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
