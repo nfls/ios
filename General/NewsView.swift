@@ -133,6 +133,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         super.viewWillAppear(animated)
     }
     
+    
     func requestPermission(){
         let permision:Permission = .notifications
         let alert = permision.prePermissionAlert
@@ -269,7 +270,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.showLogin()
             return
         }
-        let headers: HTTPHeaders = [
+        let headers: HTTPHeaders =
+            [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
         Alamofire.request("https://api.nfls.io/device/status", headers: headers).responseJSON(completionHandler: {
@@ -608,7 +610,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                         if(status["status"] as! String == "success"){
                             let token = status["token"]! as! String
                             UserDefaults.standard.set(token, forKey: "token")
-                            UserDefaults.standard.synchronize()
+                            //UserDefaults.standard.synchronize()
                             self.checkStatus()
                         } else {
                             self.showLogin(info: (status["message"] as! String), username: username, password: password)
