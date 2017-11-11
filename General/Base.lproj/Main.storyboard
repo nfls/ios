@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tsv-w8-otD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,10 +15,6 @@
         </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
-        </array>
-        <array key="Menlo.ttc">
-            <string>Menlo-Bold</string>
-            <string>Menlo-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -54,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cp9-Mf-a4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3738.75" y="-601.25"/>
+            <point key="canvasLocation" x="3343" y="-603"/>
         </scene>
         <!--安全隐私-->
         <scene sceneID="zeB-GL-arp">
@@ -127,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6G-UH-2RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4483.125" y="-600"/>
+            <point key="canvasLocation" x="4086" y="-604"/>
         </scene>
         <!--个人信息-->
         <scene sceneID="MJZ-2r-JJd">
@@ -161,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFs-4d-JOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3011.25" y="-601.25"/>
+            <point key="canvasLocation" x="2614" y="-603"/>
         </scene>
         <!--资源中心-->
         <scene sceneID="HTc-nP-bPu">
@@ -448,7 +444,7 @@ InAppSettingsKit
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffm-DE-106" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203.125" y="-600"/>
+            <point key="canvasLocation" x="1806" y="-602"/>
         </scene>
         <!--校友活动-->
         <scene sceneID="TPs-Cy-5D8">
@@ -1108,16 +1104,17 @@ InAppSettingsKit
                     <connections>
                         <outlet property="tableview" destination="Frv-Rh-4Wf" id="rFj-1F-GKA"/>
                         <segue destination="GoJ-4g-syQ" kind="show" id="PnA-oX-ANj"/>
+                        <segue destination="Q8e-4N-FW3" kind="show" id="pKF-Sb-7L8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J65-TX-ceQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1806" y="878"/>
         </scene>
-        <!--Weather History View Controller-->
+        <!--数据-->
         <scene sceneID="Tta-d2-mSS">
             <objects>
-                <viewController id="Q8e-4N-FW3" customClass="WeatherHistoryViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="数据" id="Q8e-4N-FW3" customClass="WeatherHistoryViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iDg-4Y-DbZ"/>
                         <viewControllerLayoutGuide type="bottom" id="wHg-eo-cUC"/>
@@ -1127,27 +1124,15 @@ InAppSettingsKit
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfo-h9-5fW" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHl-Mm-d64">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="weL-kM-ckQ"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="历史数据查询" id="gWT-lW-QTw"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wHg-eo-cUC" firstAttribute="top" secondItem="sfo-h9-5fW" secondAttribute="bottom" id="4og-NL-8xX"/>
-                            <constraint firstItem="xHl-Mm-d64" firstAttribute="leading" secondItem="sBH-Bk-OOY" secondAttribute="leading" id="68e-Rr-ffe"/>
-                            <constraint firstAttribute="trailing" secondItem="xHl-Mm-d64" secondAttribute="trailing" id="Bt1-ar-F0c"/>
-                            <constraint firstItem="sfo-h9-5fW" firstAttribute="top" secondItem="xHl-Mm-d64" secondAttribute="bottom" constant="10" id="XNM-rS-t1g"/>
+                            <constraint firstItem="sfo-h9-5fW" firstAttribute="top" secondItem="iDg-4Y-DbZ" secondAttribute="bottom" id="OJl-4v-bMz"/>
                             <constraint firstAttribute="trailing" secondItem="sfo-h9-5fW" secondAttribute="trailing" id="lI9-Yj-4vM"/>
-                            <constraint firstItem="xHl-Mm-d64" firstAttribute="top" secondItem="iDg-4Y-DbZ" secondAttribute="bottom" id="qH8-jo-Slk"/>
                             <constraint firstItem="sfo-h9-5fW" firstAttribute="leading" secondItem="sBH-Bk-OOY" secondAttribute="leading" id="sPT-qP-RPy"/>
                         </constraints>
                     </view>
@@ -1474,163 +1459,6 @@ InAppSettingsKit
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BmD-aS-zCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="123"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Ss7-b8-5up">
-            <objects>
-                <viewController id="SeE-VV-a3s" customClass="ViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ijz-XZ-sXw"/>
-                        <viewControllerLayoutGuide type="bottom" id="t4K-cQ-SLH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bQD-xz-fzT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kl-bP-Y8D">
-                                <rect key="frame" x="8" y="116" width="302" height="273"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="SeE-VV-a3s" id="Lfq-5e-O25"/>
-                                </connections>
-                            </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goX-j3-Sxq">
-                                <rect key="frame" x="8" y="33" width="138" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2T-r5-740">
-                                <rect key="frame" x="8" y="18" width="35" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBn-Yy-B1D">
-                                <rect key="frame" x="8" y="58" width="38" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOY-Ip-Poo">
-                                <rect key="frame" x="40" y="58" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTT-rD-WEW">
-                                <rect key="frame" x="40" y="75" width="141" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncH-bA-6uW">
-                                <rect key="frame" x="8" y="75" width="32" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqQ-sf-SVC">
-                                <rect key="frame" x="154" y="64" width="154" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="24"/>
-                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-ff-DQe">
-                                <rect key="frame" x="159" y="18" width="145" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdI-Zc-cwz">
-                                <rect key="frame" x="154" y="49" width="154" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="10"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XYZ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fik-Vh-Vv3">
-                                <rect key="frame" x="154" y="93" width="151" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="10"/>
-                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" keyboardDismissMode="interactive" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TSQ-jG-x37">
-                                <rect key="frame" x="4" y="435" width="302" height="113"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6L-Hv-eEZ">
-                                <rect key="frame" x="274" y="402" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="1" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="IsT-jq-cJb">
-                                <rect key="frame" x="57" y="397" width="223" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="updateGeoHashLabel:" destination="SeE-VV-a3s" eventType="editingDidEnd" id="SEJ-cW-cMV"/>
-                                    <action selector="updateGeoHashLevel:" destination="SeE-VV-a3s" eventType="valueChanged" id="I1j-vf-pcB"/>
-                                </connections>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27J-tW-L3c">
-                                <rect key="frame" x="17" y="402" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="copyRawData:" destination="SeE-VV-a3s" eventType="touchUpInside" id="cbX-AZ-ho3"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="geoHashLabel" destination="sXf-ff-DQe" id="2Ze-cB-9Ug"/>
-                        <outlet property="geoHashLevelCaption" destination="M6L-Hv-eEZ" id="dH8-bi-4r0"/>
-                        <outlet property="geoHashLevelSlider" destination="IsT-jq-cJb" id="wCf-KL-5T3"/>
-                        <outlet property="geoHashOldLabel" destination="VqQ-sf-SVC" id="PKY-Tz-m7a"/>
-                        <outlet property="geoHashOldTimeStampLabel" destination="Fik-Vh-Vv3" id="Y41-Mf-74U"/>
-                        <outlet property="geoHashTimeStampLabel" destination="LdI-Zc-cwz" id="iM1-8b-3mW"/>
-                        <outlet property="latitudeLabel" destination="yOY-Ip-Poo" id="NX8-K1-LMu"/>
-                        <outlet property="longitudeLabel" destination="XTT-rD-WEW" id="V2I-Q2-CNs"/>
-                        <outlet property="myMAPMAP" destination="2kl-bP-Y8D" id="LVf-Rb-QiF"/>
-                        <outlet property="positionText" destination="TSQ-jG-x37" id="GDn-MV-RFj"/>
-                        <outlet property="timeStampLabel" destination="goX-j3-Sxq" id="cM4-qI-KOx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="05l-v2-Qfu" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5235" y="-601"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="pWE-Bw-HeA">
-            <objects>
-                <viewController id="fgs-Vf-M9j" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DRM-9j-VYQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="L0p-x0-HnG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AIe-BX-cxr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CSP-SK-DxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5944" y="-601"/>
         </scene>
     </scenes>
     <resources>

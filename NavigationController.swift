@@ -92,4 +92,9 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
             }
         }
     }
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if (self.presentedViewController != nil) {
+            super.dismiss(animated: flag, completion: completion)
+        }
+    }
 }

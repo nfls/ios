@@ -159,12 +159,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     
     func listRequest(){
-        filenames = [String]()
-        times = [Int]()
-        sizes = [Int]()
-        isFolder = [Bool]()
-        isDownloaded = [Bool]()
-        images = [String?]()
+        filenames.removeAll()
+        times.removeAll()
+        sizes.removeAll()
+        isFolder.removeAll()
+        isDownloaded.removeAll()
+        images.removeAll()
         if(!onlineMode){
             localRequest()
             return
@@ -242,17 +242,15 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                                 }
                             }
                         }
-                        
                     }
-                    
                 }
+                self.checkForYear()
                 self.tableview.delegate = self
                 self.tableview.dataSource = self
                 self.tableview.reloadData()
                 responder.close()
                 self.thumbRequest()
                 self.showHeaderFooter()
-                
                 break
             default:
                 responder.close()
@@ -270,6 +268,22 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 break
             }
         }
+    }
+    func checkForYear(){
+        if(!UserDefaults.standard.bool(forKey: "ettings.resources.rank")){
+            for name in filenames{
+                if(name.contains("2016")){
+                    filenames.reverse()
+                    times.reverse()
+                    sizes.reverse()
+                    isFolder.reverse()
+                    isDownloaded.reverse()
+                    images.reverse()
+                    return
+                }
+            }
+        }
+        
     }
     func thumbRequest(){
         var requestImages = [Parameters]()
@@ -343,7 +357,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         } catch {
             //print(error)
         }
-        
+        self.checkForYear()
+
         self.tableview.delegate = self
         self.tableview.dataSource = self
         self.tableview.reloadData()
@@ -565,11 +580,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             let escapedString = newDir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
             currentFolder += "/" + escapedString!
         } else {
-            var dir = String(currentFolder.characters.reversed())
+            var dir = String(currentFolder.reversed())
             let range = dir.range(of: "/")
             let index = dir.distance(from: dir.startIndex, to: range!.upperBound)
             dir = (dir as NSString).substring(from: index)
-            currentFolder = String(dir.characters.reversed())
+            currentFolder = String(dir.reversed())
         }
         listRequest()
     }

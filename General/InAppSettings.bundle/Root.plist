@@ -16,6 +16,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>往卷下载强制正序</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>settings.resources.rank</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
 			<false/>

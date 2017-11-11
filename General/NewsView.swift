@@ -115,10 +115,21 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(closeGestureMenu))
         swipeBack.direction = .left
         view.addGestureRecognizer(swipeBack)
+        
+    }
+    
+    @objc func refresh() {
+        loadNews()
+        debugPrint("refresh")
+        // Code to refresh table view
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //setUpUI()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        self.tableView.addSubview(self.refreshControl!)
+        
         self.bar.itemBackgroundColor = (navigationController?.navigationBar.barTintColor)!
         self.navigationItem.title = "南外人"
         if let url = (UIApplication.shared.delegate as! AppDelegate).url {
@@ -197,6 +208,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.images.append(URL(string: detail["img"] as! String)!)
                 }
                 self.tableView.reloadData()
+                if self.refreshControl?.isRefreshing == true {
+                    self.refreshControl?.endRefreshing()
+                }
                 break
             default:
                 break
