@@ -11,6 +11,7 @@ import Alamofire
 import FrostedSidebar
 import SCLAlertView
 import Permission
+import StoreKit
 
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
@@ -164,7 +165,17 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         disabled.cancel = "取消"
         permision.presentDeniedAlert = true
         permision.presentPrePermissionAlert = true
-        permision.presentDisabledAlert = true
+        if var time = (UserDefaults.standard.object(forKey: "date.last") as? Date){
+            time.addTimeInterval(60*60*24*7)
+            if(time > Date()){
+                permision.presentDisabledAlert = false
+            }else{
+                permision.presentDisabledAlert = true
+            }
+        }else{
+            permision.presentDisabledAlert = true
+        }
+        
         
         permision.request { (status) in
             switch(status){
@@ -176,6 +187,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 application.registerForRemoteNotifications()
                 break
             default:
+                UserDefaults.standard.set(Date(), forKey: "date.last")
                 break
             }
         }
@@ -299,68 +311,12 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.showLogin()
                 } else {
                     MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
-                    let headers: HTTPHeaders = [
-                        "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-                    ]
                     self.getAuthStatus()
                     self.getBadge()
-                    //self.getImage()
-                    Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
-                        response in
-                        switch response.result{
-                        case .success(let json):
-                            if((json as! [String:AnyObject])["code"]! as! Int == 200){
-                                //dump(json)
-                                let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
-                                let text = info["text"]! as! String
-                                let title = info["title"]! as! String
-                                let id = info["id"]! as! Int
-                                if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
-                                    let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                                        showCloseButton: false
-                                    ))
-                                    if(info["push"] as? String != nil && info["push"] as? String != ""){
-                                        alert.addButton("Show Details", action: {
-                                            let jsonString = info["push"] as! String
-                                            let data = jsonString.data(using: .utf8)!
-                                            do{
-                                                let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
-                                                let type = things["type"]!
-                                                let in_url = things["url"]!
-                                                self.jumpToSection(type: type, in_url: in_url)
-                                            } catch {
-                                                self.handleUrl = info["push"] as! String
-                                                self.internalHandler(url: self.handleUrl)
-                                            }
-                                        })
-                                    }
-                                    alert.addButton("Got It", action: {
-                                        UIApplication.shared.applicationIconBadgeNumber = 0
-                                        UserDefaults.standard.set(id, forKey: "sysmes_id")
-                                        self.requestPermission()
-                                    })
-                                    alert.showInfo(title, subTitle: text)
-                                }else{
-                                    self.requestPermission()
-                                }
-                            }
-                            break
-                        default:
-                            break
-                        }
-                    })
-                    Alamofire.request("https://api.nfls.io/center/username",headers: headers).responseJSON(completionHandler: {
-                        response in
-                        switch(response.result){
-                        case .success(let json):
-                            let username = (json as! [String:Any])["info"] as! String
-                            UserDefaults.standard.set(username, forKey: "username")
-                            break
-                        default:
-                            break
-                        }
-                    })
+                    self.requestMessage()
+                    self.requestUsername()
                     self.loadNews()
+                    self.requestReview()
                     if let username = UserDefaults.standard.value(forKey: "username") as? String{
                         self.navigationItem.prompt = "Welcome back, " + username
                     } else {
@@ -381,6 +337,70 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 break
             }
             
+        })
+    }
+    func requestUsername(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/username",headers: headers).responseJSON(completionHandler: {
+            response in
+            switch(response.result){
+            case .success(let json):
+                let username = (json as! [String:Any])["info"] as! String
+                UserDefaults.standard.set(username, forKey: "username")
+                break
+            default:
+                break
+            }
+        })
+    }
+    func requestMessage(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
+            response in
+            switch response.result{
+            case .success(let json):
+                if((json as! [String:AnyObject])["code"]! as! Int == 200){
+                    let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
+                    let text = info["text"]! as! String
+                    let title = info["title"]! as! String
+                    let id = info["id"]! as! Int
+                    if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
+                        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                            showCloseButton: false
+                        ))
+                        if(info["push"] as? String != nil && info["push"] as? String != ""){
+                            alert.addButton("Show Details", action: {
+                                let jsonString = info["push"] as! String
+                                let data = jsonString.data(using: .utf8)!
+                                do{
+                                    let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
+                                    let type = things["type"]!
+                                    let in_url = things["url"]!
+                                    self.jumpToSection(type: type, in_url: in_url)
+                                } catch {
+                                    self.handleUrl = info["push"] as! String
+                                    self.internalHandler(url: self.handleUrl)
+                                }
+                            })
+                        }
+                        alert.addButton("Got It", action: {
+                            UIApplication.shared.applicationIconBadgeNumber = 0
+                            UserDefaults.standard.set(id, forKey: "sysmes_id")
+                            self.requestPermission()
+                        })
+                        alert.showInfo(title, subTitle: text)
+                    }else{
+                        self.requestPermission()
+                    }
+                }
+                break
+            default:
+                break
+            }
         })
     }
     func internalHandler(url:String){
@@ -480,6 +500,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     func showLogin(info:String? = nil,username:String? = nil,password:String? = nil){
+        UserDefaults.standard.set(Date(), forKey: "date.request")
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
         )
@@ -852,6 +873,22 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             }
             
         })
+    }
+    
+    func requestReview(){
+        if #available(iOS 10.3, *) {
+            if var time = (UserDefaults.standard.object(forKey: "date.request") as? Date){
+                time.addTimeInterval(60*60*24*14)
+                if(time <= Date()){
+                    UserDefaults.standard.set(Date(), forKey: "date.request")
+                    SKStoreReviewController.requestReview()
+                }
+            }else{
+                UserDefaults.standard.set(Date(), forKey: "date.request")
+                SKStoreReviewController.requestReview()
+            }
+            
+        }
     }
     
 }

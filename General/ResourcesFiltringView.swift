@@ -48,6 +48,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         tableview.allowsMultipleSelection = true
         tableview.register(DownloadCell.self, forCellReuseIdentifier: ID)
         searchBar.delegate = self
+        if #available(iOS 10.2, *){
+            if #available(iOS 11.0, *){}else{
+                SCLAlertView().showError("警告", subTitle: "您当前系统版本与部分电子书不兼容，请考虑升级")
+            }
+        }
     }
     
     @objc func back(){

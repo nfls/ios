@@ -128,6 +128,14 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
+			<string>在App Store上给我们评价</string>
+			<key>Key</key>
+			<string>app.review</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
 			<string>请喝咖啡</string>
 			<key>Key</key>
 			<string>app.donate</string>
