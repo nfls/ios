@@ -25,6 +25,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     var isFolder = [Bool]()
     var isDownloaded = [Bool]()
     var images = [String?]()
+    var appHref = [String]()
     var currentFolder = ""
     var reactWithClick = true
     var onlineMode = true
@@ -82,14 +83,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     @objc func setting() {
         var mutipleSelectAction = UIAlertAction()
-        let alertController = UIAlertController(title: "选项", message: "小提示，文件夹可以在多选模式批量下载哦！多选模式也可以一次预览多个文件，卷子与答案一起预览，左右滑动切换！", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertController = UIAlertController(title: "选项", message: "您也可在电脑上访问https://dl.nfls.io", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: nil)
         if(reactWithClick){
-            let showTipsAction = UIAlertAction(title: "Tips", style: UIAlertActionStyle.default, handler: {
-                (alert: UIAlertAction!) in
-                self.showTips()
-            })
-            alertController.addAction(showTipsAction)
             mutipleSelectAction = UIAlertAction(title: "多选模式", style: UIAlertActionStyle.default, handler: {
                 (alert: UIAlertAction!) in
                 self.reactWithClick = !self.reactWithClick
@@ -218,6 +214,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                                 self.filenames.append(name)
                                 self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
                                 self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -238,6 +235,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                                 self.filenames.append(name)
                                 self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
                                 self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
                                     self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
@@ -502,7 +500,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
-            request = Alamofire.download(url,to: destination).downloadProgress(queue: utilityQueue) { progress in
+            var myUrl = url
+            if(appHref[0].contains("https://nflsio.oss-cn-shanghai.aliyuncs.com")){
+                myUrl = url.replacingOccurrences(of: "https://dl.nfls.io", with: "https://nflsio.oss-cn-shanghai.aliyuncs.com")
+            }
+            //print(myUrl)
+            request = Alamofire.download(myUrl,to: destination).downloadProgress(queue: utilityQueue) { progress in
                 DispatchQueue.main.async {
                     if(progress.fractionCompleted != 1.0){
                         responder.setSubTitle("您正在下载以下文件：" + filename + "，进度：" + String(format: "%.2f", progress.fractionCompleted * 100) + "%")
@@ -592,24 +595,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             currentFolder = String(dir.reversed())
         }
         listRequest()
-    }
-    
-    func showTips(force: Bool = false){
-        if(true){
-            let tips = "1.向左滑动行可执行更多操作，具体可自行探索\n" +
-                "2.如想下载整个文件夹，请使用多选模式，然后选中单个或多个文件夹下载即可\n" +
-                "3.打开文件时默认会将文件缓存至本地，如果您的手机空间捉急，可选择“临时下载”\n" +
-                "4.当然，如果您觉得您的手机存储空间足够大，可以缓存所有文件\n" +
-                "5.使用多选模式可以将多个文件同时预览，左右滑动切换（比如可以将试卷与答案同时预览）\n" +
-            "6.其他功能就请自行探索吧（闷声大发财，那是最吼的）"
-            let tipsController = UIAlertController(title: "Tips", message: tips, preferredStyle: .alert)
-            (tipsController.view.subviews[0].subviews[0].subviews[0].subviews[0].subviews[0].subviews[1] as! UILabel).textAlignment = .left
-            let doneAction = UIAlertAction(title: "我知道了", style: .default, handler: {
-                (action: UIAlertAction) in
-            })
-            tipsController.addAction(doneAction)
-            self.present(tipsController, animated: true, completion: nil)
-        }
     }
     
     func showHeaderFooter(force: Bool = false){

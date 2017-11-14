@@ -49,7 +49,6 @@
 		6585ADB81F8B7AA200ECCBB9 /* resources.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB21F8B79BC00ECCBB9 /* resources.png */; };
 		6585ADB91F8B7AA600ECCBB9 /* weather.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB31F8B79BC00ECCBB9 /* weather.png */; };
 		6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */ = {isa = PBXBuildFile; fileRef = 6585ADB41F8B79BC00ECCBB9 /* wiki.png */; };
-		658C1ED71FA9E446001A3F73 /* 未标题-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 658C1ED61FA9E446001A3F73 /* 未标题-1.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		65AD5EC91F8D9681008EE0F8 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */; };
 		65AD5ECB1F8D9ADE008EE0F8 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */; };
@@ -150,7 +149,6 @@
 		6585ADB21F8B79BC00ECCBB9 /* resources.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resources.png; sourceTree = "<group>"; };
 		6585ADB31F8B79BC00ECCBB9 /* weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather.png; sourceTree = "<group>"; };
 		6585ADB41F8B79BC00ECCBB9 /* wiki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiki.png; sourceTree = "<group>"; };
-		658C1ED61FA9E446001A3F73 /* 未标题-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未标题-1.png"; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -343,7 +341,6 @@
 				653CE9CE1F8FB73100A56B57 /* game.png */,
 				6585ADB21F8B79BC00ECCBB9 /* resources.png */,
 				6585ADB31F8B79BC00ECCBB9 /* weather.png */,
-				658C1ED61FA9E446001A3F73 /* 未标题-1.png */,
 				653CE9CC1F8FA75900A56B57 /* ic.png */,
 				6585ADB41F8B79BC00ECCBB9 /* wiki.png */,
 				65784C7D1F09762400BDC60A /* icons8-Documents-50.png */,
@@ -525,7 +522,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = D6AE17351E44D51600E66B4B;
@@ -575,7 +571,6 @@
 				65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */,
-				658C1ED71FA9E446001A3F73 /* 未标题-1.png in Resources */,
 				6585ADB71F8B7A9E00ECCBB9 /* media.png in Resources */,
 				6585ADBA1F8B7AAC00ECCBB9 /* wiki.png in Resources */,
 			);

@@ -141,6 +141,11 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if #available(iOS 11.0, *) {
+            //self.navigationController?.prefersLargeTitles = true
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
         tableView.setContentOffset(CGPoint.zero, animated: true)
         super.viewWillAppear(animated)
     }
@@ -163,17 +168,20 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         disabled.message = "您没有开启推送权限，我们无法给您发送最新的活动通知"
         disabled.settings = "设置"
         disabled.cancel = "取消"
-        permision.presentDeniedAlert = true
+        
         permision.presentPrePermissionAlert = true
         if var time = (UserDefaults.standard.object(forKey: "date.last") as? Date){
             time.addTimeInterval(60*60*24*7)
             if(time > Date()){
                 permision.presentDisabledAlert = false
+                permision.presentDeniedAlert = false
             }else{
                 permision.presentDisabledAlert = true
+                permision.presentDeniedAlert = true
             }
         }else{
             permision.presentDisabledAlert = true
+            permision.presentDeniedAlert = true
         }
         
         
@@ -410,7 +418,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             checkStatus()
             return
         }else if (url == "realname"){
-            realnameAuth(withStep: .identity)
+            getAuthStatus(checkIC: true)
             return
         }
         if(url.contains("nfls.io")){
@@ -704,6 +712,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     }else{
                         if let name = segueName {
                             self.performSegue(withIdentifier: name, sender: self)
+                        }else if checkIC{
+                            self.realnameAuth(withStep: .identity)
                         }
                     }
                 default:

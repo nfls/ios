@@ -34,49 +34,9 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Values</key>
-			<array>
-				<string>green</string>
-				<string>orange</string>
-				<string>blue</string>
-				<string>pink</string>
-				<string>purple</string>
-				<string>blueGreen</string>
-				<string>mintGreen</string>
-				<string>grass</string>
-				<string>fogBlue</string>
-				<string>black</string>
-				<string>kill</string>
-				<string>customize</string>
-			</array>
-			<key>Titles</key>
-			<array>
-				<string>原谅绿</string>
-				<string>南外橙</string>
-				<string>校服蓝</string>
-				<string>少女粉</string>
-				<string>香芋紫</string>
-				<string>蓝绿色</string>
-				<string>薄荷绿</string>
-				<string>青草绿</string>
-				<string>雾霾蓝</string>
-				<string>夜间黑</string>
-				<string>瞎眼睛</string>
-				<string>自定义</string>
-			</array>
-			<key>Key</key>
-			<string>settings.theme</string>
-			<key>Title</key>
-			<string>主题</string>
-			<key>DefaultValue</key>
-			<string>pink</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>自定义主题</string>
+			<string>主题</string>
 			<key>Key</key>
 			<string>settings.theme.pick</string>
 		</dict>
