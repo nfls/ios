@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.4</string>
+	<string>1.2.5</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>7</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -51,6 +51,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>请允许访问您的相机以拍摄照片并上传</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请允许我们将照片保存到您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>请允许访问您的相册以上传你选择的照片</string>
 	<key>UILaunchStoryboardName</key>

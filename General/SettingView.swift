@@ -127,9 +127,25 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         case "settings.theme.pick":
             self.performSegue(withIdentifier: "showPicker", sender: self)
             break
+        case "app.review":
+            rateApp(appId: "id1246252649") { success in
+                print("RateApp \(success)")
+            }
+            break
         default:
             break
         }
+    }
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId + "?action=write-review") else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
     
 }

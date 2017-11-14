@@ -107,6 +107,7 @@ class ICNewsViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
+    
 }
 extension UIView {
     

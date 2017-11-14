@@ -11,6 +11,7 @@ import Alamofire
 import FrostedSidebar
 import SCLAlertView
 import Permission
+import StoreKit
 
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
@@ -115,10 +116,21 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(closeGestureMenu))
         swipeBack.direction = .left
         view.addGestureRecognizer(swipeBack)
+        
+    }
+    
+    @objc func refresh() {
+        loadNews()
+        debugPrint("refresh")
+        // Code to refresh table view
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //setUpUI()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        self.tableView.addSubview(self.refreshControl!)
+        
         self.bar.itemBackgroundColor = (navigationController?.navigationBar.barTintColor)!
         self.navigationItem.title = "南外人"
         if let url = (UIApplication.shared.delegate as! AppDelegate).url {
@@ -129,9 +141,15 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if #available(iOS 11.0, *) {
+            //self.navigationController?.prefersLargeTitles = true
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
         tableView.setContentOffset(CGPoint.zero, animated: true)
         super.viewWillAppear(animated)
     }
+    
     
     func requestPermission(){
         let permision:Permission = .notifications
@@ -150,9 +168,22 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         disabled.message = "您没有开启推送权限，我们无法给您发送最新的活动通知"
         disabled.settings = "设置"
         disabled.cancel = "取消"
-        permision.presentDeniedAlert = true
+        
         permision.presentPrePermissionAlert = true
-        permision.presentDisabledAlert = true
+        if var time = (UserDefaults.standard.object(forKey: "date.last") as? Date){
+            time.addTimeInterval(60*60*24*7)
+            if(time > Date()){
+                permision.presentDisabledAlert = false
+                permision.presentDeniedAlert = false
+            }else{
+                permision.presentDisabledAlert = true
+                permision.presentDeniedAlert = true
+            }
+        }else{
+            permision.presentDisabledAlert = true
+            permision.presentDeniedAlert = true
+        }
+        
         
         permision.request { (status) in
             switch(status){
@@ -164,6 +195,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 application.registerForRemoteNotifications()
                 break
             default:
+                UserDefaults.standard.set(Date(), forKey: "date.last")
                 break
             }
         }
@@ -196,6 +228,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.images.append(URL(string: detail["img"] as! String)!)
                 }
                 self.tableView.reloadData()
+                if self.refreshControl?.isRefreshing == true {
+                    self.refreshControl?.endRefreshing()
+                }
                 break
             default:
                 break
@@ -269,7 +304,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.showLogin()
             return
         }
-        let headers: HTTPHeaders = [
+        let headers: HTTPHeaders =
+            [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
         ]
         Alamofire.request("https://api.nfls.io/device/status", headers: headers).responseJSON(completionHandler: {
@@ -283,68 +319,12 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.showLogin()
                 } else {
                     MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
-                    let headers: HTTPHeaders = [
-                        "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
-                    ]
                     self.getAuthStatus()
                     self.getBadge()
-                    //self.getImage()
-                    Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
-                        response in
-                        switch response.result{
-                        case .success(let json):
-                            if((json as! [String:AnyObject])["code"]! as! Int == 200){
-                                //dump(json)
-                                let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
-                                let text = info["text"]! as! String
-                                let title = info["title"]! as! String
-                                let id = info["id"]! as! Int
-                                if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
-                                    let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                                        showCloseButton: false
-                                    ))
-                                    if(info["push"] as? String != nil && info["push"] as? String != ""){
-                                        alert.addButton("Show Details", action: {
-                                            let jsonString = info["push"] as! String
-                                            let data = jsonString.data(using: .utf8)!
-                                            do{
-                                                let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
-                                                let type = things["type"]!
-                                                let in_url = things["url"]!
-                                                self.jumpToSection(type: type, in_url: in_url)
-                                            } catch {
-                                                self.handleUrl = info["push"] as! String
-                                                self.internalHandler(url: self.handleUrl)
-                                            }
-                                        })
-                                    }
-                                    alert.addButton("Got It", action: {
-                                        UIApplication.shared.applicationIconBadgeNumber = 0
-                                        UserDefaults.standard.set(id, forKey: "sysmes_id")
-                                        self.requestPermission()
-                                    })
-                                    alert.showInfo(title, subTitle: text)
-                                }else{
-                                    self.requestPermission()
-                                }
-                            }
-                            break
-                        default:
-                            break
-                        }
-                    })
-                    Alamofire.request("https://api.nfls.io/center/username",headers: headers).responseJSON(completionHandler: {
-                        response in
-                        switch(response.result){
-                        case .success(let json):
-                            let username = (json as! [String:Any])["info"] as! String
-                            UserDefaults.standard.set(username, forKey: "username")
-                            break
-                        default:
-                            break
-                        }
-                    })
+                    self.requestMessage()
+                    self.requestUsername()
                     self.loadNews()
+                    self.requestReview()
                     if let username = UserDefaults.standard.value(forKey: "username") as? String{
                         self.navigationItem.prompt = "Welcome back, " + username
                     } else {
@@ -367,6 +347,70 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             
         })
     }
+    func requestUsername(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/username",headers: headers).responseJSON(completionHandler: {
+            response in
+            switch(response.result){
+            case .success(let json):
+                let username = (json as! [String:Any])["info"] as! String
+                UserDefaults.standard.set(username, forKey: "username")
+                break
+            default:
+                break
+            }
+        })
+    }
+    func requestMessage(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/last",headers: headers).responseJSON(completionHandler: {
+            response in
+            switch response.result{
+            case .success(let json):
+                if((json as! [String:AnyObject])["code"]! as! Int == 200){
+                    let info = (json as! [String:AnyObject])["info"]! as! [String:Any]
+                    let text = info["text"]! as! String
+                    let title = info["title"]! as! String
+                    let id = info["id"]! as! Int
+                    if(UserDefaults.standard.object(forKey: "sysmes_id") as? Int != id ){
+                        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                            showCloseButton: false
+                        ))
+                        if(info["push"] as? String != nil && info["push"] as? String != ""){
+                            alert.addButton("Show Details", action: {
+                                let jsonString = info["push"] as! String
+                                let data = jsonString.data(using: .utf8)!
+                                do{
+                                    let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
+                                    let type = things["type"]!
+                                    let in_url = things["url"]!
+                                    self.jumpToSection(type: type, in_url: in_url)
+                                } catch {
+                                    self.handleUrl = info["push"] as! String
+                                    self.internalHandler(url: self.handleUrl)
+                                }
+                            })
+                        }
+                        alert.addButton("Got It", action: {
+                            UIApplication.shared.applicationIconBadgeNumber = 0
+                            UserDefaults.standard.set(id, forKey: "sysmes_id")
+                            self.requestPermission()
+                        })
+                        alert.showInfo(title, subTitle: text)
+                    }else{
+                        self.requestPermission()
+                    }
+                }
+                break
+            default:
+                break
+            }
+        })
+    }
     func internalHandler(url:String){
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         handleUrl = ""
@@ -374,7 +418,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             checkStatus()
             return
         }else if (url == "realname"){
-            realnameAuth(withStep: .identity)
+            getAuthStatus(checkIC: true)
             return
         }
         if(url.contains("nfls.io")){
@@ -464,6 +508,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     func showLogin(info:String? = nil,username:String? = nil,password:String? = nil){
+        UserDefaults.standard.set(Date(), forKey: "date.request")
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
         )
@@ -608,7 +653,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                         if(status["status"] as! String == "success"){
                             let token = status["token"]! as! String
                             UserDefaults.standard.set(token, forKey: "token")
-                            UserDefaults.standard.synchronize()
+                            //UserDefaults.standard.synchronize()
                             self.checkStatus()
                         } else {
                             self.showLogin(info: (status["message"] as! String), username: username, password: password)
@@ -667,6 +712,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     }else{
                         if let name = segueName {
                             self.performSegue(withIdentifier: name, sender: self)
+                        }else if checkIC{
+                            self.realnameAuth(withStep: .identity)
                         }
                     }
                 default:
@@ -836,6 +883,22 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             }
             
         })
+    }
+    
+    func requestReview(){
+        if #available(iOS 10.3, *) {
+            if var time = (UserDefaults.standard.object(forKey: "date.request") as? Date){
+                time.addTimeInterval(60*60*24*14)
+                if(time <= Date()){
+                    UserDefaults.standard.set(Date(), forKey: "date.request")
+                    SKStoreReviewController.requestReview()
+                }
+            }else{
+                UserDefaults.standard.set(Date(), forKey: "date.request")
+                SKStoreReviewController.requestReview()
+            }
+            
+        }
     }
     
 }

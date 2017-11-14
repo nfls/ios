@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - AMScrollingNavbar (4.0.4)
+  - AMScrollingNavbar (4.0.5)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
@@ -10,11 +10,11 @@ PODS:
   - CountryPickerSwift (1.4.5)
   - EZSwiftExtensions (1.11)
   - FrostedSidebar (1.0.0)
-  - GCDWebServer (3.4.1):
-    - GCDWebServer/Core (= 3.4.1)
-  - GCDWebServer/Core (3.4.1)
+  - GCDWebServer (3.4.2):
+    - GCDWebServer/Core (= 3.4.2)
+  - GCDWebServer/Core (3.4.2)
   - InAppSettingsKit (2.8.1)
-  - IQKeyboardManagerSwift (5.0.4)
+  - IQKeyboardManagerSwift (5.0.6)
   - JWGeohashKit (0.2)
   - Kingfisher (4.2.0)
   - Permission/Camera (2.0.4):
@@ -60,15 +60,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  AMScrollingNavbar: 3f35e65f5c97918c31be2179bda9ecb25dc5a3df
+  AMScrollingNavbar: 81d8aee27f528a65994ee899b5312e9fa9374908
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
-  GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
+  GCDWebServer: 8d67ee9f634b4bb91eb4b8aee440318a5fc6debd
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
-  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
+  IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
   JWGeohashKit: 65c65662b9f51947424ec44ff4ec89c3d182e840
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c

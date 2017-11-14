@@ -21,7 +21,9 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
         updateNav(viewController)
     }
     @objc func update(){
-        updateNav()
+        DispatchQueue.main.async {
+            self.updateNav()
+        }
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
@@ -31,7 +33,9 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
     func updateNav(_ viewController:UIViewController? = nil){
         self.scrollingNavbarDelegate = self
         let theme = ThemeManager()
-        self.navigationBar.isTranslucent = false
+        DispatchQueue.main.async {
+            self.navigationBar.isTranslucent = false
+        }
         switch(viewController){
         case is NewsViewController:
             if #available(iOS 11.0, *) {
@@ -49,10 +53,13 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
                 NSAttributedStringKey.foregroundColor: theme.normalTheme.titleButtonColor ?? UIColor.black
             ]
         }
-        self.navigationBar.barStyle = theme.normalTheme.style
-        self.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
-        self.navigationBar.tintColor = theme.normalTheme.titleButtonColor
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
+        DispatchQueue.main.async {
+            self.navigationBar.barStyle = theme.normalTheme.style
+            self.navigationBar.barTintColor = theme.normalTheme.titleBackgroundColor
+            self.navigationBar.tintColor = theme.normalTheme.titleButtonColor
+            self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:theme.normalTheme.titleButtonColor ?? UIColor.black]
+            
+        }
     }
     
     func scrollingNavigationController(_ controller: ScrollingNavigationController, willChangeState state: NavigationBarState) {
@@ -83,6 +90,11 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
                 self.navigationBar.tintColor = theme.normalTheme.titleButtonColor
                 break
             }
+        }
+    }
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if (self.presentedViewController != nil) {
+            super.dismiss(animated: flag, completion: completion)
         }
     }
 }

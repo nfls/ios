@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import UITableView_FDTemplateLayoutCell
+import SCLAlertView
 
 class GameCenterViewController:UITableViewController{
     
@@ -40,35 +41,46 @@ class GameCenterViewController:UITableViewController{
     }
     
     override func viewDidLoad() {
-        tableView.estimatedRowHeight = 75
-        tableView.rowHeight = UITableViewAutomaticDimension
-        loadFromLocal()
-        
-        Alamofire.request("https://api.nfls.io/game/list").responseJSON { response in
-            switch(response.result){
-            case .success(let json):
-                
-                let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
-                self.names.removeAll()
-                self.descriptions.removeAll()
-                self.urls.removeAll()
-                self.images.removeAll()
-                for detail in info {
-                    self.names.append(detail["name"] as! String)
-                    self.descriptions.append(detail["description"] as! String)
-                    self.urls.append(detail["url"] as! String)
-                    self.images.append(detail["icon"] as! String)
+        if #available(iOS 10, *) {
+            tableView.estimatedRowHeight = 75
+            tableView.rowHeight = UITableViewAutomaticDimension
+            loadFromLocal()
+            
+            Alamofire.request("https://api.nfls.io/game/list").responseJSON { response in
+                switch(response.result){
+                case .success(let json):
+                    
+                    let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
+                    self.names.removeAll()
+                    self.descriptions.removeAll()
+                    self.urls.removeAll()
+                    self.images.removeAll()
+                    for detail in info {
+                        self.names.append(detail["name"] as! String)
+                        self.descriptions.append(detail["description"] as! String)
+                        self.urls.append(detail["url"] as! String)
+                        self.images.append(detail["icon"] as! String)
+                    }
+                    UserDefaults.standard.set(self.names, forKey: "game_names")
+                    UserDefaults.standard.set(self.urls, forKey: "game_urls")
+                    UserDefaults.standard.set(self.descriptions, forKey:"game_descriptions")
+                    UserDefaults.standard.set(self.images, forKey:"game_img")
+                    self.tableView.reloadData()
+                    break
+                default:
+                    break
                 }
-                UserDefaults.standard.set(self.names, forKey: "game_names")
-                UserDefaults.standard.set(self.urls, forKey: "game_urls")
-                UserDefaults.standard.set(self.descriptions, forKey:"game_descriptions")
-                UserDefaults.standard.set(self.images, forKey:"game_img")
-                self.tableView.reloadData()
-                break
-            default:
-                break
             }
+        }else{
+            let error = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                showCloseButton: false
+            ))
+            error.addButton("返回", action: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            error.showError("错误", subTitle: "游戏中心需要iOS10及以上系统版本")
         }
+        
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

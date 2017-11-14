@@ -17,6 +17,11 @@
 		65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */; };
 		6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534B61B1F0E51F700607BDA /* WeatherView.swift */; };
 		6534D1351F5BFCFB0032F6EE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6534D1341F5BFCFB0032F6EE /* MapKit.framework */; };
+		6536C1E81FB422B400709035 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6536C1E71FB422B400709035 /* UserNotifications.framework */; };
+		6536C1EA1FB422B400709035 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6536C1E91FB422B400709035 /* UserNotificationsUI.framework */; };
+		6536C1ED1FB422B400709035 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536C1EC1FB422B400709035 /* NotificationViewController.swift */; };
+		6536C1F01FB422B400709035 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6536C1EE1FB422B400709035 /* MainInterface.storyboard */; };
+		6536C1F41FB422B400709035 /* ContentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6536C1E61FB422B400709035 /* ContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6539AF7C1F669B0D0097BE6C /* b43d0620-8a58-449b-9fe8-5ac422325900.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */; };
 		653CE9CD1F8FA76F00A56B57 /* ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 653CE9CC1F8FA75900A56B57 /* ic.png */; };
 		653CE9CF1F8FB73700A56B57 /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = 653CE9CE1F8FB73100A56B57 /* game.png */; };
@@ -34,7 +39,6 @@
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
 		65784C7C1F09746800BDC60A /* icons8-Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7B1F09746800BDC60A /* icons8-Folder-50.png */; };
 		65784C7E1F09762400BDC60A /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C7D1F09762400BDC60A /* icons8-Documents-50.png */; };
-		65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */; };
 		65784C841F0A59CE00BDC60A /* icons8-Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 65784C831F0A59CE00BDC60A /* icons8-Back-50.png */; };
 		657CE9171F89EE0500433578 /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 657CE9161F89EDEB00433578 /* forum.png */; };
 		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
@@ -52,6 +56,8 @@
 		65DEE0F91F6402E0007735CD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0F81F6402E0007735CD /* GameView.swift */; };
 		65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FA1F645C61007735CD /* MediaRootView.swift */; };
 		65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FC1F645C97007735CD /* VideoListView.swift */; };
+		65E9B46B1FAEBEC100A0DFFE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */; };
+		65E9B46F1FAEBEC100A0DFFE /* pushNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65EBF61C1F4495EF006A2D43 /* WeatherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */; };
 		80CF0FF508D262D5082456AF /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */; };
 		D606F2C71EE997B800564191 /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D606F2C61EE997B800564191 /* UserCertification.swift */; };
@@ -62,6 +68,38 @@
 		D6AE174C1E44D51600E66B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */; };
 		D6F7A0041EF2393E0047CF5D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F7A0031EF2393E0047CF5D /* StoreKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6536C1F21FB422B400709035 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6AE17361E44D51600E66B4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6536C1E51FB422B400709035;
+			remoteInfo = ContentExtension;
+		};
+		65E9B46D1FAEBEC100A0DFFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6AE17361E44D51600E66B4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65E9B4671FAEBEC100A0DFFE;
+			remoteInfo = pushNotification;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65E9B4731FAEBEC100A0DFFE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6536C1F41FB422B400709035 /* ContentExtension.appex in Embed App Extensions */,
+				65E9B46F1FAEBEC100A0DFFE /* pushNotification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +114,12 @@
 		65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseView.swift; sourceTree = "<group>"; };
 		6534B61B1F0E51F700607BDA /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		6534D1341F5BFCFB0032F6EE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6536C1E61FB422B400709035 /* ContentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ContentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6536C1E71FB422B400709035 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		6536C1E91FB422B400709035 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		6536C1EC1FB422B400709035 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		6536C1EF1FB422B400709035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		6536C1F11FB422B400709035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		653CE9CC1F8FA75900A56B57 /* ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic.png; sourceTree = "<group>"; };
 		653CE9CE1F8FB73100A56B57 /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game.png; sourceTree = "<group>"; };
 		653F1F7C1F4602950023A4F5 /* _MG_6142.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = _MG_6142.JPG; sourceTree = "<group>"; };
@@ -95,8 +139,6 @@
 		65784C7B1F09746800BDC60A /* icons8-Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Folder-50.png"; sourceTree = "<group>"; };
 		65784C7D1F09762400BDC60A /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Documents-50.png"; sourceTree = "<group>"; };
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
-		65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
 		65784C831F0A59CE00BDC60A /* icons8-Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-Back-50.png"; sourceTree = "<group>"; };
 		657CE9161F89EDEB00433578 /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forum.png; sourceTree = "<group>"; };
 		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -115,6 +157,9 @@
 		65DEE0FA1F645C61007735CD /* MediaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRootView.swift; sourceTree = "<group>"; };
 		65DEE0FC1F645C97007735CD /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		65DEE0FE1F646FC5007735CD /* b43d0620-8a58-449b-9fe8-5ac422325900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b43d0620-8a58-449b-9fe8-5ac422325900.png"; sourceTree = "<group>"; };
+		65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = pushNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		65E9B46C1FAEBEC100A0DFFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EBF61B1F4495EF006A2D43 /* WeatherHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherHistoryView.swift; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +182,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6536C1E31FB422B400709035 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6536C1EA1FB422B400709035 /* UserNotificationsUI.framework in Frameworks */,
+				6536C1E81FB422B400709035 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65E9B4651FAEBEC100A0DFFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173B1E44D51600E66B4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -164,6 +225,8 @@
 				3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */,
 				7AA599381524532C45A07E73 /* Pods_NFLSers_iOSTests.framework */,
 				1F3E694000AD30F55863747A /* Pods_NFLSers_iOSUITests.framework */,
+				6536C1E71FB422B400709035 /* UserNotifications.framework */,
+				6536C1E91FB422B400709035 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,9 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
-				65784C801F097C0D00BDC60A /* ZIKCellularAuthorization.h */,
 				651BC4EE1F93AFE900869D9F /* NavigationController.swift */,
-				65784C811F097C0D00BDC60A /* ZIKCellularAuthorization.m */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
@@ -202,6 +263,16 @@
 				654923A01F452CF2000E22C9 /* LiveListView.swift */,
 			);
 			name = Media;
+			sourceTree = "<group>";
+		};
+		6536C1EB1FB422B400709035 /* ContentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6536C1EC1FB422B400709035 /* NotificationViewController.swift */,
+				6536C1EE1FB422B400709035 /* MainInterface.storyboard */,
+				6536C1F11FB422B400709035 /* Info.plist */,
+			);
+			path = ContentExtension;
 			sourceTree = "<group>";
 		};
 		653B10991F5B24D800ACDC37 /* Weather */ = {
@@ -280,14 +351,27 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		65E9B4691FAEBEC100A0DFFE /* pushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */,
+				65E9B46C1FAEBEC100A0DFFE /* Info.plist */,
+			);
+			path = pushNotification;
+			sourceTree = "<group>";
+		};
 		D6AE17351E44D51600E66B4B = {
 			isa = PBXGroup;
 			children = (
 				D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */,
 				D6AE17401E44D51600E66B4B /* General */,
 				E014B762E1B339252796E5D2 /* Pods */,
+				65E9B4691FAEBEC100A0DFFE /* pushNotification */,
+				6536C1EB1FB422B400709035 /* ContentExtension */,
 				0349413280DA2E07E819AAA2 /* Frameworks */,
 				656AEC931F3096F100F0801A /* NFLSers-iOS.app */,
+				65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */,
+				6536C1E61FB422B400709035 /* ContentExtension.appex */,
 			);
 			sourceTree = "<group>";
 		};
@@ -328,6 +412,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6536C1E51FB422B400709035 /* ContentExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6536C1F71FB422B400709035 /* Build configuration list for PBXNativeTarget "ContentExtension" */;
+			buildPhases = (
+				6536C1E21FB422B400709035 /* Sources */,
+				6536C1E31FB422B400709035 /* Frameworks */,
+				6536C1E41FB422B400709035 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ContentExtension;
+			productName = ContentExtension;
+			productReference = 6536C1E61FB422B400709035 /* ContentExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		65E9B4671FAEBEC100A0DFFE /* pushNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65E9B4721FAEBEC100A0DFFE /* Build configuration list for PBXNativeTarget "pushNotification" */;
+			buildPhases = (
+				65E9B4641FAEBEC100A0DFFE /* Sources */,
+				65E9B4651FAEBEC100A0DFFE /* Frameworks */,
+				65E9B4661FAEBEC100A0DFFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pushNotification;
+			productName = pushNotification;
+			productReference = 65E9B4681FAEBEC100A0DFFE /* pushNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D6AE173D1E44D51600E66B4B /* NFLSers-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */;
@@ -338,10 +456,13 @@
 				D6AE173C1E44D51600E66B4B /* Resources */,
 				22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */,
 				6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */,
+				65E9B4731FAEBEC100A0DFFE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				65E9B46E1FAEBEC100A0DFFE /* PBXTargetDependency */,
+				6536C1F31FB422B400709035 /* PBXTargetDependency */,
 			);
 			name = "NFLSers-iOS";
 			productName = general;
@@ -354,10 +475,20 @@
 		D6AE17361E44D51600E66B4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "胡清阳";
 				TargetAttributes = {
+					6536C1E51FB422B400709035 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = K2P3533G4D;
+						ProvisioningStyle = Automatic;
+					};
+					65E9B4671FAEBEC100A0DFFE = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = K2P3533G4D;
+						ProvisioningStyle = Automatic;
+					};
 					D6AE173D1E44D51600E66B4B = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K2P3533G4D;
@@ -391,7 +522,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = D6AE17351E44D51600E66B4B;
@@ -400,11 +530,28 @@
 			projectRoot = "";
 			targets = (
 				D6AE173D1E44D51600E66B4B /* NFLSers-iOS */,
+				65E9B4671FAEBEC100A0DFFE /* pushNotification */,
+				6536C1E51FB422B400709035 /* ContentExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6536C1E41FB422B400709035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6536C1F01FB422B400709035 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65E9B4661FAEBEC100A0DFFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173C1E44D51600E66B4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,6 +671,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6536C1E21FB422B400709035 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6536C1ED1FB422B400709035 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65E9B4641FAEBEC100A0DFFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65E9B46B1FAEBEC100A0DFFE /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6AE173A1E44D51600E66B4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,7 +709,6 @@
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */,
 				65DEE0F91F6402E0007735CD /* GameView.swift in Sources */,
-				65784C821F097C0D00BDC60A /* ZIKCellularAuthorization.m in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,
@@ -565,7 +727,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6536C1F31FB422B400709035 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6536C1E51FB422B400709035 /* ContentExtension */;
+			targetProxy = 6536C1F21FB422B400709035 /* PBXContainerItemProxy */;
+		};
+		65E9B46E1FAEBEC100A0DFFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65E9B4671FAEBEC100A0DFFE /* pushNotification */;
+			targetProxy = 65E9B46D1FAEBEC100A0DFFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		6536C1EE1FB422B400709035 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6536C1EF1FB422B400709035 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		6546E68A1EF84A29008CBBCA /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -585,6 +768,94 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6536C1F51FB422B400709035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ContentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.ContentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6536C1F61FB422B400709035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ContentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.ContentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		65E9B4701FAEBEC100A0DFFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = pushNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.pushNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65E9B4711FAEBEC100A0DFFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2P3533G4D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = pushNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client.pushNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D6AE17641E44D51600E66B4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -694,6 +965,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
@@ -726,6 +998,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
@@ -756,6 +1029,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6536C1F71FB422B400709035 /* Build configuration list for PBXNativeTarget "ContentExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6536C1F51FB422B400709035 /* Debug */,
+				6536C1F61FB422B400709035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65E9B4721FAEBEC100A0DFFE /* Build configuration list for PBXNativeTarget "pushNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65E9B4701FAEBEC100A0DFFE /* Debug */,
+				65E9B4711FAEBEC100A0DFFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D6AE17391E44D51600E66B4B /* Build configuration list for PBXProject "NFLSers-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
