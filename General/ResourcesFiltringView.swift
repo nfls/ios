@@ -20,8 +20,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     @IBOutlet weak var searchBar: UISearchBar!
     let ID = "Cell"
     var filenames = [String]()
-    var times = [Int]()
-    var sizes = [Int]()
+    var times = [NSNumber]()
+    var sizes = [Int64]()
     var isFolder = [Bool]()
     var isDownloaded = [Bool]()
     var images = [String?]()
@@ -212,8 +212,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append((file as! [String:Any])["time"] as! NSNumber)
+                                self.sizes.append(((file as! [String:Any])["size"] as! NSNumber).int64Value)
                                 self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
@@ -233,8 +233,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
                                 self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
+                                self.times.append((file as! [String:Any])["time"] as! NSNumber)
+                                self.sizes.append(((file as! [String:Any])["size"] as! NSNumber).int64Value)
                                 self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
                                     self.isFolder.append(false)
@@ -339,14 +339,14 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                     if(isDir.boolValue){
                         dump(file)
                         isFolder.append(true)
-                        var folderSize = 0
+                        var folderSize:Int64 = 0
                         FileManager.default.enumerator(at: file, includingPropertiesForKeys: [.fileSizeKey], options: [])?.forEach {
-                            folderSize += (try? ($0 as? URL)?.resourceValues(forKeys: [.fileSizeKey]))??.fileSize ?? 0
+                            folderSize = folderSize + Int64((try? ($0 as? URL)?.resourceValues(forKeys: [.fileSizeKey]))??.fileSize ?? 0)
                         }
                         sizes.append(folderSize)
                     } else {
                         let attr = try FileManager.default.attributesOfItem(atPath: file.path)
-                        let fileSize = attr[FileAttributeKey.size] as! Int
+                        let fileSize = attr[FileAttributeKey.size] as! Int64
                         sizes.append(fileSize)
                         isFolder.append(false)
                     }
@@ -646,9 +646,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             return cell
         }
         let name = filenames[indexPath.row]
-        let size = sizes[indexPath.row] / 1000
+        let size = sizes[indexPath.row] / 1024
         if(onlineMode){
-            let time = Date(timeIntervalSince1970: TimeInterval(times[indexPath.row]/1000))
+            let time = Date(timeIntervalSince1970: TimeInterval(truncating: times[indexPath.row])/1000)
             let dateFormatter = DateFormatter()
             dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
             dateFormatter.locale = NSLocale.current
@@ -686,7 +686,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         return cell
     }
     
-    func calculateSize(bytes:Int) -> String {
+    func calculateSize(bytes:Int64) -> String {
         var size = Double(bytes)
         var count = 0
         repeat{
@@ -706,6 +706,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             break
         default:
             break
+        }
+        if(size<0){
+            print("Unexpected:")
+            print(bytes)
         }
         return String(format: "%.1f", size) + " " + quantity
     }

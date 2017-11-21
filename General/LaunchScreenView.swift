@@ -50,12 +50,15 @@ class LaunchScreenViewController:UIViewController{
     func loadPic(_ con:Bool = false){
         if let url = UserDefaults.standard.value(forKey: "pic_url") as? String{
             image.kf.setImage(with: URL(string: url)!, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, _) in
-                if(self.image.image!.size.width == self.image.image!.size.height){
-                    self.image.contentMode = .scaleAspectFit
+                if let image = self.image.image{
+                    if(image.size.width == image.size.height){
+                        self.image.contentMode = .scaleAspectFit
+                    }else{
+                        self.image.contentMode = .scaleAspectFill
+                    }
                 }else{
                     self.image.contentMode = .scaleAspectFill
                 }
-
                 if(con){
                     self.nextStep()
                 }

@@ -67,14 +67,14 @@ class ThemeManager{
                     let theme = Theme(style: .black, titleBackgroundColor: c, titleTextColor: UIColor.white, titleButtonColor: UIColor.white)
                     normalTheme = theme
                 }else{
-                    normalTheme = ThemeSetting().pink
+                    normalTheme = ThemeSetting().blue
                 }
             default:
-                normalTheme = ThemeSetting().pink
+                normalTheme = ThemeSetting().blue
                 break
             }
         }else{
-            normalTheme = ThemeSetting().pink
+            normalTheme = ThemeSetting().blue
         }
         if(UserDefaults.standard.bool(forKey: "settings.night.isEnabled")){
             normalTheme = ThemeSetting().black
