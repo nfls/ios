@@ -16,7 +16,7 @@ PODS:
   - InAppSettingsKit (2.8.1)
   - IQKeyboardManagerSwift (5.0.6)
   - JWGeohashKit (0.2)
-  - Kingfisher (4.3.0)
+  - Kingfisher (4.3.1)
   - Permission/Camera (2.0.4):
     - Permission/Core
   - Permission/Core (2.0.4)
@@ -70,7 +70,7 @@ SPEC CHECKSUMS:
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
   JWGeohashKit: 65c65662b9f51947424ec44ff4ec89c3d182e840
-  Kingfisher: 475df87bb7196e51a8e9a48b667a5388a4709241
+  Kingfisher: 75541c4b62f02e1fde6f9772303de3d9ebe8f5b3
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
