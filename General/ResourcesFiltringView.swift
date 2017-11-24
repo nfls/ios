@@ -14,31 +14,38 @@ import SwiftyMarkdown
 import QuickLook
 import SCLAlertView
 import Kingfisher
+import AwesomeCache
 
 class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     let ID = "Cell"
-    var filenames = [String]()
-    var times = [NSNumber]()
-    var sizes = [Int64]()
-    var isFolder = [Bool]()
-    var isDownloaded = [Bool]()
-    var images = [String?]()
-    var appHref = [String]()
     var currentFolder = ""
     var reactWithClick = true
     var onlineMode = true
-    
     var fileurls = [NSURL]()
-    var useNew = true
-    
     let operating = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
         showCloseButton: false
     ))
-    
+    struct Detail{
+        var filename:String
+        var time:NSNumber
+        var size:Int64
+        var isFolder:Bool
+        var appHref:String
+        init(filename:String,time:NSNumber,size:Int64,isFolder:Bool,appHref:String){
+            self.filename = filename
+            self.time = time
+            self.size = size
+            self.isFolder = isFolder
+            self.appHref = appHref
+        }
+    }
+    var images = [String?]()
+    var files = [Detail]()
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(setting))
         navigationItem.rightBarButtonItem = rightButton
@@ -138,19 +145,17 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             alertController.addAction(mutipleSelectAction)
             alertController.addAction(downloadAction)
         }
-        if(useNew){
-            if(!self.reactWithClick){
-                let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
-                    alert in
-                    let selectedRows = self.tableview.indexPathsForSelectedRows
-                    if(selectedRows != nil){
-                        self.bulkPreview(files: selectedRows!)
-                    }
-                    self.reactWithClick = !self.reactWithClick
-                    self.tableview.reloadData()
-                })
-                alertController.addAction(previewAll)
-            }
+        if(!self.reactWithClick){
+            let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
+                alert in
+                let selectedRows = self.tableview.indexPathsForSelectedRows
+                if(selectedRows != nil){
+                    self.bulkPreview(files: selectedRows!)
+                }
+                self.reactWithClick = !self.reactWithClick
+                self.tableview.reloadData()
+            })
+            alertController.addAction(previewAll)
         }
         alertController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         alertController.addAction(cancelAction)
@@ -160,12 +165,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     
     func listRequest(){
-        filenames.removeAll()
-        times.removeAll()
-        sizes.removeAll()
-        isFolder.removeAll()
-        isDownloaded.removeAll()
-        images.removeAll()
+        files.removeAll()
         if(!onlineMode){
             localRequest()
             return
@@ -211,16 +211,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         if(!name.isEmpty){
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
-                                self.filenames.append(name)
-                                self.times.append((file as! [String:Any])["time"] as! NSNumber)
-                                self.sizes.append(((file as! [String:Any])["size"] as! NSNumber).int64Value)
-                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
-                                    self.isFolder.append(false)
-                                    self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: false, appHref: (file as! [String:Any])["appHref"] as! String))
                                 } else {
-                                    self.isFolder.append(true)
-                                    self.isDownloaded.append(false)
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: true, appHref: (file as! [String:Any])["appHref"] as! String))
                                 }
                             }
                             
@@ -232,16 +226,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         if(!name.isEmpty){
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
-                                self.filenames.append(name)
-                                self.times.append((file as! [String:Any])["time"] as! NSNumber)
-                                self.sizes.append(((file as! [String:Any])["size"] as! NSNumber).int64Value)
-                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
-                                    self.isFolder.append(false)
-                                    self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: false, appHref: (file as! [String:Any])["appHref"] as! String))
                                 } else {
-                                    self.isFolder.append(true)
-                                    self.isDownloaded.append(false)
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: true, appHref: (file as! [String:Any])["appHref"] as! String))
                                 }
                             }
                         }
@@ -274,14 +262,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     func checkForYear(){
         if(!UserDefaults.standard.bool(forKey: "ettings.resources.rank")){
-            for name in filenames{
-                if(name.contains("2016")){
-                    filenames.reverse()
-                    times.reverse()
-                    sizes.reverse()
-                    isFolder.reverse()
-                    isDownloaded.reverse()
-                    images.reverse()
+            for file in files{
+                if(file.filename.contains("2016")){
+                    files.reverse()
                     return
                 }
             }
@@ -290,12 +273,12 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     func thumbRequest(){
         var requestImages = [Parameters]()
-        for file in filenames{
+        for file in files{
             let parameters:Parameters = [
                 "type":"doc",
-                "href":currentFolder.removingPercentEncoding! + "/" + file,
+                "href":currentFolder.removingPercentEncoding! + "/" + file.filename,
                 "width":400,
-                "height":400
+                "height":400                                                        .n  
             ]
             requestImages.append(parameters)
         }
@@ -336,25 +319,21 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 var isDir : ObjCBool = false
                 let fileManager = FileManager.default
                 if fileManager.fileExists(atPath: file.path, isDirectory:&isDir) {
+                    let range = file.path.range(of: (documentsUrl.path + currentFolder.removingPercentEncoding! + "/"))
+                    let endIndex = file.path.distance(from: file.path.startIndex, to: range!.upperBound)
+                    let name = (file.path as NSString).substring(from: endIndex)
                     if(isDir.boolValue){
-                        dump(file)
-                        isFolder.append(true)
                         var folderSize:Int64 = 0
                         FileManager.default.enumerator(at: file, includingPropertiesForKeys: [.fileSizeKey], options: [])?.forEach {
                             folderSize = folderSize + Int64((try? ($0 as? URL)?.resourceValues(forKeys: [.fileSizeKey]))??.fileSize ?? 0)
                         }
-                        sizes.append(folderSize)
+                        self.files.append(Detail(filename: name, time: 0, size: folderSize, isFolder: true, appHref: ""))
                     } else {
                         let attr = try FileManager.default.attributesOfItem(atPath: file.path)
                         let fileSize = attr[FileAttributeKey.size] as! Int64
-                        sizes.append(fileSize)
-                        isFolder.append(false)
+                        self.files.append(Detail(filename: name, time: 0, size: filesize, isFolder: false, appHref: ""))
                     }
-                    isDownloaded.append(true)
-                    let range = file.path.range(of: (documentsUrl.path + currentFolder.removingPercentEncoding! + "/"))
-                    let endIndex = file.path.distance(from: file.path.startIndex, to: range!.upperBound)
-                    let name = (file.path as NSString).substring(from: endIndex)
-                    filenames.append(name)
+                    
                 }
             }
         } catch {
@@ -454,8 +433,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         fileurls.removeAll()
         for path in files{
-            if(isFileExists(filename: filenames[path.row], path: currentFolder)){
-                let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(currentFolder.removingPercentEncoding!).appendingPathComponent(filenames[path.row])
+            if(isFileExists(filename: self.files[path.row].filename, path: currentFolder)){
+                let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(currentFolder.removingPercentEncoding!).appendingPathComponent(self.files[path.row].filename)
                 fileurls.append(fileURL as NSURL)
                 print(fileURL.path)
             }
@@ -501,7 +480,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
             var myUrl = url
-            if(appHref[0].contains("https://nflsio.oss-cn-shanghai.aliyuncs.com")){
+            if(self.files[0].filename.contains("https://nflsio.oss-cn-shanghai.aliyuncs.com")){
                 myUrl = url.replacingOccurrences(of: "https://dl.nfls.io", with: "https://nflsio.oss-cn-shanghai.aliyuncs.com")
             }
             //print(myUrl)
@@ -523,6 +502,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         if(fileurls.count == 2){
             return false
         }
+        let filenames = files.map { $0.filename }
         if(filename.contains("qp")){
             let answer = filename.replacingOccurrences(of: "qp", with: "ms")
             if(filenames.contains(answer)){
