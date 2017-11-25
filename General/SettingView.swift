@@ -79,6 +79,10 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         switch(specifier.key()){
+        case "app.blog.hqy":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://hqy.nfls.io"
+            navigationController?.popViewController(animated: true)
+            break
         case "app.license":
             self.performSegue(withIdentifier: "showLicenses", sender: self)
             break

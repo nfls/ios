@@ -424,6 +424,24 @@ InAppSettingsKit
             </objects>
             <point key="canvasLocation" x="6341" y="-1304"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="doc-T7-Dk0">
+            <objects>
+                <viewController id="yDP-n6-4QC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ilp-jS-254"/>
+                        <viewControllerLayoutGuide type="bottom" id="iJx-T7-X8V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rgm-Hs-RQ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="juM-AP-nK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7094" y="-1306"/>
+        </scene>
         <!--个人中心-->
         <scene sceneID="icj-ah-7Ge">
             <objects>

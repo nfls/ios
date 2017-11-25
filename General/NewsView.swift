@@ -12,6 +12,7 @@ import FrostedSidebar
 import SCLAlertView
 import Permission
 import StoreKit
+import SafariServices
 
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
@@ -388,7 +389,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                                     let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
                                     let type = things["type"]!
                                     let in_url = things["url"]!
-                                    self.jumpToSection(type: type, in_url: in_url)
+                                    self.jumpToSection(type: type, in_url: in_url, realurl: nil)
                                 } catch {
                                     self.handleUrl = info["push"] as! String
                                     self.internalHandler(url: self.handleUrl)
@@ -430,14 +431,12 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     let urlStartIndex = tUrl.endIndex(of: ".nfls.io/")!
                     in_url = String(tUrl[urlStartIndex...])
                 }
-                
                 let type = tUrl[..<typeEndIndex]
-                jumpToSection(type: String(type), in_url: String(in_url))
+                jumpToSection(type: String(type), in_url: String(in_url), realurl:URL(string: url))
             }
         }
     }
-    func jumpToSection(type:String,in_url:String){
-        debugPrint(in_url)
+    func jumpToSection(type:String,in_url:String,realurl:URL?){
         switch(type){
         case "forum":
             self.performSegue(withIdentifier: "showForum", sender: in_url)
@@ -461,7 +460,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showGame", sender: self)
             break
         default:
-            print(type)
+            if let url = realurl{
+                let safari = SFSafariViewController(url: url)
+                self.present(safari, animated: true, completion: nil)
+            }
             break
         }
     }

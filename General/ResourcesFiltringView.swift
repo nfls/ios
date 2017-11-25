@@ -139,7 +139,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 (alert: UIAlertAction!) in
                 let selectedRows = self.tableview.indexPathsForSelectedRows
                 if(selectedRows != nil){
-                    self.bulkDownload(files: selectedRows!)
+                    self.bulkDownload(files_: selectedRows!)
                 }
             })
             alertController.addAction(mutipleSelectAction)
@@ -278,7 +278,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 "type":"doc",
                 "href":currentFolder.removingPercentEncoding! + "/" + file.filename,
                 "width":400,
-                "height":400                                                        .n  
+                "height":400
             ]
             requestImages.append(parameters)
         }
@@ -331,7 +331,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                     } else {
                         let attr = try FileManager.default.attributesOfItem(atPath: file.path)
                         let fileSize = attr[FileAttributeKey.size] as! Int64
-                        self.files.append(Detail(filename: name, time: 0, size: filesize, isFolder: false, appHref: ""))
+                        self.files.append(Detail(filename: name, time: 0, size: fileSize, isFolder: false, appHref: ""))
                     }
                     
                 }
@@ -372,7 +372,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         self.listRequest()
     }
     
-    func bulkDownload(files:[IndexPath]!){
+    func bulkDownload(files_:[IndexPath]!){
         var parameters:Parameters = [
             "action" : "download",
             "as" : "bulk.zip",
@@ -381,8 +381,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             "hrefs" : ""
         ]
         var count = 0
-        for file in files{
-            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        for file in files_{
+            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + self.files[file.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
                 count += 1
         }
         if(count >= 1){
@@ -615,34 +615,34 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filenames.count
+        return files.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
         cell.imageView!.kf.cancelDownloadTask()
-        if(indexPath.row >= filenames.count){
+        if(indexPath.row >= files.count){
             SCLAlertView().showError("错误", subTitle: "发生了内部错误，如果遇到奇怪问题请退出重试")
             return cell
         }
-        let name = filenames[indexPath.row]
-        let size = sizes[indexPath.row] / 1024
+        let name = files[indexPath.row].filename
+        let size = files[indexPath.row].size / 1024
         if(onlineMode){
-            let time = Date(timeIntervalSince1970: TimeInterval(truncating: times[indexPath.row])/1000)
+            let time = Date(timeIntervalSince1970: TimeInterval(truncating: files[indexPath.row].time)/1000)
             let dateFormatter = DateFormatter()
             dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
             dateFormatter.locale = NSLocale.current
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
             let strDate = dateFormatter.string(from: time)
             cell.detailTextLabel!.text = strDate + " - " + calculateSize(bytes: size)
-            if(isDownloaded[indexPath.row]){
+            if(isFileExists(filename: files[indexPath.row].filename, path: currentFolder)){
                 cell.detailTextLabel!.text! += " - 已缓存"
             }
         } else {
             cell.detailTextLabel!.text = calculateSize(bytes: size)
         }
         var placeHolder = UIImage()
-        if(isFolder[indexPath.row]){
+        if(files[indexPath.row].isFolder){
             placeHolder = UIImage(named: "icons8-Folder-50.png")!
         } else {
             placeHolder = UIImage(named: "icons8-Documents-50.png")!
@@ -699,10 +699,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         cell.accessoryType = .checkmark
         tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
-            if(isFolder[indexPath.row]){
-                changeCurrentDir(newDir : filenames[indexPath.row])
+            if(files[indexPath.row].isFolder){
+                changeCurrentDir(newDir : files[indexPath.row].filename)
             } else {
-                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:filenames[indexPath.row], path:currentFolder)
+                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:files[indexPath.row].filename, path:currentFolder)
             }
         }
     }
@@ -714,19 +714,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if(isFolder[indexPath.row]){
+        if(files[indexPath.row].isFolder){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删空缓存", handler:{action, indexPath in
-                self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
+                self.removeFile(filename:self.files[indexPath.row].filename, path:self.currentFolder)
             })
             return [deleteRowAction]
         }
-        if(isDownloaded[indexPath.row]){
+        if(isFileExists(filename: self.files[indexPath.row].filename, path: currentFolder)){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删除本地", handler:{action, indexPath in
-                self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
+                self.removeFile(filename:self.files[indexPath.row].filename, path:self.currentFolder)
             })
             if(onlineMode){
                 let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "重新下载", handler:{action, indexpath in
-                    self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.filenames[indexPath.row], path:self.currentFolder, force: true)
+                    self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.files[indexPath.row].filename, path:self.currentFolder, force: true)
                 })
                 moreRowAction.backgroundColor = UIColor.blue
                 
@@ -739,7 +739,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             
         } else {
             let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "临时下载", handler:{action, indexpath in
-                self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.filenames[indexPath.row], path:self.currentFolder, force: false, temp: true)
+                self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.files[indexPath.row].filename, path:self.currentFolder, force: false, temp: true)
             })
             moreRowAction.backgroundColor = UIColor.blue
             return [moreRowAction]

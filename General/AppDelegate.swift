@@ -15,6 +15,8 @@ import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let 
 
     var window: UIWindow?
     var token:String = ""

@@ -116,6 +116,14 @@
 			<key>File</key>
 			<string>Authors</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>胡清阳的博客</string>
+			<key>Key</key>
+			<string>app.blog.hqy</string>
+		</dict>
 	</array>
 </dict>
 </plist>
