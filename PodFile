@@ -30,5 +30,5 @@ target 'NFLSers-iOS' do
 #  pod 'SVGKit'
   pod 'JWGeohashKit'
   pod 'ChromaColorPicker'
-  pod 'AwesomeCache'
+  pod 'Cache'
 end

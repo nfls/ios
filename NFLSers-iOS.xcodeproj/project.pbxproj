@@ -302,8 +302,8 @@
 			children = (
 				65B69ACA1FA8D7E0001F472B /* PickerView.swift */,
 				65234A861F47293300E084A2 /* OpenSourceLicenseView.swift */,
-				6580C0D11F83ED4F00BD7501 /* NewsView.swift */,
 				65234A801F4608CF00E084A2 /* LaunchScreenView.swift */,
+				6580C0D11F83ED4F00BD7501 /* NewsView.swift */,
 				65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */,
 				658551BA1F8DCFC000FC9A8C /* SettingView.swift */,
 			);
@@ -593,7 +593,7 @@
 				"${BUILT_PRODUCTS_DIR}/AMScrollingNavbar/AMScrollingNavbar.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
-				"${BUILT_PRODUCTS_DIR}/AwesomeCache/AwesomeCache.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ChromaColorPicker/ChromaColorPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/CountryPickerSwift/CountryPicker.framework",
@@ -617,7 +617,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMScrollingNavbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwesomeCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChromaColorPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountryPicker.framework",

@@ -3,7 +3,7 @@ PODS:
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - AMScrollingNavbar (4.0.5)
-  - AwesomeCache (5.0)
+  - Cache (4.1.2)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
@@ -37,7 +37,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
   - AMScrollingNavbar
-  - AwesomeCache
+  - Cache
   - Charts
   - ChromaColorPicker
   - CountryPickerSwift
@@ -63,7 +63,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AMScrollingNavbar: 81d8aee27f528a65994ee899b5312e9fa9374908
-  AwesomeCache: d8906955242173357caa0be0214d5e77dec32cc5
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
@@ -83,6 +83,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: dc02b555f861ad828b5a8161b36a5371f639cc9c
+PODFILE CHECKSUM: 09207b43a26a0ac68e681d229d2d76fb30381ee4
 
 COCOAPODS: 1.4.0.beta.1
