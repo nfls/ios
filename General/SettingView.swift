@@ -13,8 +13,14 @@ import StoreKit
 import Alamofire
 import PassKit
 import SCLAlertView
+import ChromaColorPicker
 
-class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver{
+class ColorCell:UITableViewCell{
+    @IBOutlet weak var container:UIView!
+}
+
+class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,ChromaColorPickerDelegate{
+    
     var productsRequest = SKProductsRequest()
     var productsArray = [SKProduct]()
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
@@ -80,7 +86,7 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         switch(specifier.key()){
         case "app.blog.hqy":
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://hqy.nfls.io"
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://hqy.moe"
             navigationController?.popViewController(animated: true)
             break
         case "app.license":
@@ -129,7 +135,22 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             })
             break
         case "settings.theme.pick":
-            self.performSegue(withIdentifier: "showPicker", sender: self)
+            let dialog = SCLAlertView()
+            let color:[String:String] = [
+                "少女粉":"pink",
+                "香芋紫":"purple",
+                "蓝绿色":"blueGreen",
+                "薄荷绿":"mintGreen",
+                "青草绿":"grass",
+                "雾霾蓝":"fogBlue",
+                "瞎眼睛":"kill"
+            ]
+            for(key,value)in color{
+                dialog.addButton(key, action: {
+                    UserDefaults.standard.set(value, forKey: "settings.theme")
+                })
+            }
+            dialog.showInfo("预设主题", subTitle: "您可在此选择内置的预设主题", closeButtonTitle: "取消")
             break
         case "app.review":
             rateApp(appId: "id1246252649") { success in
@@ -138,6 +159,38 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             break
         default:
             break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView!, cellFor specifier: IASKSpecifier!) -> UITableViewCell! {
+        switch(specifier.key()){
+        case "settings.theme.customize":
+            let cell = tableView.dequeueReusableCell(withIdentifier: "color") as! ColorCell
+            let container = cell.container!
+            cell.backgroundColor = UIColor.gray
+            container.backgroundColor = UIColor.gray
+            let picker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            picker.delegate = self
+            picker.padding = 5
+            picker.stroke = 3
+            if let color = UserDefaults.standard.colorForKey(key: "settings.theme.color"){
+                picker.adjustToColor(color)
+            }
+            //picker.addButton.isHidden = true
+            container.addSubview(picker)
+            picker.layout()
+            return cell
+        default:
+            let cell = UITableViewCell()
+            return cell
+        }
+    }
+    func tableView(_ tableView: UITableView!, heightFor specifier: IASKSpecifier!) -> CGFloat {
+        switch(specifier.key()){
+        case "settings.theme.customize":
+            return 230
+        default:
+            return 82
         }
     }
     func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
@@ -151,5 +204,18 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         }
         UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
+    func colorPickerDidChooseColor(_ colorPicker: ChromaColorPicker, color: UIColor) {
+        UserDefaults.standard.setColor(color: color, forKey: "settings.theme.color")
+        UserDefaults.standard.set("customize", forKey: "settings.theme")
+    }
+    /*
+    override func viewDidLoad() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "预设", style: .plain, target: self, action: #selector(selectColor))
+        view.backgroundColor = UIColor.gray
+     
+        SCLAlertView().showInfo("说明", subTitle: "您可在此选择内置或自定义您的App主题。如果您希望选择预设主题，请点按右上角预设按钮；如果您希望自定义主题，请使用下方的调色盘选择您喜爱的颜色，并按+号确认。", closeButtonTitle: "我知道了" )
+    }
+    */
+    
     
 }

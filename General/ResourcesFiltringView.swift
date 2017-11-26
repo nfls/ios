@@ -90,6 +90,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     override func viewWillAppear(_ animated: Bool) {
         MobClick.beginLogPageView("Resources")
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     override func viewWillDisappear(_ animated: Bool) {
         MobClick.endLogPageView("Resources")
@@ -462,11 +463,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             qlpreview.reloadData()
             DispatchQueue.main.async {
                 if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.setScreen()
                     self.navigationController!.pushViewController(qlpreview, animated: true)
                 }
             }
         }
         
+    }
+    
+    func setScreen(){
+        let option = UserDefaults.standard.bool(forKey: "settings.keep.enabled")
+        if option {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
     }
     
     func downloadFiles(url:String,filename:String,path:String,force:Bool = false, temp:Bool = false){
@@ -569,6 +578,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             qlpreview.currentPreviewItemIndex = 0
             DispatchQueue.main.async {
                 if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.setScreen()
                     self.navigationController!.pushViewController(qlpreview, animated: true)
                 }
             }
@@ -794,6 +804,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func previewControllerDidDismiss(_ controller: QLPreviewController) {
         fileurls.removeAll()
     }
+    
 }
 
 class DownloadCell:UITableViewCell{

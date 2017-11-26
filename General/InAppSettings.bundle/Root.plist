@@ -34,9 +34,31 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>预览文档时保持屏幕常亮</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>settings.keep.enabled</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>自定义主题（点+号应用）</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.theme.customize</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>主题</string>
+			<string>预设</string>
 			<key>Key</key>
 			<string>settings.theme.pick</string>
 		</dict>
@@ -50,17 +72,17 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>获取入场券</string>
+			<string>国际部在校学生实名认证</string>
 			<key>Key</key>
-			<string>app.ticket</string>
+			<string>app.realname</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>国际部在校学生实名认证</string>
+			<string>获取入场券</string>
 			<key>Key</key>
-			<string>app.realname</string>
+			<string>app.ticket</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -82,6 +104,28 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
+			<string>开发组博客</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>胡清阳的博客</string>
+			<key>Key</key>
+			<string>app.blog.hqy</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>谢祖地的博客</string>
+			<key>Key</key>
+			<string>app.blog.xzd</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
 			<string>关于</string>
 		</dict>
 		<dict>
@@ -96,17 +140,17 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>请喝咖啡</string>
+			<string>开源项目许可证</string>
 			<key>Key</key>
-			<string>app.donate</string>
+			<string>app.license</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>开源项目许可证</string>
+			<string>请喝咖啡</string>
 			<key>Key</key>
-			<string>app.license</string>
+			<string>app.donate</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -118,11 +162,27 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>管理（仅针对管理员开放）</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>胡清阳的博客</string>
+			<string>消息管理</string>
 			<key>Key</key>
-			<string>app.blog.hqy</string>
+			<string>admin.message.manage</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>关闭启动画面</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>admin.start.disable</string>
 		</dict>
 	</array>
 </dict>

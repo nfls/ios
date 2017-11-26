@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import UserNotifications 
 import Alamofire
 import AlamofireNetworkActivityIndicator
+import QuickLook
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -101,7 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         while let presentedController = currentController.presentedViewController {
                             currentController = presentedController
                         }
-                        currentController.present(controller, animated: true, completion: nil)
+                        if !(currentController is QLPreviewController) {
+                            currentController.present(controller, animated: true, completion: nil)
+                        }
                     }
                 }
             }

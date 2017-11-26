@@ -655,6 +655,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                         if(status["status"] as! String == "success"){
                             let token = status["token"]! as! String
                             UserDefaults.standard.set(token, forKey: "token")
+                            UserDefaults.standard.set(true, forKey: "settings.keep.enabled")
+                            UserDefaults.standard.set(true, forKey: "settings.night.auto")
                             //UserDefaults.standard.synchronize()
                             self.checkStatus()
                         } else {
