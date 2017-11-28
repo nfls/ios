@@ -12,15 +12,28 @@ import Alamofire
 
 class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDelegate{
     let ID = "Cell"
-    var totalStations = 1
-    var stationNames : [String] = ["综合信息"]
-    var weatherData = [[[String:String]]]()
-    
+    struct Station{
+        var name:String
+        var longitude:Double
+        var latitude:Double
+        var altitude:Double
+        var isOnline:Bool
+        var lastUpdate:String
+        var data = [[String:String]]()
+        init(name:String,longitude:Double,latitude:Double,altitude:Double,isOnline:Bool,lastUpdate:String) {
+            self.name = name
+            self.longitude = longitude
+            self.latitude = latitude
+            self.altitude = altitude
+            self.isOnline = isOnline
+            self.lastUpdate = lastUpdate
+        }
+    }
+    var stations = [Station]()
     @IBOutlet weak var tableview: UITableView!
     override func viewDidAppear(_ animated: Bool) {
         tableview.register(DetailCell.self, forCellReuseIdentifier: ID)
         getStationList()
-        
     }
     
     func getStationList(){
@@ -30,13 +43,17 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
         Alamofire.request("https://api.nfls.io/weather/list", headers: headers).responseJSON { response in
             switch(response.result){
             case .success(let json):
-                self.weatherData.removeAll()
-                self.weatherData.append([["name":"n/a","value":"n/a"]])
+                self.stations.removeAll()
                 let messages = (json as! [String:AnyObject])["info"] as! [AnyObject]
                 for message in messages {
                     let info = message as! [String:Any]
-                    self.stationNames.append(info["name"] as! String)
-                    self.totalStations += 1
+                    let name = info["name"] as! String
+                    let lastUpdate = info["lastUpdate"] as? String ?? ""
+                    let isOnline = info["isOnline"] as! Bool
+                    let longitude = info["longitude"] as! Double
+                    let latitude = info["latitude"] as! Double
+                    let altitude = info["altitude"] as! Double
+                    self.stations.append(Station(name: name, longitude: longitude, latitude: latitude, altitude: altitude, isOnline: isOnline, lastUpdate: lastUpdate))
                     self.getStationInfo(id: info["id"] as! Int, update: messages.last?["name"] as! String == message["name"] as! String)
                 }
             default:
@@ -46,15 +63,14 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func getStationInfo(id:Int,update:Bool = false){
+        let index = stations.count - 1
         let parameters:Parameters = [
             "id":String(id)
         ]
         Alamofire.request("https://api.nfls.io/weather/data", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            dump(response)
             switch(response.result){
             case .success(let json):
                 let messages = (json as! [String:AnyObject])["info"] as! [AnyObject]
-                dump(messages)
                 var whole = [[String:String]]()
                 var data = [String:String]()
                 for message in messages {
@@ -71,7 +87,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
                     data["value"] = value
                     whole.append(data);
                 }
-                self.weatherData.append(whole)
+                self.stations[index].data = whole
                 if(update){
                     DispatchQueue.main.async {
                         self.tableview.dataSource = self
@@ -87,13 +103,34 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherData[section].count
+        return stations[section].data.count + 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        var key:String?
+        var value:String?
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
-        let key = weatherData[indexPath.section][indexPath.row]["name"]
-        let value = weatherData[indexPath.section][indexPath.row]["value"]
+        switch(indexPath.row){
+        case 0:
+            key = "最近更新时间"
+            value = stations[indexPath.section].lastUpdate
+        case 1:
+            key = "经度"
+            value = String(stations[indexPath.section].longitude)
+            cell.accessoryType = .disclosureIndicator
+        case 2:
+            key = "纬度"
+            value = String(stations[indexPath.section].latitude)
+            cell.accessoryType = .disclosureIndicator
+        case 3:
+            key = "高度"
+            value = String(stations[indexPath.section].altitude) + "m"
+            cell.accessoryType = .disclosureIndicator
+        default:
+            key = stations[indexPath.section].data[indexPath.row - 4]["name"]
+            value = stations[indexPath.section].data[indexPath.row - 4]["value"]
+        }
+        
         cell.textLabel!.text = key
         cell.detailTextLabel!.text = value
         cell.detailTextLabel!.lineBreakMode = .byWordWrapping
@@ -105,15 +142,30 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return stationNames[section]
+        return stations[section].name
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return totalStations
+        return stations.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch(indexPath.row){
+        case 1,2,3:
+            let longitude = stations[indexPath.section].longitude
+            let latitude = stations[indexPath.section].latitude
+            self.performSegue(withIdentifier: "showMap", sender: [longitude,latitude])
+        default:
+            break
+        }
         return 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! MapViewController
+        let data = sender as! [Double]
+        vc.longitude = data[0]
+        vc.latitude = data[1]
     }
     
 }

@@ -741,7 +741,6 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         cell.accessoryType = .checkmark
-        tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
             if(!files.isEmpty){
                 if (files[indexPath.row].isFolder){

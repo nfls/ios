@@ -434,6 +434,11 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 let type = tUrl[..<typeEndIndex]
                 jumpToSection(type: String(type), in_url: String(in_url), realurl:URL(string: url))
             }
+        }else{
+            if let realUrl = URL(string: url){
+                let safari = SFSafariViewController(url: realUrl)
+                self.present(safari, animated: true, completion: nil)
+            }
         }
     }
     func jumpToSection(type:String,in_url:String,realurl:URL?){

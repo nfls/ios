@@ -10,6 +10,18 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
+			<string>版本</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.version</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
 			<string>界面</string>
 		</dict>
 		<dict>
@@ -28,7 +40,7 @@
 			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>settings.night.auto</string>
 		</dict>
@@ -38,7 +50,7 @@
 			<key>Title</key>
 			<string>预览文档时保持屏幕常亮</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>settings.keep.enabled</string>
 		</dict>
@@ -46,7 +58,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>自定义主题（点+号应用）</string>
+			<string>自定义主题</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -61,6 +73,8 @@
 			<string>预设</string>
 			<key>Key</key>
 			<string>settings.theme.pick</string>
+			<key>IASKSubtitle</key>
+			<string>您可以在此选择预设的主题</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -70,57 +84,11 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
+			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>国际部在校学生实名认证</string>
-			<key>Key</key>
-			<string>app.realname</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>获取入场券</string>
-			<key>Key</key>
-			<string>app.ticket</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>个人中心</string>
-			<key>Key</key>
-			<string>app.user</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>退出</string>
-			<key>Key</key>
-			<string>app.logout</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>开发组博客</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>胡清阳的博客</string>
-			<key>Key</key>
-			<string>app.blog.hqy</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>谢祖地的博客</string>
-			<key>Key</key>
-			<string>app.blog.xzd</string>
+			<string>用户中心</string>
+			<key>File</key>
+			<string>User</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -132,17 +100,31 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>在App Store上给我们评价</string>
+			<string>胡清阳的博客</string>
 			<key>Key</key>
-			<string>app.review</string>
+			<string>app.blog.hqy</string>
+			<key>IASKSubtitle</key>
+			<string>https://hqy.moe</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>开源项目许可证</string>
+			<string>谢祖地的博客</string>
 			<key>Key</key>
-			<string>app.license</string>
+			<string>app.blog.xzd</string>
+			<key>IASKSubtitle</key>
+			<string>https://xzd.nfls.io</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>评价</string>
+			<key>Key</key>
+			<string>app.review</string>
+			<key>IASKSubtitle</key>
+			<string>在App Store上给我们撰写评价</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -151,38 +133,24 @@
 			<string>请喝咖啡</string>
 			<key>Key</key>
 			<string>app.donate</string>
+			<key>IASKSubtitle</key>
+			<string>给我们捐款30元</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>开发组</string>
+			<string>开发组名单</string>
 			<key>File</key>
 			<string>Authors</string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>管理（仅针对管理员开放）</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>消息管理</string>
-			<key>Key</key>
-			<string>admin.message.manage</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>关闭启动画面</string>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>admin.start.disable</string>
+			<string>管理（仅对管理员开放）</string>
+			<key>File</key>
+			<string>Management</string>
 		</dict>
 	</array>
 </dict>

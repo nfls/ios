@@ -26,7 +26,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>UI设计</string>
+			<string>界面</string>
 			<key>Key</key>
 			<string></string>
 		</dict>
@@ -58,7 +58,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>游戏设计</string>
+			<string>游戏</string>
 			<key>Key</key>
 			<string></string>
 		</dict>
@@ -88,27 +88,44 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>2019届 隋佳钰</string>
+			<key>Key</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>特殊感谢</string>
+			<string>其他</string>
 			<key>Key</key>
 			<string></string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
+			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>2018届 刘瑞楷</string>
+			<string>开源项目许可证</string>
+			<key>Key</key>
+			<string>app.license</string>
+		</dict>
+		
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Secret Zone</string>
 			<key>Key</key>
 			<string></string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
+			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>2003届 殷义豪</string>
-			<key>Key</key>
 			<string></string>
+			<key>Key</key>
+			<string>app.code</string>
 		</dict>
 	</array>
 </dict>

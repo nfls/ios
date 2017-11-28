@@ -18,7 +18,10 @@ import ChromaColorPicker
 class ColorCell:UITableViewCell{
     @IBOutlet weak var container:UIView!
 }
-
+class VersionCell:UITableViewCell{
+    @IBOutlet weak var version:UILabel!
+    @IBOutlet weak var codeName:UILabel!
+}
 class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,ChromaColorPickerDelegate{
     
     var productsRequest = SKProductsRequest()
@@ -84,16 +87,23 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     }
     
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch(specifier.key()){
         case "app.blog.hqy":
             (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://hqy.moe"
             navigationController?.popViewController(animated: true)
             break
+        case "app.blog.xzd":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://xzd.nfls.io"
+            navigationController?.popViewController(animated: true)
+            break
         case "app.license":
-            self.performSegue(withIdentifier: "showLicenses", sender: self)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"license") as! OpenSourceLicenseViewController
+            navigationController?.pushViewController(viewController, animated: true)
             break
         case "app.user":
-            self.performSegue(withIdentifier: "showCenter", sender: self)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"user") as! CenterTabRootViewController
+            navigationController?.pushViewController(viewController, animated: true)
             break
         case "app.donate":
             if(!self.productsArray.isEmpty){
@@ -180,6 +190,16 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             container.addSubview(picker)
             picker.layout()
             return cell
+        case "settings.version":
+            let cell = tableView.dequeueReusableCell(withIdentifier: "version") as! VersionCell
+            let dictionary = Bundle.main.infoDictionary!
+            let version = dictionary["CFBundleShortVersionString"] as! String
+            let build = dictionary["CFBundleVersion"] as! String
+            let codeNameCN = dictionary["CodeNameCN"] as! String
+            let codeNameEN = dictionary["CodeNameEN"] as! String
+            cell.version.text = "Version " + version + " Build " + build
+            cell.codeName.text = codeNameEN + " 「" + codeNameCN + "」"
+            return cell
         default:
             let cell = UITableViewCell()
             return cell
@@ -189,6 +209,8 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         switch(specifier.key()){
         case "settings.theme.customize":
             return 230
+        case "settings.version":
+            return 50
         default:
             return 82
         }
