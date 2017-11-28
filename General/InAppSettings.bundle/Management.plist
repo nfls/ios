@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Title</key>
-	<string>管理</string>
+	<string>管理（仅限管理员）</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>

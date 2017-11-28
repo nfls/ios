@@ -17,15 +17,27 @@ import ChromaColorPicker
 
 class ColorCell:UITableViewCell{
     @IBOutlet weak var container:UIView!
+    let picker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
 }
 class VersionCell:UITableViewCell{
     @IBOutlet weak var version:UILabel!
     @IBOutlet weak var codeName:UILabel!
 }
+class UserCell:UITableViewCell{
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var email: UILabel!
+    
+}
 class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,ChromaColorPickerDelegate{
     
     var productsRequest = SKProductsRequest()
     var productsArray = [SKProduct]()
+    var username:String? = nil
+    var email:String? = nil
+    var image = UIImageView()
+    var img:UIImage? = UIImage()
+    
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         if response.products.count != 0 {
             for product in response.products {
@@ -68,12 +80,48 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
         productsRequest.delegate = self
         productsRequest.start()
+        requestUsername()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         SKPaymentQueue.default().add(self)
+    }
+    
+    func requestUsername(){
+        username = UserDefaults.standard.value(forKey: "username") as? String
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/generalInfo", headers: headers).responseJSON{ response in
+            switch response.result{
+            case .success(let json):
+                if(((json as! [String:AnyObject])["code"] as! Int)==200){
+                    let jsonDic = (json as! [String:AnyObject])["info"]!
+                    self.username = jsonDic.object(forKey: "username") as? String
+                    self.email = jsonDic.object(forKey: "email") as? String
+                    if let url = jsonDic.object(forKey: "avatar_path") as? String{
+                        self.image.kf.setImage(with: URL(string: ("https://forum.nfls.io/assets/avatars/" + url)),completionHandler: {
+                            (image, error, cacheType, imageUrl) in
+                            // image: Image? `nil` means failed
+                            // error: NSError? non-`nil` means failed
+                            // cacheType: CacheType
+                            //                  .none - Just downloaded
+                            //                  .memory - Got from memory cache
+                            //                  .disk - Got from disk cache
+                            // imageUrl: URL of the image
+                            self.img = image
+                            self.tableView.reloadData()
+                        })
+                    }else{
+                    }
+                    
+                }
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,24 +133,22 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
+    // MARK: picker is not properly reused
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch(specifier.key()){
         case "app.blog.hqy":
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://hqy.moe"
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://hqy.moe"
+            navigationController?.popViewController(animated: true)
             navigationController?.popViewController(animated: true)
             break
         case "app.blog.xzd":
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "https://xzd.nfls.io"
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://xzd.nfls.io"
+            navigationController?.popViewController(animated: true)
             navigationController?.popViewController(animated: true)
             break
         case "app.license":
             let viewController = storyboard.instantiateViewController(withIdentifier :"license") as! OpenSourceLicenseViewController
-            navigationController?.pushViewController(viewController, animated: true)
-            break
-        case "app.user":
-            let viewController = storyboard.instantiateViewController(withIdentifier :"user") as! CenterTabRootViewController
             navigationController?.pushViewController(viewController, animated: true)
             break
         case "app.donate":
@@ -172,6 +218,19 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         }
     }
     
+    func settingsViewController(_ sender: IASKAppSettingsViewController!, tableView: UITableView!, didSelectCustomViewSpecifier specifier: IASKSpecifier!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        switch(specifier.key()){
+            
+        case "settings.user":
+            let viewController = storyboard.instantiateViewController(withIdentifier :"user") as! CenterTabRootViewController
+            navigationController?.pushViewController(viewController, animated: true)
+            break
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView!, cellFor specifier: IASKSpecifier!) -> UITableViewCell! {
         switch(specifier.key()){
         case "settings.theme.customize":
@@ -179,16 +238,16 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             let container = cell.container!
             cell.backgroundColor = UIColor.gray
             container.backgroundColor = UIColor.gray
-            let picker = ChromaColorPicker(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-            picker.delegate = self
-            picker.padding = 5
-            picker.stroke = 3
+            
+            cell.picker.delegate = self
+            cell.picker.padding = 5
+            cell.picker.stroke = 3
             if let color = UserDefaults.standard.colorForKey(key: "settings.theme.color"){
-                picker.adjustToColor(color)
+                cell.picker.adjustToColor(color)
             }
             //picker.addButton.isHidden = true
-            container.addSubview(picker)
-            picker.layout()
+            cell.container.addSubview(cell.picker)
+            cell.picker.layout()
             return cell
         case "settings.version":
             let cell = tableView.dequeueReusableCell(withIdentifier: "version") as! VersionCell
@@ -199,6 +258,12 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             let codeNameEN = dictionary["CodeNameEN"] as! String
             cell.version.text = "Version " + version + " Build " + build
             cell.codeName.text = codeNameEN + " 「" + codeNameCN + "」"
+            return cell
+        case "settings.user":
+            let cell = tableView.dequeueReusableCell(withIdentifier: "user") as! UserCell
+            cell.email.text = email
+            cell.username.text = username
+            cell.avatar.image = img
             return cell
         default:
             let cell = UITableViewCell()
@@ -211,6 +276,8 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             return 230
         case "settings.version":
             return 50
+        case "settings.user":
+            return 100
         default:
             return 82
         }

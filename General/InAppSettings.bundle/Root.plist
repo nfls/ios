@@ -8,15 +8,15 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>版本</string>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.version</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKCustomViewSpecifier</string>
 			<key>Key</key>
-			<string>settings.version</string>
+			<string>settings.user</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -80,41 +80,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>用户</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>用户中心</string>
-			<key>File</key>
-			<string>User</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
 			<string>关于</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>胡清阳的博客</string>
-			<key>Key</key>
-			<string>app.blog.hqy</string>
-			<key>IASKSubtitle</key>
-			<string>https://hqy.moe</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>谢祖地的博客</string>
-			<key>Key</key>
-			<string>app.blog.xzd</string>
-			<key>IASKSubtitle</key>
-			<string>https://xzd.nfls.io</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -148,7 +114,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>管理（仅对管理员开放）</string>
+			<string>管理</string>
 			<key>File</key>
 			<string>Management</string>
 		</dict>

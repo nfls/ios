@@ -106,11 +106,30 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
+			<string>胡清阳的博客</string>
+			<key>Key</key>
+			<string>app.blog.hqy</string>
+			<key>IASKSubtitle</key>
+			<string>https://hqy.moe</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>谢祖地的博客</string>
+			<key>Key</key>
+			<string>app.blog.xzd</string>
+			<key>IASKSubtitle</key>
+			<string>https://xzd.nfls.io</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
 			<string>开源项目许可证</string>
 			<key>Key</key>
 			<string>app.license</string>
 		</dict>
-		
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
