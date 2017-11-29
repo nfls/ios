@@ -21,6 +21,10 @@ class NavController:ScrollingNavigationController,UINavigationControllerDelegate
         updateNav(viewController)
     }
     @objc func update(){
+        if(UserDefaults.standard.string(forKey: "app.code") != ""){
+            UserDefaults.standard.set("", forKey: "app.code")
+            return
+        }
         DispatchQueue.main.async {
             self.updateNav()
         }

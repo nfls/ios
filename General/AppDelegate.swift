@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         while let presentedController = currentController.presentedViewController {
                             currentController = presentedController
                         }
-                        if !(currentController is QLPreviewController) {
+                        if !((currentController as? UINavigationController)?.topViewController is QLPreviewController) {
                             currentController.present(controller, animated: true, completion: nil)
                         }
                     }

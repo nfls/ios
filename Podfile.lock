@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - AMScrollingNavbar (4.0.5)
+  - AMScrollingNavbar (4.1.0)
   - Cache (4.1.2)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
@@ -29,6 +29,7 @@ PODS:
   - SSZipArchive (2.1.1)
   - SwiftIconFont (2.7.2)
   - SwiftyMarkdown (0.5.0)
+  - Toucan (1.0.0)
   - UIColor-Pantone (1.0)
   - UITableView+FDTemplateLayoutCell (1.6)
   - UMengAnalytics-NO-IDFA (4.2.5)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - SSZipArchive
   - SwiftIconFont
   - SwiftyMarkdown
+  - Toucan
   - UIColor-Pantone
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics-NO-IDFA
@@ -62,7 +64,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  AMScrollingNavbar: 81d8aee27f528a65994ee899b5312e9fa9374908
+  AMScrollingNavbar: f43ed1fcb784740199124aa79d3d53dfd7a81ade
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
@@ -79,10 +81,11 @@ SPEC CHECKSUMS:
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
   SwiftIconFont: e13dc39c257121e1141375bb338c02e686ef410b
   SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
+  Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UIColor-Pantone: b6e5ab4c032f704f75453cfc0e8a07f68624cff5
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 09207b43a26a0ac68e681d229d2d76fb30381ee4
+PODFILE CHECKSUM: eb8f9265293d2eb24c0e12f02da0536f72684f7e
 
 COCOAPODS: 1.4.0.beta.1

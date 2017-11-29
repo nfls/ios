@@ -10,6 +10,74 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
+			<string>关于</string>
+			<key>Key</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>关于我们</string>
+			<key>Key</key>
+			<string>app.about</string>
+			<key>IASKSubtitle</key>
+			<string>更多关于我们详细的信息</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>胡清阳的博客</string>
+			<key>Key</key>
+			<string>app.blog.hqy</string>
+			<key>IASKSubtitle</key>
+			<string>https://hqy.moe</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>谢祖地的博客</string>
+			<key>Key</key>
+			<string>app.blog.xzd</string>
+			<key>IASKSubtitle</key>
+			<string>https://xzd.nfls.io</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>隧道先生的扎心电脑俱乐部</string>
+			<key>Key</key>
+			<string>app.blog.mr</string>
+			<key>IASKSubtitle</key>
+			<string>Mr Tunnel's Lonely Hears Computing Club</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>俱乐部官方博客</string>
+			<key>Key</key>
+			<string>app.blog.mrtunnel</string>
+			<key>IASKSubtitle</key>
+			<string>https://blog.mrtunnel.club</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>开源项目许可证</string>
+			<key>Key</key>
+			<string>app.license</string>
+			<key>IASKSubtitle</key>
+			<string>Open Source Project License</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
 			<string>作者</string>
 			<key>Key</key>
 			<string></string>
@@ -21,6 +89,8 @@
 			<string>2019届 胡清阳</string>
 			<key>Key</key>
 			<string></string>
+			<key>Subtitle</key>
+			<string>https://blog.mrtunnel.club</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -93,42 +163,6 @@
 			<string>2019届 隋佳钰</string>
 			<key>Key</key>
 			<string></string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>其他</string>
-			<key>Key</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>胡清阳的博客</string>
-			<key>Key</key>
-			<string>app.blog.hqy</string>
-			<key>IASKSubtitle</key>
-			<string>https://hqy.moe</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>谢祖地的博客</string>
-			<key>Key</key>
-			<string>app.blog.xzd</string>
-			<key>IASKSubtitle</key>
-			<string>https://xzd.nfls.io</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>开源项目许可证</string>
-			<key>Key</key>
-			<string>app.license</string>
 		</dict>
 		<dict>
 			<key>Type</key>

@@ -33,6 +33,8 @@
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
 		6580C0D21F83ED4F00BD7501 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580C0D11F83ED4F00BD7501 /* NewsView.swift */; };
 		658551BB1F8DCFC000FC9A8C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658551BA1F8DCFC000FC9A8C /* SettingView.swift */; };
+		658CBB451FCE7B360069CE13 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CBB441FCE7B360069CE13 /* PhotoPickerView.swift */; };
+		658CBB471FCE7CF50069CE13 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 658CBB461FCE7CF50069CE13 /* photo.png */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		659C2AE31FC3A7F100E7984D /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 659C2AD51FC3A7EC00E7984D /* forum.png */; };
 		659C2AE41FC3A7F100E7984D /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 659C2AD61FC3A7EC00E7984D /* icons8-Documents-50.png */; };
@@ -135,6 +137,8 @@
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		6580C0D11F83ED4F00BD7501 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		658551BA1F8DCFC000FC9A8C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		658CBB441FCE7B360069CE13 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		658CBB461FCE7CF50069CE13 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		659C2AD51FC3A7EC00E7984D /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forum.png; path = Resources/forum.png; sourceTree = SOURCE_ROOT; };
 		659C2AD61FC3A7EC00E7984D /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-Documents-50.png"; path = "Resources/icons8-Documents-50.png"; sourceTree = SOURCE_ROOT; };
@@ -347,6 +351,7 @@
 				659C2ADC1FC3A7EF00E7984D /* ic.png */,
 				659C2ADF1FC3A7F000E7984D /* icons8-Back-50.png */,
 				659C2AD61FC3A7EC00E7984D /* icons8-Documents-50.png */,
+				658CBB461FCE7CF50069CE13 /* photo.png */,
 				659C2ADD1FC3A7EF00E7984D /* icons8-Folder-50.png */,
 				659C2AD91FC3A7EC00E7984D /* media.png */,
 				659C2ADE1FC3A7F000E7984D /* resources.png */,
@@ -383,6 +388,7 @@
 		D6AE17401E44D51600E66B4B /* General */ = {
 			isa = PBXGroup;
 			children = (
+				658CBB441FCE7B360069CE13 /* PhotoPickerView.swift */,
 				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
 				650160B31F62F6E800B5F95D /* Essential */,
 				65276F4B1F62F6C200DD0FBF /* Media */,
@@ -573,6 +579,7 @@
 				659C2AE81FC3A7F100E7984D /* _MG_6142.JPG in Resources */,
 				659C2AF01FC3A7F100E7984D /* game.png in Resources */,
 				659C2AED1FC3A7F100E7984D /* icons8-Back-50.png in Resources */,
+				658CBB471FCE7CF50069CE13 /* photo.png in Resources */,
 				659C2AE51FC3A7F100E7984D /* ib.png in Resources */,
 				6546E68C1EF84A29008CBBCA /* Main.storyboard in Resources */,
 				659C2AEF1FC3A7F100E7984D /* alumni.png in Resources */,
@@ -610,6 +617,7 @@
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftIconFont/SwiftIconFont.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
+				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor-Pantone/UIColor_Pantone.framework",
 				"${BUILT_PRODUCTS_DIR}/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework",
 			);
@@ -634,6 +642,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftIconFont.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Pantone.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITableView_FDTemplateLayoutCell.framework",
 			);
@@ -717,6 +726,7 @@
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				659C2AF41FC3A82D00E7984D /* WikiView.swift in Sources */,
 				65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */,
+				658CBB451FCE7B360069CE13 /* PhotoPickerView.swift in Sources */,
 				D606F2C91EEA14F000564191 /* UserCertificationStepView.swift in Sources */,
 				65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */,
 				6544765C1F57DA3D00CDEBD8 /* UniversityInfoView.swift in Sources */,

@@ -14,6 +14,7 @@ import Alamofire
 import PassKit
 import SCLAlertView
 import ChromaColorPicker
+import Toucan
 
 class ColorCell:UITableViewCell{
     @IBOutlet weak var container:UIView!
@@ -104,19 +105,16 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                     if let url = jsonDic.object(forKey: "avatar_path") as? String{
                         self.image.kf.setImage(with: URL(string: ("https://forum.nfls.io/assets/avatars/" + url)),completionHandler: {
                             (image, error, cacheType, imageUrl) in
-                            // image: Image? `nil` means failed
-                            // error: NSError? non-`nil` means failed
-                            // cacheType: CacheType
-                            //                  .none - Just downloaded
-                            //                  .memory - Got from memory cache
-                            //                  .disk - Got from disk cache
-                            // imageUrl: URL of the image
-                            self.img = image
+                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 10, borderColor: UIColor.gray).image
                             self.tableView.reloadData()
                         })
                     }else{
+                        self.image.kf.setImage(with: URL(string: ("https://center.nfls.io/center/js/no_head.png")),completionHandler: {
+                            (image, error, cacheType, imageUrl) in
+                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 10, borderColor: UIColor.gray).image
+                            self.tableView.reloadData()
+                        })
                     }
-                    
                 }
             default:
                 break
@@ -127,7 +125,6 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SKPaymentQueue.default().remove(self)
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -138,12 +135,27 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch(specifier.key()){
         case "app.blog.hqy":
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://hqy.moe"
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://hqy.moe/#blog"
             navigationController?.popViewController(animated: true)
             navigationController?.popViewController(animated: true)
             break
         case "app.blog.xzd":
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://xzd.nfls.io"
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://xzd.nfls.io/#blog"
+            navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
+            break
+        case "app.blog.mr":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://mrtunnel.club"
+            navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
+            break
+        case "app.blog.mrtunnel":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://blog.mrtunnel.club"
+            navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
+            break
+        case "app.about":
+            (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://wiki.nfls.io/w/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC"
             navigationController?.popViewController(animated: true)
             navigationController?.popViewController(animated: true)
             break

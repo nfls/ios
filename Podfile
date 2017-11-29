@@ -31,4 +31,5 @@ target 'NFLSers-iOS' do
   pod 'JWGeohashKit'
   pod 'ChromaColorPicker'
   pod 'Cache'
+  pod 'Toucan'
 end

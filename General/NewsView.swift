@@ -40,7 +40,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
+        let images = ["resources","game","photo","alumni","ic","forum","wiki","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
@@ -51,31 +51,34 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     func setUpBars(){
-        self.bar.actionForIndex[4] = {
-            self.performSegue(withIdentifier: "showForum", sender: self)
-        }
-        self.bar.actionForIndex[5] = {
-            self.performSegue(withIdentifier: "showWiki", sender: self)
-        }
         self.bar.actionForIndex[0] = {
             self.getAuthStatus(checkIC: true, segueName: "showResources")
-            
-        }
-        self.bar.actionForIndex[2] = {
-            self.performSegue(withIdentifier: "showAlumni", sender: self)
-        }
-        self.bar.actionForIndex[7] = {
-            self.performSegue(withIdentifier: "showWeather", sender: self)
-        }
-        self.bar.actionForIndex[3] = {
-            self.performSegue(withIdentifier: "showIC", sender: self)
-        }
-        self.bar.actionForIndex[6] = {
-            self.performSegue(withIdentifier: "showMedia", sender: self)
         }
         self.bar.actionForIndex[1] = {
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
+        self.bar.actionForIndex[2] = {
+            self.performSegue(withIdentifier: "showPhoto", sender: self)
+        }
+        self.bar.actionForIndex[3] = {
+            self.performSegue(withIdentifier: "showAlumni", sender: self)
+        }
+        self.bar.actionForIndex[4] = {
+            self.performSegue(withIdentifier: "showIC", sender: self)
+        }
+        self.bar.actionForIndex[5] = {
+            self.performSegue(withIdentifier: "showForum", sender: self)
+        }
+        self.bar.actionForIndex[6] = {
+            self.performSegue(withIdentifier: "showWiki", sender: self)
+        }
+        self.bar.actionForIndex[7] = {
+            self.performSegue(withIdentifier: "showMedia", sender: self)
+        }
+        self.bar.actionForIndex[8] = {
+            self.performSegue(withIdentifier: "showWeather", sender: self)
+        }
+        
         self.bar.delegate = self
         
     }
