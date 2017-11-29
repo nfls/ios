@@ -48,7 +48,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
                 for message in messages {
                     let info = message as! [String:Any]
                     let name = info["name"] as! String
-                    let lastUpdate = info["lastUpdate"] as? String ?? ""
+                    let lastUpdate = info["lastupdate"] as? String ?? ""
                     let isOnline = info["isOnline"] as! Bool
                     let longitude = info["longitude"] as! Double
                     let latitude = info["latitude"] as! Double

@@ -35,6 +35,7 @@
 		658551BB1F8DCFC000FC9A8C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658551BA1F8DCFC000FC9A8C /* SettingView.swift */; };
 		658CBB451FCE7B360069CE13 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CBB441FCE7B360069CE13 /* PhotoPickerView.swift */; };
 		658CBB471FCE7CF50069CE13 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 658CBB461FCE7CF50069CE13 /* photo.png */; };
+		658D14001FCEF6800051BF6D /* LocationTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D13FF1FCEF67F0051BF6D /* LocationTransform.swift */; };
 		6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595BA9D1F00844100BA1CE1 /* NotificationView.swift */; };
 		659C2AE31FC3A7F100E7984D /* forum.png in Resources */ = {isa = PBXBuildFile; fileRef = 659C2AD51FC3A7EC00E7984D /* forum.png */; };
 		659C2AE41FC3A7F100E7984D /* icons8-Documents-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 659C2AD61FC3A7EC00E7984D /* icons8-Documents-50.png */; };
@@ -139,6 +140,7 @@
 		658551BA1F8DCFC000FC9A8C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		658CBB441FCE7B360069CE13 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		658CBB461FCE7CF50069CE13 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
+		658D13FF1FCEF67F0051BF6D /* LocationTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTransform.swift; sourceTree = "<group>"; };
 		6595BA9D1F00844100BA1CE1 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		659C2AD51FC3A7EC00E7984D /* forum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = forum.png; path = Resources/forum.png; sourceTree = SOURCE_ROOT; };
 		659C2AD61FC3A7EC00E7984D /* icons8-Documents-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-Documents-50.png"; path = "Resources/icons8-Documents-50.png"; sourceTree = SOURCE_ROOT; };
@@ -243,6 +245,7 @@
 			children = (
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
 				659C2AFB1FC3A85F00E7984D /* NavigationController.swift */,
+				658D13FF1FCEF67F0051BF6D /* LocationTransform.swift */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
@@ -740,6 +743,7 @@
 				6595BA9E1F00844100BA1CE1 /* NotificationView.swift in Sources */,
 				659C2AF91FC3A85100E7984D /* GameView.swift in Sources */,
 				65AD5ECB1F8D9ADE008EE0F8 /* ThemeManager.swift in Sources */,
+				658D14001FCEF6800051BF6D /* LocationTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,12 +15,13 @@ class MapViewController:UIViewController{
     var longitude:Double = 30
     var latitude:Double = 30
     @IBOutlet weak var mapView: MKMapView!
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let newPin = MKPointAnnotation()
+        (latitude,longitude) = LocationTransform.wgs2gcj(wgsLat: latitude, wgsLng: longitude)
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(region, animated: true)
         newPin.coordinate = location.coordinate
         newPin.title = "气象站"
