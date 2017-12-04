@@ -141,6 +141,29 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-4D-3lx">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="button" id="b7B-oG-qjI" customClass="ButtonCell" customModule="NFLSers_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b7B-oG-qjI" id="Rvl-So-5ME">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sln-Z0-TdV">
+                                                    <rect key="frame" x="137" y="7" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sln-Z0-TdV" firstAttribute="centerX" secondItem="Rvl-So-5ME" secondAttribute="centerX" id="YRk-pd-XUf"/>
+                                                <constraint firstItem="sln-Z0-TdV" firstAttribute="centerY" secondItem="Rvl-So-5ME" secondAttribute="centerY" id="yhK-2l-bRG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="sln-Z0-TdV" id="yiO-tw-nNU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1211,7 +1234,7 @@ Cache
                     <connections>
                         <outlet property="tableview" destination="Frv-Rh-4Wf" id="rFj-1F-GKA"/>
                         <segue destination="GoJ-4g-syQ" kind="show" identifier="showMap" id="PnA-oX-ANj"/>
-                        <segue destination="Q8e-4N-FW3" kind="show" id="pKF-Sb-7L8"/>
+                        <segue destination="Q8e-4N-FW3" kind="show" identifier="weatherData" id="pKF-Sb-7L8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J65-TX-ceQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

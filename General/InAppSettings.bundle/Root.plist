@@ -20,6 +20,16 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>头像</string>
+			<key>Key</key>
+			<string>user.avatar</string>
+			<key>IASKSubtitle</key>
+			<string>在此上传或修改您的头像</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>界面</string>

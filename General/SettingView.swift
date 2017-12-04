@@ -15,6 +15,7 @@ import PassKit
 import SCLAlertView
 import ChromaColorPicker
 import Toucan
+import MobileCoreServices
 
 class ColorCell:UITableViewCell{
     @IBOutlet weak var container:UIView!
@@ -30,7 +31,7 @@ class UserCell:UITableViewCell{
     @IBOutlet weak var email: UILabel!
     
 }
-class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,ChromaColorPickerDelegate{
+class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,ChromaColorPickerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     var productsRequest = SKProductsRequest()
     var productsArray = [SKProduct]()
@@ -134,6 +135,12 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch(specifier.key()){
+        case "user.avatar":
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.mediaTypes = [kUTTypeImage as String]
+            picker.delegate = self
+            self.present(picker,animated: true)
         case "app.blog.hqy":
             (navigationController?.viewControllers[navigationController!.viewControllers.count - 3] as! NewsViewController).handleUrl = "https://hqy.moe/#blog"
             navigationController?.popViewController(animated: true)
@@ -308,6 +315,30 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     func colorPickerDidChooseColor(_ colorPicker: ChromaColorPicker, color: UIColor) {
         UserDefaults.standard.setColor(color: color, forKey: "settings.theme.color")
         UserDefaults.standard.set("customize", forKey: "settings.theme")
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true) {
+            
+        }
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        var id:Int = 0
+        Alamofire.request("https://api.nfls.io/center/generalInfo", headers: headers).responseJSON{ response in
+            switch response.result{
+            case .success(let json):
+                if(((json as! [String:AnyObject])["code"] as! Int)==200){
+                    let jsonDic = (json as! [String:AnyObject])["info"]!
+                    id = jsonDic.object(forKey: "id") as! Int
+                    Alamofire.upload(multipartFormData: { data in
+                        data.append(UIImagePNGRepresentation(image)!, withName: "avatar")
+                    }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: "https://forum.nfls.io/api/users/" + String(describing: id) + "/avatar", method: .post, headers: headers, encodingCompletion: nil)
+                }
+            default:
+                break
+            }
+        }
     }
     /*
     override func viewDidLoad() {

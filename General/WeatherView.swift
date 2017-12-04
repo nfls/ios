@@ -13,6 +13,7 @@ import Alamofire
 class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDelegate{
     let ID = "Cell"
     struct Station{
+        var id:Int
         var name:String
         var longitude:Double
         var latitude:Double
@@ -20,7 +21,8 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
         var isOnline:Bool
         var lastUpdate:String
         var data = [[String:String]]()
-        init(name:String,longitude:Double,latitude:Double,altitude:Double,isOnline:Bool,lastUpdate:String) {
+        init(id:Int,name:String,longitude:Double,latitude:Double,altitude:Double,isOnline:Bool,lastUpdate:String) {
+            self.id = id
             self.name = name
             self.longitude = longitude
             self.latitude = latitude
@@ -53,7 +55,8 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
                     let longitude = info["longitude"] as! Double
                     let latitude = info["latitude"] as! Double
                     let altitude = info["altitude"] as! Double
-                    self.stations.append(Station(name: name, longitude: longitude, latitude: latitude, altitude: altitude, isOnline: isOnline, lastUpdate: lastUpdate))
+                    let id = info["id"] as! Int
+                    self.stations.append(Station(id:id, name: name, longitude: longitude, latitude: latitude, altitude: altitude, isOnline: isOnline, lastUpdate: lastUpdate))
                     self.getStationInfo(id: info["id"] as! Int, update: messages.last?["name"] as! String == message["name"] as! String)
                 }
             default:
@@ -114,6 +117,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
         case 0:
             key = "最近更新时间"
             value = stations[indexPath.section].lastUpdate
+            cell.accessoryType = .none
         case 1:
             key = "经度"
             value = String(stations[indexPath.section].longitude)
@@ -125,10 +129,11 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
         case 3:
             key = "高度"
             value = String(stations[indexPath.section].altitude) + "m"
-            cell.accessoryType = .disclosureIndicator
+            cell.accessoryType = .none
         default:
             key = stations[indexPath.section].data[indexPath.row - 4]["name"]
             value = stations[indexPath.section].data[indexPath.row - 4]["value"]
+            cell.accessoryType = .disclosureIndicator
         }
         
         cell.textLabel!.text = key
@@ -156,16 +161,27 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
             let latitude = stations[indexPath.section].latitude
             self.performSegue(withIdentifier: "showMap", sender: [longitude,latitude])
         default:
+            self.showHistoryData(indexPath: indexPath)
             break
         }
         return 
     }
-    
+    func showHistoryData(indexPath:IndexPath){
+        self.performSegue(withIdentifier: "weatherData", sender: indexPath)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! MapViewController
-        let data = sender as! [Double]
-        vc.longitude = data[0]
-        vc.latitude = data[1]
+        if(segue.destination is MapViewController){
+            let vc = segue.destination as! MapViewController
+            let data = sender as! [Double]
+            vc.longitude = data[0]
+            vc.latitude = data[1]
+        }else{
+            let vc = segue.destination as! WeatherHistoryViewController
+            let indexPath = sender as! IndexPath
+            vc.title = stations[indexPath.section].data[indexPath.row - 4]["name"]
+            vc.id = stations[indexPath.section].id
+            vc.cid = indexPath.row - 4
+        }
     }
     
 }
