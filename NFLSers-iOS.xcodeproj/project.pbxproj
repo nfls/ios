@@ -1001,7 +1001,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = general/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1034,7 +1034,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = general/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
