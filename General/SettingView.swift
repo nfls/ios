@@ -106,13 +106,13 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                     if let url = jsonDic.object(forKey: "avatar_path") as? String{
                         self.image.kf.setImage(with: URL(string: ("https://forum.nfls.io/assets/avatars/" + url)),completionHandler: {
                             (image, error, cacheType, imageUrl) in
-                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 10, borderColor: UIColor.gray).image
+                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 3, borderColor: UIColor.gray).image
                             self.tableView.reloadData()
                         })
                     }else{
                         self.image.kf.setImage(with: URL(string: ("https://center.nfls.io/center/js/no_head.png")),completionHandler: {
                             (image, error, cacheType, imageUrl) in
-                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 10, borderColor: UIColor.gray).image
+                            self.img = Toucan(image: image!).maskWithEllipse(borderWidth: 3, borderColor: UIColor.gray).image
                             self.tableView.reloadData()
                         })
                     }
@@ -232,6 +232,15 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                 print("RateApp \(success)")
             }
             break
+        case "user.email":
+            self.editPassword()
+            break
+        case "user.username":
+            self.editUsername()
+            break
+        case "user.clean":
+            self.logoutAll()
+            break
         default:
             break
         }
@@ -317,9 +326,10 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         UserDefaults.standard.set("customize", forKey: "settings.theme")
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true) {
-            
-        }
+        picker.dismiss(animated: false)
+        let responder = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )).showWait("请稍后", subTitle: "上传中")
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let headers: HTTPHeaders = [
             "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
@@ -332,13 +342,78 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                     let jsonDic = (json as! [String:AnyObject])["info"]!
                     id = jsonDic.object(forKey: "id") as! Int
                     Alamofire.upload(multipartFormData: { data in
-                        data.append(UIImagePNGRepresentation(image)!, withName: "avatar")
-                    }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: "https://forum.nfls.io/api/users/" + String(describing: id) + "/avatar", method: .post, headers: headers, encodingCompletion: nil)
+                        data.append(UIImagePNGRepresentation(Toucan(image: image).resize(CGSize(width: 200, height: 200), fitMode: Toucan.Resize.FitMode.clip).image!)!, withName: "avatar", fileName: "avatar.png", mimeType: "image/png")
+                    }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: "https://forum.nfls.io/api/users/" + String(describing: id) + "/avatar", method: .post, headers: headers, encodingCompletion: { _ in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                            self.requestUsername()
+                            responder.close()
+                        })
+                        
+                    })
                 }
             default:
                 break
             }
         }
+    }
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    func logoutAll(){
+        Alamofire.request("https://api.nfls.io/center/regenToken").responseJSON(completionHandler: { (response) in
+            switch(response.result){
+            case .success( _):
+                self.navigationController?.popViewController(animated: true)
+                break
+            default:
+                break
+            }
+        })
+    }
+    
+    func editUsername(){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/card", headers:headers).responseJSON(completionHandler: { (response) in
+            switch(response.result){
+            case .success(let json):
+                let count = ((json as! [String:AnyObject])["info"] as! [String:Int])["rename_cards"]!
+                let check = UIAlertController(title: "提示", message: "此处您可以修改您的用户名，长度3-16位，支持英文、数字、下划线、中文及日文。您目前拥有 " + String(describing: count) + "张改名卡，本次修改需要消耗1张。关于如何获取改名卡，可访问”关于我们“页面。", preferredStyle: .alert)
+                let back = UIAlertAction(title: "返回", style: .cancel, handler: nil)
+                let change = UIAlertAction(title: "修改", style: .default, handler: {
+                    action in
+                    let action = UIAlertController(title: "请输入", message: "请输入您的新的用户名，确认后，请至个人信息页面查询是否修改成功，未修改则说明不符合要求或者是与他人重复。", preferredStyle: .alert)
+                    action.addTextField(configurationHandler: { (textfield) in
+                        textfield.placeholder = "用户名"
+                    })
+                    let ok = UIAlertAction(title: "确认", style: .default, handler: { (alert) in
+                        let parameters:Parameters = [
+                            "name": action.textFields![0].text ?? ""
+                        ]
+                        Alamofire.request("https://api.nfls.io/center/rename", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON(completionHandler: {_ in })
+                    })
+                    let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                    action.addAction(ok)
+                    action.addAction(cancel)
+                    self.present(action,animated: true)
+                })
+                check.addAction(back)
+                if(count > 0){
+                    check.addAction(change)
+                }
+                self.present(check, animated: true)
+                break
+            default:
+                break
+            }
+        })
+    }
+    
+    func editPassword(){
+        (self.tabBarController?.navigationController?.viewControllers[(self.tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = "https://forum.nfls.io/settings"
+        self.tabBarController?.navigationController?.popViewController(animated: true)
     }
     /*
     override func viewDidLoad() {

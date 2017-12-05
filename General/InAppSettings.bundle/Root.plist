@@ -30,6 +30,36 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>安全</string>
+			<key>Key</key>
+			<string>user.email</string>
+			<key>IASKSubtitle</key>
+			<string>修改邮箱或密码</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>改名</string>
+			<key>Key</key>
+			<string>user.username</string>
+			<key>IASKSubtitle</key>
+			<string>修改您的用户名</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>退出</string>
+			<key>Key</key>
+			<string>user.clean</string>
+			<key>IASKSubtitle</key>
+			<string>您也可以清除所有登陆的设备</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>界面</string>
