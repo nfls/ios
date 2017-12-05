@@ -180,13 +180,6 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "realname"
             navigationController?.popViewController(animated: true)
             break
-        case "app.logout":
-            if let bundle = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundle)
-            }
-            (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "logout"
-            navigationController?.popViewController(animated: true)
-            break
         case "app.ticket":
             let headers: HTTPHeaders = [
                 "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
@@ -239,7 +232,14 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             self.editUsername()
             break
         case "user.clean":
-            self.logoutAll()
+            let logout = SCLAlertView()
+            logout.addButton("仅退出", action: {
+                self.logout()
+            })
+            logout.addButton("退出并清除所有在线设备", action: {
+                self.logoutAll()
+            })
+            logout.showNotice("退出", subTitle: "请选择您的操作",closeButtonTitle: "取消")
             break
         default:
             break
@@ -360,15 +360,20 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         print(indexPath.row)
     }
     
+    func logout(){
+        if let bundle = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundle)
+        }
+        (navigationController?.viewControllers[navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "logout"
+        navigationController?.popViewController(animated: true)
+    }
     func logoutAll(){
-        Alamofire.request("https://api.nfls.io/center/regenToken").responseJSON(completionHandler: { (response) in
-            switch(response.result){
-            case .success( _):
-                self.navigationController?.popViewController(animated: true)
-                break
-            default:
-                break
-            }
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/center/regenToken",headers: headers).responseJSON(completionHandler: { (response) in
+            (self.navigationController?.viewControllers[self.navigationController!.viewControllers.count - 2] as! NewsViewController).handleUrl = "logout"
+            self.navigationController?.popViewController(animated: true)
         })
     }
     
@@ -380,9 +385,9 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             switch(response.result){
             case .success(let json):
                 let count = ((json as! [String:AnyObject])["info"] as! [String:Int])["rename_cards"]!
-                let check = UIAlertController(title: "提示", message: "此处您可以修改您的用户名，长度3-16位，支持英文、数字、下划线、中文及日文。您目前拥有 " + String(describing: count) + "张改名卡，本次修改需要消耗1张。关于如何获取改名卡，可访问”关于我们“页面。", preferredStyle: .alert)
+                let check = UIAlertController(title: "改名", message: "此处您可以修改您的用户名，长度3-16位，支持中英日文，您目前拥有 " + String(describing: count) + "张改名卡。", preferredStyle: .alert)
                 let back = UIAlertAction(title: "返回", style: .cancel, handler: nil)
-                let change = UIAlertAction(title: "修改", style: .default, handler: {
+                let change = UIAlertAction(title: "使用", style: .default, handler: {
                     action in
                     let action = UIAlertController(title: "请输入", message: "请输入您的新的用户名，确认后，请至个人信息页面查询是否修改成功，未修改则说明不符合要求或者是与他人重复。", preferredStyle: .alert)
                     action.addTextField(configurationHandler: { (textfield) in
@@ -412,8 +417,8 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
     }
     
     func editPassword(){
-        (self.tabBarController?.navigationController?.viewControllers[(self.tabBarController?.navigationController!.viewControllers.count)! - 2] as! NewsViewController).handleUrl = "https://forum.nfls.io/settings"
-        self.tabBarController?.navigationController?.popViewController(animated: true)
+        (self.navigationController?.viewControllers[(self.navigationController!.viewControllers.count) - 2] as! NewsViewController).handleUrl = "https://forum.nfls.io/settings"
+        self.navigationController?.popViewController(animated: true)
     }
     /*
     override func viewDidLoad() {

@@ -53,79 +53,6 @@
             </objects>
             <point key="canvasLocation" x="3343" y="-603"/>
         </scene>
-        <!--安全隐私-->
-        <scene sceneID="zeB-GL-arp">
-            <objects>
-                <viewController id="G89-e2-yri" customClass="AssociatedServiceView" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UYS-Ac-DXd"/>
-                        <viewControllerLayoutGuide type="bottom" id="2Oy-1R-3LZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bGH-44-yne">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="56r-bd-PoY">
-                                <rect key="frame" x="0.0" y="66.5" width="320" height="361.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同届校友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gd-vU-PGl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="re1-e6-oCE" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="20.5" width="320" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="hPX-1T-HjP"/>
-                                        </constraints>
-                                    </pickerView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有校友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7v-SO-peG">
-                                        <rect key="frame" x="0.0" y="120.5" width="320" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEm-bC-hVN" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="141" width="320" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="ncw-1p-ofd"/>
-                                        </constraints>
-                                    </pickerView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在校学生" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfZ-hx-pQD">
-                                        <rect key="frame" x="0.0" y="241" width="320" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjT-2b-hbw" customClass="PermissionPicker" customModule="NFLSers_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="261.5" width="320" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="2jV-Kt-nxd"/>
-                                        </constraints>
-                                    </pickerView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="56r-bd-PoY" secondAttribute="trailing" id="GWC-ke-kBG"/>
-                            <constraint firstItem="56r-bd-PoY" firstAttribute="centerY" secondItem="bGH-44-yne" secondAttribute="centerY" constant="7" id="VUh-MC-qdm"/>
-                            <constraint firstItem="56r-bd-PoY" firstAttribute="leading" secondItem="bGH-44-yne" secondAttribute="leading" id="eGW-0a-rWb"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="安全隐私" id="N66-yG-fHX"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="allSchoolmate" destination="DEm-bC-hVN" id="DTk-7V-Aw6"/>
-                        <outlet property="inSchoolMate" destination="RjT-2b-hbw" id="ZH9-Ad-n0M"/>
-                        <outlet property="sameLevelSchoolmate" destination="RjT-2b-hbw" id="n19-lw-WzP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O6G-UH-2RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4086" y="-604"/>
-        </scene>
         <!--个人信息-->
         <scene sceneID="MJZ-2r-JJd">
             <objects>
@@ -452,7 +379,6 @@ Cache
                         <outlet property="tabbar" destination="th7-Kt-HZ3" id="Z1l-q9-BDi"/>
                         <segue destination="dZ6-BZ-1Ev" kind="relationship" relationship="viewControllers" id="9nu-3I-rg5"/>
                         <segue destination="8dD-gb-uAT" kind="relationship" relationship="viewControllers" id="F0P-Vp-fVk"/>
-                        <segue destination="G89-e2-yri" kind="relationship" relationship="viewControllers" id="hoO-3T-dx2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ffm-DE-106" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1125,53 +1051,35 @@ Cache
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="124.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DSC03693.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-TU-c8p">
-                                            <rect key="frame" x="5" y="5" width="125" height="114.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="114.67" id="bw6-Ep-gk6"/>
-                                                <constraint firstAttribute="width" constant="125" id="m5g-Jc-zT0"/>
-                                            </constraints>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rpo-bI-i2i">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="12474.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="南外大新闻社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-sQ-AZo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2016-10-13 19:08:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWC-QM-nc5">
+                                                    <rect key="frame" x="0.0" y="23" width="0.0" height="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="南外炸机社又炸机啦！ 南外炸机社又炸机啦！ 南外炸机社又炸机啦！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="et8-OL-c4H">
+                                                    <rect key="frame" x="0.0" y="37" width="0.0" height="12437.5"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DSC03693.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-TU-c8p">
+                                            <rect key="frame" x="82" y="41" width="800" height="115"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="南外大新闻社" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-sQ-AZo">
-                                            <rect key="frame" x="135" y="5" width="180" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="iP5-co-F6c"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="南外炸机社又炸机啦！ 南外炸机社又炸机啦！ 南外炸机社又炸机啦！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="et8-OL-c4H">
-                                            <rect key="frame" x="135" y="54.5" width="180" height="65"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-10-13 19:08:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWC-QM-nc5">
-                                            <rect key="frame" x="135" y="35" width="164" height="15"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="14.5" id="rLX-XK-DxW"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="tZF-TU-c8p" firstAttribute="top" secondItem="6GV-BV-4Ix" secondAttribute="top" constant="5" id="4fk-en-282"/>
-                                        <constraint firstAttribute="bottom" secondItem="et8-OL-c4H" secondAttribute="bottom" constant="5" id="6z7-Iv-JEA"/>
-                                        <constraint firstItem="et8-OL-c4H" firstAttribute="top" secondItem="mWC-QM-nc5" secondAttribute="bottom" constant="5" id="FCL-A1-Dno"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="mWC-QM-nc5" secondAttribute="trailing" constant="5" id="JC9-Dh-DV1"/>
-                                        <constraint firstAttribute="trailing" secondItem="Pku-sQ-AZo" secondAttribute="trailing" constant="5" id="P97-Zd-rhi"/>
-                                        <constraint firstItem="mWC-QM-nc5" firstAttribute="leading" secondItem="tZF-TU-c8p" secondAttribute="trailing" constant="5" id="RjT-G2-Ig9"/>
-                                        <constraint firstItem="Pku-sQ-AZo" firstAttribute="leading" secondItem="tZF-TU-c8p" secondAttribute="trailing" constant="5" id="dkq-rG-qRu"/>
-                                        <constraint firstAttribute="trailing" secondItem="et8-OL-c4H" secondAttribute="trailing" constant="5" id="eae-an-XY2"/>
-                                        <constraint firstItem="et8-OL-c4H" firstAttribute="leading" secondItem="tZF-TU-c8p" secondAttribute="trailing" constant="5" id="iDf-3H-I9a"/>
-                                        <constraint firstItem="mWC-QM-nc5" firstAttribute="top" secondItem="Pku-sQ-AZo" secondAttribute="bottom" constant="5" id="jh3-jf-679"/>
-                                        <constraint firstItem="tZF-TU-c8p" firstAttribute="leading" secondItem="6GV-BV-4Ix" secondAttribute="leading" constant="5" id="ptK-U0-5hA"/>
-                                        <constraint firstAttribute="bottom" secondItem="tZF-TU-c8p" secondAttribute="bottom" constant="5" id="q5G-6d-KL8"/>
-                                        <constraint firstItem="Pku-sQ-AZo" firstAttribute="top" secondItem="6GV-BV-4Ix" secondAttribute="top" constant="5" id="rbn-LI-tb9"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cellTitle" destination="Pku-sQ-AZo" id="pLb-nr-qrc"/>
@@ -1204,7 +1112,7 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKQ-AZ-24W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="RUS-bb-dSR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="966" y="118"/>
+            <point key="canvasLocation" x="965.625" y="117.5"/>
         </scene>
         <!--气象站-->
         <scene sceneID="fn4-dR-bcs">

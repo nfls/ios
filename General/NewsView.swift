@@ -151,6 +151,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
         tableView.setContentOffset(CGPoint.zero, animated: true)
+        self.loadNews()
         super.viewWillAppear(animated)
     }
     
@@ -213,7 +214,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     func loadNews(){
         let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            "Cookie" : "token=" + (UserDefaults.standard.string(forKey: "token") ?? "")
         ]
         Alamofire.request("https://api.nfls.io/center/news",headers: headers).responseJSON { response in
             switch(response.result){
@@ -223,17 +224,18 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 self.descriptions.removeAll()
                 self.urls.removeAll()
                 self.images.removeAll()
-                let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
-                for detail in info {
-                    self.names.append(detail["title"] as! String)
-                    self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
-                    self.descriptions.append(detail["detail"] as! String)
-                    self.urls.append(detail["conf"] as? String ?? "")
-                    self.images.append(URL(string: detail["img"] as! String)!)
-                }
-                self.tableView.reloadData()
-                if self.refreshControl?.isRefreshing == true {
-                    self.refreshControl?.endRefreshing()
+                if let info = (json as! [String:AnyObject])["info"] as? [[String:Any]] {
+                    for detail in info {
+                        self.names.append(detail["title"] as! String)
+                        self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
+                        self.descriptions.append(detail["detail"] as! String)
+                        self.urls.append(detail["conf"] as? String ?? "")
+                        self.images.append(URL(string: detail["img"] as! String)!)
+                    }
+                    self.tableView.reloadData()
+                    if self.refreshControl?.isRefreshing == true {
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
                 break
             default:
@@ -327,21 +329,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.getBadge()
                     self.requestMessage()
                     self.requestUsername()
-                    self.loadNews()
+                    //self.loadNews()
                     self.requestReview()
-                    if let username = UserDefaults.standard.value(forKey: "username") as? String{
-                        self.navigationItem.prompt = "Welcome back, " + username
-                    } else {
-                        self.navigationItem.prompt = "Welcome to NFLS.IO"
-                    }
-                    self.tableView.setContentOffset(CGPoint.zero, animated: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                        self.navigationItem.prompt = nil
-                        self.tableView.setContentOffset(CGPoint.zero, animated: true)
-                        self.navigationController?.navigationBar.setNeedsLayout()
-                        self.navigationController?.navigationBar.layoutIfNeeded()
-                        self.navigationController?.navigationBar.setNeedsDisplay()
-                    })
                 }
                 break
             default:
@@ -667,6 +656,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                             UserDefaults.standard.set(true, forKey: "settings.night.auto")
                             //UserDefaults.standard.synchronize()
                             self.checkStatus()
+                            self.loadNews()
                         } else {
                             self.showLogin(info: (status["message"] as! String), username: username, password: password)
                         }

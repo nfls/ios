@@ -41,9 +41,6 @@ class CenterTabRootViewController:UITabBarController{
                         break
                     }
                 })
-               
-            }else if (controller is AssociatedServiceView){
-                controller.tabBarItem!.icon(from: .FontAwesome, code: "key", iconColor: .black, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
             }
         }
     }

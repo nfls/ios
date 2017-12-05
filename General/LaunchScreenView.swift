@@ -89,12 +89,13 @@ class LaunchScreenViewController:UIViewController{
                 response in
                 switch response.result{
                 case .success(let json):
-                    let info = ((json as! [String:AnyObject])["info"]) as! [String:Any]
-                    if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
-                        UserDefaults.standard.set(info["url"] as! String, forKey: "pic_url")
-                        let text = info["text"] as! String
-                        UserDefaults.standard.set(text, forKey: "pic_text")
-                        UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
+                    if let info = ((json as! [String:AnyObject])["info"]) as? [String:Any] {
+                        if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
+                            UserDefaults.standard.set(info["url"] as! String, forKey: "pic_url")
+                            let text = info["text"] as! String
+                            UserDefaults.standard.set(text, forKey: "pic_text")
+                            UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
+                        }
                     }
                     self.loadPic(true)
                     break
