@@ -241,18 +241,24 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
             })
             logout.showNotice("退出", subTitle: "请选择您的操作",closeButtonTitle: "取消")
             break
+        case "user.message":
+            let viewController = storyboard.instantiateViewController(withIdentifier :"message") as! NotificationViewController
+            navigationController?.pushViewController(viewController, animated: true)
+            //self.performSegue(withIdentifier: "showMessage", sender: self)
+            break
         default:
             break
         }
     }
     
     func settingsViewController(_ sender: IASKAppSettingsViewController!, tableView: UITableView!, didSelectCustomViewSpecifier specifier: IASKSpecifier!) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         switch(specifier.key()){
-            
+        
         case "settings.user":
-            let viewController = storyboard.instantiateViewController(withIdentifier :"user") as! CenterTabRootViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"info") as! GeneralInfoView
             navigationController?.pushViewController(viewController, animated: true)
+            //self.performSegue(withIdentifier: "showInfo", sender: self)
             break
         default:
             break
@@ -280,10 +286,12 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         case "settings.version":
             let cell = tableView.dequeueReusableCell(withIdentifier: "version") as! VersionCell
             let dictionary = Bundle.main.infoDictionary!
+            
             let version = dictionary["CFBundleShortVersionString"] as! String
             let build = dictionary["CFBundleVersion"] as! String
             let codeNameCN = dictionary["CodeNameCN"] as! String
             let codeNameEN = dictionary["CodeNameEN"] as! String
+            
             cell.version.text = "Version " + version + " Build " + build
             cell.codeName.text = codeNameEN + " 「" + codeNameCN + "」"
             return cell
@@ -357,7 +365,13 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
         }
     }
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print(indexPath.row)
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        let codeNameCN = dictionary["CodeNameCN"] as! String
+        let codeNameEN = dictionary["CodeNameEN"] as! String
+        SCLAlertView().showNotice("关于", subTitle: "南外人 v\(version)(\(build))[\(codeNameCN)/\(codeNameEN)]，更多信息请在下方关于的开发组内查看。")
+        
     }
     
     func logout(){

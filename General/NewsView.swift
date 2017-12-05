@@ -903,6 +903,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
 extension String {
     func index(of string: String, options: CompareOptions = .literal) -> Index? {

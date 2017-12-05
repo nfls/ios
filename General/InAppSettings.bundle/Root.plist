@@ -52,6 +52,16 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
+			<string>消息</string>
+			<key>Key</key>
+			<string>user.message</string>
+			<key>IASKSubtitle</key>
+			<string>进入您的消息收件箱</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
 			<string>退出</string>
 			<key>Key</key>
 			<string>user.clean</string>
@@ -146,7 +156,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>开发组名单</string>
+			<string>开发组</string>
 			<key>File</key>
 			<string>Authors</string>
 		</dict>
