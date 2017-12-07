@@ -135,7 +135,15 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
                         let xAxis = info["x-axis"] as! Int
                         let confidence = info["confidence"] as! Double
                         let label = self.getName(withCode: name) + "(" + String(format: "%.1f", confidence * 100) + "%)"
-                        self.imageView.image = self.textToImage(drawText: label, inImage: image, atPoint: CGPoint(x: xAxis, y: yAxis))
+                        var color:UIColor
+                        if(confidence>0.30){
+                            color = UIColor.green
+                        }else if(confidence>0.15){
+                            color = UIColor.white
+                        }else{
+                            color = UIColor.red
+                        }
+                        self.imageView.image = self.textToImage(drawText: label, inImage: image, atPoint: CGPoint(x: xAxis, y: yAxis), withColor: color)
                     }
                 default:
                     responder.close()
@@ -164,7 +172,7 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
         alert.showInfo("操作", subTitle: "请选择您要识别的照片", closeButtonTitle: "取消")
     }
     @objc func showList(){
-        
+        self.performSegue(withIdentifier: "showList", sender: self)
     }
     func takePhotos() {
         let picker = UIImagePickerController()
@@ -180,8 +188,7 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
         picker.delegate = self
         self.present(picker,animated: true)
     }
-    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.white
+    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint, withColor textColor:UIColor = UIColor.white) -> UIImage {
         let textFont = UIFont(name: "Courier", size: 56)!
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -213,7 +220,6 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
                         realClass.people.append(p)
                     }
                     self.classList.append(realClass)
-                    dump(realClass)
                 }
             default:
                 break
@@ -231,5 +237,10 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
             }
         }
         return code
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! AvailablePeopleView
+        vc.classList = classList
     }
 }

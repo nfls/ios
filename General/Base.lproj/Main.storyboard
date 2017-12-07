@@ -622,7 +622,7 @@ Cache
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdI-fc-e4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3339" y="1638"/>
+            <point key="canvasLocation" x="4063" y="1637"/>
         </scene>
         <!--Game Center-->
         <scene sceneID="lQ0-yY-Hkn">
@@ -1238,11 +1238,49 @@ Cache
                     </view>
                     <connections>
                         <outlet property="imageView" destination="sux-2I-2Ee" id="QV9-L4-nw7"/>
+                        <segue destination="gWG-sJ-2J5" kind="show" identifier="showList" id="k1o-xo-KeP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdJ-oi-KUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1805.625" y="1637.5"/>
+        </scene>
+        <!--Available People View-->
+        <scene sceneID="XAu-bv-DwL">
+            <objects>
+                <tableViewController id="gWG-sJ-2J5" customClass="AvailablePeopleView" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="BEX-ME-jxd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ID" textLabel="U5x-IK-EMI" style="IBUITableViewCellStyleDefault" id="DxT-zs-nfc">
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DxT-zs-nfc" id="TGY-Jg-uoh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U5x-IK-EMI">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gWG-sJ-2J5" id="scD-RR-DuT"/>
+                            <outlet property="delegate" destination="gWG-sJ-2J5" id="Xrk-Kp-rk1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdM-gM-6nJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2614" y="1637"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LxQ-nx-VwL">
@@ -1273,7 +1311,7 @@ Cache
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7G-1J-Mob" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613.75" y="1637.5"/>
+            <point key="canvasLocation" x="3338" y="1637"/>
         </scene>
         <!--大学-->
         <scene sceneID="dQu-Ew-f3Z">
