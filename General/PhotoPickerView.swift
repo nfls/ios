@@ -10,19 +10,128 @@ import Foundation
 import UIKit
 import MobileCoreServices
 import SCLAlertView
+import Alamofire
+import Toucan
+
 class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     @IBOutlet weak var imageView: UIImageView!
+    var originalWidth:CGFloat = 0
+    var originalHeight:CGFloat = 0
+    
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.black
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(upload)),UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(tapped))]
+        tapped()
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(singleTap)
+        
+        
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
+        originalWidth = image.size.width
+        originalHeight = image.size.height
         picker.dismiss(animated: true, completion: nil)
+    }
+    @objc func upload(){
+        if let image = imageView.image {
+            let progressView = UIProgressController(title: "上传中", message: "正在上传您的照片，请稍后", preferredStyle: .alert)
+            progressView.addProgressView()
+            self.present(progressView, animated: true)
+            let headers: HTTPHeaders = [
+                "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            ]
+            Alamofire.upload(multipartFormData: { (data) in
+                let resizeImage = Toucan(image: image).resize(CGSize(width: 2000, height: 2000), fitMode: .clip).image!
+                DispatchQueue.main.async {
+                    self.imageView.image = resizeImage
+                }
+                let imageData = UIImageJPEGRepresentation(resizeImage, 90.0)!
+                data.append(imageData, withName: "file", fileName: "pic.jpg", mimeType: "image/jpeg")
+            }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: "https://api.nfls.io/face/upload", method: .post, headers: headers, encodingCompletion: { (result) in
+                switch result{
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        progressView.dismiss(animated: true, completion: nil)
+                        switch response.result {
+                        case .success(let json):
+                            if let path = (json as! [String:Any])["info"] as? String{
+                                let responder = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false)).showWait("请稍后", subTitle: "正在处理您的请求")
+                                self.fetchResult(path, responder: responder)
+                            }else{
+                                self.showError()
+                            }
+                        default:
+                            self.showError()
+                            break
+                        }
+                    }
+                    upload.uploadProgress { progress in
+                        progressView.setPercentage(Float(progress.fractionCompleted))
+                    }
+                default:
+                    break
+                }
+               
+            })
+        }
+    }
+    func showError(){
+        SCLAlertView().showError("错误", subTitle: "网络或服务器错误，请稍候再试", closeButtonTitle: "关闭")
+    }
+    func fetchResult(_ path:String, responder:SCLAlertViewResponder){
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        let parameters:Parameters = [
+            "path": path
+        ]
+        Alamofire.request("https://api.nfls.io/face/check", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            switch(response.result){
+            case .success(let json):
+                let code = (json as! [String:AnyObject])["code"] as! Int
+                switch code{
+                case 1001:
+                    DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: {
+                        self.fetchResult(path, responder: responder)
+                    })
+                    break
+                case 1002:
+                    responder.close()
+                    SCLAlertView().showError("错误", subTitle: "没有识别到人脸", closeButtonTitle: "关闭")
+                    break
+                case 200:
+                    responder.close()
+                    let infos = (json as! [String:AnyObject])["info"] as! [[String:Any]]
+                    
+                    for info in infos {
+                        let image = self.imageView.image!
+                        let name = info["name"] as! String
+                        let yAxis = info["y-axis"] as! Int
+                        let xAxis = info["x-axis"] as! Int
+                        let confidence = info["confidence"] as! Double
+                        
+                        self.imageView.image = self.textToImage(drawText: name, inImage: image, atPoint: CGPoint(x: xAxis, y: yAxis))
+                    }
+                default:
+                    responder.close()
+                    self.showError()
+                    
+                }
+            default:
+                responder.close()
+                self.showError()
+            }
+            
+            
+        }
     }
     @objc func tapped(){
         let alert = SCLAlertView()
@@ -47,5 +156,22 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
         picker.mediaTypes = [kUTTypeImage as String]
         picker.delegate = self
         self.present(picker,animated: true)
+    }
+    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+        let textColor = UIColor.white
+        let textFont = UIFont(name: "Courier", size: 96)!
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        let textFontAttributes = [
+            NSAttributedStringKey.font: textFont,
+            NSAttributedStringKey.foregroundColor: textColor,
+            NSAttributedStringKey.backgroundColor: UIColor.black.withAlphaComponent(0.5)
+            ] as [NSAttributedStringKey : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        let rect = CGRect(origin: point, size: image.size)
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
 }

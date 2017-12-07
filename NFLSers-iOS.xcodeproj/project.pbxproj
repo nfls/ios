@@ -26,6 +26,7 @@
 		65557E8E1FCB09C3008658B0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655968DE1F93016D00A5893A /* MapView.swift */; };
 		655968DB1F92EF7600A5893A /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DA1F92EF7600A5893A /* PassKit.framework */; };
 		655968DD1F92EF8A00A5893A /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DC1F92EF8A00A5893A /* NetworkExtension.framework */; };
+		655B6DA31FD835DB001E80C9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655B6DA21FD835DB001E80C9 /* Extension.swift */; };
 		655D9C9B1F59190D008FA8D8 /* ClubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D9C9A1F59190D008FA8D8 /* ClubInfoView.swift */; };
 		656B205A1F63AB6200D76231 /* AlumniRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656B20591F63AB6200D76231 /* AlumniRoot.swift */; };
 		6571C5CC1EFCDFC000769FF7 /* GeneralInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571C5CB1EFCDFC000769FF7 /* GeneralInfoView.swift */; };
@@ -127,6 +128,7 @@
 		655968DA1F92EF7600A5893A /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		655968DC1F92EF8A00A5893A /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		655968DE1F93016D00A5893A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		655B6DA21FD835DB001E80C9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		655D9C9A1F59190D008FA8D8 /* ClubInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubInfoView.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		656B20591F63AB6200D76231 /* AlumniRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumniRoot.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
 				659C2AFB1FC3A85F00E7984D /* NavigationController.swift */,
 				658D13FF1FCEF67F0051BF6D /* LocationTransform.swift */,
+				655B6DA21FD835DB001E80C9 /* Extension.swift */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
@@ -727,6 +730,7 @@
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				655D9C9B1F59190D008FA8D8 /* ClubInfoView.swift in Sources */,
 				65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */,
+				655B6DA31FD835DB001E80C9 /* Extension.swift in Sources */,
 				659C2AF21FC3A81D00E7984D /* ICNewsView.swift in Sources */,
 				654923A11F452CF2000E22C9 /* LiveListView.swift in Sources */,
 				659C2AF41FC3A82D00E7984D /* WikiView.swift in Sources */,
