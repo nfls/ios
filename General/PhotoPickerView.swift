@@ -206,8 +206,10 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     func getName(){
+        //URLCache.shared.removeAllCachedResponses()
         classList.removeAll()
         Alamofire.request("https://api.nfls.io/storage/_teachers.json").responseJSON { (response) in
+            dump(response)
             switch(response.result){
             case .success(let res):
                 let data = res as! [AnyObject]
@@ -220,6 +222,7 @@ class PhotoViewController:UIViewController,UIImagePickerControllerDelegate,UINav
                         realClass.people.append(p)
                     }
                     self.classList.append(realClass)
+                    
                 }
             default:
                 break

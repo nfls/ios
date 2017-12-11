@@ -300,6 +300,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     @objc func settings() {
         self.bar.dismissAnimated(true, completion: nil)
+        //setView = nil
+        setView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settings") as! SettingViewController
         self.navigationController?.pushViewController(setView, animated: true)
         //self.performSegue(withIdentifier: "showSettings", sender: self)
     }

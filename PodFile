@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-  platform :ios, '9.0'
+  platform :ios, '10.0'
 
 target 'NFLSers-iOS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -27,9 +27,24 @@ target 'NFLSers-iOS' do
   pod 'UIColor-Pantone'
   pod 'InAppSettingsKit'
   pod 'AMScrollingNavbar'
-#  pod 'SVGKit'
-  pod 'JWGeohashKit'
   pod 'ChromaColorPicker'
   pod 'Cache'
   pod 'Toucan'
+  pod 'IGListKit'
+  pod 'Moya'
+  pod 'SwiftyJSON'
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  pod 'FileKit'
+  pod 'SwiftyUserDefaults'
+  pod 'Hero'
+  pod 'DeviceKit'
+  pod 'MGSwipeTableCell'
+  pod "Timepiece"
+  pod 'CryptoSwift'
+  pod 'FSCalendar'
+  pod 'SwiftyStoreKit'
+  pod 'TextFieldEffects'
+  pod 'SnapKit'
+  pod 'ObjectMapper'
+
 end

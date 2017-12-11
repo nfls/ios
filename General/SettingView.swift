@@ -352,7 +352,7 @@ class SettingViewController:IASKAppSettingsViewController,IASKSettingsDelegate,S
                     Alamofire.upload(multipartFormData: { data in
                         data.append(UIImagePNGRepresentation(Toucan(image: image).resize(CGSize(width: 200, height: 200), fitMode: Toucan.Resize.FitMode.clip).image!)!, withName: "avatar", fileName: "avatar.png", mimeType: "image/png")
                     }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: "https://forum.nfls.io/api/users/" + String(describing: id) + "/avatar", method: .post, headers: headers, encodingCompletion: { _ in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
                             self.requestUsername()
                             responder.close()
                         })
