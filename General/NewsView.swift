@@ -12,6 +12,7 @@ import FrostedSidebar
 import SCLAlertView
 import Permission
 import StoreKit
+import SafariServices
 
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
@@ -39,7 +40,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let images = ["resources","game","alumni","ic","forum","wiki","media","weather"]
+        let images = ["resources","game","photo","alumni","ic","forum","wiki","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
@@ -50,31 +51,34 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     }
     
     func setUpBars(){
-        self.bar.actionForIndex[4] = {
-            self.performSegue(withIdentifier: "showForum", sender: self)
-        }
-        self.bar.actionForIndex[5] = {
-            self.performSegue(withIdentifier: "showWiki", sender: self)
-        }
         self.bar.actionForIndex[0] = {
             self.getAuthStatus(checkIC: true, segueName: "showResources")
-            
-        }
-        self.bar.actionForIndex[2] = {
-            self.performSegue(withIdentifier: "showAlumni", sender: self)
-        }
-        self.bar.actionForIndex[7] = {
-            self.performSegue(withIdentifier: "showWeather", sender: self)
-        }
-        self.bar.actionForIndex[3] = {
-            self.performSegue(withIdentifier: "showIC", sender: self)
-        }
-        self.bar.actionForIndex[6] = {
-            self.performSegue(withIdentifier: "showMedia", sender: self)
         }
         self.bar.actionForIndex[1] = {
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
+        self.bar.actionForIndex[2] = {
+            self.performSegue(withIdentifier: "showPhoto", sender: self)
+        }
+        self.bar.actionForIndex[3] = {
+            self.performSegue(withIdentifier: "showAlumni", sender: self)
+        }
+        self.bar.actionForIndex[4] = {
+            self.performSegue(withIdentifier: "showIC", sender: self)
+        }
+        self.bar.actionForIndex[5] = {
+            self.performSegue(withIdentifier: "showForum", sender: self)
+        }
+        self.bar.actionForIndex[6] = {
+            self.performSegue(withIdentifier: "showWiki", sender: self)
+        }
+        self.bar.actionForIndex[7] = {
+            self.performSegue(withIdentifier: "showMedia", sender: self)
+        }
+        self.bar.actionForIndex[8] = {
+            self.performSegue(withIdentifier: "showWeather", sender: self)
+        }
+        
         self.bar.delegate = self
         
     }
@@ -147,6 +151,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
         tableView.setContentOffset(CGPoint.zero, animated: true)
+        self.loadNews()
         super.viewWillAppear(animated)
     }
     
@@ -209,7 +214,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     func loadNews(){
         let headers: HTTPHeaders = [
-            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+            "Cookie" : "token=" + (UserDefaults.standard.string(forKey: "token") ?? "")
         ]
         Alamofire.request("https://api.nfls.io/center/news",headers: headers).responseJSON { response in
             switch(response.result){
@@ -219,17 +224,18 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                 self.descriptions.removeAll()
                 self.urls.removeAll()
                 self.images.removeAll()
-                let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
-                for detail in info {
-                    self.names.append(detail["title"] as! String)
-                    self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
-                    self.descriptions.append(detail["detail"] as! String)
-                    self.urls.append(detail["conf"] as? String ?? "")
-                    self.images.append(URL(string: detail["img"] as! String)!)
-                }
-                self.tableView.reloadData()
-                if self.refreshControl?.isRefreshing == true {
-                    self.refreshControl?.endRefreshing()
+                if let info = (json as! [String:AnyObject])["info"] as? [[String:Any]] {
+                    for detail in info {
+                        self.names.append(detail["title"] as! String)
+                        self.subtitles.append((detail["type"] as! String) + " " + (detail["time"] as! String))
+                        self.descriptions.append(detail["detail"] as! String)
+                        self.urls.append(detail["conf"] as? String ?? "")
+                        self.images.append(URL(string: detail["img"] as! String)!)
+                    }
+                    self.tableView.reloadData()
+                    if self.refreshControl?.isRefreshing == true {
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
                 break
             default:
@@ -294,6 +300,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     @objc func settings() {
         self.bar.dismissAnimated(true, completion: nil)
+        //setView = nil
+        setView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settings") as! SettingViewController
         self.navigationController?.pushViewController(setView, animated: true)
         //self.performSegue(withIdentifier: "showSettings", sender: self)
     }
@@ -323,21 +331,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.getBadge()
                     self.requestMessage()
                     self.requestUsername()
-                    self.loadNews()
+                    //self.loadNews()
                     self.requestReview()
-                    if let username = UserDefaults.standard.value(forKey: "username") as? String{
-                        self.navigationItem.prompt = "Welcome back, " + username
-                    } else {
-                        self.navigationItem.prompt = "Welcome to NFLS.IO"
-                    }
-                    self.tableView.setContentOffset(CGPoint.zero, animated: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                        self.navigationItem.prompt = nil
-                        self.tableView.setContentOffset(CGPoint.zero, animated: true)
-                        self.navigationController?.navigationBar.setNeedsLayout()
-                        self.navigationController?.navigationBar.layoutIfNeeded()
-                        self.navigationController?.navigationBar.setNeedsDisplay()
-                    })
                 }
                 break
             default:
@@ -388,7 +383,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                                     let things = try JSONSerialization.jsonObject(with: data) as! [String:String]
                                     let type = things["type"]!
                                     let in_url = things["url"]!
-                                    self.jumpToSection(type: type, in_url: in_url)
+                                    self.jumpToSection(type: type, in_url: in_url, realurl: nil)
                                 } catch {
                                     self.handleUrl = info["push"] as! String
                                     self.internalHandler(url: self.handleUrl)
@@ -430,14 +425,17 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     let urlStartIndex = tUrl.endIndex(of: ".nfls.io/")!
                     in_url = String(tUrl[urlStartIndex...])
                 }
-                
                 let type = tUrl[..<typeEndIndex]
-                jumpToSection(type: String(type), in_url: String(in_url))
+                jumpToSection(type: String(type), in_url: String(in_url), realurl:URL(string: url))
+            }
+        }else{
+            if let realUrl = URL(string: url){
+                let safari = SFSafariViewController(url: realUrl)
+                self.present(safari, animated: true, completion: nil)
             }
         }
     }
-    func jumpToSection(type:String,in_url:String){
-        debugPrint(in_url)
+    func jumpToSection(type:String,in_url:String,realurl:URL?){
         switch(type){
         case "forum":
             self.performSegue(withIdentifier: "showForum", sender: in_url)
@@ -461,7 +459,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showGame", sender: self)
             break
         default:
-            print(type)
+            if let url = realurl{
+                let safari = SFSafariViewController(url: url)
+                self.present(safari, animated: true, completion: nil)
+            }
             break
         }
     }
@@ -653,8 +654,11 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                         if(status["status"] as! String == "success"){
                             let token = status["token"]! as! String
                             UserDefaults.standard.set(token, forKey: "token")
+                            UserDefaults.standard.set(true, forKey: "settings.keep.enabled")
+                            UserDefaults.standard.set(true, forKey: "settings.night.auto")
                             //UserDefaults.standard.synchronize()
                             self.checkStatus()
+                            self.loadNews()
                         } else {
                             self.showLogin(info: (status["message"] as! String), username: username, password: password)
                         }
@@ -899,6 +903,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             }
             
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
 }

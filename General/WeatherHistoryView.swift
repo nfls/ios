@@ -15,6 +15,8 @@ class WeatherHistoryViewController:UIViewController{
     @IBOutlet var chart: LineChartView!
     
     var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    var id:Int = 0
+    var cid:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

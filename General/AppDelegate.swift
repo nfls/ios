@@ -12,9 +12,11 @@ import IQKeyboardManagerSwift
 import UserNotifications 
 import Alamofire
 import AlamofireNetworkActivityIndicator
+import QuickLook
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
 
     var window: UIWindow?
     var token:String = ""
@@ -100,7 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         while let presentedController = currentController.presentedViewController {
                             currentController = presentedController
                         }
-                        currentController.present(controller, animated: true, completion: nil)
+                        if !((currentController as? UINavigationController)?.topViewController is QLPreviewController) {
+                            currentController.present(controller, animated: true, completion: nil)
+                        }
                     }
                 }
             }

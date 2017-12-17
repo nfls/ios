@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode9
+osx_image: xcode9.1
 xcode_workspace: NFLSers-iOS.xcworkspace
 before_install:
    - sysctl -n machdep.cpu.brand_string

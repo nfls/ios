@@ -14,32 +14,45 @@ import SwiftyMarkdown
 import QuickLook
 import SCLAlertView
 import Kingfisher
+import Cache
 
 class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, QLPreviewControllerDelegate,QLPreviewControllerDataSource,UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     let ID = "Cell"
-    var filenames = [String]()
-    var times = [Int]()
-    var sizes = [Int]()
-    var isFolder = [Bool]()
-    var isDownloaded = [Bool]()
-    var images = [String?]()
-    var appHref = [String]()
     var currentFolder = ""
     var reactWithClick = true
     var onlineMode = true
-    
     var fileurls = [NSURL]()
-    var useNew = true
-    
     let operating = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
         showCloseButton: false
     ))
+    struct Detail{
+        var filename:String
+        var time:NSNumber
+        var size:Int64
+        var isFolder:Bool
+        var appHref:String
+        init(filename:String,time:NSNumber,size:Int64,isFolder:Bool,appHref:String){
+            self.filename = filename
+            self.time = time
+            self.size = size
+            self.isFolder = isFolder
+            self.appHref = appHref
+        }
+    }
+    var isFolder = [Bool]()
+    var cached = [String]()
+    var images = [String?]()
+    var files = [Detail]()
+    let storage = try? Storage(diskConfig: DiskConfig(name: "res"), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10))
     
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
+       
         super.viewDidLoad()
+        self.tableview.delegate = self
+        self.tableview.dataSource = self
         let rightButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(setting))
         navigationItem.rightBarButtonItem = rightButton
         //navigationItem.leftItemsSupplementBackButton = true
@@ -77,6 +90,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     override func viewWillAppear(_ animated: Bool) {
         MobClick.beginLogPageView("Resources")
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     override func viewWillDisappear(_ animated: Bool) {
         MobClick.endLogPageView("Resources")
@@ -119,6 +133,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             let deleteAction = UIAlertAction(title: "清空本地缓存", style: UIAlertActionStyle.destructive, handler: {
                 (alert: UIAlertAction!) in
                 self.removeFile(filename: "", path: "")
+                try? self.storage?.removeAll()
             })
             
             alertController.addAction(deleteAction)
@@ -132,25 +147,23 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 (alert: UIAlertAction!) in
                 let selectedRows = self.tableview.indexPathsForSelectedRows
                 if(selectedRows != nil){
-                    self.bulkDownload(files: selectedRows!)
+                    self.bulkDownload(files_: selectedRows!)
                 }
             })
             alertController.addAction(mutipleSelectAction)
             alertController.addAction(downloadAction)
         }
-        if(useNew){
-            if(!self.reactWithClick){
-                let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
-                    alert in
-                    let selectedRows = self.tableview.indexPathsForSelectedRows
-                    if(selectedRows != nil){
-                        self.bulkPreview(files: selectedRows!)
-                    }
-                    self.reactWithClick = !self.reactWithClick
-                    self.tableview.reloadData()
-                })
-                alertController.addAction(previewAll)
-            }
+        if(!self.reactWithClick){
+            let previewAll = UIAlertAction(title:"预览所有选中文件", style: .default, handler: {
+                alert in
+                let selectedRows = self.tableview.indexPathsForSelectedRows
+                if(selectedRows != nil){
+                    self.bulkPreview(files: selectedRows!)
+                }
+                self.reactWithClick = !self.reactWithClick
+                self.tableview.reloadData()
+            })
+            alertController.addAction(previewAll)
         }
         alertController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         alertController.addAction(cancelAction)
@@ -160,12 +173,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     
     func listRequest(){
-        filenames.removeAll()
-        times.removeAll()
-        sizes.removeAll()
-        isFolder.removeAll()
-        isDownloaded.removeAll()
-        images.removeAll()
+        files.removeAll()
+        
         if(!onlineMode){
             localRequest()
             return
@@ -173,17 +182,24 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let loading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
             showCloseButton: false
         ))
-        loading.addButton("离线模式") {
-            self.onlineMode = false
-            self.listRequest()
+        var responder = SCLAlertViewResponder(alertview: loading)
+        if let cachedFilenames = try? storage?.entry(ofType: [String].self, forKey: "a" + currentFolder), let names = cachedFilenames?.object, let cachedStatus = try? storage?.entry(ofType: [Bool].self, forKey: "b" + currentFolder), let status = cachedStatus?.object  {
+            cached = names
+            isFolder = status
+        }else{
+            loading.addButton("离线模式") {
+                self.onlineMode = false
+                self.listRequest()
+            }
+            responder = loading.showWait("请稍后", subTitle: "数据加载中")
         }
-        let responder = loading.showWait("请稍后", subTitle: "数据加载中")
+        tableview.reloadData()
+        
         searchBar.placeholder = "过滤 " + currentFolder.removingPercentEncoding! + "/"
         let requestDetail:Parameters = [
             "href":currentFolder + "/",
             "what":1
         ]
-        
         let parameters:Parameters = [
             "action":"get",
             "items":requestDetail
@@ -211,17 +227,13 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         if(!name.isEmpty){
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
-                                self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
-                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
-                                    self.isFolder.append(false)
-                                    self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: false, appHref: (file as! [String:Any])["appHref"] as! String))
                                 } else {
-                                    self.isFolder.append(true)
-                                    self.isDownloaded.append(false)
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: true, appHref: (file as! [String:Any])["appHref"] as! String))
                                 }
+                                self.cached.removeAll()
+                                self.isFolder.removeAll()
                             }
                             
                         }
@@ -232,24 +244,18 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                         if(!name.isEmpty){
                             if((self.searchBar.text?.isEmpty)! || name.range(of: self.searchBar.text!) != nil)
                             {
-                                self.filenames.append(name)
-                                self.times.append(Int(truncating: (file as! [String:Any])["time"] as! NSNumber))
-                                self.sizes.append(Int(truncating: (file as! [String:Any])["size"] as! NSNumber))
-                                self.appHref.append((file as! [String:Any])["appHref"] as! String)
                                 if((file as! [String:Any])["managed"] == nil){
-                                    self.isFolder.append(false)
-                                    self.isDownloaded.append(self.isFileExists(filename: name, path: self.currentFolder))
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: false, appHref: (file as! [String:Any])["appHref"] as! String))
                                 } else {
-                                    self.isFolder.append(true)
-                                    self.isDownloaded.append(false)
+                                    self.files.append(Detail(filename: name, time: (file as! [String:Any])["time"] as! NSNumber, size: ((file as! [String:Any])["size"] as! NSNumber).int64Value, isFolder: true, appHref: (file as! [String:Any])["appHref"] as! String))
                                 }
                             }
                         }
                     }
                 }
                 self.checkForYear()
-                self.tableview.delegate = self
-                self.tableview.dataSource = self
+                try? self.storage?.setObject(self.files.map { $0.filename }, forKey: "a" + self.currentFolder)
+                try? self.storage?.setObject(self.files.map { $0.isFolder }, forKey: "b" + self.currentFolder)
                 self.tableview.reloadData()
                 responder.close()
                 self.thumbRequest()
@@ -274,14 +280,9 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     func checkForYear(){
         if(!UserDefaults.standard.bool(forKey: "ettings.resources.rank")){
-            for name in filenames{
-                if(name.contains("2016")){
-                    filenames.reverse()
-                    times.reverse()
-                    sizes.reverse()
-                    isFolder.reverse()
-                    isDownloaded.reverse()
-                    images.reverse()
+            for file in files{
+                if(file.filename.contains("2016")){
+                    files.reverse()
                     return
                 }
             }
@@ -290,10 +291,10 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     func thumbRequest(){
         var requestImages = [Parameters]()
-        for file in filenames{
+        for file in files{
             let parameters:Parameters = [
                 "type":"doc",
-                "href":currentFolder.removingPercentEncoding! + "/" + file,
+                "href":currentFolder.removingPercentEncoding! + "/" + file.filename,
                 "width":400,
                 "height":400
             ]
@@ -336,34 +337,27 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 var isDir : ObjCBool = false
                 let fileManager = FileManager.default
                 if fileManager.fileExists(atPath: file.path, isDirectory:&isDir) {
-                    if(isDir.boolValue){
-                        dump(file)
-                        isFolder.append(true)
-                        var folderSize = 0
-                        FileManager.default.enumerator(at: file, includingPropertiesForKeys: [.fileSizeKey], options: [])?.forEach {
-                            folderSize += (try? ($0 as? URL)?.resourceValues(forKeys: [.fileSizeKey]))??.fileSize ?? 0
-                        }
-                        sizes.append(folderSize)
-                    } else {
-                        let attr = try FileManager.default.attributesOfItem(atPath: file.path)
-                        let fileSize = attr[FileAttributeKey.size] as! Int
-                        sizes.append(fileSize)
-                        isFolder.append(false)
-                    }
-                    isDownloaded.append(true)
                     let range = file.path.range(of: (documentsUrl.path + currentFolder.removingPercentEncoding! + "/"))
                     let endIndex = file.path.distance(from: file.path.startIndex, to: range!.upperBound)
                     let name = (file.path as NSString).substring(from: endIndex)
-                    filenames.append(name)
+                    if(isDir.boolValue){
+                        var folderSize:Int64 = 0
+                        FileManager.default.enumerator(at: file, includingPropertiesForKeys: [.fileSizeKey], options: [])?.forEach {
+                            folderSize = folderSize + Int64((try? ($0 as? URL)?.resourceValues(forKeys: [.fileSizeKey]))??.fileSize ?? 0)
+                        }
+                        self.files.append(Detail(filename: name, time: 0, size: folderSize, isFolder: true, appHref: ""))
+                    } else {
+                        let attr = try FileManager.default.attributesOfItem(atPath: file.path)
+                        let fileSize = attr[FileAttributeKey.size] as! Int64
+                        self.files.append(Detail(filename: name, time: 0, size: fileSize, isFolder: false, appHref: ""))
+                    }
+                    
                 }
             }
         } catch {
             //print(error)
         }
         self.checkForYear()
-
-        self.tableview.delegate = self
-        self.tableview.dataSource = self
         self.tableview.reloadData()
     }
     
@@ -393,7 +387,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         self.listRequest()
     }
     
-    func bulkDownload(files:[IndexPath]!){
+    func bulkDownload(files_:[IndexPath]!){
         var parameters:Parameters = [
             "action" : "download",
             "as" : "bulk.zip",
@@ -402,8 +396,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             "hrefs" : ""
         ]
         var count = 0
-        for file in files{
-            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + filenames[file.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        for file in files_{
+            parameters["hrefs[" + String(count) + "]"] = currentFolder + "/" + self.files[file.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
                 count += 1
         }
         if(count >= 1){
@@ -454,8 +448,8 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         fileurls.removeAll()
         for path in files{
-            if(isFileExists(filename: filenames[path.row], path: currentFolder)){
-                let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(currentFolder.removingPercentEncoding!).appendingPathComponent(filenames[path.row])
+            if(isFileExists(filename: self.files[path.row].filename, path: currentFolder)){
+                let fileURL = documentsURL.appendingPathComponent("downloads").appendingPathComponent(currentFolder.removingPercentEncoding!).appendingPathComponent(self.files[path.row].filename)
                 fileurls.append(fileURL as NSURL)
                 print(fileURL.path)
             }
@@ -469,11 +463,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             qlpreview.reloadData()
             DispatchQueue.main.async {
                 if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.setScreen()
                     self.navigationController!.pushViewController(qlpreview, animated: true)
                 }
             }
         }
         
+    }
+    
+    func setScreen(){
+        let option = UserDefaults.standard.bool(forKey: "settings.keep.enabled")
+        if option {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
     }
     
     func downloadFiles(url:String,filename:String,path:String,force:Bool = false, temp:Bool = false){
@@ -501,7 +503,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
             var myUrl = url
-            if(appHref[0].contains("https://nflsio.oss-cn-shanghai.aliyuncs.com")){
+            if(self.files[0].filename.contains("https://nflsio.oss-cn-shanghai.aliyuncs.com")){
                 myUrl = url.replacingOccurrences(of: "https://dl.nfls.io", with: "https://nflsio.oss-cn-shanghai.aliyuncs.com")
             }
             //print(myUrl)
@@ -523,6 +525,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         if(fileurls.count == 2){
             return false
         }
+        let filenames = files.map { $0.filename }
         if(filename.contains("qp")){
             let answer = filename.replacingOccurrences(of: "qp", with: "ms")
             if(filenames.contains(answer)){
@@ -575,6 +578,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             qlpreview.currentPreviewItemIndex = 0
             DispatchQueue.main.async {
                 if !(self.navigationController?.topViewController is QLPreviewController){
+                    self.setScreen()
                     self.navigationController!.pushViewController(qlpreview, animated: true)
                 }
             }
@@ -635,58 +639,78 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filenames.count
+        if(files.isEmpty){
+            return cached.count
+        }else{
+            return files.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: ID, for: indexPath as IndexPath)
         cell.imageView!.kf.cancelDownloadTask()
-        if(indexPath.row >= filenames.count){
-            SCLAlertView().showError("错误", subTitle: "发生了内部错误，如果遇到奇怪问题请退出重试")
-            return cell
-        }
-        let name = filenames[indexPath.row]
-        let size = sizes[indexPath.row] / 1000
-        if(onlineMode){
-            let time = Date(timeIntervalSince1970: TimeInterval(times[indexPath.row]/1000))
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-            dateFormatter.locale = NSLocale.current
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
-            let strDate = dateFormatter.string(from: time)
-            cell.detailTextLabel!.text = strDate + " - " + calculateSize(bytes: size)
-            if(isDownloaded[indexPath.row]){
-                cell.detailTextLabel!.text! += " - 已缓存"
+        if(files.isEmpty){
+            let name = cached[indexPath.row]
+            let status = isFolder[indexPath.row]
+            cell.textLabel?.text = name
+            var placeHolder = UIImage()
+            if(status){
+                placeHolder = UIImage(named: "icons8-Folder-50.png")!
+            } else {
+                placeHolder = UIImage(named: "icons8-Documents-50.png")!
             }
-        } else {
-            cell.detailTextLabel!.text = calculateSize(bytes: size)
-        }
-        var placeHolder = UIImage()
-        if(isFolder[indexPath.row]){
-            placeHolder = UIImage(named: "icons8-Folder-50.png")!
-        } else {
-            placeHolder = UIImage(named: "icons8-Documents-50.png")!
-        }
-        if(indexPath.row < images.count){
-            if let url = images[indexPath.row] {
-                cell.imageView!.kf.setImage(with: URL(string:"https://dl.nfls.io" + url)!, placeholder: placeHolder, options: nil, progressBlock: nil)
+            cell.detailTextLabel?.text = "Loading"
+            if(isFileExists(filename: name, path: currentFolder)){
+                cell.detailTextLabel?.text! += " - 已缓存"
+            }
+            cell.imageView!.image = placeHolder
+        }else{
+            if(indexPath.row >= files.count){
+                SCLAlertView().showError("错误", subTitle: "发生了内部错误，如果遇到奇怪问题请退出重试")
+                return cell
+            }
+            let name = files[indexPath.row].filename
+            let size = files[indexPath.row].size / 1024
+            if(onlineMode){
+                let time = Date(timeIntervalSince1970: TimeInterval(truncating: files[indexPath.row].time)/1000)
+                let dateFormatter = DateFormatter()
+                dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+                dateFormatter.locale = NSLocale.current
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
+                let strDate = dateFormatter.string(from: time)
+                cell.detailTextLabel!.text = strDate + " - " + calculateSize(bytes: size)
+                if(isFileExists(filename: files[indexPath.row].filename, path: currentFolder)){
+                    cell.detailTextLabel!.text! += " - 已缓存"
+                }
+            } else {
+                cell.detailTextLabel!.text = calculateSize(bytes: size)
+            }
+            var placeHolder = UIImage()
+            if(files[indexPath.row].isFolder){
+                placeHolder = UIImage(named: "icons8-Folder-50.png")!
+            } else {
+                placeHolder = UIImage(named: "icons8-Documents-50.png")!
+            }
+            if(indexPath.row < images.count){
+                if let url = images[indexPath.row] {
+                    cell.imageView!.kf.setImage(with: URL(string:"https://dl.nfls.io" + url)!, placeholder: placeHolder, options: nil, progressBlock: nil)
+                }else{
+                    cell.imageView!.image = placeHolder
+                }
             }else{
                 cell.imageView!.image = placeHolder
             }
-        }else{
-            cell.imageView!.image = placeHolder
+            cell.textLabel!.text = name
         }
-        cell.textLabel!.text = name
         let selectedIndexPaths = tableView.indexPathsForSelectedRows
         let rowIsSelected = selectedIndexPaths != nil && selectedIndexPaths!.contains(indexPath)
         cell.accessoryType = rowIsSelected ? .checkmark : .none
         cell.textLabel!.font = UIFont(name: "HelveticaBold", size: 18)
         cell.detailTextLabel!.font = UIFont(name: "Helvetica", size: 14)
-
         return cell
     }
     
-    func calculateSize(bytes:Int) -> String {
+    func calculateSize(bytes:Int64) -> String {
         var size = Double(bytes)
         var count = 0
         repeat{
@@ -707,18 +731,23 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         default:
             break
         }
+        if(size<0){
+            print("Unexpected:")
+            print(bytes)
+        }
         return String(format: "%.1f", size) + " " + quantity
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         cell.accessoryType = .checkmark
-        tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isSelected = false
         if(reactWithClick){
-            if(isFolder[indexPath.row]){
-                changeCurrentDir(newDir : filenames[indexPath.row])
-            } else {
-                downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:filenames[indexPath.row], path:currentFolder)
+            if(!files.isEmpty){
+                if (files[indexPath.row].isFolder){
+                    changeCurrentDir(newDir : files[indexPath.row].filename)
+                } else {
+                    downloadFiles(url: "https://dl.nfls.io" + currentFolder + "/" + files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:files[indexPath.row].filename, path:currentFolder)
+                }
             }
         }
     }
@@ -730,19 +759,19 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if(isFolder[indexPath.row]){
+        if(files[indexPath.row].isFolder){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删空缓存", handler:{action, indexPath in
-                self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
+                self.removeFile(filename:self.files[indexPath.row].filename, path:self.currentFolder)
             })
             return [deleteRowAction]
         }
-        if(isDownloaded[indexPath.row]){
+        if(isFileExists(filename: self.files[indexPath.row].filename, path: currentFolder)){
             let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "删除本地", handler:{action, indexPath in
-                self.removeFile(filename:self.filenames[indexPath.row], path:self.currentFolder)
+                self.removeFile(filename:self.files[indexPath.row].filename, path:self.currentFolder)
             })
             if(onlineMode){
                 let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "重新下载", handler:{action, indexpath in
-                    self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.filenames[indexPath.row], path:self.currentFolder, force: true)
+                    self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.files[indexPath.row].filename, path:self.currentFolder, force: true)
                 })
                 moreRowAction.backgroundColor = UIColor.blue
                 
@@ -755,7 +784,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             
         } else {
             let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "临时下载", handler:{action, indexpath in
-                self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.filenames[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.filenames[indexPath.row], path:self.currentFolder, force: false, temp: true)
+                self.downloadFiles(url: "https://dl.nfls.io" + self.currentFolder + "/" + self.files[indexPath.row].filename.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!,filename:self.files[indexPath.row].filename, path:self.currentFolder, force: false, temp: true)
             })
             moreRowAction.backgroundColor = UIColor.blue
             return [moreRowAction]
@@ -774,6 +803,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
     func previewControllerDidDismiss(_ controller: QLPreviewController) {
         fileurls.removeAll()
     }
+    
 }
 
 class DownloadCell:UITableViewCell{
@@ -785,4 +815,5 @@ class DownloadCell:UITableViewCell{
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
 }
+
 

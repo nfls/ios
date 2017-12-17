@@ -1,22 +1,42 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - AMScrollingNavbar (4.0.5)
+  - AMScrollingNavbar (4.1.0)
+  - Cache (4.1.2)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
   - ChromaColorPicker (1.5.1)
   - CountryPickerSwift (1.4.5)
+  - CryptoSwift (0.8.0)
+  - DeviceKit (1.4.0)
   - EZSwiftExtensions (1.11)
+  - FileKit (5.0.0)
   - FrostedSidebar (1.0.0)
+  - FSCalendar (2.7.9)
   - GCDWebServer (3.4.2):
     - GCDWebServer/Core (= 3.4.2)
   - GCDWebServer/Core (3.4.2)
+  - Hero (1.0.1)
+  - IGListKit (3.1.1):
+    - IGListKit/Default (= 3.1.1)
+  - IGListKit/Default (3.1.1):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.1.1)
   - InAppSettingsKit (2.8.1)
   - IQKeyboardManagerSwift (5.0.6)
-  - JWGeohashKit (0.2)
-  - Kingfisher (4.2.0)
+  - Kingfisher (4.5.0)
+  - MGSwipeTableCell (1.6.6)
+  - Moya (10.0.1):
+    - Moya/Core (= 10.0.1)
+  - Moya/Core (10.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - ObjectMapper (3.1.0)
   - Permission/Camera (2.0.4):
     - Permission/Core
   - Permission/Core (2.0.4)
@@ -24,10 +44,18 @@ PODS:
     - Permission/Core
   - Permission/Photos (2.0.4):
     - Permission/Core
+  - Result (3.2.4)
   - SCLAlertView (0.7.0)
+  - SnapKit (4.0.0)
   - SSZipArchive (2.1.1)
   - SwiftIconFont (2.7.2)
-  - SwiftyMarkdown (0.5.0)
+  - SwiftyJSON (4.0.0)
+  - SwiftyMarkdown (0.5.1)
+  - SwiftyStoreKit (0.11.0)
+  - SwiftyUserDefaults (3.0.0)
+  - TextFieldEffects (1.4.0)
+  - Timepiece (1.3.1)
+  - Toucan (1.0.0)
   - UIColor-Pantone (1.0)
   - UITableView+FDTemplateLayoutCell (1.6)
   - UMengAnalytics-NO-IDFA (4.2.5)
@@ -36,50 +64,94 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
   - AMScrollingNavbar
+  - Cache
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Charts
   - ChromaColorPicker
   - CountryPickerSwift
+  - CryptoSwift
+  - DeviceKit
   - EZSwiftExtensions
+  - FileKit
   - FrostedSidebar
+  - FSCalendar
   - GCDWebServer
+  - Hero
+  - IGListKit
   - InAppSettingsKit
   - IQKeyboardManagerSwift
-  - JWGeohashKit
   - Kingfisher
+  - MGSwipeTableCell
+  - Moya
+  - ObjectMapper
   - Permission/Camera
   - Permission/Notifications
   - Permission/Photos
   - SCLAlertView
+  - SnapKit
   - SSZipArchive
   - SwiftIconFont
+  - SwiftyJSON
   - SwiftyMarkdown
+  - SwiftyStoreKit
+  - SwiftyUserDefaults
+  - TextFieldEffects
+  - Timepiece
+  - Toucan
   - UIColor-Pantone
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics-NO-IDFA
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  AMScrollingNavbar: 81d8aee27f528a65994ee899b5312e9fa9374908
+  AMScrollingNavbar: f43ed1fcb784740199124aa79d3d53dfd7a81ade
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
+  CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
+  DeviceKit: fa74d97499660e88081718b16688e19217595dba
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
+  FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   GCDWebServer: 8d67ee9f634b4bb91eb4b8aee440318a5fc6debd
+  Hero: cee286821578e170d8c0c9c9cda7897357401112
+  IGListKit: cb97f405ae43e59fe1da74271e19427ec20d3c07
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
-  JWGeohashKit: 65c65662b9f51947424ec44ff4ec89c3d182e840
-  Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
+  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
   SwiftIconFont: e13dc39c257121e1141375bb338c02e686ef410b
-  SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
+  SwiftyStoreKit: c5cb38110cb01b55b9c5f25d7f69d0083650b2a4
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
+  Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
+  Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UIColor-Pantone: b6e5ab4c032f704f75453cfc0e8a07f68624cff5
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 2eb3a18a9e515cc3ecf0a7d53d7f98f777ce498e
+PODFILE CHECKSUM: 34b7667c45d3679fa33a6caac353cc900cdee06b
 
 COCOAPODS: 1.4.0.beta.1

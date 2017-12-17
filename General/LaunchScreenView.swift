@@ -50,12 +50,15 @@ class LaunchScreenViewController:UIViewController{
     func loadPic(_ con:Bool = false){
         if let url = UserDefaults.standard.value(forKey: "pic_url") as? String{
             image.kf.setImage(with: URL(string: url)!, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, _) in
-                if(self.image.image!.size.width == self.image.image!.size.height){
-                    self.image.contentMode = .scaleAspectFit
+                if let image = self.image.image{
+                    if(image.size.width == image.size.height){
+                        self.image.contentMode = .scaleAspectFit
+                    }else{
+                        self.image.contentMode = .scaleAspectFill
+                    }
                 }else{
                     self.image.contentMode = .scaleAspectFill
                 }
-
                 if(con){
                     self.nextStep()
                 }
@@ -86,12 +89,13 @@ class LaunchScreenViewController:UIViewController{
                 response in
                 switch response.result{
                 case .success(let json):
-                    let info = ((json as! [String:AnyObject])["info"]) as! [String:Any]
-                    if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
-                        UserDefaults.standard.set(info["url"] as! String, forKey: "pic_url")
-                        let text = info["text"] as! String
-                        UserDefaults.standard.set(text, forKey: "pic_text")
-                        UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
+                    if let info = ((json as! [String:AnyObject])["info"]) as? [String:Any] {
+                        if(((UserDefaults.standard.value(forKey: "pic_id") as? Int) == nil) || (UserDefaults.standard.value(forKey: "pic_id") as? Int)! < (info["id"] as! Int)){
+                            UserDefaults.standard.set(info["url"] as! String, forKey: "pic_url")
+                            let text = info["text"] as! String
+                            UserDefaults.standard.set(text, forKey: "pic_text")
+                            UserDefaults.standard.set((info["id"] as! Int), forKey: "pic_id")
+                        }
                     }
                     self.loadPic(true)
                     break

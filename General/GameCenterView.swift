@@ -66,6 +66,9 @@ class GameCenterViewController:UITableViewController{
                     UserDefaults.standard.set(self.descriptions, forKey:"game_descriptions")
                     UserDefaults.standard.set(self.images, forKey:"game_img")
                     self.tableView.reloadData()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                        self.tableView.reloadData()
+                    })
                     break
                 default:
                     break

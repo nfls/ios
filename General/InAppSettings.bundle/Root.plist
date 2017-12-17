@@ -8,6 +8,68 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.version</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.user</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>头像</string>
+			<key>Key</key>
+			<string>user.avatar</string>
+			<key>IASKSubtitle</key>
+			<string>在此上传或修改您的头像</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>安全</string>
+			<key>Key</key>
+			<string>user.email</string>
+			<key>IASKSubtitle</key>
+			<string>修改邮箱或密码</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>改名</string>
+			<key>Key</key>
+			<string>user.username</string>
+			<key>IASKSubtitle</key>
+			<string>修改您的用户名</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>消息</string>
+			<key>Key</key>
+			<string>user.message</string>
+			<key>IASKSubtitle</key>
+			<string>进入您的消息收件箱</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>退出</string>
+			<key>Key</key>
+			<string>user.clean</string>
+			<key>IASKSubtitle</key>
+			<string>您也可以清除所有登陆的设备</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>界面</string>
@@ -28,55 +90,41 @@
 			<key>Title</key>
 			<string>晚间自动进入夜间模式</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>settings.night.auto</string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>主题</string>
+			<string>预览文档时保持屏幕常亮</string>
+			<key>DefaultValue</key>
+			<true/>
 			<key>Key</key>
-			<string>settings.theme.pick</string>
+			<string>settings.keep.enabled</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>用户</string>
+			<string>自定义主题</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>settings.theme.customize</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>获取入场券</string>
+			<string>预设</string>
 			<key>Key</key>
-			<string>app.ticket</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>国际部在校学生实名认证</string>
-			<key>Key</key>
-			<string>app.realname</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>个人中心</string>
-			<key>Key</key>
-			<string>app.user</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>退出</string>
-			<key>Key</key>
-			<string>app.logout</string>
+			<string>settings.theme.pick</string>
+			<key>IASKSubtitle</key>
+			<string>您可以在此选择预设的主题</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -88,9 +136,11 @@
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 			<key>Title</key>
-			<string>在App Store上给我们评价</string>
+			<string>评价</string>
 			<key>Key</key>
 			<string>app.review</string>
+			<key>IASKSubtitle</key>
+			<string>在App Store上给我们撰写评价</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -99,14 +149,8 @@
 			<string>请喝咖啡</string>
 			<key>Key</key>
 			<string>app.donate</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>Title</key>
-			<string>开源项目许可证</string>
-			<key>Key</key>
-			<string>app.license</string>
+			<key>IASKSubtitle</key>
+			<string>给我们捐款30元</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -115,6 +159,14 @@
 			<string>开发组</string>
 			<key>File</key>
 			<string>Authors</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>管理</string>
+			<key>File</key>
+			<string>Management</string>
 		</dict>
 	</array>
 </dict>
