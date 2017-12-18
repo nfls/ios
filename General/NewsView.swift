@@ -106,7 +106,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         Alamofire.request("https://api.nfls.io/weather/ping")
         checkStatus()
         self.removeFile(filename: "", path: "temp")
-        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
+        let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.showUnity))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
         self.navigationItem.rightBarButtonItem = rightButton
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
@@ -122,7 +122,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         view.addGestureRecognizer(swipeBack)
         
     }
-    
+    @objc func showUnity() {
+        self.performSegue(withIdentifier: "showUnity", sender: self)
+    }
     @objc func refresh() {
         loadNews()
         debugPrint("refresh")
@@ -326,7 +328,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     }
                     self.showLogin()
                 } else {
-                    MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
+                    //MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
                     self.getAuthStatus()
                     self.getBadge()
                     self.requestMessage()

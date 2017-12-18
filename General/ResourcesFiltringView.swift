@@ -89,11 +89,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         listRequest()
     }
     override func viewWillAppear(_ animated: Bool) {
-        MobClick.beginLogPageView("Resources")
+        //MobClick.beginLogPageView("Resources")
         UIApplication.shared.isIdleTimerDisabled = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        MobClick.endLogPageView("Resources")
+        //MobClick.endLogPageView("Resources")
     }
     @objc func setting() {
         var mutipleSelectAction = UIAlertAction()
