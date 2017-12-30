@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.6</string>
+	<string>1.2.7</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>2</string>
 	<key>CodeNameCN</key>
-	<string>ドライクリーク</string>
+	<string>決別</string>
 	<key>CodeNameEN</key>
-	<string>Arroyo</string>
+	<string>Farewell</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>

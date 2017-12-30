@@ -137,11 +137,11 @@ class GameViewController:UIViewController,WKNavigationDelegate,WKUIDelegate,SKPr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MobClick.beginLogPageView("Gaming")
+        //MobClick.beginLogPageView("Gaming")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        MobClick.endLogPageView("Gaming")
+        //MobClick.endLogPageView("Gaming")
        
         super.viewWillDisappear(animated)
     }

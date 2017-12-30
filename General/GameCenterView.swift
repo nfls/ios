@@ -18,7 +18,7 @@ class GameCenterViewController:UITableViewController{
     var descriptions = [String]()
     var urls = [String]()
     var images = [String]()
-    
+    var in_url:String? = nil
     
     
     func loadFromLocal(){
@@ -49,16 +49,19 @@ class GameCenterViewController:UITableViewController{
             Alamofire.request("https://api.nfls.io/game/list").responseJSON { response in
                 switch(response.result){
                 case .success(let json):
-                    
                     let info = ((json as! [String:AnyObject])["info"] as! [[String:Any]])
                     self.names.removeAll()
                     self.descriptions.removeAll()
                     self.urls.removeAll()
                     self.images.removeAll()
+                    var index:Int? = nil
                     for detail in info {
                         self.names.append(detail["name"] as! String)
                         self.descriptions.append(detail["description"] as! String)
                         self.urls.append(detail["url"] as! String)
+                        if self.urls.last == self.in_url {
+                            index = self.names.count - 1
+                        }
                         self.images.append(detail["icon"] as! String)
                     }
                     UserDefaults.standard.set(self.names, forKey: "game_names")
@@ -69,6 +72,13 @@ class GameCenterViewController:UITableViewController{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
                         self.tableView.reloadData()
                     })
+                    if let index = index {
+                        if self.urls[index] == "unity" {
+                            self.performSegue(withIdentifier: "showUnity", sender: index)
+                        } else {
+                            self.performSegue(withIdentifier: "showGame", sender: index)
+                        }
+                    }
                     break
                 default:
                     break
@@ -109,24 +119,31 @@ class GameCenterViewController:UITableViewController{
         cell.detailTextLabel!.font = UIFont(name: "Helvetica", size: 14)
         cell.imageView?.kf.setImage(with: URL(string: images[indexPath.row]), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
             DispatchQueue.main.async {
-                cell.imageView?.image = image!.kf.resize(to: CGSize(width: 75, height: 75))
+                if let image = image {
+                    cell.imageView?.image = image.kf.resize(to: CGSize(width: 75, height: 75))
+                }
             }
-
         })
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showGame", sender: indexPath.row)
+        if urls[indexPath.row] == "unity" {
+            self.performSegue(withIdentifier: "showUnity", sender: indexPath.row)
+        } else {
+            self.performSegue(withIdentifier: "showGame", sender: indexPath.row)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let index = sender as! Int
-        let dest = segue.destination as! GameViewController
-        dest.location = urls[index]
-        dest.name = names[index]
-        dest.id = index + 1
+        if segue.destination is GameViewController {
+            let index = sender as! Int
+            let dest = segue.destination as! GameViewController
+            dest.location = urls[index]
+            dest.name = names[index]
+            dest.id = index + 1
+        }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75

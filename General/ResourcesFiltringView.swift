@@ -89,11 +89,11 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         listRequest()
     }
     override func viewWillAppear(_ animated: Bool) {
-        MobClick.beginLogPageView("Resources")
+        //MobClick.beginLogPageView("Resources")
         UIApplication.shared.isIdleTimerDisabled = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        MobClick.endLogPageView("Resources")
+        //MobClick.endLogPageView("Resources")
     }
     @objc func setting() {
         var mutipleSelectAction = UIAlertAction()
@@ -212,7 +212,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
             response in
             switch response.result{
             case .success(let json):
-                
+                self.files.removeAll()
                 let data = (json as! [String:AnyObject])["items"]! as! NSArray
                 for file in data{
                     var name = (file as! [String:Any])["href"] as! String
@@ -279,7 +279,7 @@ class ResourcesFiltringViewController:UIViewController, UITableViewDataSource, U
         }
     }
     func checkForYear(){
-        if(!UserDefaults.standard.bool(forKey: "ettings.resources.rank")){
+        if(!UserDefaults.standard.bool(forKey: "settings.resources.rank")){
             for file in files{
                 if(file.filename.contains("2016")){
                     files.reverse()

@@ -40,7 +40,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let images = ["resources","game","photo","alumni","ic","forum","wiki","media","weather"]
+        let images = ["resources","game"/*,"photo"*/,"alumni","ic","forum","wiki","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
@@ -58,26 +58,24 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showGame", sender: self)
         }
         self.bar.actionForIndex[2] = {
-            self.performSegue(withIdentifier: "showPhoto", sender: self)
-        }
-        self.bar.actionForIndex[3] = {
             self.performSegue(withIdentifier: "showAlumni", sender: self)
         }
-        self.bar.actionForIndex[4] = {
+        self.bar.actionForIndex[3] = {
             self.performSegue(withIdentifier: "showIC", sender: self)
         }
-        self.bar.actionForIndex[5] = {
+        self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
-        self.bar.actionForIndex[6] = {
+        self.bar.actionForIndex[5] = {
             self.performSegue(withIdentifier: "showWiki", sender: self)
         }
-        self.bar.actionForIndex[7] = {
+        self.bar.actionForIndex[6] = {
             self.performSegue(withIdentifier: "showMedia", sender: self)
         }
-        self.bar.actionForIndex[8] = {
+        self.bar.actionForIndex[7] = {
             self.performSegue(withIdentifier: "showWeather", sender: self)
         }
+        //self.bar.actionForIndex.removeValue(forKey: 2)
         
         self.bar.delegate = self
         
@@ -122,7 +120,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         view.addGestureRecognizer(swipeBack)
         
     }
-    
+
     @objc func refresh() {
         loadNews()
         debugPrint("refresh")
@@ -326,7 +324,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     }
                     self.showLogin()
                 } else {
-                    MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
+                    //MobClick.profileSignIn(withPUID: (String(describing: (json as! [String:Int])["id"]!)))
                     self.getAuthStatus()
                     self.getBadge()
                     self.requestMessage()
@@ -456,7 +454,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showWeather", sender: self)
             break
         case "game":
-            self.performSegue(withIdentifier: "showGame", sender: self)
+            self.performSegue(withIdentifier: "showGame", sender: in_url)
             break
         default:
             if let url = realurl{
@@ -484,6 +482,11 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             }
         } else if (segue.identifier == "showAlumni"){
             let dest = segue.destination as! AlumniRootViewController
+            if(sender as? String != nil){
+                dest.in_url = sender as! String
+            }
+        } else if (segue.identifier == "showGame") {
+            let dest = segue.destination as! GameCenterViewController
             if(sender as? String != nil){
                 dest.in_url = sender as! String
             }

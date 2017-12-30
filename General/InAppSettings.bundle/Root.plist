@@ -160,14 +160,6 @@
 			<key>File</key>
 			<string>Authors</string>
 		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>管理</string>
-			<key>File</key>
-			<string>Management</string>
-		</dict>
 	</array>
 </dict>
 </plist>
