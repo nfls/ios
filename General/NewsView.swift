@@ -40,7 +40,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let images = ["resources","game"/*,"photo"*/,"alumni","ic","forum","wiki","media","weather"]
+        let images = ["resources","game"/*,"photo"*/,"alumni","forum","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
@@ -61,18 +61,12 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.performSegue(withIdentifier: "showAlumni", sender: self)
         }
         self.bar.actionForIndex[3] = {
-            self.performSegue(withIdentifier: "showIC", sender: self)
-        }
-        self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showForum", sender: self)
         }
-        self.bar.actionForIndex[5] = {
-            self.performSegue(withIdentifier: "showWiki", sender: self)
-        }
-        self.bar.actionForIndex[6] = {
+        self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showMedia", sender: self)
         }
-        self.bar.actionForIndex[7] = {
+        self.bar.actionForIndex[5] = {
             self.performSegue(withIdentifier: "showWeather", sender: self)
         }
         //self.bar.actionForIndex.removeValue(forKey: 2)
@@ -438,14 +432,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         case "forum":
             self.performSegue(withIdentifier: "showForum", sender: in_url)
             break
-        case "wiki":
-            self.performSegue(withIdentifier: "showWiki", sender: in_url)
-            break
         case "ic":
             self.performSegue(withIdentifier: "showIC", sender: in_url)
-            break
-        case "alumni":
-            self.performSegue(withIdentifier: "showAlumni", sender: in_url)
             break
         case "media","live","video":
             self.performSegue(withIdentifier: "showMedia", sender: self)

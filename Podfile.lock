@@ -15,13 +15,17 @@ PODS:
   - CountryPickerSwift (1.4.5)
   - CryptoSwift (0.8.0)
   - DeviceKit (1.4.0)
+  - EFQRCode (4.1.0)
+  - expanding-collection (1.1.1)
   - EZSwiftExtensions (1.11)
   - FileKit (5.0.0)
+  - FoldingCell (3.0.0)
   - FrostedSidebar (1.0.0)
   - FSCalendar (2.7.9)
   - GCDWebServer (3.4.2):
     - GCDWebServer/Core (= 3.4.2)
   - GCDWebServer/Core (3.4.2)
+  - GlidingCollection (1.1.0)
   - Hero (1.0.1)
   - IGListKit (3.1.1):
     - IGListKit/Default (= 3.1.1)
@@ -48,6 +52,7 @@ PODS:
     - Permission/Core
   - Permission/Photos (2.0.4):
     - Permission/Core
+  - RAMAnimatedTabBarController (3.0.1)
   - Result (3.2.4)
   - SCLAlertView (0.7.0)
   - SnapKit (4.0.0)
@@ -75,11 +80,15 @@ DEPENDENCIES:
   - CountryPickerSwift
   - CryptoSwift
   - DeviceKit
+  - EFQRCode
+  - expanding-collection
   - EZSwiftExtensions
   - FileKit
+  - FoldingCell
   - FrostedSidebar
   - FSCalendar
   - GCDWebServer
+  - GlidingCollection
   - Hero
   - IGListKit
   - InAppSettingsKit
@@ -93,6 +102,7 @@ DEPENDENCIES:
   - Permission/Camera
   - Permission/Notifications
   - Permission/Photos
+  - RAMAnimatedTabBarController
   - SCLAlertView
   - SnapKit
   - SSZipArchive
@@ -129,11 +139,15 @@ SPEC CHECKSUMS:
   CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
   CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
   DeviceKit: fa74d97499660e88081718b16688e19217595dba
+  EFQRCode: f644c667b632a47bd0256e568418d9fc75dfce19
+  expanding-collection: b345a597665ed4a133d6e3f9b79e0f6091d7114c
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
+  FoldingCell: 55e9fcac546acc2c8f110f210af892aa90032160
   FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   GCDWebServer: 8d67ee9f634b4bb91eb4b8aee440318a5fc6debd
+  GlidingCollection: 2194165075fa7230027049238c9ed724453557e6
   Hero: cee286821578e170d8c0c9c9cda7897357401112
   IGListKit: cb97f405ae43e59fe1da74271e19427ec20d3c07
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
@@ -145,6 +159,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
+  RAMAnimatedTabBarController: 78bafa7a1c1b162f0d4a86a936c0d1ee4a06ffcc
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
@@ -161,6 +176,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: d956948e6c1a75c54f7ca9df90b0f40410b00189
+PODFILE CHECKSUM: 5eeb7deae8aab90f30ff013a27b4af0275c5eb46
 
 COCOAPODS: 1.4.0.beta.1

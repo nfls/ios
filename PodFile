@@ -48,4 +48,9 @@ target 'NFLSers-iOS' do
   pod 'ObjectMapper'
   pod 'ObjectivePGP'
   pod 'OneTimePassword'
+  pod 'EFQRCode'
+  pod 'FoldingCell'
+  pod 'RAMAnimatedTabBarController'
+  pod 'expanding-collection'
+  pod 'GlidingCollection'
 end

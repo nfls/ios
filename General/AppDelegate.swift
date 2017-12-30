@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
         
         UMAnalyticsConfig.sharedInstance().appKey = "59c733a1c895764c1100001c"
-        MAnalyticsConfig.sharedInstance().channelId = "App Store"
+        UMAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         MobClick.setAppVersion(version as! String)
