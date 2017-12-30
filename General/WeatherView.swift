@@ -133,7 +133,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
         default:
             key = stations[indexPath.section].data[indexPath.row - 4]["name"]
             value = stations[indexPath.section].data[indexPath.row - 4]["value"]
-            cell.accessoryType = .disclosureIndicator
+            cell.accessoryType = .none
         }
         
         cell.textLabel!.text = key
@@ -161,7 +161,7 @@ class WeatherViewController:UIViewController,UITableViewDataSource,UITableViewDe
             let latitude = stations[indexPath.section].latitude
             self.performSegue(withIdentifier: "showMap", sender: [longitude,latitude])
         default:
-            self.showHistoryData(indexPath: indexPath)
+            //self.showHistoryData(indexPath: indexPath)
             break
         }
         return 

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc var currentUnityController: UnityAppController?
     var isUnityRunning = false
     var application: UIApplication?
+    var enableAllOrientation = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.application = application
@@ -105,24 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         // let _ = ThemeManager.init()
-        let interval = Date().timeIntervalSince1970 - time
-        if(isLaunched){
-            if(!isOn && interval >= 60){
-                if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? LaunchScreenViewController {
-                    if let window = self.window, let rootViewController = window.rootViewController {
-                        var currentController = rootViewController
-                        while let presentedController = currentController.presentedViewController {
-                            currentController = presentedController
-                        }
-                        if !((currentController as? UINavigationController)?.topViewController is QLPreviewController) {
-                            currentController.present(controller, animated: true, completion: nil)
-                        }
-                    }
-                }
-            }
-        } else {
-            isLaunched = true
-        }
     }
     
     
@@ -170,6 +153,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             currentUnityController!.applicationWillResignActive(application!)
             isUnityRunning = false
         }
+    }
+    
+    func resetUnity() {
+        unity_init(CommandLine.argc, CommandLine.unsafeArgv)
+        currentUnityController = UnityAppController()
+        currentUnityController!.application(application!, didFinishLaunchingWithOptions: nil)
     }
 }
 

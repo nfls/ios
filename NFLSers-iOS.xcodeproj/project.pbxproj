@@ -1208,6 +1208,7 @@
 				E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */,
 				D6AE173A1E44D51600E66B4B /* Sources */,
 				D6AE173B1E44D51600E66B4B /* Frameworks */,
+				65BFCD831FE825D100821ABD /* ShellScript */,
 				D6AE173C1E44D51600E66B4B /* Resources */,
 				22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */,
 				6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */,
@@ -1429,6 +1430,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		65BFCD831FE825D100821ABD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data\";\ncp -Rf \"$UNITY_IOS_EXPORT_PATH/Data\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data\";";
 		};
 		6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1685,7 +1699,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ContentExtension/Info.plist;
@@ -1709,7 +1723,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ContentExtension/Info.plist;
@@ -1733,7 +1747,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = pushNotification/Info.plist;
@@ -1757,7 +1771,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = pushNotification/Info.plist;
@@ -1888,7 +1902,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1937,7 +1951,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

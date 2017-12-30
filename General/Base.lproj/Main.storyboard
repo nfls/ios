@@ -606,24 +606,6 @@ Cache
             </objects>
             <point key="canvasLocation" x="3342" y="-2030"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="G2P-kv-GVE">
-            <objects>
-                <viewController id="S8n-2Z-KG4" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y4n-Xr-7FG"/>
-                        <viewControllerLayoutGuide type="bottom" id="hDH-tY-qnQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8Ar-xF-J8z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hdI-fc-e4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4063" y="1637"/>
-        </scene>
         <!--Game Center-->
         <scene sceneID="lQ0-yY-Hkn">
             <objects>
@@ -665,6 +647,7 @@ Cache
                     </tableView>
                     <connections>
                         <segue destination="Vo3-zz-cFm" kind="show" identifier="showGame" id="YHE-CF-zjO"/>
+                        <segue destination="ZSo-9R-sah" kind="show" identifier="showUnity" id="kZB-8Z-ahe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHC-c6-pbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -962,7 +945,7 @@ Cache
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7f-9G-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966" y="993"/>
+            <point key="canvasLocation" x="4831" y="1637"/>
         </scene>
         <!--Forum-->
         <scene sceneID="XwF-my-10l">
@@ -1123,7 +1106,6 @@ Cache
                         <segue destination="RUS-bb-dSR" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="9Xs-Iy-D7T"/>
                         <segue destination="wxE-ot-QSB" kind="show" identifier="showSettings" id="f3I-r9-qrI"/>
                         <segue destination="8R8-dc-OIh" kind="show" identifier="showPhoto" id="bRx-9d-uGb"/>
-                        <segue destination="ZSo-9R-sah" kind="show" identifier="showUnity" id="O8u-bJ-GGL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKQ-AZ-24W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1300,37 +1282,6 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdM-gM-6nJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2614" y="1637"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="LxQ-nx-VwL">
-            <objects>
-                <viewController id="ZL2-aE-OCy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rqo-kh-Ucs"/>
-                        <viewControllerLayoutGuide type="bottom" id="LVU-Bc-vbp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SA4-SF-KBo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="e07-e1-8No">
-                                <rect key="frame" x="42" y="323" width="247" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccd-o5-KIT">
-                                <rect key="frame" x="106" y="123" width="121" height="97"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i7G-1J-Mob" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3338" y="1637"/>
         </scene>
         <!--大学-->
         <scene sceneID="dQu-Ew-f3Z">
