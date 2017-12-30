@@ -25,24 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var time = Date().timeIntervalSince1970
     var theme = ThemeManager()
     var url:String? = nil
-    @objc var currentUnityController: UnityAppController?
     var isUnityRunning = false
     var application: UIApplication?
     var enableAllOrientation = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.application = application
-        unity_init(CommandLine.argc, CommandLine.unsafeArgv)
-        currentUnityController = UnityAppController()
-        currentUnityController!.application(application, didFinishLaunchingWithOptions: launchOptions)
-        // first call to startUnity will do some init stuff, so just call it here and directly stop it again
-        startUnity()
-        stopUnity()
-        
+
         IQKeyboardManager.sharedManager().enable = true
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
-        /*
+        
         UMAnalyticsConfig.sharedInstance().appKey = "59c733a1c895764c1100001c"
         MAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
@@ -50,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.setAppVersion(version as! String)
         MobClick.setEncryptEnabled(true)
         MobClick.setLogEnabled(true)
-         */
+        
         if let options = launchOptions{
             dump(options[UIApplicationLaunchOptionsKey.remoteNotification])
         }
@@ -139,26 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             url = userActivity.webpageURL?.absoluteString
         }
         return true
-    }
-    
-    func startUnity() {
-        if !isUnityRunning {
-            isUnityRunning = true
-            currentUnityController!.applicationDidBecomeActive(application!)
-        }
-    }
-    
-    func stopUnity() {
-        if isUnityRunning {
-            currentUnityController!.applicationWillResignActive(application!)
-            isUnityRunning = false
-        }
-    }
-    
-    func resetUnity() {
-        unity_init(CommandLine.argc, CommandLine.unsafeArgv)
-        currentUnityController = UnityAppController()
-        currentUnityController!.application(application!, didFinishLaunchingWithOptions: nil)
     }
 }
 

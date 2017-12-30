@@ -366,44 +366,6 @@ Cache
             </objects>
             <point key="canvasLocation" x="2614" y="-605"/>
         </scene>
-        <!--校友活动-->
-        <scene sceneID="TPs-Cy-5D8">
-            <objects>
-                <viewController title="校友活动" id="2GH-CM-jsF" customClass="AlumniActivityViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lhn-zP-gCP"/>
-                        <viewControllerLayoutGuide type="bottom" id="O3z-8g-dpF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Bnv-D4-2Qh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="活动" id="FEZ-hL-Hco"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zFE-fp-qc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2614" y="123"/>
-        </scene>
-        <!--校友录-->
-        <scene sceneID="bae-T8-O5q">
-            <objects>
-                <viewController id="vC0-Lu-ZnJ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MLN-1I-z9D"/>
-                        <viewControllerLayoutGuide type="bottom" id="EDO-iY-DoA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WGU-HR-dFq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="校友录" id="BPB-rE-DCQ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vCh-yH-gma" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3343" y="123"/>
-        </scene>
         <!--实名认证-->
         <scene sceneID="emh-Zp-xit">
             <objects>
@@ -437,7 +399,7 @@ Cache
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKI-bw-0Pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4087" y="123"/>
+            <point key="canvasLocation" x="2614" y="116"/>
         </scene>
         <!--实名认证-->
         <scene sceneID="0I2-gp-g7t">
@@ -514,7 +476,7 @@ Cache
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEu-ck-OyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4834" y="123"/>
+            <point key="canvasLocation" x="3342" y="123"/>
         </scene>
         <!--校友会-->
         <scene sceneID="jG7-7b-Hjq">
@@ -526,7 +488,6 @@ Cache
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2GH-CM-jsF" kind="relationship" relationship="viewControllers" id="ONJ-Ma-odt"/>
                         <segue destination="m73-2I-9fu" kind="relationship" relationship="viewControllers" id="3NK-eg-s9p"/>
                         <segue destination="HwZ-hc-tY1" kind="relationship" relationship="viewControllers" id="yvX-1Z-Kwu"/>
                         <segue destination="XZD-l4-Bvi" kind="relationship" relationship="viewControllers" id="Np1-Rg-Xqt"/>
@@ -647,7 +608,6 @@ Cache
                     </tableView>
                     <connections>
                         <segue destination="Vo3-zz-cFm" kind="show" identifier="showGame" id="YHE-CF-zjO"/>
-                        <segue destination="ZSo-9R-sah" kind="show" identifier="showUnity" id="kZB-8Z-ahe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHC-c6-pbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -685,24 +645,6 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dY-Vb-4pE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4832" y="878"/>
-        </scene>
-        <!--International Center News-->
-        <scene sceneID="ChY-UQ-G09">
-            <objects>
-                <viewController title="International Center News" id="Meg-V2-KG3" customClass="ICNewsViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8mb-f7-j5o"/>
-                        <viewControllerLayoutGuide type="bottom" id="MXa-3V-abi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vu8-mM-asF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a97-wJ-nB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2614" y="-1304"/>
         </scene>
         <!--设置-->
         <scene sceneID="hiS-aX-Fvy">
@@ -929,24 +871,6 @@ Cache
             </objects>
             <point key="canvasLocation" x="-773.60000000000002" y="122.66009852216749"/>
         </scene>
-        <!--Unity View Controller-->
-        <scene sceneID="KvG-qO-c6R">
-            <objects>
-                <viewController id="ZSo-9R-sah" customClass="UnityViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="95R-np-IiA"/>
-                        <viewControllerLayoutGuide type="bottom" id="FU8-Uu-XNM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ccu-BA-2Jg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t7f-9G-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4831" y="1637"/>
-        </scene>
         <!--Forum-->
         <scene sceneID="XwF-my-10l">
             <objects>
@@ -983,40 +907,6 @@ Cache
                 <exit id="BiR-br-H5k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3340" y="-1305.6650246305419"/>
-        </scene>
-        <!--百科-->
-        <scene sceneID="Hcb-L3-rkL">
-            <objects>
-                <viewController title="百科" id="deY-Cs-2KE" customClass="WikiViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4RW-Ga-eMk"/>
-                        <viewControllerLayoutGuide type="bottom" id="8xI-at-bca"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HQJ-2S-W77">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5SH-eu-BDI">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8xI-at-bca" firstAttribute="top" secondItem="5SH-eu-BDI" secondAttribute="bottom" id="8db-Sc-3Hh"/>
-                            <constraint firstItem="5SH-eu-BDI" firstAttribute="leading" secondItem="HQJ-2S-W77" secondAttribute="leading" id="QL0-yP-hb6"/>
-                            <constraint firstItem="5SH-eu-BDI" firstAttribute="top" secondItem="4RW-Ga-eMk" secondAttribute="bottom" id="ccb-4Y-27g"/>
-                            <constraint firstItem="8xI-at-bca" firstAttribute="top" secondItem="5SH-eu-BDI" secondAttribute="bottom" id="ilS-AD-E9f"/>
-                            <constraint firstItem="8xI-at-bca" firstAttribute="top" secondItem="5SH-eu-BDI" secondAttribute="bottom" id="qMQ-zW-1Jq"/>
-                            <constraint firstAttribute="trailing" secondItem="5SH-eu-BDI" secondAttribute="trailing" id="xLY-y2-DZj"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="stackView" destination="5SH-eu-BDI" id="jAO-3e-UEu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aAF-4I-bVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4086" y="-1304"/>
         </scene>
         <!--动态-->
         <scene sceneID="70F-1Q-GpG">
@@ -1098,9 +988,7 @@ Cache
                         <segue destination="zbU-uo-eoH" kind="show" identifier="showAlumni" id="sdd-Pq-mtV"/>
                         <segue destination="aML-ls-6Ug" kind="show" identifier="showWeather" id="bqB-su-hgV"/>
                         <segue destination="IkS-ib-9hb" kind="show" identifier="showResources" id="RwA-l2-91A"/>
-                        <segue destination="Meg-V2-KG3" kind="show" identifier="showIC" id="ZiK-jt-mRn"/>
                         <segue destination="oWJ-TB-2Xg" kind="presentation" identifier="showForum" id="MRN-qW-dXD"/>
-                        <segue destination="deY-Cs-2KE" kind="show" identifier="showWiki" id="Iqn-PX-JAR"/>
                         <segue destination="aSC-Ix-BeI" kind="show" identifier="showMedia" id="2sk-Kx-Wl4"/>
                         <segue destination="gXj-XB-XNt" kind="show" identifier="showGame" id="FhP-0e-VhR"/>
                         <segue destination="RUS-bb-dSR" kind="unwind" identifier="exit" unwindAction="returnLoginWithSegue:" id="9Xs-Iy-D7T"/>
@@ -1410,7 +1298,7 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gR-QI-oHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Eon-0r-Nrg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5617" y="123"/>
+            <point key="canvasLocation" x="4086" y="123"/>
         </scene>
         <!--社团-->
         <scene sceneID="6pl-Sa-IP5">
@@ -1500,7 +1388,7 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LP5-na-e7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Way-rR-y3g" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6359" y="123"/>
+            <point key="canvasLocation" x="4831" y="123"/>
         </scene>
         <!--信息查询-->
         <scene sceneID="lEA-Oz-3eJ">
@@ -1549,7 +1437,7 @@ Cache
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2G4-EP-nDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ycg-Bf-yUV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7093.6000000000004" y="116.74876847290641"/>
+            <point key="canvasLocation" x="5673" y="123"/>
         </scene>
         <!--南外人-->
         <scene sceneID="Jtz-6r-3P4">
@@ -1576,7 +1464,7 @@ Cache
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2Al-lY-Kfm"/>
-        <segue reference="Np1-Rg-Xqt"/>
-        <segue reference="yvX-1Z-Kwu"/>
+        <segue reference="uew-Bm-T5Z"/>
+        <segue reference="NCu-xf-gAI"/>
     </inferredMetricsTieBreakers>
 </document>

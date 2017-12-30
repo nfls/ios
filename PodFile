@@ -46,5 +46,6 @@ target 'NFLSers-iOS' do
   pod 'TextFieldEffects'
   pod 'SnapKit'
   pod 'ObjectMapper'
-
+  pod 'ObjectivePGP'
+  pod 'OneTimePassword'
 end

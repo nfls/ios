@@ -73,11 +73,7 @@ class GameCenterViewController:UITableViewController{
                         self.tableView.reloadData()
                     })
                     if let index = index {
-                        if self.urls[index] == "unity" {
-                            self.performSegue(withIdentifier: "showUnity", sender: index)
-                        } else {
-                            self.performSegue(withIdentifier: "showGame", sender: index)
-                        }
+                        self.performSegue(withIdentifier: "showGame", sender: index)
                     }
                     break
                 default:
