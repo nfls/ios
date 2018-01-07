@@ -13,6 +13,8 @@ import SCLAlertView
 import Permission
 import StoreKit
 import SafariServices
+import Base32
+import OneTimePassword
 
 class NewsCell:UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
@@ -34,13 +36,22 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     var transactionInProgress = false
     var setView:SettingViewController
     
+    var token:Token? = nil
+    var name = ""
+    var chnName = ""
+    let issuer = "NFLS.IO Internet Authority"
+    var secretString = ""
+    var oldPassword = ""
+    var lastTime = Date()
+    
+    var card = UIAlertController()
     
     let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
         showCloseButton: false
     ))
     
     required init?(coder aDecoder: NSCoder) {
-        let images = ["resources","game"/*,"photo"*/,"alumni","forum","media","weather"]
+        let images = ["resources","media","weather"]
         var barImages = [UIImage]()
         for image in images{
             barImages.append(UIImage(named: image+".png")!)
@@ -55,18 +66,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
             self.getAuthStatus(checkIC: true, segueName: "showResources")
         }
         self.bar.actionForIndex[1] = {
-            self.performSegue(withIdentifier: "showGame", sender: self)
-        }
-        self.bar.actionForIndex[2] = {
-            self.performSegue(withIdentifier: "showAlumni", sender: self)
-        }
-        self.bar.actionForIndex[3] = {
-            self.performSegue(withIdentifier: "showForum", sender: self)
-        }
-        self.bar.actionForIndex[4] = {
             self.performSegue(withIdentifier: "showMedia", sender: self)
         }
-        self.bar.actionForIndex[5] = {
+        self.bar.actionForIndex[2] = {
             self.performSegue(withIdentifier: "showWeather", sender: self)
         }
         //self.bar.actionForIndex.removeValue(forKey: 2)
@@ -100,9 +102,10 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         self.removeFile(filename: "", path: "temp")
         let rightButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.settings))
         rightButton.icon(from: .FontAwesome, code: "cog", ofSize: 20)
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.navigationItem.rightBarButtonItems = [rightButton]
         let leftButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(self.menu))
         leftButton.icon(from: .FontAwesome, code: "users", ofSize: 20)
+        
         self.navigationItem.leftBarButtonItem = leftButton
         
         let edgePan = UISwipeGestureRecognizer(target: self, action: #selector(gestureMenu))
@@ -115,6 +118,28 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         
     }
 
+    @objc func gotoCard() {
+        //self.performSegue(withIdentifier: "showCard", sender: self)
+        if let token = token {
+            card = UIAlertController(title: "出门证（" + chnName + "）", message: "\n\n", preferredStyle: .alert)
+            let barcode = UIImageView(image: Barcode.fromString(string: name + (token.currentPassword!)))
+            barcode.frame = CGRect(x: 10, y: 50, w: 250, h: 50)
+            barcode.contentMode = .scaleAspectFit
+            barcode.tag = 123
+            card.view.addSubview(barcode)
+            let done = UIAlertAction(title: "完成", style: .default, handler: nil)
+            card.addAction(done)
+            self.present(card, animated: true)
+            self.updateCode()
+        }
+    }
+    
+    func updateCode(){
+        (card.view.viewWithTag(123) as! UIImageView).image = Barcode.fromString(string: name + (token!.currentPassword!))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.updateCode()
+        }
+    }
     @objc func refresh() {
         loadNews()
         debugPrint("refresh")
@@ -127,7 +152,7 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         self.refreshControl!.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
-        self.bar.itemBackgroundColor = (navigationController?.navigationBar.barTintColor)!
+        //self.bar.itemBackgroundColor = (navigationController?.navigationBar.barTintColor)!
         self.navigationItem.title = "南外人"
         if let url = (UIApplication.shared.delegate as! AppDelegate).url {
             (UIApplication.shared.delegate as! AppDelegate).url = nil
@@ -325,14 +350,16 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
                     self.requestUsername()
                     //self.loadNews()
                     self.requestReview()
+                    self.getTokenData()
                 }
                 break
             default:
-                SCLAlertView().showNotice("No Internet", subTitle: "Some functions are limited.")
+                self.getTokenData()
+                //SCLAlertView().showNotice("No Internet", subTitle: "Some functions are limited.")
                 break
             }
-            
         })
+        
     }
     func requestUsername(){
         let headers: HTTPHeaders = [
@@ -432,17 +459,8 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         case "forum":
             self.performSegue(withIdentifier: "showForum", sender: in_url)
             break
-        case "ic":
-            self.performSegue(withIdentifier: "showIC", sender: in_url)
-            break
-        case "media","live","video":
-            self.performSegue(withIdentifier: "showMedia", sender: self)
-            break
         case "weather":
             self.performSegue(withIdentifier: "showWeather", sender: self)
-            break
-        case "game":
-            self.performSegue(withIdentifier: "showGame", sender: in_url)
             break
         default:
             if let url = realurl{
@@ -898,6 +916,64 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func getTokenData(){
+        if let secretString = UserDefaults.standard.string(forKey: "secretString"), let name = UserDefaults.standard.string(forKey: "name"), let chnName = UserDefaults.standard.string(forKey: "chnName"){
+            self.secretString = secretString
+            self.name = name
+            self.chnName = chnName
+            self.token = self.getToken()
+        }
+        let headers: HTTPHeaders = [
+            "Cookie" : "token=" + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request("https://api.nfls.io/ic/card", headers: headers).responseJSON { response in
+            switch(response.result){
+            case .success(let response):
+                let json = response as! [String:AnyObject]
+                if(json["code"] as? Int == 200){
+                    let data = (response as! [String:AnyObject])["info"]! as! [String:String]
+                    self.secretString = data["code"]!
+                    self.name = data["identifier"]!
+                    self.chnName = data["name"]!
+                    UserDefaults.standard.set(self.secretString, forKey: "secretString")
+                    UserDefaults.standard.set(self.name, forKey: "name")
+                    UserDefaults.standard.set(self.chnName, forKey: "chnName")
+                    self.token = self.getToken()
+                }else{
+                    UserDefaults.standard.removeObject(forKey: "secretString")
+                    UserDefaults.standard.removeObject(forKey: "name")
+                    UserDefaults.standard.removeObject(forKey: "chnName")
+                }
+            default:
+                break
+            }
+            
+        }
+    }
+    
+    func getToken() -> Token? {
+        guard let secretData = MF_Base32Codec.data(fromBase32String: secretString),
+            !secretData.isEmpty else {
+                print("Invalid secret")
+                return nil
+        }
+        guard let generator = Generator(
+            factor: .timer(period: 30),
+            secret: secretData,
+            algorithm: .sha512,
+            digits: 8) else {
+                print("Invalid generator parameters")
+                return nil
+        }
+        let token = Token(name: name, issuer: issuer, generator: generator)
+        if (token != nil){
+            let card = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(gotoCard))
+            card.icon(from: .FontAwesome, code: "ticket", ofSize: 20)
+            self.navigationItem.rightBarButtonItems!.append(card)
+        }
+        return token
     }
     
 }

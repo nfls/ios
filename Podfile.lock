@@ -41,7 +41,6 @@ PODS:
   - Moya/Core (10.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
-  - ObjectivePGP (0.9.5)
   - ObjectMapper (3.1.0)
   - OneTimePassword (3.0):
     - Base32 (~> 1.1.2)
@@ -96,7 +95,6 @@ DEPENDENCIES:
   - Kingfisher
   - MGSwipeTableCell
   - Moya
-  - ObjectivePGP
   - ObjectMapper
   - OneTimePassword
   - Permission/Camera
@@ -155,7 +153,6 @@ SPEC CHECKSUMS:
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
-  ObjectivePGP: b76eb4b961b4a2c12bc34adcee08ae1e081b3431
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
   Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
@@ -176,6 +173,6 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 5eeb7deae8aab90f30ff013a27b4af0275c5eb46
+PODFILE CHECKSUM: 74ee2551640d60ff748a535cf575386dd03e2107
 
 COCOAPODS: 1.4.0.beta.1
