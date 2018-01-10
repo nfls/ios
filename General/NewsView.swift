@@ -121,9 +121,9 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
     @objc func gotoCard() {
         //self.performSegue(withIdentifier: "showCard", sender: self)
         if let token = token {
-            card = UIAlertController(title: "出门证（" + chnName + "）", message: "\n\n", preferredStyle: .alert)
+            card = UIAlertController(title: "出门证 - " + chnName + "", message: "\n\n\n", preferredStyle: .alert)
             let barcode = UIImageView(image: Barcode.fromString(string: name + (token.currentPassword!)))
-            barcode.frame = CGRect(x: 10, y: 50, w: 250, h: 50)
+            barcode.frame = CGRect(x: 0, y: 50, w: 270, h: 60)
             barcode.contentMode = .scaleAspectFit
             barcode.tag = 123
             card.view.addSubview(barcode)
@@ -969,9 +969,12 @@ class NewsViewController:UITableViewController,FrostedSidebarDelegate{
         }
         let token = Token(name: name, issuer: issuer, generator: generator)
         if (token != nil){
+            
             let card = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(gotoCard))
             card.icon(from: .FontAwesome, code: "ticket", ofSize: 20)
-            self.navigationItem.rightBarButtonItems!.append(card)
+            if(self.navigationItem.rightBarButtonItems!.count < 2){
+                self.navigationItem.rightBarButtonItems!.append(card)
+            }
         }
         return token
     }
