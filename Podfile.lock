@@ -1,0 +1,181 @@
+PODS:
+  - Alamofire (4.6.0)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
+  - AliyunOSSiOS (2.8.1)
+  - AMScrollingNavbar (4.2.1)
+  - Base32 (1.1.2)
+  - Cache (4.1.2)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Charts (3.0.5):
+    - Charts/Core (= 3.0.5)
+  - Charts/Core (3.0.5)
+  - ChromaColorPicker (1.7)
+  - CountryPickerSwift (1.4.5)
+  - CryptoSwift (0.8.1)
+  - DeviceKit (1.4.0)
+  - EFQRCode (4.2.1)
+  - expanding-collection (1.1.1)
+  - EZSwiftExtensions (1.11)
+  - FileKit (5.0.0)
+  - FoldingCell (3.0.0)
+  - FrostedSidebar (1.0.0)
+  - FSCalendar (2.7.9)
+  - GCDWebServer (3.4.2):
+    - GCDWebServer/Core (= 3.4.2)
+  - GCDWebServer/Core (3.4.2)
+  - GlidingCollection (1.1.0)
+  - Hero (1.0.1)
+  - IGListKit (3.1.1):
+    - IGListKit/Default (= 3.1.1)
+  - IGListKit/Default (3.1.1):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.1.1)
+  - InAppSettingsKit (2.9)
+  - IQKeyboardManagerSwift (5.0.7)
+  - Kingfisher (4.6.1)
+  - MGSwipeTableCell (1.6.6)
+  - Moya (10.0.1):
+    - Moya/Core (= 10.0.1)
+  - Moya/Core (10.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - ObjectMapper (3.1.0)
+  - OneTimePassword (3.0):
+    - Base32 (~> 1.1.2)
+  - Permission/Camera (2.0.4):
+    - Permission/Core
+  - Permission/Core (2.0.4)
+  - Permission/Notifications (2.0.4):
+    - Permission/Core
+  - Permission/Photos (2.0.4):
+    - Permission/Core
+  - RAMAnimatedTabBarController (3.0.1)
+  - Result (3.2.4)
+  - SCLAlertView (0.7.0)
+  - SnapKit (4.0.0)
+  - SSZipArchive (2.1.1)
+  - SwiftIconFont (2.7.3)
+  - SwiftyJSON (4.0.0)
+  - SwiftyMarkdown (0.5.1)
+  - SwiftyStoreKit (0.12.1)
+  - SwiftyUserDefaults (3.0.0)
+  - TextFieldEffects (1.4.0)
+  - Timepiece (1.3.1)
+  - Toucan (1.0.0)
+  - UIColor-Pantone (1.0)
+  - UITableView+FDTemplateLayoutCell (1.6)
+  - UMengAnalytics-NO-IDFA (4.2.5)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireNetworkActivityIndicator
+  - AliyunOSSiOS
+  - AMScrollingNavbar
+  - Cache
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - Charts
+  - ChromaColorPicker
+  - CountryPickerSwift
+  - CryptoSwift
+  - DeviceKit
+  - EFQRCode
+  - expanding-collection
+  - EZSwiftExtensions
+  - FileKit
+  - FoldingCell
+  - FrostedSidebar
+  - FSCalendar
+  - GCDWebServer
+  - GlidingCollection
+  - Hero
+  - IGListKit
+  - InAppSettingsKit
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MGSwipeTableCell
+  - Moya
+  - ObjectMapper
+  - OneTimePassword
+  - Permission/Camera
+  - Permission/Notifications
+  - Permission/Photos
+  - RAMAnimatedTabBarController
+  - SCLAlertView
+  - SnapKit
+  - SSZipArchive
+  - SwiftIconFont
+  - SwiftyJSON
+  - SwiftyMarkdown
+  - SwiftyStoreKit
+  - SwiftyUserDefaults
+  - TextFieldEffects
+  - Timepiece
+  - Toucan
+  - UIColor-Pantone
+  - UITableView+FDTemplateLayoutCell
+  - UMengAnalytics-NO-IDFA
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  AliyunOSSiOS: eca171fdced8592c9d1b744cb724b56824601a6e
+  AMScrollingNavbar: 84d998ea885809d61bbc886053115ec3f2a64f41
+  Base32: 163c298644d184e89ca4e00a996bad6bf5166390
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
+  ChromaColorPicker: 33efa67b17cca51dd253689d18b83ac7e05642c2
+  CountryPickerSwift: be2cf0dc41887d8b16ea65ae263a70adb0cc953a
+  CryptoSwift: 4b07d5b508c1eb67bfa314a727b705f8048a85de
+  DeviceKit: fa74d97499660e88081718b16688e19217595dba
+  EFQRCode: f3fd67049faa07adb575495c05d72a34e407a940
+  expanding-collection: b345a597665ed4a133d6e3f9b79e0f6091d7114c
+  EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
+  FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
+  FoldingCell: 55e9fcac546acc2c8f110f210af892aa90032160
+  FrostedSidebar: f86c6843cabd5d456f9234afb6eea22a7512532f
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  GCDWebServer: 8d67ee9f634b4bb91eb4b8aee440318a5fc6debd
+  GlidingCollection: 2194165075fa7230027049238c9ed724453557e6
+  Hero: cee286821578e170d8c0c9c9cda7897357401112
+  IGListKit: cb97f405ae43e59fe1da74271e19427ec20d3c07
+  InAppSettingsKit: fc3dea21846535b76b8289b119dbfdbe2505b2b2
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  MGSwipeTableCell: c3bc6e261e7bc06c112909fe3fb8205de286082c
+  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
+  Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
+  RAMAnimatedTabBarController: 78bafa7a1c1b162f0d4a86a936c0d1ee4a06ffcc
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+  SwiftIconFont: ebd8ee931a1e7072b61a87aec53f3a0786ef7f2b
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
+  SwiftyStoreKit: 98742f9d7941ecaca0f248de0f49c5ecf585bc95
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
+  Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
+  Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
+  UIColor-Pantone: b6e5ab4c032f704f75453cfc0e8a07f68624cff5
+  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+
+PODFILE CHECKSUM: eaf159df1c9087d65122a49728cdb85feb926fac
+
+COCOAPODS: 1.3.1

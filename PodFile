@@ -54,4 +54,5 @@ target 'NFLSers-iOS' do
   pod 'RAMAnimatedTabBarController'
   pod 'expanding-collection'
   pod 'GlidingCollection'
+  pod 'AliyunOSSiOS'
 end
