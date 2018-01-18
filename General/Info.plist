@@ -60,9 +60,9 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>请允许访问您的相册以上传你选择的照片</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>Main_v2</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

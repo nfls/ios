@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isLaunched = false
     var isOn = true
     var time = Date().timeIntervalSince1970
-    var theme = ThemeManager()
+    //var theme = ThemeManager()
     var url:String? = nil
     var isUnityRunning = false
     var application: UIApplication?
@@ -114,23 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        if(isLaunched){
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                if let nav = currentController as? UINavigationController{
-                    while(nav.viewControllers.count > 1){
-                        nav.popViewController(animated: true)
-                    }
-                    let home = (nav.viewControllers[0] as! NewsViewController)
-                    home.internalHandler(url: userActivity.webpageURL!.absoluteString)
-                }
-            }
-        }else{
-            url = userActivity.webpageURL?.absoluteString
-        }
         return true
     }
 }

@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		65108DBE20101DFA00A5267E /* Main_v2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65108DBD20101DFA00A5267E /* Main_v2.storyboard */; };
 		65108DC220101EC800A5267E /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC120101EC800A5267E /* loginView.swift */; };
+		65108DC5201022C800A5267E /* oauth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC4201022C800A5267E /* oauth2.swift */; };
+		65108DC82010249A00A5267E /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC72010249A00A5267E /* viewController.swift */; };
 		65AD5EC91F8D9681008EE0F8 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65AD5EC81F8D9681008EE0F8 /* InAppSettings.bundle */; };
 		65B14AF21FF73832003BFA89 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F7A0031EF2393E0047CF5D /* StoreKit.framework */; };
 		65B14AF31FF73837003BFA89 /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B14AF41FF73837003BFA89 /* Pods_NFLSers_iOS.framework */; };
 		65B14AF51FF74308003BFA89 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6534D1341F5BFCFB0032F6EE /* MapKit.framework */; };
 		65B14AF61FF74308003BFA89 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DA1F92EF7600A5893A /* PassKit.framework */; };
 		65B14AF71FF7430F003BFA89 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DC1F92EF8A00A5893A /* NetworkExtension.framework */; };
+		65D3A75B2010267000582257 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D3A75A2010267000582257 /* Images.xcassets */; };
+		65D3A75D2010268800582257 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D3A75C2010268800582257 /* Launch Screen.storyboard */; };
+		65D3A7602010275A00582257 /* resourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3A75F2010275A00582257 /* resourcesView.swift */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +41,8 @@
 		3DAA76830CDB8F22556DA367 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFLSers_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65108DBD20101DFA00A5267E /* Main_v2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_v2.storyboard; sourceTree = "<group>"; };
 		65108DC120101EC800A5267E /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		65108DC4201022C800A5267E /* oauth2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oauth2.swift; sourceTree = "<group>"; };
+		65108DC72010249A00A5267E /* viewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
 		6527CF0D1FE7DFA7007B6B57 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6527CF0F1FE7DFAE007B6B57 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6527CF111FE7DFB4007B6B57 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -107,6 +114,9 @@
 		65BFCD801FE7EE2000821ABD /* Timepiece.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Timepiece.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BFCD811FE7EE2000821ABD /* Toucan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toucan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BFCD821FE7EE2000821ABD /* UITableView_FDTemplateLayoutCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UITableView_FDTemplateLayoutCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D3A75A2010267000582257 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "NFLSers-iOS/Images.xcassets"; sourceTree = "<group>"; };
+		65D3A75C2010268800582257 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		65D3A75F2010275A00582257 /* resourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resourcesView.swift; sourceTree = "<group>"; };
 		65E9B46A1FAEBEC100A0DFFE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		65E9B46C1FAEBEC100A0DFFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D7A2715C54228A1E0867E88 /* Pods-NFLSers-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOSUITests/Pods-NFLSers-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +231,9 @@
 		65108DBA20101D9100A5267E /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				65D3A75E2010274B00582257 /* resources */,
+				65108DC62010247B00A5267E /* abstract */,
+				65108DC3201022B800A5267E /* network */,
 				65108DC020101EA900A5267E /* user */,
 				65108DBC20101DE400A5267E /* ui */,
 			);
@@ -230,6 +243,7 @@
 		65108DBC20101DE400A5267E /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				65D3A75C2010268800582257 /* Launch Screen.storyboard */,
 				65108DBD20101DFA00A5267E /* Main_v2.storyboard */,
 			);
 			path = ui;
@@ -243,6 +257,22 @@
 			path = user;
 			sourceTree = "<group>";
 		};
+		65108DC3201022B800A5267E /* network */ = {
+			isa = PBXGroup;
+			children = (
+				65108DC4201022C800A5267E /* oauth2.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		65108DC62010247B00A5267E /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				65108DC72010249A00A5267E /* viewController.swift */,
+			);
+			path = abstract;
+			sourceTree = "<group>";
+		};
 		6536C1EB1FB422B400709035 /* ContentExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +281,14 @@
 				6536C1F11FB422B400709035 /* Info.plist */,
 			);
 			path = ContentExtension;
+			sourceTree = "<group>";
+		};
+		65D3A75E2010274B00582257 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				65D3A75F2010275A00582257 /* resourcesView.swift */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		65E9B4691FAEBEC100A0DFFE /* pushNotification */ = {
@@ -265,6 +303,7 @@
 		D6AE17351E44D51600E66B4B = {
 			isa = PBXGroup;
 			children = (
+				65D3A75A2010267000582257 /* Images.xcassets */,
 				D6F7A0001EF2390F0047CF5D /* NFLSers-iOS.entitlements */,
 				65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */,
 				D6AE17401E44D51600E66B4B /* General */,
@@ -384,7 +423,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D3A75B2010267000582257 /* Images.xcassets in Resources */,
 				65AD5EC91F8D9681008EE0F8 /* InAppSettings.bundle in Resources */,
+				65D3A75D2010268800582257 /* Launch Screen.storyboard in Resources */,
 				65108DBE20101DFA00A5267E /* Main_v2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +486,7 @@
 				"${BUILT_PRODUCTS_DIR}/UIColor-Pantone/UIColor_Pantone.framework",
 				"${BUILT_PRODUCTS_DIR}/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework",
 				"${BUILT_PRODUCTS_DIR}/expanding-collection/expanding_collection.framework",
+				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -494,6 +536,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Pantone.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITableView_FDTemplateLayoutCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/expanding_collection.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -540,8 +583,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D3A7602010275A00582257 /* resourcesView.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				65108DC220101EC800A5267E /* loginView.swift in Sources */,
+				65108DC82010249A00A5267E /* viewController.swift in Sources */,
+				65108DC5201022C800A5267E /* oauth2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,7 +718,6 @@
 			baseConfigurationReference = A2526E0D245DE063ABFF3ED6 /* Pods-NFLSers-iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -721,7 +766,6 @@
 			baseConfigurationReference = C934853FCE18675532175937 /* Pods-NFLSers-iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";

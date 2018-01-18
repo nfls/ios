@@ -55,4 +55,5 @@ target 'NFLSers-iOS' do
   pod 'expanding-collection'
   pod 'GlidingCollection'
   pod 'AliyunOSSiOS'
+  pod 'p2.OAuth2'
 end
