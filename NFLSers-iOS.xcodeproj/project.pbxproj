@@ -56,6 +56,7 @@
 		65B14AF51FF74308003BFA89 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6534D1341F5BFCFB0032F6EE /* MapKit.framework */; };
 		65B14AF61FF74308003BFA89 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DA1F92EF7600A5893A /* PassKit.framework */; };
 		65B14AF71FF7430F003BFA89 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655968DC1F92EF8A00A5893A /* NetworkExtension.framework */; };
+		65B14AF91FF748C4003BFA89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B14AF81FF748C4003BFA89 /* CardView.swift */; };
 		65B69ACB1FA8D7E0001F472B /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B69ACA1FA8D7E0001F472B /* PickerView.swift */; };
 		65DEE0FB1F645C61007735CD /* MediaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FA1F645C61007735CD /* MediaRootView.swift */; };
 		65DEE0FD1F645C97007735CD /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEE0FC1F645C97007735CD /* VideoListView.swift */; };
@@ -155,6 +156,7 @@
 		65AD5ECA1F8D9ADE008EE0F8 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		65B14AF01FF73583003BFA89 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NFLSers_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B14AF41FF73837003BFA89 /* Pods_NFLSers_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NFLSers_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B14AF81FF748C4003BFA89 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		65B69ACA1FA8D7E0001F472B /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		65BFCD301FE7EE0A00821ABD /* UIColor_Pantone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIColor_Pantone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BFCD311FE7EE1400821ABD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -324,6 +326,7 @@
 				658D13FF1FCEF67F0051BF6D /* LocationTransform.swift */,
 				655B6DA21FD835DB001E80C9 /* Extension.swift */,
 				6546E68A1EF84A29008CBBCA /* Main.storyboard */,
+				65B14AF81FF748C4003BFA89 /* CardView.swift */,
 				D6AE174A1E44D51600E66B4B /* LaunchScreen.storyboard */,
 			);
 			name = Essential;
@@ -647,8 +650,6 @@
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework",
-				"${PODS_ROOT}/ObjectivePGP/Frameworks/ios/ObjectivePGP.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/OneTimePassword/OneTimePassword.framework",
 				"${BUILT_PRODUCTS_DIR}/Permission/Permission.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
@@ -697,8 +698,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectivePGP.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/ObjectivePGP.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneTimePassword.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Permission.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
@@ -777,6 +776,7 @@
 				6534B61C1F0E51F700607BDA /* WeatherView.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				655D9C9B1F59190D008FA8D8 /* ClubInfoView.swift in Sources */,
+				65B14AF91FF748C4003BFA89 /* CardView.swift in Sources */,
 				65234A871F47297700E084A2 /* OpenSourceLicenseView.swift in Sources */,
 				655B6DA31FD835DB001E80C9 /* Extension.swift in Sources */,
 				659C2AF21FC3A81D00E7984D /* ICNewsView.swift in Sources */,
