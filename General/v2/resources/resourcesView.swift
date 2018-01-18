@@ -49,6 +49,7 @@ class ResourcesViewController:UITableViewController {
         if(path.count == 1){
             self.navigationItem.rightBarButtonItem = nil
         }
+        path.removeLast()
         refresh()
     }
     func loadData(next:String? = nil){
