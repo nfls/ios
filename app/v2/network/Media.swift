@@ -56,7 +56,7 @@ extension MediaRequest:TargetType {
     }
     
     var headers: [String : String]? {
-        return nil
+        return [:]
     }
 }
 

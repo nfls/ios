@@ -18,7 +18,9 @@ class LoginViewController:AbstractViewController {
     @IBAction func login(_ sender: Any) {
         oauth2.login(username: username.text!, password: password.text!) { success in
             if(success){
-                self.performSegue(withIdentifier: "show", sender: self)
+                let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier :"temp")
+                self.navigationController!.pushViewController(viewController, animated: true)
             }else{
                 SCLAlertView().showError("错误", subTitle: "用户名或密码不正确")
             }

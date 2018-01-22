@@ -56,17 +56,16 @@
                     <connections>
                         <outlet property="password" destination="D0K-KH-kGj" id="FXF-Id-mci"/>
                         <outlet property="username" destination="xsN-Sz-GJ9" id="dbI-Ww-wuX"/>
-                        <segue destination="dF0-A0-YaU" kind="show" identifier="show" action="showDetailViewController:sender:" id="FgH-p6-oHG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzc-ti-l6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="716" y="-128.18590704647679"/>
         </scene>
-        <!--Temp View Controller-->
+        <!--nflsers-->
         <scene sceneID="M9E-E1-b9R">
             <objects>
-                <viewController id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="temp" title="nflsers" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRh-zj-EQH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
