@@ -14,6 +14,8 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
+  	xcclean(workspace: "NFLSers-iOS.xcworkspace", scheme: "NFLSers-iOS")
+  	changelog_from_git_commits
     increment_build_number(xcodeproj: "NFLSers-iOS.xcodeproj")
     build_app(workspace: "NFLSers-iOS.xcworkspace", scheme: "NFLSers-iOS")
     upload_to_testflight
