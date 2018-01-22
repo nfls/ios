@@ -78,7 +78,9 @@ target 'NFLSers-iOS' do
               config.build_settings['SWIFT_VERSION'] = '3.2'
           end
       end
-      target.build_configurations['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
+      end
     end
   end
 end
