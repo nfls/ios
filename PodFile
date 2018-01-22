@@ -55,4 +55,29 @@ target 'NFLSers-iOS' do
   pod 'GlidingCollection'
   pod 'AliyunOSSiOS'
   pod 'p2.OAuth2'
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'EZSwiftExtensions'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+        if target.name == 'SCLAlertView'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+        if target.name == 'OneTimePassword'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+        if target.name == 'Permission'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+    end
+  end
 end

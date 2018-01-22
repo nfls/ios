@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -64,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="716" y="-128.18590704647679"/>
         </scene>
-        <!--View Controller-->
+        <!--Temp View Controller-->
         <scene sceneID="M9E-E1-b9R">
             <objects>
-                <viewController id="dF0-A0-YaU" sceneMemberID="viewController">
+                <viewController id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRh-zj-EQH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,7 +76,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="资源下载"/>
                                 <connections>
-                                    <segue destination="gLD-4C-ogZ" kind="show" id="8my-Ph-Fwd"/>
+                                    <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="aMF-sx-Qd3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HO2-2F-h4T">
@@ -85,10 +84,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="相册"/>
                                 <connections>
-                                    <segue destination="fqO-x4-rqt" kind="show" action="showDetailViewController:sender:" id="mpL-u9-b1e">
-                                        <segue key="commit" inheritsFrom="parent" id="CmG-WZ-h7l"/>
-                                        <segue key="preview" inheritsFrom="commit" id="ZMh-PX-OmW"/>
-                                    </segue>
+                                    <action selector="gallery:" destination="dF0-A0-YaU" eventType="touchDown" id="FsB-gC-FTm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="这个ui反正是要重新弄的， 我就先瞎搞搞了" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsL-Sy-83C">
@@ -110,7 +106,7 @@
         <!--往卷-->
         <scene sceneID="NoM-rO-w37">
             <objects>
-                <tableViewController title="往卷" id="gLD-4C-ogZ" customClass="ResourcesViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="download" title="往卷" id="gLD-4C-ogZ" customClass="ResourcesViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pf9-Ag-ifj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,10 +131,25 @@
             </objects>
             <point key="canvasLocation" x="2380" y="-128"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="yMv-SX-3Rd">
+            <objects>
+                <viewController id="Zh4-if-9il" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mDU-PJ-IIp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="RZF-WY-vWt"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxh-IR-PA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1564" y="607"/>
+        </scene>
         <!--Gallery List Controller-->
         <scene sceneID="U3c-jg-z94">
             <objects>
-                <viewController id="fqO-x4-rqt" customClass="GalleryListController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gallery" id="fqO-x4-rqt" customClass="GalleryListController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUI-sQ-rhe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzT-3X-2gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="609"/>
+            <point key="canvasLocation" x="2380" y="600"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="330-vB-2TS">
@@ -169,7 +180,4 @@
             <point key="canvasLocation" x="-42" y="-128"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="mpL-u9-b1e"/>
-    </inferredMetricsTieBreakers>
 </document>

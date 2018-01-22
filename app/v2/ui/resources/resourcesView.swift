@@ -28,19 +28,21 @@ class ResourcesViewController:UITableViewController {
         var time:Date?
         var size:Int?
     }
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         stringFormater.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
         let req = oauth2.oauth2.request(forURL: URL(string: "https://api-v3.nfls.io/oauth/downloadSts")!)
         
         self.present(self.load, animated: true)
+        //print("yes")
         oauth2.oauth2.perform(request: req) { (response) in
             DispatchQueue.main.async {
                 self.load.message = "正在与阿里云进行通讯"
             }
             let data = try! JSON(data: response.data!)
             let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
-            self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyunc·s.com", credentialProvider: provider)
+            self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
             self.loadData()
         }
         path.append("past-papers")
