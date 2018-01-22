@@ -226,6 +226,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */;
 			buildPhases = (
+				6555DC9220161ED000FA8B13 /* ShellScript */,
 				E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */,
 				D6AE173A1E44D51600E66B4B /* Sources */,
 				D6AE173B1E44D51600E66B4B /* Frameworks */,
@@ -423,6 +424,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6555DC9220161ED000FA8B13 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
 		6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -601,7 +615,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -651,7 +665,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NFLSers-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = K2P3533G4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
