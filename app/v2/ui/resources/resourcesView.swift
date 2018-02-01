@@ -32,7 +32,7 @@ class ResourcesViewController:UITableViewController {
         super.viewWillAppear(animated)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         stringFormater.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
-        let req = oauth2.oauth2.request(forURL: URL(string: "https://api-v3.nfls.io/oauth/downloadSts")!)
+        let req = oauth2.oauth2.request(forURL: URL(string: "https://nfls.io/oauth/downloadSts")!)
         
         self.present(self.load, animated: true)
         //print("yes")
@@ -45,7 +45,7 @@ class ResourcesViewController:UITableViewController {
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
             self.loadData()
         }
-        path.append("past-papers")
+        //path.append("past-papers")
         self.navigationItem.hidesBackButton = true
     }
     @objc func goBack(){
@@ -57,11 +57,11 @@ class ResourcesViewController:UITableViewController {
     }
     func loadData(next:String? = nil){
         let bucket = OSSGetBucketRequest()
-        bucket.bucketName = "nflsio"
+        bucket.bucketName = "nfls-papers"
         bucket.maxKeys = 1000
         bucket.marker = next ?? ""
         //bucket.delimiter = "/"
-        bucket.prefix = "past-papers"
+        bucket.prefix = ""
         let task = client.getBucket(bucket)
         task.continue({ rsp -> Any? in
             if let t = (rsp.result as? OSSGetBucketResult) {
@@ -83,6 +83,8 @@ class ResourcesViewController:UITableViewController {
                     self.refresh()
                     self.load.dismiss(animated: true, completion: nil)
                 }
+            } else {
+                print(rsp.error)
             }
             return task
         })
