@@ -16,7 +16,12 @@ class TempViewController:AbstractViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-   
+    @IBAction func logout(_ sender: Any) {
+        oauth2.oauth2.forgetTokens()
+        oauth2.oauth2.forgetClient()
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func gallery(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"gallery")

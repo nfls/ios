@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import FileKit
 import QuickLook
+import SCLAlertView
 
 class ResourcesViewController:UITableViewController {
     let oauth2 = NFLSOAuth2()
@@ -40,10 +41,21 @@ class ResourcesViewController:UITableViewController {
             DispatchQueue.main.async {
                 self.load.message = "正在与阿里云进行通讯"
             }
-            let data = try! JSON(data: response.data!)
-            let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
-            self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
-            self.loadData()
+            do {
+                
+                let data = try JSON(data: response.data!)
+                DispatchQueue.main.async {
+                    let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
+                    self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
+                    self.loadData()
+                }
+                
+            } catch _ {
+                DispatchQueue.main.async {
+                    SCLAlertView().showError("错误", subTitle: "账户未实名")
+                }
+            }
+            
         }
         //path.append("past-papers")
         self.navigationItem.hidesBackButton = true

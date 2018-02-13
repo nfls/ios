@@ -14,6 +14,9 @@ class LoginViewController:AbstractViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.login(UIButton())
+    }
     
     @IBAction func login(_ sender: Any) {
         oauth2.login(username: username.text!, password: password.text!) { success in
