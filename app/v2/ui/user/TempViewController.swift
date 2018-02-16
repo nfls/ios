@@ -10,15 +10,20 @@ import Foundation
 
 class TempViewController:AbstractViewController {
     
+    override func viewDidLoad() {
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
+    }
+    
     @IBAction func download(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"download")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    @IBAction func logout(_ sender: Any) {
+    @objc func logout() {
         oauth2.oauth2.forgetTokens()
-        oauth2.oauth2.forgetClient()
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         navigationController?.popViewController(animated: true)
     }
     

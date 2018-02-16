@@ -11,10 +11,14 @@
 		65108DC220101EC800A5267E /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC120101EC800A5267E /* loginView.swift */; };
 		65108DC5201022C800A5267E /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC4201022C800A5267E /* OAuth2.swift */; };
 		65108DC82010249A00A5267E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65108DC72010249A00A5267E /* ViewController.swift */; };
+		651548382032B19A0088BD20 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651548372032B19A0088BD20 /* StoreKit.framework */; };
+		6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651548392032B19C0088BD20 /* PassKit.framework */; };
+		6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6515483B2032B19D0088BD20 /* NetworkExtension.framework */; };
 		65185B3420143813009FDF76 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3320143813009FDF76 /* Reponse.swift */; };
 		65185B362014399B009FDF76 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B352014399B009FDF76 /* Media.swift */; };
 		65185B3920143F69009FDF76 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3820143F69009FDF76 /* Provider.swift */; };
 		65185B3C20144863009FDF76 /* GalleryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3B20144863009FDF76 /* GalleryListController.swift */; };
+		6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6532E7BD2037588100A23706 /* MapKit.framework */; };
 		6551E4902013A66300B81E45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6551E48F2013A66200B81E45 /* Info.plist */; };
 		6551E4932013A73000B81E45 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4922013A73000B81E45 /* User.swift */; };
 		6551E4952013A9B800B81E45 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4942013A9B800B81E45 /* Photo.swift */; };
@@ -48,10 +52,14 @@
 		65108DC120101EC800A5267E /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		65108DC4201022C800A5267E /* OAuth2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2.swift; sourceTree = "<group>"; };
 		65108DC72010249A00A5267E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		651548372032B19A0088BD20 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		651548392032B19C0088BD20 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		6515483B2032B19D0088BD20 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		65185B3320143813009FDF76 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		65185B352014399B009FDF76 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		65185B3820143F69009FDF76 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		65185B3B20144863009FDF76 /* GalleryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryListController.swift; sourceTree = "<group>"; };
+		6532E7BD2037588100A23706 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6551E48F2013A66200B81E45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = app/Info.plist; sourceTree = "<group>"; };
 		6551E4922013A73000B81E45 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6551E4942013A9B800B81E45 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -76,7 +84,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */,
+				6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */,
+				6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */,
 				974A27702225B29A9C47EC17 /* Pods_NFLSers_iOS.framework in Frameworks */,
+				651548382032B19A0088BD20 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +202,10 @@
 		B5699415F5610DDDCD428288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6532E7BD2037588100A23706 /* MapKit.framework */,
+				6515483B2032B19D0088BD20 /* NetworkExtension.framework */,
+				651548392032B19C0088BD20 /* PassKit.framework */,
+				651548372032B19A0088BD20 /* StoreKit.framework */,
 				2FDC7CB56AB30DBC06422C04 /* Pods_NFLSers_iOS.framework */,
 			);
 			name = Frameworks;
@@ -264,6 +280,9 @@
 								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {

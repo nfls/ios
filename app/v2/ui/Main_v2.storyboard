@@ -11,16 +11,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--南外人Lite-->
         <scene sceneID="590-9T-acl">
             <objects>
-                <viewController id="MAC-v6-KWc" customClass="LoginViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="南外人Lite" id="MAC-v6-KWc" customClass="LoginViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ic-DU-cc7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FJL-X1-LET">
-                                <rect key="frame" x="56" y="268.5" width="262.5" height="130"/>
+                                <rect key="frame" x="56" y="218.5" width="262.5" height="230"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-Sz-GJ9">
                                         <rect key="frame" x="0.0" y="0.0" width="262.5" height="30"/>
@@ -41,6 +41,20 @@
                                             <action selector="login:" destination="MAC-v6-KWc" eventType="touchDown" id="QUP-Uz-w4z"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dl-91-y8D">
+                                        <rect key="frame" x="0.0" y="150" width="262.5" height="30"/>
+                                        <state key="normal" title="注册"/>
+                                        <connections>
+                                            <action selector="register:" destination="MAC-v6-KWc" eventType="touchDown" id="Gk9-qD-Z20"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-yy-h1Z">
+                                        <rect key="frame" x="0.0" y="200" width="262.5" height="30"/>
+                                        <state key="normal" title="忘记密码"/>
+                                        <connections>
+                                            <action selector="reset:" destination="MAC-v6-KWc" eventType="touchDown" id="Lk8-bb-pph"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXX-6c-7Ac">
@@ -50,13 +64,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="请用自己的账户登录 在用之前先去网页版完成实名认证" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ap0-5J-fcA">
-                                <rect key="frame" x="16" y="71" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -76,49 +83,43 @@
             </objects>
             <point key="canvasLocation" x="716" y="-128.18590704647679"/>
         </scene>
-        <!--nflsers-->
+        <!--南外人Lite-->
         <scene sceneID="M9E-E1-b9R">
             <objects>
-                <viewController storyboardIdentifier="temp" title="nflsers" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="temp" title="南外人Lite" wantsFullScreenLayout="YES" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRh-zj-EQH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcK-3z-Dhq">
-                                <rect key="frame" x="67" y="305" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="资源下载"/>
-                                <connections>
-                                    <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="aMF-sx-Qd3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HO2-2F-h4T">
-                                <rect key="frame" x="56" y="204" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="相册（我就做了网络层）"/>
-                                <connections>
-                                    <action selector="gallery:" destination="dF0-A0-YaU" eventType="touchDown" id="FsB-gC-FTm"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="这个ui反正是要重新弄的， 我就先瞎搞搞了" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsL-Sy-83C">
-                                <rect key="frame" x="16" y="76" width="204" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbA-Ih-ayB">
-                                <rect key="frame" x="83" y="360" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="退出"/>
-                                <connections>
-                                    <action selector="logout:" destination="dF0-A0-YaU" eventType="touchDown" id="ToT-oC-HHl"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z85-qO-MIy">
+                                <rect key="frame" x="78.5" y="193" width="218" height="281"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Yd-RhD">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="251"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                        <state key="normal" title="📝"/>
+                                        <connections>
+                                            <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="LWe-j9-VYN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YF-P2-AhS">
+                                        <rect key="frame" x="0.0" y="251" width="218" height="30"/>
+                                        <state key="normal" title="往卷下载"/>
+                                        <connections>
+                                            <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="mjK-JN-jlf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerX" secondItem="aRh-zj-EQH" secondAttribute="centerX" id="emR-tQ-4tF"/>
+                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerY" secondItem="aRh-zj-EQH" secondAttribute="centerY" id="srX-PH-tE6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QGg-0I-hel"/>
                     </view>
+                    <toolbarItems/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-Jh-dnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,6 +13,7 @@ import SwiftyJSON
 import FileKit
 import QuickLook
 import SCLAlertView
+import SafariServices
 
 class ResourcesViewController:UITableViewController {
     let oauth2 = NFLSOAuth2()
@@ -29,14 +30,15 @@ class ResourcesViewController:UITableViewController {
         var time:Date?
         var size:Int?
     }
+    override func viewDidLoad() {
+        definesPresentationContext = true
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         stringFormater.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
-        let req = oauth2.oauth2.request(forURL: URL(string: "https://nfls.io/oauth/downloadSts")!)
-        
+        let req = oauth2.oauth2.request(forURL: URL(string: "https://nfls.io/school/pastpaper/token")!)
         self.present(self.load, animated: true)
-        //print("yes")
         oauth2.oauth2.perform(request: req) { (response) in
             DispatchQueue.main.async {
                 self.load.message = "正在与阿里云进行通讯"
@@ -44,24 +46,39 @@ class ResourcesViewController:UITableViewController {
             do {
                 
                 let data = try JSON(data: response.data!)
+                dump(data)
+                let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
+                self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
                 DispatchQueue.main.async {
-                    let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
-                    self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
+                    
                     self.loadData()
                 }
                 
             } catch _ {
                 DispatchQueue.main.async {
-                    SCLAlertView().showError("错误", subTitle: "账户未实名")
+                    let error = SCLAlertView()
+                    error.addButton("实名认证", action: {
+                        DispatchQueue.main.async {
+                            self.load.dismiss(animated: true, completion: {
+                                let safari = SFSafariViewController(url: URL(string : "https://nfls.io/#/alumni/auth")!)
+                                self.present(safari,animated: true)
+                            })
+                        }
+                        
+                    })
+                    let responder = error.showError("错误", subTitle: "账户未完成实名认证！",closeButtonTitle: "关闭")
+                    responder.setDismissBlock {
+                        self.load.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
             
         }
         //path.append("past-papers")
-        self.navigationItem.hidesBackButton = true
+        //self.navigationItem.hidesBackButton = true
     }
     @objc func goBack(){
-        if(path.count == 2){
+        if(path.count == 1){
             self.navigationItem.rightBarButtonItem = nil
         }
         path.removeLast()
