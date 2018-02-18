@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.10</string>
 	<key>CFBundleVersion</key>
-	<string>121</string>
+	<string>130</string>
 	<key>CodeNameCN</key>
 	<string>決別</string>
 	<key>CodeNameEN</key>
@@ -69,8 +69,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -14,6 +14,7 @@ import FileKit
 import QuickLook
 import SCLAlertView
 import SafariServices
+import Cache
 
 class ResourcesViewController:UITableViewController {
     let oauth2 = NFLSOAuth2()
@@ -25,6 +26,8 @@ class ResourcesViewController:UITableViewController {
     var client = OSSClient()
     let previewController = PreviewController()
     let load = UIAlertController(title: "加载中", message: "请稍后", preferredStyle: .alert)
+    let progress = UIAlertProgressViewController(title: "", message: "", preferredStyle: .alert)
+    
     struct File{
         var filename:String
         var time:Date?
@@ -32,6 +35,7 @@ class ResourcesViewController:UITableViewController {
     }
     override func viewDidLoad() {
         definesPresentationContext = true
+        self.progress.addProgressView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -108,6 +112,7 @@ class ResourcesViewController:UITableViewController {
                             self.data.append(File(filename: filename, time: nil, size: nil))
                         }
                     }
+                    
                     self.loadData(next: (t.contents!.last as! [String:Any])["Key"] as? String)
                 }else{
                     self.refresh()
@@ -187,27 +192,33 @@ class ResourcesViewController:UITableViewController {
     }
     func download(_ filename:String){
         let request = OSSGetObjectRequest()
-        request.bucketName = "nflsio"
+        request.bucketName = "nfls-papers"
         request.objectKey = getCurrentPath() + filename
         let path = Path.userDocuments + Path(getCurrentPath())
         if isExist(filename){
             self.preview(filename)
         }else{
+            self.present(self.progress, animated: true)
+            self.progress.title = "下载中"
+            self.progress.message = filename
+            self.progress.setPercentage(0.0)
             do{
                 try path.createDirectory(withIntermediateDirectories: true)
-                //request.downloadToFileURL = path.url.isFileURL
                 request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in
-                    print(totalBytesWritten)
+                    self.progress.setPercentage(Float(bytesWritten/bytesExpectedToWritten))
                 }
                 //print(request.downloadToFileURL)
                 let task = client.getObject(request)
                 task.continue({ task -> Any? in
                     if let error = task.error {
+                        self.progress.dismiss(animated: true, completion: nil)
                         print(error)
                     }else{
                         let result = task.result as! OSSGetObjectResult
                         try? result.downloadedData |> DataFile(path: path + filename)
-                        self.preview(filename)
+                        self.progress.dismiss(animated: true, completion: {
+                            self.preview(filename)
+                        })
                     }
                     return task
                 })

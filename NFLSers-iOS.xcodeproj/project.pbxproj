@@ -15,6 +15,7 @@
 		651548382032B19A0088BD20 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651548372032B19A0088BD20 /* StoreKit.framework */; };
 		6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651548392032B19C0088BD20 /* PassKit.framework */; };
 		6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6515483B2032B19D0088BD20 /* NetworkExtension.framework */; };
+		6517AF6C2039D01E0020CFF8 /* UIAlertProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517AF6B2039D01E0020CFF8 /* UIAlertProgressViewController.swift */; };
 		65185B3420143813009FDF76 /* Reponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3320143813009FDF76 /* Reponse.swift */; };
 		65185B362014399B009FDF76 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B352014399B009FDF76 /* Media.swift */; };
 		65185B3920143F69009FDF76 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3820143F69009FDF76 /* Provider.swift */; };
@@ -56,6 +57,7 @@
 		651548372032B19A0088BD20 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		651548392032B19C0088BD20 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		6515483B2032B19D0088BD20 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		6517AF6B2039D01E0020CFF8 /* UIAlertProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertProgressViewController.swift; sourceTree = "<group>"; };
 		65185B3320143813009FDF76 /* Reponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reponse.swift; sourceTree = "<group>"; };
 		65185B352014399B009FDF76 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		65185B3820143F69009FDF76 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		65108DBA20101D9100A5267E /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				6517AF6A2039CFE90020CFF8 /* extension */,
 				650D5DEF20393DD40058E44D /* resources */,
 				6551E4912013A72400B81E45 /* model */,
 				65108DC3201022B800A5267E /* network */,
@@ -160,6 +163,14 @@
 				65185B3820143F69009FDF76 /* Provider.swift */,
 			);
 			path = abstract;
+			sourceTree = "<group>";
+		};
+		6517AF6A2039CFE90020CFF8 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				6517AF6B2039D01E0020CFF8 /* UIAlertProgressViewController.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 		65185B2C20143577009FDF76 /* media */ = {
@@ -456,6 +467,7 @@
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				6551E4972013AB8700B81E45 /* Constant.swift in Sources */,
 				6551E49B2013AE4100B81E45 /* Comment.swift in Sources */,
+				6517AF6C2039D01E0020CFF8 /* UIAlertProgressViewController.swift in Sources */,
 				65185B3C20144863009FDF76 /* GalleryListController.swift in Sources */,
 				6551E4932013A73000B81E45 /* User.swift in Sources */,
 				65185B3920143F69009FDF76 /* Provider.swift in Sources */,
