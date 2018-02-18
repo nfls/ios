@@ -13,6 +13,7 @@ import UserNotifications
 import Alamofire
 import AlamofireNetworkActivityIndicator
 import QuickLook
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.completionDelay = 0.5
-        
         UMAnalyticsConfig.sharedInstance().appKey = "59c733a1c895764c1100001c"
         UMAnalyticsConfig.sharedInstance().channelId = "App Store"
         MobClick.start(withConfigure: UMAnalyticsConfig.sharedInstance())
@@ -44,9 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.setEncryptEnabled(true)
         MobClick.setLogEnabled(true)
         
-        if let options = launchOptions{
-            dump(options[UIApplicationLaunchOptionsKey.remoteNotification])
+        do {
+            Client.shared = try Client(dsn: "https://9fa2ea4914b74970a52473d16f103cfb:3e98c44859b04ef48139ccd4bf8f6b80@sentry.io/282832")
+            try Client.shared?.startCrashHandler()
+        } catch let error {
+            print("\(error)")
+            // Wrong DSN or KSCrash not installed
         }
+
         return true
     }
 

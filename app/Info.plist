@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.10</string>
 	<key>CFBundleVersion</key>
-	<string>104</string>
+	<string>121</string>
 	<key>CodeNameCN</key>
 	<string>決別</string>
 	<key>CodeNameEN</key>
@@ -63,8 +63,6 @@
 	<string>请允许我们将照片保存到您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>请允许访问您的相册以上传你选择的照片</string>
-	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_v2</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -88,6 +86,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

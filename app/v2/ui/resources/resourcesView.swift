@@ -44,16 +44,17 @@ class ResourcesViewController:UITableViewController {
                 self.load.message = "正在与阿里云进行通讯"
             }
             do {
-                
-                let data = try JSON(data: response.data!)
-                dump(data)
-                let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
-                self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
-                DispatchQueue.main.async {
-                    
-                    self.loadData()
+                if let rsp = response.data{
+                    let data = try JSON(data: rsp)
+                    let provider = OSSStsTokenCredentialProvider(accessKeyId: data["data"]["AccessKeyId"].string!, secretKeyId: data["data"]["AccessKeySecret"].string!, securityToken: data["data"]["SecurityToken"].string!)
+                    self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: provider)
+                    DispatchQueue.main.async {
+                        
+                        self.loadData()
+                    }
+                } else {
+                    self.navigationController?.popViewController(animated: true)
                 }
-                
             } catch _ {
                 DispatchQueue.main.async {
                     let error = SCLAlertView()

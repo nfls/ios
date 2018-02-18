@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,19 +93,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z85-qO-MIy">
-                                <rect key="frame" x="78.5" y="193" width="218" height="281"/>
+                                <rect key="frame" x="37.5" y="160" width="300" height="347"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Yd-RhD">
-                                        <rect key="frame" x="0.0" y="0.0" width="218" height="251"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="200"/>
-                                        <state key="normal" title="📝"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Yd-RhD">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="An6-Yd-RhD" secondAttribute="height" multiplier="1:1" id="Xog-Y1-cUE"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="qm7-ht-JNn"/>
+                                        </constraints>
+                                        <state key="normal" title="📝" image="resources.png"/>
                                         <connections>
                                             <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="LWe-j9-VYN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YF-P2-AhS">
-                                        <rect key="frame" x="0.0" y="251" width="218" height="30"/>
-                                        <state key="normal" title="往卷下载"/>
+                                        <rect key="frame" x="0.0" y="300" width="300" height="47"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="30"/>
+                                        <state key="normal" title="Past Papers">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="mjK-JN-jlf"/>
                                         </connections>
@@ -114,6 +121,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="An6-Yd-RhD" firstAttribute="width" relation="lessThanOrEqual" secondItem="aRh-zj-EQH" secondAttribute="width" multiplier="0.5" priority="500" id="0nG-5o-dZd"/>
                             <constraint firstItem="Z85-qO-MIy" firstAttribute="centerX" secondItem="aRh-zj-EQH" secondAttribute="centerX" id="emR-tQ-4tF"/>
                             <constraint firstItem="Z85-qO-MIy" firstAttribute="centerY" secondItem="aRh-zj-EQH" secondAttribute="centerY" id="srX-PH-tE6"/>
                         </constraints>
@@ -191,6 +199,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HT0-cF-iBv">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -202,4 +211,7 @@
             <point key="canvasLocation" x="-42" y="-128"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="resources.png" width="2492" height="2376"/>
+    </resources>
 </document>
