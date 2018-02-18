@@ -17,6 +17,8 @@ class UIAlertProgressViewController:UIAlertController{
         view.addSubview(progessView)
     }
     func setPercentage(_ percentage:Float){
-        progessView.setProgress(percentage, animated: true)
+        DispatchQueue.main.async {
+            self.progessView.setProgress(percentage, animated: true)
+        }
     }
 }

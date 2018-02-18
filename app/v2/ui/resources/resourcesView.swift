@@ -205,7 +205,8 @@ class ResourcesViewController:UITableViewController {
             do{
                 try path.createDirectory(withIntermediateDirectories: true)
                 request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in
-                    self.progress.setPercentage(Float(bytesWritten/bytesExpectedToWritten))
+                    print([bytesWritten,totalBytesWritten,bytesExpectedToWritten])
+                    self.progress.setPercentage(Float(Double(totalBytesWritten)/Double(bytesExpectedToWritten)))
                 }
                 //print(request.downloadToFileURL)
                 let task = client.getObject(request)
