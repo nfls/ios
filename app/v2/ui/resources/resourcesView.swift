@@ -28,6 +28,11 @@ class ResourcesViewController:UITableViewController {
     let load = UIAlertController(title: "加载中", message: "请稍后", preferredStyle: .alert)
     let progress = UIAlertProgressViewController(title: "", message: "", preferredStyle: .alert)
     
+    var cacheMode = false
+    
+    var multiMode = false
+    
+    
     struct File{
         var filename:String
         var time:Date?
@@ -36,6 +41,19 @@ class ResourcesViewController:UITableViewController {
     override func viewDidLoad() {
         definesPresentationContext = true
         self.progress.addProgressView()
+        let cacheButton = UIBarButtonItem(title: "缓存", style: .plain, target: self, action: #selector(cache))
+        let multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
+        self.navigationItem.rightBarButtonItems = [cacheButton,multiButton]
+    }
+    
+    @objc func multi(sender:UIButton){
+        multiMode = !multiMode
+        sender.isSelected = multiMode
+    }
+    
+    @objc func cache(sender:UIButton){
+        cacheMode = !cacheMode
+        sender.isSelected = cacheMode
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

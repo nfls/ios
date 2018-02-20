@@ -11,7 +11,7 @@ import Foundation
 class Constant {
     static let photoBaseUrl = "https://nflsio.oss-cn-shanghai.aliyuncs.com/"
     class func getApiUrl() -> String {
-        return "https://api-v3.nfls.io/"
+        return "https://nfls.io/"
     }
     class func getUrl(string:String?) -> URL? {
         if let string = string {
