@@ -106,7 +106,18 @@ class ResourcesViewController:UITableViewController {
     }
     
     @objc func bulk(sender:UIButton){
-        dump(tableView.indexPathForSelectedRow)
+        for indexPath in tableView.indexPathsForSelectedRows! {
+            var row = indexPath.row
+            if(path.count > 0){
+                row -= 1
+            }
+            var toDownload = [File]()
+            toDownload.append(contentsOf: data.filter({ file -> Bool in
+                //dump(getCurrentPath() + currentData[row].filename)
+                return file.filename.starts(with: getCurrentPath() + currentData[row].filename)
+            }))
+            //dump(toDownload)
+        }
     }
     
     @objc func bulkView(sender:UIButton){
@@ -318,7 +329,9 @@ class ResourcesViewController:UITableViewController {
         var cell = tableView.cellForRow(at: indexPath)!
         if(path.count > 0){
             if(row == 0){
-                self.goBack()
+                if(!self.multiMode){
+                    self.goBack()
+                }
                 return
             }
             row -= 1
