@@ -27,10 +27,14 @@ class ResourcesViewController:UITableViewController {
     let previewController = PreviewController()
     let load = UIAlertController(title: "加载中", message: "请稍后", preferredStyle: .alert)
     let progress = UIAlertProgressViewController(title: "", message: "", preferredStyle: .alert)
-    
     var cacheMode = false
-    
     var multiMode = false
+    
+    var cacheButton = UIBarButtonItem()
+    var multiButton = UIBarButtonItem()
+    var downloadButton = UIBarButtonItem()
+    var previewButton = UIBarButtonItem()
+    var deleteButton = UIBarButtonItem()
     
     
     struct File{
@@ -39,24 +43,14 @@ class ResourcesViewController:UITableViewController {
         var size:Int?
     }
     override func viewDidLoad() {
+        cacheButton = UIBarButtonItem(title: "缓存", style: .plain, target: self, action: #selector(cache))
+        multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
+        downloadButton = UIBarButtonItem(title: "下载", style: .plain, target: self, action: #selector(bulk))
+        previewButton = UIBarButtonItem(title: "预览", style: .plain, target: self, action: #selector(bulkView))
+        deleteButton = UIBarButtonItem(title: "删除", style: .plain, target: self, action: #selector(bulkDelete))
+        
         definesPresentationContext = true
         self.progress.addProgressView()
-        let cacheButton = UIBarButtonItem(title: "缓存", style: .plain, target: self, action: #selector(cache))
-        let multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
-        self.navigationItem.rightBarButtonItems = [cacheButton,multiButton]
-    }
-    
-    @objc func multi(sender:UIButton){
-        multiMode = !multiMode
-        sender.isSelected = multiMode
-    }
-    
-    @objc func cache(sender:UIButton){
-        cacheMode = !cacheMode
-        sender.isSelected = cacheMode
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         stringFormater.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
         let req = oauth2.oauth2.request(forURL: URL(string: "https://nfls.io/school/pastpaper/token")!)
@@ -97,13 +91,36 @@ class ResourcesViewController:UITableViewController {
             }
             
         }
-        //path.append("past-papers")
-        //self.navigationItem.hidesBackButton = true
+    }
+    
+    @objc func multi(sender:UIButton){
+        multiMode = !multiMode
+        self.refresh()
+        sender.isSelected = multiMode
+    }
+    
+    @objc func cache(sender:UIButton){
+        cacheMode = !cacheMode
+        self.refresh()
+        sender.isSelected = cacheMode
+    }
+    
+    @objc func bulk(sender:UIButton){
+        dump(tableView.indexPathForSelectedRow)
+    }
+    
+    @objc func bulkView(sender:UIButton){
+        
+    }
+    
+    @objc func bulkDelete(sender:UIButton){
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refresh()
     }
     @objc func goBack(){
-        if(path.count == 1){
-            self.navigationItem.rightBarButtonItem = nil
-        }
         path.removeLast()
         refresh()
     }
@@ -112,7 +129,6 @@ class ResourcesViewController:UITableViewController {
         bucket.bucketName = "nfls-papers"
         bucket.maxKeys = 1000
         bucket.marker = next ?? ""
-        //bucket.delimiter = "/"
         bucket.prefix = ""
         let task = client.getBucket(bucket)
         task.continue({ rsp -> Any? in
@@ -144,8 +160,6 @@ class ResourcesViewController:UITableViewController {
     }
     func goToFolder(file:String){
         path.append(file)
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack))
-        self.navigationItem.rightBarButtonItem = button
         refresh()
     }
     func filterData(){
@@ -156,12 +170,23 @@ class ResourcesViewController:UITableViewController {
             } else {
                 return (filename.components(separatedBy: "/").count == path.count + 1) && filename.hasPrefix(getCurrentPath())
             }
-            
         }).map{
             return File(filename: $0.filename.replacingOccurrences(of: getCurrentPath(), with: "").replacingOccurrences(of: "/", with: ""), time: $0.time, size: $0.size)
         }
     }
     func refresh(){
+        
+        if(multiMode){
+            if(!cacheMode){
+                self.navigationItem.rightBarButtonItems = [multiButton,cacheButton,downloadButton,previewButton]
+            }else{
+                self.navigationItem.rightBarButtonItems = [multiButton,cacheButton,deleteButton,previewButton]
+            }
+            self.title = nil
+        } else {
+            self.navigationItem.rightBarButtonItems = [multiButton,cacheButton]
+            self.title = "往卷"
+        }
         DispatchQueue.main.async {
             self.filterData()
             self.tableView.reloadData()
@@ -254,33 +279,64 @@ class ResourcesViewController:UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "aa")
-        cell.textLabel!.text = currentData[indexPath.row].filename
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "aa")// TODO: Reuse
+        var row = indexPath.row
+        if(path.count > 0){
+            if(row == 0){
+                cell.textLabel?.text = "返回上级"
+                return cell
+            }
+            row -= 1
+        }
+        cell.textLabel!.text = currentData[row].filename
         var text = ""
-        if let size = currentData[indexPath.row].size {
+        if let size = currentData[row].size {
             if size != 0{
-                if(isExist(currentData[indexPath.row].filename)){
+                if(isExist(currentData[row].filename)){
                     text += "已缓存 - "
                 }else{
                     text += calculateSize(bytes: size) + " - "
                 }
             }
         }
-        if let time = currentData[indexPath.row].time {
+        if let time = currentData[row].time {
             text += stringFormater.string(from: time)
         }
         cell.detailTextLabel!.text = text
         return cell
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentData.count
+        if(path.count > 0){
+            return currentData.count + 1
+        } else {
+            return currentData.count
+        }
+        
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(currentData[indexPath.row].size == 0){
-            goToFolder(file: currentData[indexPath.row].filename)
-        }else{
-            download(currentData[indexPath.row].filename)
+        var row = indexPath.row
+        var cell = tableView.cellForRow(at: indexPath)!
+        if(path.count > 0){
+            if(row == 0){
+                self.goBack()
+                return
+            }
+            row -= 1
         }
+        if(self.multiMode){
+            if (cell.accessoryType == .checkmark) {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .checkmark
+            }
+        }else{
+            if(currentData[indexPath.row].size == 0){
+                goToFolder(file: currentData[indexPath.row].filename)
+            }else{
+                download(currentData[indexPath.row].filename)
+            }
+        }
+        
     }
 }
 class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPreviewControllerDataSource{
