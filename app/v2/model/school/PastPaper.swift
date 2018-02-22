@@ -15,10 +15,10 @@ class StsToken:ImmutableMappable {
     let securityToken:String
     let expiration:Date
     required init(map: Map) throws {
-        self.accessKeyId = map.value("AccessKeyId")
-        self.accessKeyToken = map.value("AccessKeyToken")
-        self.securityToken = map.value("SecurityToken")
-        let exp:String = map.value("Expiration")
+        self.accessKeyId = try map.value("AccessKeyId")
+        self.accessKeyToken = try map.value("AccessKeyToken")
+        self.securityToken = try map.value("SecurityToken")
+        let exp:String = try map.value("Expiration")
         self.expiration = ISO8601DateFormatter().date(from: exp)
     }
 }
