@@ -37,6 +37,7 @@ PODS:
   - Sentry/Core (3.11.1)
   - Sentry/KSCrash (3.11.1):
     - KSCrash/Core (~> 1.15.12)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
   - SwiftyMarkdown (0.5.1)
   - Toucan (1.0.0)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SDWebImage
   - Sentry
+  - SVProgressHUD
   - SwiftyJSON
   - SwiftyMarkdown
   - Toucan
@@ -78,11 +80,12 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   Sentry: 1d8e03901b062b0317174efefa7f97a4ab16fa9a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: d8c1d49f08edc1466700ca97e4d643f9c45030b0
+PODFILE CHECKSUM: 47eba24dd5f4aef09d6986a165212484e1e6d1db
 
 COCOAPODS: 1.3.1

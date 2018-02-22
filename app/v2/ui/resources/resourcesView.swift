@@ -252,10 +252,6 @@ class ResourcesViewController:UITableViewController {
         if isExist(filename){
             self.preview(filename)
         }else{
-            self.present(self.progress, animated: true)
-            self.progress.title = "下载中"
-            self.progress.message = filename
-            self.progress.setPercentage(0.0)
             do{
                 try path.createDirectory(withIntermediateDirectories: true)
                 request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in

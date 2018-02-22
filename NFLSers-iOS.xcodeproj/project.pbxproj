@@ -20,6 +20,8 @@
 		65185B362014399B009FDF76 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B352014399B009FDF76 /* Media.swift */; };
 		65185B3920143F69009FDF76 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3820143F69009FDF76 /* Provider.swift */; };
 		65185B3C20144863009FDF76 /* GalleryListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65185B3B20144863009FDF76 /* GalleryListController.swift */; };
+		651FCF74203E7E420089173E /* PastPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF73203E7E420089173E /* PastPaper.swift */; };
+		651FCF76203E7F660089173E /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF75203E7F660089173E /* School.swift */; };
 		6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6532E7BD2037588100A23706 /* MapKit.framework */; };
 		6551E4902013A66300B81E45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6551E48F2013A66200B81E45 /* Info.plist */; };
 		6551E4932013A73000B81E45 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4922013A73000B81E45 /* User.swift */; };
@@ -62,6 +64,8 @@
 		65185B352014399B009FDF76 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		65185B3820143F69009FDF76 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		65185B3B20144863009FDF76 /* GalleryListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryListController.swift; sourceTree = "<group>"; };
+		651FCF73203E7E420089173E /* PastPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastPaper.swift; sourceTree = "<group>"; };
+		651FCF75203E7F660089173E /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		6532E7BD2037588100A23706 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6551E48F2013A66200B81E45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = app/Info.plist; sourceTree = "<group>"; };
 		6551E4922013A73000B81E45 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			children = (
 				65108DC4201022C800A5267E /* OAuth2.swift */,
 				65185B352014399B009FDF76 /* Media.swift */,
+				651FCF75203E7F660089173E /* School.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -183,12 +188,12 @@
 			path = media;
 			sourceTree = "<group>";
 		};
-		65185B2D2014358B009FDF76 /* basic */ = {
+		65185B2D2014358B009FDF76 /* user */ = {
 			isa = PBXGroup;
 			children = (
 				6551E4922013A73000B81E45 /* User.swift */,
 			);
-			path = basic;
+			path = user;
 			sourceTree = "<group>";
 		};
 		65185B3A20144854009FDF76 /* media */ = {
@@ -199,11 +204,20 @@
 			path = media;
 			sourceTree = "<group>";
 		};
+		651FCF72203E7E220089173E /* school */ = {
+			isa = PBXGroup;
+			children = (
+				651FCF73203E7E420089173E /* PastPaper.swift */,
+			);
+			path = school;
+			sourceTree = "<group>";
+		};
 		6551E4912013A72400B81E45 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				651FCF72203E7E220089173E /* school */,
 				65108DC62010247B00A5267E /* abstract */,
-				65185B2D2014358B009FDF76 /* basic */,
+				65185B2D2014358B009FDF76 /* user */,
 				65185B2C20143577009FDF76 /* media */,
 				6551E4962013AB8700B81E45 /* Constant.swift */,
 			);
@@ -373,6 +387,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
@@ -395,6 +410,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
@@ -466,6 +482,7 @@
 				65D3A7602010275A00582257 /* resourcesView.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				6551E4972013AB8700B81E45 /* Constant.swift in Sources */,
+				651FCF74203E7E420089173E /* PastPaper.swift in Sources */,
 				6551E49B2013AE4100B81E45 /* Comment.swift in Sources */,
 				6517AF6C2039D01E0020CFF8 /* UIAlertProgressViewController.swift in Sources */,
 				65185B3C20144863009FDF76 /* GalleryListController.swift in Sources */,
@@ -474,6 +491,7 @@
 				659003B02015BA0E0077876F /* TempViewController.swift in Sources */,
 				65108DC220101EC800A5267E /* loginView.swift in Sources */,
 				65108DC82010249A00A5267E /* ViewController.swift in Sources */,
+				651FCF76203E7F660089173E /* School.swift in Sources */,
 				65108DC5201022C800A5267E /* OAuth2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
