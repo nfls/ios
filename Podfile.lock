@@ -41,6 +41,7 @@ PODS:
   - SwiftyJSON (4.0.0)
   - SwiftyMarkdown (0.5.1)
   - SwiftyUserDefaults (3.0.1)
+  - Timepiece (1.3.1)
   - Toucan (1.0.0)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - SwiftyJSON
   - SwiftyMarkdown
   - SwiftyUserDefaults
+  - Timepiece
   - Toucan
   - UMengAnalytics-NO-IDFA
 
@@ -86,9 +88,10 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
+  Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: c267360237a9851c3027113072610860ac05ef6b
+PODFILE CHECKSUM: 3cbe62c9853ba5dc8a2a584621de171066a21caa
 
 COCOAPODS: 1.3.1

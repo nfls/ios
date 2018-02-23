@@ -26,6 +26,7 @@ target 'NFLSers-iOS' do
   pod 'Sentry'
   pod 'SVProgressHUD'
   pod 'SwiftyUserDefaults'
+  pod "Timepiece"
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
