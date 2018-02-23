@@ -217,33 +217,7 @@ class ResourcesViewController:UITableViewController {
         let path = Path.userDocuments + Path(getCurrentPath())
         return (path + filename).exists
     }
-    func calculateSize(bytes:Int) -> String {
-        var size = Double(bytes) / 1024
-        var count = 0
-        repeat{
-            size = size / 1024.0
-            count += 1
-        } while (size > 1024)
-        var quantity:String = ""
-        switch(count){
-        case 0:
-            quantity = "KB"
-            break
-        case 1:
-            quantity = "MB"
-            break
-        case 2:
-            quantity = "GB"
-            break
-        default:
-            break
-        }
-        if(size<0){
-            print("Unexpected:")
-            print(bytes)
-        }
-        return String(format: "%.1f", size) + " " + quantity
-    }
+    
     func download(_ filename:String){
         let request = OSSGetObjectRequest()
         request.bucketName = "nfls-papers"

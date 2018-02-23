@@ -76,9 +76,7 @@ class MediaProvider:AbstractProvider<MediaRequest> {
                 completion(nil)
                 break
             }
-           
         }
-        
     }
 }
 

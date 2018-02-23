@@ -40,6 +40,7 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
   - SwiftyMarkdown (0.5.1)
+  - SwiftyUserDefaults (3.0.1)
   - Toucan (1.0.0)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftyJSON
   - SwiftyMarkdown
+  - SwiftyUserDefaults
   - Toucan
   - UMengAnalytics-NO-IDFA
 
@@ -83,9 +85,10 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
+  SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 47eba24dd5f4aef09d6986a165212484e1e6d1db
+PODFILE CHECKSUM: c267360237a9851c3027113072610860ac05ef6b
 
 COCOAPODS: 1.3.1

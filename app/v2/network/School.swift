@@ -9,6 +9,7 @@
 import Foundation
 import Moya
 import SwiftyJSON
+import Cache
 
 enum SchoolRequest {
     case pastpaperToken()
@@ -65,5 +66,12 @@ extension SchoolRequest: TargetType {
     }
     
     
+}
+
+class SchoolProvider:AbstractProvider<SchoolRequest> {
+
+    func getPastPaperList(withPath:[String], completion: @escaping (_ result: [File]?, _ cached:Bool) -> Void){
+        
+    }
 }
 
