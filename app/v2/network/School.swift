@@ -70,8 +70,15 @@ extension SchoolRequest: TargetType {
 
 class SchoolProvider:AbstractProvider<SchoolRequest> {
 
-    func getPastPaperList(withPath:[String], completion: @escaping (_ result: [File]?, _ cached:Bool) -> Void){
-        
+    let files = [File]()
+    
+    public func getPastPaperList(withPath:[String], completion: @escaping (_ result: [File]?, _ cached:Bool) -> Void){
+    }
+    
+    private func loadClient(){
+        self.provider.request(.pastpaperToken()) { response in
+            
+        }
     }
 }
 

@@ -63,6 +63,7 @@ extension MediaRequest:TargetType {
 class MediaProvider:AbstractProvider<MediaRequest> {
     func getGalleryList(withPage page:Int, completion: @escaping (_ result: [Gallery]?) -> Void){
         self.provider.request(.galleryList(page: page)) { response in
+            
             switch response {
             case .success(let data):
                 do{
