@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import SwiftyJSON
 import Cache
+import AliyunOSSiOS
 
 enum SchoolRequest {
     case pastpaperToken()
@@ -67,10 +68,37 @@ extension SchoolRequest: TargetType {
 }
 
 class SchoolProvider:Network<SchoolRequest> {
-    var token:StsToken? = nil
-    private func getToken(){
+    var files = [File]()
+    fileprivate func getClient(completion: @escaping (_ client:[File]) -> Void){
         self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
-            self.token = response
+            let token = response
+            let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
+            self.requestList(OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider))
+        })
+    }
+    
+    fileprivate func requestList(_ client:OSSClient, next:String? = nil){
+        let bucket = OSSGetBucketRequest()
+        bucket.bucketName = "nfls-papers"
+        bucket.maxKeys = 1000
+        bucket.marker = next ?? ""
+        bucket.prefix = ""
+        let task = client.getBucket(bucket)
+        task.continue({ rsp -> Any? in
+            if let t = (rsp.result as? OSSGetBucketResult) {
+                if let contents = t.contents {
+                    for object in contents{
+                        let data = object as! [String:Any]
+                        self.files.append(File(data))
+                    }
+                    self.requestList(client, next: (t.contents!.last as! [String:Any])["Key"] as? String)
+                }else{
+                    
+                }
+            } else {
+                print(rsp.error)
+            }
+            return task
         })
     }
 }

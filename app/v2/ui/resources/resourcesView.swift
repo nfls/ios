@@ -136,38 +136,7 @@ class ResourcesViewController:UITableViewController {
         refresh()
     }
     func loadData(next:String? = nil){
-        let bucket = OSSGetBucketRequest()
-        bucket.bucketName = "nfls-papers"
-        bucket.maxKeys = 1000
-        bucket.marker = next ?? ""
-        bucket.prefix = ""
-        let task = client.getBucket(bucket)
-        task.continue({ rsp -> Any? in
-            if let t = (rsp.result as? OSSGetBucketResult) {
-                if let contents = t.contents {
-                    for object in contents{
-                        let data = object as! [String:Any]
-                        let filename = data["Key"] as! String
-                        DispatchQueue.main.async {
-                            self.load.message = "正在加载文件列表：" + filename
-                        }
-                        if let date = data["LastModified"] as? String, let size = data["Size"] as? String {
-                            self.data.append(File(filename: filename, time: self.dateFormatter.date(from: date), size: Int(size)))
-                        }else{
-                            self.data.append(File(filename: filename, time: nil, size: nil))
-                        }
-                    }
-                    
-                    self.loadData(next: (t.contents!.last as! [String:Any])["Key"] as? String)
-                }else{
-                    self.refresh()
-                    self.load.dismiss(animated: true, completion: nil)
-                }
-            } else {
-                print(rsp.error)
-            }
-            return task
-        })
+        
     }
     func goToFolder(file:String){
         path.append(file)
