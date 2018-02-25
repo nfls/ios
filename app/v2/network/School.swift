@@ -68,16 +68,24 @@ extension SchoolRequest: TargetType {
 }
 
 class SchoolProvider:Network<SchoolRequest> {
-    var files = [File]()
-    fileprivate func getClient(completion: @escaping (_ client:[File]) -> Void){
+    fileprivate var files = [File]()
+    
+    public func getFileList(withPath path:[String],completion: @escaping (_ files:[File]) -> Void)
+    {
+        
+    }
+    
+    fileprivate func getClient(completion: @escaping (_ files:[File]) -> Void)
+    {
         self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
-            self.requestList(OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider))
+            self.requestList(OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider), next: nil, completion: completion)
         })
     }
     
-    fileprivate func requestList(_ client:OSSClient, next:String? = nil){
+    fileprivate func requestList(_ client:OSSClient, next:String? = nil, completion: @escaping (_ files:[File]) -> Void)
+    {
         let bucket = OSSGetBucketRequest()
         bucket.bucketName = "nfls-papers"
         bucket.maxKeys = 1000
@@ -91,9 +99,9 @@ class SchoolProvider:Network<SchoolRequest> {
                         let data = object as! [String:Any]
                         self.files.append(File(data))
                     }
-                    self.requestList(client, next: (t.contents!.last as! [String:Any])["Key"] as? String)
+                    self.requestList(client, next: (t.contents!.last as! [String:Any])["Key"] as? String, completion: completion)
                 }else{
-                    
+                    completion(self.files)
                 }
             } else {
                 print(rsp.error)
