@@ -10,9 +10,9 @@ import Foundation
 
 class GalleryListController:AbstractViewController {
     override func viewDidLoad() {
-        let provider = MediaProvider()
-        provider.getGalleryList(withPage: 1) { photos in
-            dump(photos)
-        }
+        //let provider = MediaProvider()
+        //provider.getGalleryList(withPage: 1) { photos in
+        //    dump(photos)
+       // }
     }
 }

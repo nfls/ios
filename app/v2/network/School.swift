@@ -64,21 +64,13 @@ extension SchoolRequest: TargetType {
     var headers: [String : String]? {
         return nil
     }
-    
-    
 }
 
-class SchoolProvider:AbstractProvider<SchoolRequest> {
-
-    let files = [File]()
-    
-    public func getPastPaperList(withPath:[String], completion: @escaping (_ result: [File]?, _ cached:Bool) -> Void){
-    }
-    
-    private func loadClient(){
-        self.provider.request(.pastpaperToken()) { response in
-            
-        }
+class SchoolProvider:Network<SchoolRequest> {
+    var token:StsToken? = nil
+    private func getToken(){
+        self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
+            self.token = response
+        })
     }
 }
-

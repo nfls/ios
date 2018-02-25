@@ -6,8 +6,9 @@
 //  Copyright © 2018 胡清阳. All rights reserved.
 //
 
-import Foundation
 import ObjectMapper
+import Foundation
+
 
 struct AbstractResponse<T:ImmutableMappable>:ImmutableMappable {
     init(map: Map) throws {
@@ -15,6 +16,5 @@ struct AbstractResponse<T:ImmutableMappable>:ImmutableMappable {
         self.data = try map.value("data")
     }
     let code:Int
-    let data:[Gallery]
-    
+    let data:T
 }

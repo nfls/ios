@@ -10,9 +10,12 @@ import Foundation
 
 class TempViewController:AbstractViewController {
     
+    let provider = SchoolProvider()
+    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
+        //self.provider.getToken()
     }
     
     @IBAction func download(_ sender: Any) {

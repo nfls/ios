@@ -276,7 +276,7 @@ class ResourcesViewController:UITableViewController {
                 if(isExist(currentData[row].filename)){
                     text += "已缓存 - "
                 }else{
-                    text += calculateSize(bytes: size) + " - "
+                    //rtext += calculateSize(bytes: size) + " - "
                 }
             }
         }

@@ -11,58 +11,47 @@ import Moya
 import SwiftyJSON
 import Cache
 import Result
+import ObjectMapper
 
-class Network<T:TargetType, O> {
-    let provider:MoyaProvider<T>
-    
-    init() {
-        provider = NFLSOAuth2().getRequestClosure(type: T.self)
-    }
-    
-    public func request(
-        target: T,
-        success successCallback: @escaping (JSON) -> Void,
-        error errorCallback: @escaping (_ statusCode: Int) -> Void,
-        failure failureCallback: @escaping (MoyaError) -> Void
-        ) {
-            provider.request(target) { (result) in
-            switch result {
-            case let .success(response):
-                do {
-                    //try response.filterSuccessfulStatusCodes()
-                    let json = try JSON(response.mapJSON())
-                    successCallback(json)
-                }
-                
-                catch let error {
-                    //errorCallback(error)
-                }
-                
-            case let .failure(error):
-                break
-                /*
-                if target.shouldRetry {
-                    retryWhenReachable(target, successCallback, errorCallback, failureCallback)
-                }
-                else {
-                    failureCallback(error)
-                }
-                */
-            }
-        }
-    }
-}
-
-class AbstractProvider<T:TargetType> {
+class Network<T:TargetType> {
     let provider:MoyaProvider<T>
     let cache:Storage
     
-    private func decode<I>(_ response: Result<Moya.Response, MoyaError>? = nil){
-    }
     init() {
         provider = NFLSOAuth2().getRequestClosure(type: T.self)
         let diskCache = DiskConfig(name: String(describing: T.self))
         let memoryCache = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
         cache = try! Storage(diskConfig: diskCache, memoryConfig: memoryCache)
+    }
+    
+    public func request<R:ImmutableMappable>(
+        target: T,
+        type: R.Type,
+        success successCallback: @escaping (R) -> Void,
+        error errorCallback: ((_ statusCode: Int) -> Void)? = nil,
+        failure failureCallback: (() -> Void)? = nil
+        ) {
+            provider.request(target) { (result) in
+            switch result {
+            case let .success(response):
+                do {
+                    if let json = JSON(response.data).dictionaryObject {
+                        let value = try AbstractResponse<R>(JSON: json)
+                        if(value.code / 100 == 2) {
+                            successCallback(value.data)
+                        } else {
+                            errorCallback?(value.code)
+                        }
+                    } else {
+                        failureCallback?()
+                    }
+                }
+                catch _ {
+                    failureCallback?()
+                }
+            case .failure(_):
+                failureCallback?()
+            }
+        }
     }
 }
