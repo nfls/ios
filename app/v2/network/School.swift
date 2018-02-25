@@ -69,10 +69,20 @@ extension SchoolRequest: TargetType {
 
 class SchoolProvider:Network<SchoolRequest> {
     fileprivate var files = [File]()
+    fileprivate var isLoaded = false
     
     public func getFileList(withPath path:[String],completion: @escaping (_ files:[File]) -> Void)
     {
-        
+        let prefix = (path as NSArray).componentsJoined(by: ",")
+        if let files = try? self.cache.object(ofType: [File].self, forKey: "school.pastpaper.list.cache") {
+            print("Cache found")
+            completion(files)
+        }
+        if !self.isLoaded {
+            print("Load from network")
+            self.isLoaded = true
+            self.getClient(completion: completion)
+        }
     }
     
     fileprivate func getClient(completion: @escaping (_ files:[File]) -> Void)
@@ -101,6 +111,7 @@ class SchoolProvider:Network<SchoolRequest> {
                     }
                     self.requestList(client, next: (t.contents!.last as! [String:Any])["Key"] as? String, completion: completion)
                 }else{
+                    try? self.cache.setObject(self.files, forKey: "school.pastpaper.list.cache")
                     completion(self.files)
                 }
             } else {
