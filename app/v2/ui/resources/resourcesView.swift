@@ -100,38 +100,7 @@ class ResourcesViewController:UITableViewController {
     }
     /*
     func download(_ filename:String){
-        let request = OSSGetObjectRequest()
-        request.bucketName = "nfls-papers"
-        request.objectKey = getCurrentPath() + filename
-        let path = Path.userDocuments + Path(getCurrentPath())
-        if isExist(filename){
-            self.preview(filename)
-        }else{
-            do{
-                try path.createDirectory(withIntermediateDirectories: true)
-                request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in
-                    print([bytesWritten,totalBytesWritten,bytesExpectedToWritten])
-                    self.progress.setPercentage(Float(Double(totalBytesWritten)/Double(bytesExpectedToWritten)))
-                }
-                //print(request.downloadToFileURL)
-                let task = client.getObject(request)
-                task.continue({ task -> Any? in
-                    if let error = task.error {
-                        self.progress.dismiss(animated: true, completion: nil)
-                        print(error)
-                    }else{
-                        let result = task.result as! OSSGetObjectResult
-                        try? result.downloadedData |> DataFile(path: path + filename)
-                        self.progress.dismiss(animated: true, completion: {
-                            self.preview(filename)
-                        })
-                    }
-                    return task
-                })
-            }catch let error {
-                print(error)
-            }
-        }
+        
     }
      */
     func preview(_ filename:String){
