@@ -31,6 +31,8 @@ class ResourcesViewController:UITableViewController {
     
     var files = [File]()
     
+    let previewController = PreviewController()
+    
     override func viewDidLoad() {
         self.cacheButton = UIBarButtonItem(title: "缓存", style: .plain, target: self, action: #selector(cache))
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
@@ -98,26 +100,39 @@ class ResourcesViewController:UITableViewController {
             self.tableView.reloadData()
         }
     }
-    /*
-    func download(_ filename:String){
+    
+    func download(_ file:File){
         
     }
-     */
-    func preview(_ filename:String){
-        /*
-        previewController.file = (Path.userDocuments + Path(getCurrentPath()) + filename).url
+    
+    func exist(_ file:File) -> Bool
+    {
+        if(file.size == 0) {
+            return false
+        }
+        let path = Path.userDocuments + file.name
+        return path.exists
+    }
+    
+    func preview(_ file:File)
+    {
+        previewController.file = (Path.userDocuments + file.name).url
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(self.previewController, animated: true)
         }
-         */
-        
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "aa")
         cell.textLabel?.text = files[indexPath.row].filename
-        cell.detailTextLabel?.text = String(describing: files[indexPath.row].size)
+        if(self.exist(files[indexPath.row])){
+            cell.detailTextLabel?.text = "已缓存"
+        } else {
+            cell.detailTextLabel?.text = String(describing: files[indexPath.row].size)
+        }
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         if(self.multiMode){
@@ -130,7 +145,18 @@ class ResourcesViewController:UITableViewController {
             if(files[indexPath.row].size == 0){
                 goToFolder(withFileName: files[indexPath.row].filename)
             }else{
-                //download([indexPath.row].filename)
+                if(self.exist(files[indexPath.row])){
+                    preview(files[indexPath.row])
+                } else {
+                    self.provider.getFile(file: files[indexPath.row], progress: { progress in
+                        print(progress)
+                    }) { status in
+                        if(status) {
+                            self.preview(self.files[indexPath.row])
+                        }
+                    }
+                }
+                
             }
         }
     }

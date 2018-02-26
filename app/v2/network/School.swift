@@ -92,6 +92,7 @@ class SchoolProvider:Network<SchoolRequest> {
         if let client = client {
             let request = OSSGetObjectRequest()
             request.bucketName = "nfls-papers"
+            request.objectKey = file.name
             request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in
                 progress(Double(totalBytesWritten)/Double(bytesExpectedToWritten))
             }
@@ -103,12 +104,14 @@ class SchoolProvider:Network<SchoolRequest> {
                     
                     let result = task.result as! OSSGetObjectResult
                     do {
-                        try? result.downloadedData |> DataFile(path: file.name)
+                        let path = Path.userDocuments + "download" + self.getPath()
+                        try path.createDirectory(withIntermediateDirectories: true)
+                        try result.downloadedData |> DataFile(path: path + file.filename)
+                        completion(true)
                     } catch let error {
-                        
+                        print(error)
+                        completion(false)
                     }
-                    completion(true)
-                    //try? result.downloadedData |> DataFile(path: path + filename)
                 }
                 return task
             })
@@ -123,7 +126,7 @@ class SchoolProvider:Network<SchoolRequest> {
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
-            self.requestList(result:[], next: nil, completion: completion)
+            //self.requestList(result:[], next: nil, completion: completion)
         })
     }
     
