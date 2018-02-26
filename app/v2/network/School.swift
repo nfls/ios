@@ -68,34 +68,35 @@ extension SchoolRequest: TargetType {
 }
 
 class SchoolProvider:Network<SchoolRequest> {
-    fileprivate var files = [File]()
+    //fileprivate var files = [File]()
     fileprivate var isLoaded = false
     
-    public func getFileList(withPath path:[String],completion: @escaping (_ files:[File]) -> Void)
+    public var path = [String]()
+    
+    public func getFileList(completion: @escaping (_ files:[File]) -> Void)
     {
-        let prefix = (path as NSArray).componentsJoined(by: ",")
         if let files = try? self.cache.object(ofType: [File].self, forKey: "school.pastpaper.list.cache") {
-            print("Cache found")
-            completion(files)
+            completion(self.filter(files))
         }
         if !self.isLoaded {
-            print("Load from network")
             self.isLoaded = true
             self.getClient(completion: completion)
         }
     }
+    
     
     fileprivate func getClient(completion: @escaping (_ files:[File]) -> Void)
     {
         self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
-            self.requestList(OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider), next: nil, completion: completion)
+            self.requestList(OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider), result:[], next: nil, completion: completion)
         })
     }
     
-    fileprivate func requestList(_ client:OSSClient, next:String? = nil, completion: @escaping (_ files:[File]) -> Void)
+    fileprivate func requestList(_ client:OSSClient, result:[File] = [],next:String? = nil, completion: @escaping (_ files:[File]) -> Void)
     {
+        var files = result
         let bucket = OSSGetBucketRequest()
         bucket.bucketName = "nfls-papers"
         bucket.maxKeys = 1000
@@ -107,17 +108,27 @@ class SchoolProvider:Network<SchoolRequest> {
                 if let contents = t.contents {
                     for object in contents{
                         let data = object as! [String:Any]
-                        self.files.append(File(data))
+                        files.append(File(data))
                     }
-                    self.requestList(client, next: (t.contents!.last as! [String:Any])["Key"] as? String, completion: completion)
+                    self.requestList(client, result: files, next: (t.contents!.last as! [String:Any])["Key"] as? String, completion: completion)
                 }else{
-                    try? self.cache.setObject(self.files, forKey: "school.pastpaper.list.cache")
-                    completion(self.files)
+                    try? self.cache.setObject(files, forKey: "school.pastpaper.list.cache")
+                    completion(self.filter(files))
                 }
             } else {
                 print(rsp.error)
             }
             return task
+        })
+    }
+    
+    fileprivate func filter(_ files:[File]) -> [File]
+    {
+        let realPath = (path as NSArray).componentsJoined(by: "/")
+        dump(realPath)
+        dump(files[0])
+        return files.filter({ file -> Bool in
+            return (file.name.components(separatedBy: "/").count == path.count + 1) && file.name.hasPrefix(realPath)
         })
     }
 }

@@ -24,7 +24,7 @@ class Network<T:TargetType> {
         cache = try! Storage(diskConfig: diskCache, memoryConfig: memoryCache)
     }
     
-    public func request<R:ImmutableMappable>(
+    internal func request<R:ImmutableMappable>(
         target: T,
         type: R.Type,
         success successCallback: @escaping (R) -> Void,

@@ -15,9 +15,6 @@ class TempViewController:AbstractViewController {
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
-        self.provider.getFileList(withPath: []) { files in
-            dump(files)
-        }
     }
     
     @IBAction func download(_ sender: Any) {

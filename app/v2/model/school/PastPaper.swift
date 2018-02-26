@@ -28,10 +28,16 @@ class StsToken:ImmutableMappable {
 class File: Codable {
     init(_ object:[String:Any]){
         
-        self.name = object["Key"] as! String
+        let name = object["Key"] as! String
+        if(name.last == "/"){
+            self.name = String(name.dropLast())
+        }else{
+            self.name = name
+        }
+        
         let range = self.name.range(of: "/", options: .backwards)
         if let range = range {
-            self.filename = String(self.name[range.lowerBound...])
+            self.filename = String(self.name[range.upperBound...])
         } else {
             self.filename = self.name
         }
