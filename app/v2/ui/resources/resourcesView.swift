@@ -78,7 +78,10 @@ class ResourcesViewController:UITableViewController {
     }
     
     @objc func bulkDelete(sender:UIButton){
-        
+        for file in self.getSelectedFiles() {
+            try? FileManager.default.removeItem(at:(Path.userDocuments + "download" + file.name).url)
+        }
+        self.reloadData()
     }
     
     func getSelectedFiles() -> [File] {
