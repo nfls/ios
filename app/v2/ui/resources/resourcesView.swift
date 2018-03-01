@@ -15,6 +15,7 @@ import QuickLook
 import SCLAlertView
 import SafariServices
 import Cache
+import SVProgressHUD
 
 class ResourcesViewController:UITableViewController {
     
@@ -59,7 +60,13 @@ class ResourcesViewController:UITableViewController {
     }
     
     @objc func bulkDownload(sender:UIButton){
-        dump(tableView.indexPathsForSelectedRows)
+        var toDownload = [File]()
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            for indexPath in indexPaths {
+                toDownload.append(self.files[indexPath.row])
+            }
+        }
+    
     }
     
     @objc func bulkView(sender:UIButton){
@@ -85,7 +92,6 @@ class ResourcesViewController:UITableViewController {
         provider.getFileList(completion: refresh(_:))
     }
     func refresh(_ files:[File]){
-        dump(files)
         self.files = files
         if(multiMode){
             if(!cacheMode){
@@ -151,16 +157,19 @@ class ResourcesViewController:UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "aa")
         cell.textLabel?.text = files[indexPath.row].filename
-        if(self.exist(files[indexPath.row])){
-            cell.detailTextLabel?.text = "已缓存"
-        } else {
-            if let size = files[indexPath.row].size, size != 0{
-                cell.detailTextLabel?.text = self.calculateSize(bytes: files[indexPath.row].size!)
+        
+        if let size = files[indexPath.row].size {
+            if(size != 0){
+                if(self.exist(files[indexPath.row])){
+                    cell.detailTextLabel?.text = "已缓存(" + self.calculateSize(bytes: files[indexPath.row].size!) + ")"
+                } else {
+                    cell.detailTextLabel?.text = self.calculateSize(bytes: files[indexPath.row].size!)
+                }
             } else {
                 cell.detailTextLabel?.text = "文件夹"
             }
-            
         }
+    
         return cell
     }
     
@@ -173,7 +182,9 @@ class ResourcesViewController:UITableViewController {
                 cell.accessoryType = .checkmark
             }
         }else{
-            if(files[indexPath.row].size == 0){
+            if(self.handleSpecialAction(file: files[indexPath.row])) {
+  
+            }else if(files[indexPath.row].size == 0){
                 goToFolder(withFileName: files[indexPath.row].filename)
             }else{
                 if(self.exist(files[indexPath.row])){
@@ -192,9 +203,19 @@ class ResourcesViewController:UITableViewController {
             }
         }
     }
+    func handleSpecialAction(file:File) -> Bool{
+        switch file.name {
+        case "@Back":
+            self.provider.path.removeLast()
+            self.reloadData()
+            return true
+        default:
+            return false
+        }
+        
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return files.count
-        
     }
 }
 class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPreviewControllerDataSource{

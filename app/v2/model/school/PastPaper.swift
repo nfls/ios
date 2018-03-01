@@ -25,7 +25,13 @@ class StsToken:ImmutableMappable {
     }
 }
 
-class File: Codable {
+class File: Codable, Hashable {
+    var hashValue: Int
+    
+    static func ==(lhs: File, rhs: File) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
     init(_ object:[String:Any]){
         
         let name = object["Key"] as! String
@@ -52,7 +58,13 @@ class File: Codable {
             self.date = nil
             self.size = nil
         }
-        
+    }
+    init(specialAction:String, withName name:String)
+    {
+        self.name = specialAction
+        self.filename = name
+        self.date = nil
+        self.size = nil
     }
     let name:String
     let filename:String

@@ -87,6 +87,9 @@ class SchoolProvider:Network<SchoolRequest> {
         }
     }
     
+    fileprivate func getAllFileListFromCache() -> [File] {
+        
+    }
     public func getFile(file:File, progress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
     {
         if let client = client {
@@ -118,6 +121,13 @@ class SchoolProvider:Network<SchoolRequest> {
         } else {
             completion(false)
         }
+    }
+    
+    public func getFiles(files:[File], progress: @escaping (_ total:Int, _ current:Int) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
+    {
+        var toDownload = Set<File>([])
+        toDownload.insert()
+
     }
     
     fileprivate func getList(completion: @escaping (_ files:[File]) -> Void)
@@ -163,9 +173,13 @@ class SchoolProvider:Network<SchoolRequest> {
     fileprivate func filter(_ files:[File]) -> [File]
     {
         let realPath = self.getPath()
-        return files.filter({ file -> Bool in
+        var files =  files.filter({ file -> Bool in
             return (file.name.components(separatedBy: "/").count == path.count + 1) && file.name.hasPrefix(realPath)
         })
+        if(path.count > 0){
+            files.insert(File(specialAction: "@Back", withName: "返回"), at: 0)
+        }
+        return files
     }
     
     fileprivate func getPath() -> String {
