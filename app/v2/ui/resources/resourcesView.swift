@@ -35,7 +35,6 @@ class ResourcesViewController:UITableViewController {
     let previewController = PreviewController()
     
     override func viewDidLoad() {
-        self.cacheButton = UIBarButtonItem(title: "缓存", style: .plain, target: self, action: #selector(cache))
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
         self.downloadButton = UIBarButtonItem(title: "下载", style: .plain, target: self, action: #selector(bulkDownload))
         self.previewButton = UIBarButtonItem(title: "预览", style: .plain, target: self, action: #selector(bulkView))
@@ -51,29 +50,45 @@ class ResourcesViewController:UITableViewController {
         multiMode = !multiMode
         self.reloadData()
         sender.isSelected = multiMode
+        tableView.allowsMultipleSelection = multiMode
     }
     
-    @objc func cache(sender:UIButton){
-        cacheMode = !cacheMode
-        self.reloadData()
-        sender.isSelected = cacheMode
-    }
     
     @objc func bulkDownload(sender:UIButton){
-        var toDownload = [File]()
-        if let indexPaths = tableView.indexPathsForSelectedRows {
-            for indexPath in indexPaths {
-                toDownload.append(self.files[indexPath.row])
-            }
+        
+        provider.getFiles(files: self.getSelectedFiles(), progress: { (total, current) in
+            print(current)
+        }, fileProgress: { Progress in
+            
+        }) { status in
+            print(status)
+            self.reloadData()
         }
     
     }
     
     @objc func bulkView(sender:UIButton){
-        
+        previewController.files.removeAll()
+        for file in self.getSelectedFiles() {
+            previewController.files.append((Path.userDocuments + "download" + file.name).url)
+        }
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(self.previewController, animated: true)
+        }
     }
     
     @objc func bulkDelete(sender:UIButton){
+        
+    }
+    
+    func getSelectedFiles() -> [File] {
+        var files = [File]()
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            for indexPath in indexPaths {
+                files.append(self.files[indexPath.row])
+            }
+        }
+        return files
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -94,14 +109,10 @@ class ResourcesViewController:UITableViewController {
     func refresh(_ files:[File]){
         self.files = files
         if(multiMode){
-            if(!cacheMode){
-                self.navigationItem.rightBarButtonItems = [multiButton,cacheButton,downloadButton,previewButton]
-            }else{
-                self.navigationItem.rightBarButtonItems = [multiButton,cacheButton,deleteButton,previewButton]
-            }
+            self.navigationItem.rightBarButtonItems = [multiButton,deleteButton,downloadButton,previewButton]
             self.title = nil
         } else {
-            self.navigationItem.rightBarButtonItems = [multiButton,cacheButton]
+            self.navigationItem.rightBarButtonItems = [multiButton]
             self.title = "往卷"
         }
         DispatchQueue.main.async {
@@ -148,7 +159,8 @@ class ResourcesViewController:UITableViewController {
     
     func preview(_ file:File)
     {
-        previewController.file = (Path.userDocuments + "download" + file.name).url
+        previewController.files.removeAll()
+        previewController.files = [(Path.userDocuments + "download" + file.name).url]
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(self.previewController, animated: true)
         }
@@ -173,14 +185,27 @@ class ResourcesViewController:UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if(!tableView.allowsMultipleSelection){
+            return indexPath
+        }else if(files[indexPath.row].name.first == "@"){
+            return nil
+        }else{
+            return indexPath
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)!
+        if(self.multiMode){
+            cell.accessoryType = .none
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
         if(self.multiMode){
-            if (cell.accessoryType == .checkmark) {
-                cell.accessoryType = .none
-            } else {
-                cell.accessoryType = .checkmark
-            }
+            cell.accessoryType = .checkmark
         }else{
             if(self.handleSpecialAction(file: files[indexPath.row])) {
   
@@ -219,7 +244,7 @@ class ResourcesViewController:UITableViewController {
     }
 }
 class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPreviewControllerDataSource{
-    var file:URL? = nil
+    var files = [URL]()
     
     override func viewDidLoad() {
         self.dataSource = self
@@ -227,11 +252,11 @@ class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPrev
     }
     
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return 1
+        return files.count
     }
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return file as! NSURL
+        return files[index] as NSURL
     }
     
 }

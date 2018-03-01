@@ -88,6 +88,11 @@ class SchoolProvider:Network<SchoolRequest> {
     }
     
     fileprivate func getAllFileListFromCache() -> [File] {
+        if let files = try? self.cache.object(ofType: [File].self, forKey: "school.pastpaper.list.cache") {
+            return files
+        } else {
+            return []
+        }
         
     }
     public func getFile(file:File, progress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
@@ -125,9 +130,34 @@ class SchoolProvider:Network<SchoolRequest> {
     
     public func getFiles(files:[File], progress: @escaping (_ total:Int, _ current:Int) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
     {
-        var toDownload = Set<File>([])
-        toDownload.insert()
-
+        let fileList = self.getAllFileListFromCache()
+        var toDownload = [File]()
+        for file in files {
+            let f = fileList.filter({ list -> Bool in
+                return list.name.hasPrefix(file.name)
+            })
+            toDownload.append(contentsOf: f)
+        }
+        if(files.count == 0){
+            return
+        }
+        self.getFileWithList(files: toDownload, index: 0, progress: progress, fileProgress: fileProgress, completion: completion)
+    }
+    
+    fileprivate func getFileWithList(files:[File], index:Int, progress: @escaping (_ total:Int, _ current:Int) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
+    {
+        if(index >= files.count){
+            completion(true)
+        }else{
+            progress(files.count, index + 1)
+            self.getFile(file: files[index], progress: fileProgress) { status in
+                if status {
+                    self.getFileWithList(files: files, index: index + 1, progress: progress, fileProgress: fileProgress, completion: completion)
+                }else{
+                    completion(false)
+                }
+            }
+        }
     }
     
     fileprivate func getList(completion: @escaping (_ files:[File]) -> Void)
