@@ -111,6 +111,7 @@ class ResourcesViewController:UITableViewController {
     }
     func refresh(_ files:[File]){
         self.files = files
+        self.navigationItem.prompt = "/" + (provider.path as NSArray).componentsJoined(by: "/")
         if(multiMode){
             self.navigationItem.rightBarButtonItems = [multiButton,deleteButton,downloadButton,previewButton]
             self.title = nil
