@@ -13,8 +13,8 @@ import Foundation
 struct AbstractResponse<T:ImmutableMappable>:ImmutableMappable {
     init(map: Map) throws {
         self.code = try map.value("code")
-        self.data = try map.value("data")
+        self.data = try? map.value("data")
     }
     let code:Int
-    let data:T
+    let data:T?
 }

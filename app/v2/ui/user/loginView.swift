@@ -18,6 +18,9 @@ class LoginViewController:AbstractViewController {
     
     var isFirst = true
     
+    @IBOutlet weak var loginButton: UIButton!
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         //self.login(UIButton())
         self.username.text = UserDefaults.standard.string(forKey: "username")
@@ -41,6 +44,7 @@ class LoginViewController:AbstractViewController {
         if(!isFirst){
             oauth2.oauth2.forgetTokens()
         }
+        loginButton.isEnabled = false
         oauth2.login(username: username.text!, password: password.text!) { success in
             if(success){
                 let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
@@ -48,8 +52,10 @@ class LoginViewController:AbstractViewController {
                 self.navigationController!.pushViewController(viewController, animated: true)
                 UserDefaults.standard.set(self.username.text!, forKey: "username")
                 UserDefaults.standard.set(self.password.text!, forKey: "password")
+                self.loginButton.isEnabled = true
             }else{
                 if(!self.isFirst){
+                    self.loginButton.isEnabled = true
                     SCLAlertView().showError("错误", subTitle: "用户名或密码不正确")
                 }
             }

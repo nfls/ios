@@ -71,10 +71,10 @@ extension SchoolRequest: TargetType {
 class SchoolProvider:Network<SchoolRequest> {
     //fileprivate var files = [File]()
     fileprivate var isLoaded = false
-    
     public var path = [String]()
-    
-    var client:OSSClient? = nil
+    fileprivate var client:OSSClient? = nil
+    fileprivate let interval:TimeInterval = 0.04
+    fileprivate var scheduledNextFire:Date = Date()
     
     public func getFileList(completion: @escaping (_ files:[File]) -> Void)
     {
@@ -102,7 +102,10 @@ class SchoolProvider:Network<SchoolRequest> {
             request.bucketName = "nfls-papers"
             request.objectKey = file.name
             request.downloadProgress = { bytesWritten, totalBytesWritten, bytesExpectedToWritten in
-                progress(Double(totalBytesWritten)/Double(bytesExpectedToWritten))
+                if(Date() > self.scheduledNextFire){
+                    self.scheduledNextFire = Date() + self.interval
+                    progress(Double(totalBytesWritten)/Double(bytesExpectedToWritten))
+                }
             }
             let task = client.getObject(request)
             task.continue({ task -> Any? in
@@ -117,18 +120,19 @@ class SchoolProvider:Network<SchoolRequest> {
                         try result.downloadedData |> DataFile(path: path + file.filename)
                         completion(true)
                     } catch let error {
-                        print(error)
+                        self.notifier.showNetworkError(error)
                         completion(false)
                     }
                 }
                 return task
             })
         } else {
+            self.notifier.showNetworkError(nil)
             completion(false)
         }
     }
     
-    public func getFiles(files:[File], progress: @escaping (_ total:Int, _ current:Int) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
+    public func getFiles(files:[File], progress: @escaping (_ total:Int, _ current:Int, _ file: File) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
     {
         let fileList = self.getAllFileListFromCache()
         var toDownload = [File]()
@@ -144,12 +148,12 @@ class SchoolProvider:Network<SchoolRequest> {
         self.getFileWithList(files: toDownload, index: 0, progress: progress, fileProgress: fileProgress, completion: completion)
     }
     
-    fileprivate func getFileWithList(files:[File], index:Int, progress: @escaping (_ total:Int, _ current:Int) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
+    fileprivate func getFileWithList(files:[File], index:Int, progress: @escaping (_ total:Int, _ current:Int, _ file: File) -> Void, fileProgress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
     {
         if(index >= files.count){
             completion(true)
         }else{
-            progress(files.count, index + 1)
+            progress(files.count, index + 1, files[index])
             self.getFile(file: files[index], progress: fileProgress) { status in
                 if status {
                     self.getFileWithList(files: files, index: index + 1, progress: progress, fileProgress: fileProgress, completion: completion)
@@ -162,11 +166,14 @@ class SchoolProvider:Network<SchoolRequest> {
     
     fileprivate func getList(completion: @escaping (_ files:[File]) -> Void)
     {
+        self.notifier.showInfo("正在后台刷新文件列表，操作完成后列表将自动刷新")
         self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
-            //self.requestList(result:[], next: nil, completion: completion)
+            self.requestList(result:[], next: nil, completion: completion)
+        }, error: { _ in
+            self.notifier.showInfo("您尚未完成实名认证，请先在首页上完成相关认证操作！")
         })
     }
     

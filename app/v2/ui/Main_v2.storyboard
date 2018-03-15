@@ -81,6 +81,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="jVr-su-IyI"/>
                     <connections>
+                        <outlet property="loginButton" destination="oFp-Tu-j7Y" id="215-eE-gcT"/>
                         <outlet property="password" destination="D0K-KH-kGj" id="FXF-Id-mci"/>
                         <outlet property="username" destination="xsN-Sz-GJ9" id="dbI-Ww-wuX"/>
                         <segue destination="dF0-A0-YaU" kind="show" id="Glg-vF-zpx"/>
@@ -115,7 +116,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YF-P2-AhS">
                                         <rect key="frame" x="0.0" y="300" width="300" height="47"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="30"/>
-                                        <state key="normal" title="Past Papers">
+                                        <state key="normal" title="Resources Center">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -142,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="1549.5999999999999" y="-128.18590704647679"/>
         </scene>
-        <!--往卷-->
+        <!--资源-->
         <scene sceneID="NoM-rO-w37">
             <objects>
-                <tableViewController storyboardIdentifier="download" title="往卷" id="gLD-4C-ogZ" customClass="ResourcesViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="download" title="资源" id="gLD-4C-ogZ" customClass="ResourcesViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pf9-Ag-ifj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,37 +169,39 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jht-UW-d6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="-128"/>
+            <point key="canvasLocation" x="2401" y="-128"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="yMv-SX-3Rd">
+        <!--Item 2-->
+        <scene sceneID="lYZ-FU-ZGo">
             <objects>
-                <viewController id="Zh4-if-9il" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mDU-PJ-IIp">
+                <viewController id="7TC-6C-eus" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EgN-H7-pYX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="RZF-WY-vWt"/>
+                        <viewLayoutGuide key="safeArea" id="asb-I0-hAT"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="lwa-qV-nco"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxh-IR-PA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j0j-Mf-1Ur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1564" y="607"/>
+            <point key="canvasLocation" x="4062" y="203"/>
         </scene>
-        <!--Gallery List Controller-->
-        <scene sceneID="U3c-jg-z94">
+        <!--Item 1-->
+        <scene sceneID="cwk-NF-nsT">
             <objects>
-                <viewController storyboardIdentifier="gallery" id="fqO-x4-rqt" customClass="GalleryListController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jUI-sQ-rhe">
+                <viewController id="HqM-Jf-GCP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gTF-I3-XWe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="6F6-ej-j49"/>
+                        <viewLayoutGuide key="safeArea" id="6Q6-OL-AMX"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" image="success.png" landscapeImage="resources.png" largeContentSizeImage="angle-mask.png" id="lrH-A7-VVO"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GzT-3X-2gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ft-DB-Cuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="600"/>
+            <point key="canvasLocation" x="4062" y="-459"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="330-vB-2TS">
@@ -221,6 +224,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="angle-mask.png" width="100" height="100"/>
         <image name="resources.png" width="2492" height="2376"/>
+        <image name="success.png" width="28" height="28"/>
     </resources>
 </document>

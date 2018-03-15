@@ -1,43 +1,71 @@
 PODS:
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.0)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - AliyunOSSiOS (2.9.2)
   - Base32 (1.1.2)
   - Cache (4.1.2)
   - FileKit (5.0.0)
-  - IQKeyboardManagerSwift (5.0.7)
-  - KSCrash/Core (1.15.16):
+  - IQKeyboardManagerSwift (5.0.8)
+  - KSCrash/Core (1.15.18):
     - KSCrash/Reporting/Filters/Basic
-  - KSCrash/Recording (1.15.16):
-    - KSCrash/Recording/Tools (= 1.15.16)
-  - KSCrash/Recording/Tools (1.15.16)
-  - KSCrash/Reporting/Filters/Base (1.15.16):
+  - KSCrash/Recording (1.15.18):
+    - KSCrash/Recording/Tools (= 1.15.18)
+  - KSCrash/Recording/Tools (1.15.18)
+  - KSCrash/Reporting/Filters/Base (1.15.18):
     - KSCrash/Recording
-  - KSCrash/Reporting/Filters/Basic (1.15.16):
+  - KSCrash/Reporting/Filters/Basic (1.15.18):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - Moya (11.0.0):
-    - Moya/Core (= 11.0.0)
-  - Moya/Core (11.0.0):
+  - libwebp (0.6.0):
+    - libwebp/core (= 0.6.0)
+    - libwebp/dec (= 0.6.0)
+    - libwebp/demux (= 0.6.0)
+    - libwebp/dsp (= 0.6.0)
+    - libwebp/enc (= 0.6.0)
+    - libwebp/mux (= 0.6.0)
+    - libwebp/utils (= 0.6.0)
+    - libwebp/webp (= 0.6.0)
+  - libwebp/core (0.6.0):
+    - libwebp/webp
+  - libwebp/dec (0.6.0):
+    - libwebp/core
+  - libwebp/demux (0.6.0):
+    - libwebp/core
+  - libwebp/dsp (0.6.0):
+    - libwebp/core
+  - libwebp/enc (0.6.0):
+    - libwebp/core
+  - libwebp/mux (0.6.0):
+    - libwebp/core
+  - libwebp/utils (0.6.0):
+    - libwebp/core
+  - libwebp/webp (0.6.0)
+  - Moya (11.0.1):
+    - Moya/Core (= 11.0.1)
+  - Moya/Core (11.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - ObjectMapper (3.1.0)
-  - OneTimePassword (3.0):
+  - OneTimePassword (3.0.1):
     - Base32 (~> 1.1.2)
   - p2.OAuth2 (4.0.1)
   - Result (3.2.4)
-  - SCLAlertView (0.7.0)
-  - SDWebImage (4.3.0):
-    - SDWebImage/Core (= 4.3.0)
-  - SDWebImage/Core (4.3.0)
-  - Sentry (3.11.1):
-    - Sentry/Core (= 3.11.1)
-    - Sentry/KSCrash (= 3.11.1)
-  - Sentry/Core (3.11.1)
-  - Sentry/KSCrash (3.11.1):
+  - SCLAlertView (0.8)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - SDWebImage/WebP (4.3.3):
+    - libwebp (~> 0.5)
+    - SDWebImage/Core
+  - Sentry (3.12.0):
+    - Sentry/Core (= 3.12.0)
+    - Sentry/KSCrash (= 3.12.0)
+  - Sentry/Core (3.12.0)
+  - Sentry/KSCrash (3.12.0):
     - KSCrash/Core (~> 1.15.12)
   - SVProgressHUD (2.2.5)
+  - SwiftMessages (4.1.0)
   - SwiftyJSON (4.0.0)
   - SwiftyMarkdown (0.5.1)
   - SwiftyUserDefaults (3.0.1)
@@ -58,8 +86,10 @@ DEPENDENCIES:
   - p2.OAuth2
   - SCLAlertView
   - SDWebImage
+  - SDWebImage/WebP
   - Sentry
   - SVProgressHUD
+  - SwiftMessages
   - SwiftyJSON
   - SwiftyMarkdown
   - SwiftyUserDefaults
@@ -68,23 +98,25 @@ DEPENDENCIES:
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AliyunOSSiOS: 0396d0483f7c83edc34e748b0ae17ffa0d7adc8d
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
-  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
-  KSCrash: e4cda5c8612c5f9478defcf43418f24870d313f4
-  Moya: be29766339783963a70d1279d69c891ab3a1393c
+  IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
+  libwebp: 1d5a07c2eb97f9c31bd5f154bb82efc0ea67c6a2
+  Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  OneTimePassword: 7f116451e8a4b55e385dc0191966798ca3180c9d
+  OneTimePassword: 255bd0fc4e35587065e01ed0cf8431f3b911309c
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
-  Sentry: 1d8e03901b062b0317174efefa7f97a4ab16fa9a
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  Sentry: 74233cedacdd605a8eec77ede4eaacc5afe16b5c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
@@ -92,6 +124,6 @@ SPEC CHECKSUMS:
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 3cbe62c9853ba5dc8a2a584621de171066a21caa
+PODFILE CHECKSUM: 19f8a8244411b75aabb9e5d13ba2c0eaf0aa826b
 
 COCOAPODS: 1.3.1

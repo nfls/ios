@@ -54,30 +54,36 @@ class ResourcesViewController:UITableViewController {
     }
     
     
-    @objc func bulkDownload(sender:UIButton){
-        
-        provider.getFiles(files: self.getSelectedFiles(), progress: { (total, current) in
-            print(current)
-        }, fileProgress: { Progress in
-            
-        }) { status in
-            print(status)
+    @objc func bulkDownload(sender:UIButton?){
+        self.tableView.isUserInteractionEnabled = false
+        provider.getFiles(files: self.getSelectedFiles(), progress: { (total, current, file) in
+            DispatchQueue.main.async {
+                SVProgressHUD.showProgress(Float(current)/Float(total), status: "第\(current)个，共\(total)个。当前为\(file.filename)")
+            }
+        }, fileProgress: { _ in }) { status in
+            DispatchQueue.main.async {
+                self.tableView.isUserInteractionEnabled = true
+                SVProgressHUD.dismiss()
+            }
+            if(status){
+                self.bulkView(sender: nil)
+            }
             self.reloadData()
         }
-    
     }
     
-    @objc func bulkView(sender:UIButton){
+    @objc func bulkView(sender:UIButton?){
         previewController.files.removeAll()
-        for file in self.getSelectedFiles() {
-            previewController.files.append((Path.userDocuments + "download" + file.name).url)
-        }
         DispatchQueue.main.async {
+            for file in self.getSelectedFiles() {
+                self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+            }
+            self.previewController.reloadData()
             self.navigationController?.pushViewController(self.previewController, animated: true)
         }
     }
     
-    @objc func bulkDelete(sender:UIButton){
+    @objc func bulkDelete(sender:UIButton?){
         for file in self.getSelectedFiles() {
             try? FileManager.default.removeItem(at:(Path.userDocuments + "download" + file.name).url)
         }
@@ -119,6 +125,11 @@ class ResourcesViewController:UITableViewController {
             self.navigationItem.rightBarButtonItems = [multiButton]
             self.title = "往卷"
         }
+        if(provider.path.count > 0){
+            self.navigationItem.hidesBackButton = true
+        }else{
+            self.navigationItem.hidesBackButton = false
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -127,10 +138,10 @@ class ResourcesViewController:UITableViewController {
     func calculateSize(bytes:Double) -> String {
         var size = bytes / 1024
         var count = 0
-        repeat{
+        while (size > 1024) {
             size = size / 1024.0
             count += 1
-        } while (size > 1024)
+        }
         var quantity:String = ""
         switch(count){
         case 0:
@@ -166,6 +177,7 @@ class ResourcesViewController:UITableViewController {
         previewController.files.removeAll()
         previewController.files = [(Path.userDocuments + "download" + file.name).url]
         DispatchQueue.main.async {
+            self.previewController.reloadData()
             self.navigationController?.pushViewController(self.previewController, animated: true)
         }
     }
@@ -219,9 +231,16 @@ class ResourcesViewController:UITableViewController {
                 if(self.exist(files[indexPath.row])){
                     preview(files[indexPath.row])
                 } else {
+                    self.tableView.isUserInteractionEnabled = false
                     self.provider.getFile(file: files[indexPath.row], progress: { progress in
-                        print(progress)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.showProgress(Float(progress), status: self.files[indexPath.row].filename)
+                        }
                     }) { status in
+                        DispatchQueue.main.async {
+                            self.tableView.isUserInteractionEnabled = true
+                            SVProgressHUD.dismiss()
+                        }
                         if(status) {
                             self.preview(self.files[indexPath.row])
                         }
