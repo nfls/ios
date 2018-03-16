@@ -43,8 +43,8 @@ class LoginViewController:AbstractViewController {
     @IBAction func login(_ sender: Any) {
         if(!isFirst){
             oauth2.oauth2.forgetTokens()
+            loginButton.isEnabled = false
         }
-        loginButton.isEnabled = false
         oauth2.login(username: username.text!, password: password.text!) { success in
             if(success){
                 let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)

@@ -36,9 +36,9 @@ class MessageNotifier {
         let view = MessageView.viewFromNib(layout: .cardView)
         view.configureTheme(.error)
         if let error = error {
-            view.configureContent(title: "错误", body: "网络开小差了~\(error)")
+            view.configureContent(title: "错误", body: "网络开小差了（如果此错误持续发生，请检查客户端是否为最新版本）")
         }else{
-             view.configureContent(title: "错误", body: "网络开小差了~")
+             view.configureContent(title: "错误", body: "网络开小差了（如果此错误持续发生，请检查客户端是否为最新版本）")
         }
         self.show(view)
     }
