@@ -1,9 +1,8 @@
 PODS:
-  - Alamofire (4.7.0)
+  - Alamofire (4.7.1)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
-  - AliyunOSSiOS (2.9.2)
-  - Base32 (1.1.2)
+  - AliyunOSSiOS (2.10.0)
   - Cache (4.1.2)
   - FileKit (5.0.0)
   - IQKeyboardManagerSwift (5.0.8)
@@ -41,14 +40,13 @@ PODS:
   - libwebp/utils (0.6.0):
     - libwebp/core
   - libwebp/webp (0.6.0)
-  - Moya (11.0.1):
-    - Moya/Core (= 11.0.1)
-  - Moya/Core (11.0.1):
+  - MarkdownView (1.1.0)
+  - Moya (11.0.2):
+    - Moya/Core (= 11.0.2)
+  - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - ObjectMapper (3.1.0)
-  - OneTimePassword (3.0.1):
-    - Base32 (~> 1.1.2)
   - p2.OAuth2 (4.0.1)
   - Result (3.2.4)
   - SCLAlertView (0.8)
@@ -58,16 +56,15 @@ PODS:
   - SDWebImage/WebP (4.3.3):
     - libwebp (~> 0.5)
     - SDWebImage/Core
-  - Sentry (3.12.0):
-    - Sentry/Core (= 3.12.0)
-    - Sentry/KSCrash (= 3.12.0)
-  - Sentry/Core (3.12.0)
-  - Sentry/KSCrash (3.12.0):
+  - Sentry (3.12.3):
+    - Sentry/Core (= 3.12.3)
+    - Sentry/KSCrash (= 3.12.3)
+  - Sentry/Core (3.12.3)
+  - Sentry/KSCrash (3.12.3):
     - KSCrash/Core (~> 1.15.12)
   - SVProgressHUD (2.2.5)
   - SwiftMessages (4.1.0)
   - SwiftyJSON (4.0.0)
-  - SwiftyMarkdown (0.5.1)
   - SwiftyUserDefaults (3.0.1)
   - Timepiece (1.3.1)
   - Toucan (1.0.0)
@@ -80,9 +77,9 @@ DEPENDENCIES:
   - Cache
   - FileKit
   - IQKeyboardManagerSwift
+  - MarkdownView
   - Moya
   - ObjectMapper
-  - OneTimePassword
   - p2.OAuth2
   - SCLAlertView
   - SDWebImage
@@ -91,39 +88,36 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftMessages
   - SwiftyJSON
-  - SwiftyMarkdown
   - SwiftyUserDefaults
   - Timepiece
   - Toucan
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
-  AliyunOSSiOS: 0396d0483f7c83edc34e748b0ae17ffa0d7adc8d
-  Base32: 163c298644d184e89ca4e00a996bad6bf5166390
+  AliyunOSSiOS: 1f42c7b1542f22b75a81127bdb0b0798122a2f1f
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
   IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
   KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
   libwebp: 1d5a07c2eb97f9c31bd5f154bb82efc0ea67c6a2
-  Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
+  MarkdownView: 80db8e9a27a6c6cc22615e644e3e85c06065bab7
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  OneTimePassword: 255bd0fc4e35587065e01ed0cf8431f3b911309c
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  Sentry: 74233cedacdd605a8eec77ede4eaacc5afe16b5c
+  Sentry: 48f6e1f8ffab620fa3d243774e22604abb1d87a1
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 19f8a8244411b75aabb9e5d13ba2c0eaf0aa826b
+PODFILE CHECKSUM: 385693a25a25ea8524548db47eb793ac19b4d9c4
 
 COCOAPODS: 1.3.1

@@ -9,17 +9,43 @@
 import Foundation
 import SafariServices
 import SCLAlertView
+import MarkdownView
+import QuartzCore
 
 class TempViewController:AbstractViewController {
     
-    let provider = SchoolProvider()
+    let provider = DeviceProvider()
+    
+    @IBOutlet weak var mdView: MarkdownView!
     
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "实名认证", style: .plain, target: self, action: #selector(realname))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(goToAnnouncement))
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(goToAnnouncement))
+        
+        mdView.isScrollEnabled = false
+        mdView.layer.borderWidth = 1.0
+        mdView.layer.borderColor = UIColor.gray.cgColor
+        mdView.layer.cornerRadius = 10.0
+        mdView.load(markdown: self.provider.announcement)
+        self.provider.getAnnouncement(completion: {
+            self.mdView.load(markdown: self.provider.announcement)
+            print(self.provider.announcement)
+            self.performSegue(withIdentifier: "showAnnouncement", sender: self)
+        })
+        tap.delegate = self
+        drag.delegate = self
+        mdView.subviews[0].addGestureRecognizer(tap)
+        mdView.subviews[0].addGestureRecognizer(drag)
     }
-    
+    @objc func goToAnnouncement() {
+        if navigationController?.topViewController is AnnouncementViewController {
+            return
+        }
+        self.performSegue(withIdentifier: "showAnnouncement", sender: self)
+    }
     @IBAction func download(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"download")
@@ -56,4 +82,16 @@ class TempViewController:AbstractViewController {
         self.present(safari,animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAnnouncement" {
+            let dc = segue.destination as! AnnouncementViewController
+            dc.text = self.provider.announcement
+        }
+    }
+}
+
+extension TempViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

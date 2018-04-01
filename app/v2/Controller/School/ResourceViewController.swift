@@ -34,6 +34,8 @@ class ResourcesViewController:UITableViewController {
     
     let previewController = PreviewController()
     
+    let swipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(goBack))
+    
     override func viewDidLoad() {
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
         self.downloadButton = UIBarButtonItem(title: "下载", style: .plain, target: self, action: #selector(bulkDownload))
@@ -41,7 +43,9 @@ class ResourcesViewController:UITableViewController {
         self.deleteButton = UIBarButtonItem(title: "删除", style: .plain, target: self, action: #selector(bulkDelete))
         
         self.reloadData()
-        
+        self.swipe.edges = .left
+        self.swipe.delegate = self
+        self.view.addGestureRecognizer(swipe)
         definesPresentationContext = true
        
     }
@@ -104,7 +108,7 @@ class ResourcesViewController:UITableViewController {
         super.viewWillAppear(animated)
         
     }
-    func goBack(){
+    @objc func goBack(){
         provider.path.removeLast()
         self.reloadData()
     }
@@ -127,8 +131,10 @@ class ResourcesViewController:UITableViewController {
         }
         if(provider.path.count > 0){
             self.navigationItem.hidesBackButton = true
+            
         }else{
             self.navigationItem.hidesBackButton = false
+            //self.view.removeGestureRecognizer(swipe)
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -264,6 +270,11 @@ class ResourcesViewController:UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return files.count
+    }
+}
+extension ResourcesViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPreviewControllerDataSource{

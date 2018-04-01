@@ -13,7 +13,7 @@ import Cache
 import Result
 import ObjectMapper
 
-class Network<T:TargetType> {
+class AbstractProvider<T:TargetType> {
     let provider:MoyaProvider<T>
     let cache:Storage
     public let notifier:MessageNotifier
@@ -26,45 +26,43 @@ class Network<T:TargetType> {
         notifier = MessageNotifier()
     }
     
-    internal func request<R:ImmutableMappable>(
+    internal func request<R:BaseMappable>(
         target: T,
         type: R.Type,
         success successCallback: @escaping (R) -> Void,
-        error errorCallback: ((_ statusCode: Int) -> Void)? = nil,
+        error errorCallback: ((_ error: Error) -> Void)? = nil,
         failure failureCallback: (() -> Void)? = nil
         ) {
-            provider.request(target) { (result) in
+        provider.request(target) { (result) in
             switch result {
             case let .success(response):
-                do {
-                    if let json = JSON(response.data).dictionaryObject {
+                if let json = JSON(response.data).dictionaryObject {
+                    do {
                         let value = try AbstractResponse<R>(JSON: json)
-                        if(value.code / 100 == 2) {
-                            successCallback(value.data!)
-                        } else {
-                            debugPrint(value)
+                        successCallback(value.data)
+                    } catch let error {
+                        debugPrint(error)
+                        do {
+                            let detail = try AbstractMessage(JSON: json)
                             if let errorCallback = errorCallback {
-                                errorCallback(value.code)
+                                errorCallback(detail)
                             } else {
-                                self.notifier.showNetworkError(nil)
+                                self.notifier.showNetworkError(detail)
                             }
-                            
-                        }
-                    } else {
-                        debugPrint("JSON serialization failed.")
-                        if let failureCallback = failureCallback {
-                            failureCallback()
-                        } else {
-                            self.notifier.showNetworkError(nil)
+                        } catch let errorWithError {
+                            if let errorCallback = errorCallback {
+                                errorCallback(AbstractError(status: 1001,message: errorWithError.localizedDescription))
+                            } else {
+                                self.notifier.showNetworkError(AbstractError(status: 1001,message: errorWithError.localizedDescription))
+                            }
                         }
                     }
-                }
-                catch let error {
-                    debugPrint(error)
+                } else {
+                    debugPrint(String(data: response.data, encoding: .utf8) ?? "")
                     if let failureCallback = failureCallback {
                         failureCallback()
                     } else {
-                        self.notifier.showNetworkError(nil)
+                        self.notifier.showNetworkError(AbstractError(status: 1002, message: "JSON解析失败"))
                     }
                 }
             case .failure(let error):
@@ -72,7 +70,7 @@ class Network<T:TargetType> {
                 if let failureCallback = failureCallback {
                     failureCallback()
                 } else {
-                    self.notifier.showNetworkError(nil)
+                    self.notifier.showNetworkError(AbstractError(status: 0, message: "请求失败"))
                 }
             }
         }

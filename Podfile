@@ -9,7 +9,6 @@ target 'NFLSers-iOS' do
   # Pods for NFLSers-iOS
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
-  pod 'SwiftyMarkdown'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'SDWebImage'
   pod 'SDWebImage/WebP'
@@ -17,7 +16,6 @@ target 'NFLSers-iOS' do
   pod 'Cache'
   pod 'Toucan'
   pod 'SCLAlertView'
-  pod 'OneTimePassword'
   pod 'Moya'
   pod 'SwiftyJSON'
   pod 'AliyunOSSiOS'
@@ -27,8 +25,9 @@ target 'NFLSers-iOS' do
   pod 'Sentry'
   pod 'SVProgressHUD'
   pod 'SwiftyUserDefaults'
-  pod "Timepiece"
+  pod 'Timepiece'
   pod 'SwiftMessages'
+  pod 'MarkdownView'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

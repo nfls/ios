@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="GillSans.ttc">
-            <string>GillSans-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--南外人Lite-->
         <scene sceneID="590-9T-acl">
@@ -100,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z85-qO-MIy">
-                                <rect key="frame" x="37.5" y="160" width="300" height="347"/>
+                                <rect key="frame" x="37.5" y="226.5" width="300" height="347"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Yd-RhD">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -125,18 +120,38 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rs-qq-loe" customClass="MarkdownView" customModule="MarkdownView">
+                                <rect key="frame" x="3" y="87" width="369" height="133.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公告栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZY-gV-D9w">
+                                <rect key="frame" x="10" y="67" width="362" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="An6-Yd-RhD" firstAttribute="width" relation="lessThanOrEqual" secondItem="aRh-zj-EQH" secondAttribute="width" multiplier="0.5" priority="500" id="0nG-5o-dZd"/>
+                            <constraint firstItem="6rs-qq-loe" firstAttribute="height" secondItem="aRh-zj-EQH" secondAttribute="height" multiplier="0.2" id="DV8-FC-ehU"/>
+                            <constraint firstItem="KZY-gV-D9w" firstAttribute="leading" secondItem="QGg-0I-hel" secondAttribute="leading" constant="10" id="EJC-NA-M2H"/>
+                            <constraint firstItem="6rs-qq-loe" firstAttribute="top" secondItem="KZY-gV-D9w" secondAttribute="bottom" constant="3" id="M0J-QE-IbH"/>
+                            <constraint firstItem="QGg-0I-hel" firstAttribute="trailing" secondItem="6rs-qq-loe" secondAttribute="trailing" constant="3" id="ZjH-vk-oVY"/>
+                            <constraint firstItem="6rs-qq-loe" firstAttribute="leading" secondItem="QGg-0I-hel" secondAttribute="leading" constant="3" id="bLV-Fx-WiT"/>
                             <constraint firstItem="Z85-qO-MIy" firstAttribute="centerX" secondItem="aRh-zj-EQH" secondAttribute="centerX" id="emR-tQ-4tF"/>
-                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerY" secondItem="aRh-zj-EQH" secondAttribute="centerY" id="srX-PH-tE6"/>
+                            <constraint firstItem="KZY-gV-D9w" firstAttribute="top" secondItem="QGg-0I-hel" secondAttribute="top" constant="3" id="pmF-84-Sxa"/>
+                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerY" secondItem="aRh-zj-EQH" secondAttribute="centerY" multiplier="1.2" id="srX-PH-tE6"/>
+                            <constraint firstItem="6rs-qq-loe" firstAttribute="top" secondItem="QGg-0I-hel" secondAttribute="top" constant="23" id="uM3-Nr-t4U"/>
+                            <constraint firstItem="QGg-0I-hel" firstAttribute="trailing" secondItem="KZY-gV-D9w" secondAttribute="trailing" constant="3" id="xtv-U0-sdX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QGg-0I-hel"/>
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="mdView" destination="6rs-qq-loe" id="CtC-iY-Ahn"/>
                         <segue destination="gLD-4C-ogZ" kind="show" id="qwn-y2-ofd"/>
+                        <segue destination="ak6-wv-VQK" kind="show" identifier="showAnnouncement" id="UzX-im-rmf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-Jh-dnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,6 +185,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jht-UW-d6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2401" y="-128"/>
+        </scene>
+        <!--公告-->
+        <scene sceneID="BzV-c0-LRe">
+            <objects>
+                <viewController title="公告" id="ak6-wv-VQK" customClass="AnnouncementViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fHH-Eg-eKZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dOa-QM-O1Z"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-E3-Gjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2401" y="606"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="lYZ-FU-ZGo">
