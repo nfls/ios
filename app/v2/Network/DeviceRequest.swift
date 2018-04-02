@@ -16,7 +16,7 @@ enum DeviceRequest {
 
 extension DeviceRequest: TargetType {
     var baseURL: URL {
-        return URL(string: Constant.getApiUrl() + "device/")!
+        return Constant.apiEndpoint.appendingPathComponent("device")
     }
     
     var path: String {

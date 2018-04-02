@@ -10,21 +10,9 @@ import Foundation
 import SwiftMessages
 
 class Constant {
-    let apiEndpoint: URL = URL(string: "https://nfls.io/")!
-    static let photoBaseUrl = "https://nflsio.oss-cn-shanghai.aliyuncs.com/"
-    class func getApiUrl() -> String {
-        return "https://nfls.io/"
-    }
-    class func getUrl(string:String?) -> URL? {
-        if let string = string {
-            return URL(string: self.photoBaseUrl + string)
-        } else {
-            return nil
-        }
-    }
-    class func getUrl(string:String) -> URL {
-        return URL(string: self.photoBaseUrl + string)!
-    }
+    static let apiEndpoint: URL = URL(string: "https://nfls.io/")!
+    static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
+    static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
 }
 
 

@@ -41,6 +41,9 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     }
     public func getFile(file:File, progress: @escaping (_ precentage:Double) -> Void, completion: @escaping (_ succeeded:Bool) -> Void)
     {
+        if file.size == 0 {
+            completion(true)
+        }
         if let client = client {
             let request = OSSGetObjectRequest()
             request.bucketName = "nfls-papers"
@@ -157,6 +160,9 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
         var files =  files.filter({ file -> Bool in
             return (file.name.components(separatedBy: "/").count == path.count + 1) && file.name.hasPrefix(realPath)
         })
+        if path.contains("Past Papers") && files.filter({$0.filename.contains(".pdf")}).count == 0 {
+            files = files.reversed()
+        }
         if(path.count > 0){
             files.insert(File(specialAction: "@Back", withName: "返回"), at: 0)
         }

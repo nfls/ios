@@ -8,7 +8,7 @@
 
 import Foundation
 import ObjectMapper
-
+/*
 struct Gallery:ImmutableMappable {
     init(map: Map) throws {
         self.comments = try map.value("comments")
@@ -29,3 +29,4 @@ struct Gallery:ImmutableMappable {
     let visible:Bool
     let id:Int
 }
+*/

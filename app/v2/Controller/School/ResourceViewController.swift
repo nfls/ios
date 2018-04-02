@@ -38,8 +38,7 @@ class ResourcesViewController:UITableViewController {
     
     override func viewDidLoad() {
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
-        self.downloadButton = UIBarButtonItem(title: "下载", style: .plain, target: self, action: #selector(bulkDownload))
-        self.previewButton = UIBarButtonItem(title: "预览", style: .plain, target: self, action: #selector(bulkView))
+        self.downloadButton = UIBarButtonItem(title: "查看", style: .plain, target: self, action: #selector(bulkDownload))
         self.deleteButton = UIBarButtonItem(title: "删除", style: .plain, target: self, action: #selector(bulkDelete))
         
         self.reloadData()
@@ -60,7 +59,11 @@ class ResourcesViewController:UITableViewController {
     
     @objc func bulkDownload(sender:UIButton?){
         self.tableView.isUserInteractionEnabled = false
-        provider.getFiles(files: self.getSelectedFiles(), progress: { (total, current, file) in
+        bulkDownloadAction(files: self.getSelectedFiles())
+    }
+    
+    func bulkDownloadAction(files:[File]) {
+        provider.getFiles(files:self.filterOut(files: files), progress: { (total, current, file) in
             DispatchQueue.main.async {
                 SVProgressHUD.showProgress(Float(current)/Float(total), status: "第\(current)个，共\(total)个。当前为\(file.filename)")
             }
@@ -70,17 +73,29 @@ class ResourcesViewController:UITableViewController {
                 SVProgressHUD.dismiss()
             }
             if(status){
-                self.bulkView(sender: nil)
+                self.bulkView(sender: files)
             }
             self.reloadData()
         }
     }
     
-    @objc func bulkView(sender:UIButton?){
+    func filterOut(files:[File]) -> [File] {
+        return files.filter({ (file) -> Bool in
+            return !self.exist(file)
+        })
+    }
+    
+    @objc func bulkView(sender:Any?){
         previewController.files.removeAll()
         DispatchQueue.main.async {
-            for file in self.getSelectedFiles() {
-                self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+            if let files = sender as? [File] {
+                for file in files {
+                    self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+                }
+            } else {
+                for file in self.getSelectedFiles() {
+                    self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+                }
             }
             self.previewController.reloadData()
             self.navigationController?.pushViewController(self.previewController, animated: true)
@@ -123,7 +138,7 @@ class ResourcesViewController:UITableViewController {
         self.files = files
         self.navigationItem.prompt = "/" + (provider.path as NSArray).componentsJoined(by: "/")
         if(multiMode){
-            self.navigationItem.rightBarButtonItems = [multiButton,deleteButton,downloadButton,previewButton]
+            self.navigationItem.rightBarButtonItems = [multiButton,deleteButton,downloadButton]
             self.title = nil
         } else {
             self.navigationItem.rightBarButtonItems = [multiButton]
@@ -134,7 +149,7 @@ class ResourcesViewController:UITableViewController {
             
         }else{
             self.navigationItem.hidesBackButton = false
-            //self.view.removeGestureRecognizer(swipe)
+            //self.view.removeGestureRecognizer(swizpe)
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -188,6 +203,58 @@ class ResourcesViewController:UITableViewController {
         }
     }
     
+    func download(_ file: File) {
+        if(self.exist(file)){
+            preview(file)
+        } else {
+            self.tableView.isUserInteractionEnabled = false
+            let toDownload = checkMarkschemes(file)
+            if(toDownload.count == 1) {
+                self.provider.getFile(file: file, progress: { progress in
+                    DispatchQueue.main.async {
+                        SVProgressHUD.showProgress(Float(progress), status: file.filename)
+                    }
+                }) { status in
+                    DispatchQueue.main.async {
+                        self.tableView.isUserInteractionEnabled = true
+                        SVProgressHUD.dismiss()
+                    }
+                    if(status) {
+                        self.preview(file)
+                    }
+                    self.reloadData()
+                }
+            } else {
+                self.bulkDownloadAction(files: toDownload)
+            }
+            
+        }
+    }
+    
+    func checkMarkschemes(_ file: File) -> [File]{
+        var target: String = "This is rubbish."
+        switch file {
+        case let file where file.filename.contains("qp"):
+            target = file.filename.replacingOccurrences(of: "qp", with: "ms")
+        case let file where file.filename.contains("ms"):
+            target = file.filename.replacingOccurrences(of: "ms", with: "qp")
+        case let file where file.filename.contains("_markscheme.pdf"):
+            target = file.filename.replacingOccurrences(of: "_markscheme.pdf", with: ".pdf")
+        case let file where file.filename.contains(".pdf"):
+            target = file.filename.replacingOccurrences(of: ".pdf", with: "_markscheme.pdf")
+        default:
+            target = "This is rubbish."
+        }
+        let filtered = self.files.filter { (file) -> Bool in
+            return file.filename == target
+        }
+        if(filtered.count == 1) {
+            return [file, filtered[0]]
+        } else {
+            return [file]
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "aa")
         cell.textLabel?.text = files[indexPath.row].filename
@@ -234,26 +301,7 @@ class ResourcesViewController:UITableViewController {
             }else if(files[indexPath.row].size == 0){
                 goToFolder(withFileName: files[indexPath.row].filename)
             }else{
-                if(self.exist(files[indexPath.row])){
-                    preview(files[indexPath.row])
-                } else {
-                    self.tableView.isUserInteractionEnabled = false
-                    self.provider.getFile(file: files[indexPath.row], progress: { progress in
-                        DispatchQueue.main.async {
-                            SVProgressHUD.showProgress(Float(progress), status: self.files[indexPath.row].filename)
-                        }
-                    }) { status in
-                        DispatchQueue.main.async {
-                            self.tableView.isUserInteractionEnabled = true
-                            SVProgressHUD.dismiss()
-                        }
-                        if(status) {
-                            self.preview(self.files[indexPath.row])
-                        }
-                        self.reloadData()
-                    }
-                }
-                
+                download(files[indexPath.row])
             }
         }
     }

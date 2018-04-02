@@ -8,8 +8,9 @@
 
 import Foundation
 import ObjectMapper
-
+   /*
 struct Photo:ImmutableMappable {
+ 
     init(map: Map) throws {
         self.id = try map.value("id")
         self.gallery = try map.value("gallery")
@@ -28,4 +29,6 @@ struct Photo:ImmutableMappable {
     let time:Date
     let visible:Bool
     let `public`:Bool
+
 }
+  */
