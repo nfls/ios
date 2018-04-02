@@ -38,7 +38,7 @@ class ResourcesViewController:UITableViewController {
     
     override func viewDidLoad() {
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
-        self.downloadButton = UIBarButtonItem(title: "查看", style: .plain, target: self, action: #selector(bulkDownload))
+        self.downloadButton = UIBarButtonItem(title: "打开", style: .plain, target: self, action: #selector(bulkDownload))
         self.deleteButton = UIBarButtonItem(title: "删除", style: .plain, target: self, action: #selector(bulkDelete))
         
         self.reloadData()
