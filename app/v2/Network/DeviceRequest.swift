@@ -12,6 +12,7 @@ import Moya
 enum DeviceRequest {
     case announcement()
     case notifiaction(token:String)
+    case version()
 }
 
 extension DeviceRequest: TargetType {
@@ -25,6 +26,8 @@ extension DeviceRequest: TargetType {
             return "announcement/ios"
         case .notifiaction(_):
             return "notification"
+        case .version():
+            return "version"
         }
     }
     
@@ -34,6 +37,8 @@ extension DeviceRequest: TargetType {
             return .get
         case .notifiaction(_):
             return .post
+        case .version():
+            return .get
         }
     }
     
@@ -47,6 +52,8 @@ extension DeviceRequest: TargetType {
             return .requestPlain
         case .notifiaction(let token):
             return .requestParameters(parameters: ["token": token], encoding: JSONEncoding.default)
+        case .version():
+            return .requestParameters(parameters: ["client_id": Constant.client_id], encoding: URLEncoding.default)
         }
     }
     

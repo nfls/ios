@@ -39,6 +39,11 @@ class TempViewController:AbstractViewController {
         drag.delegate = self
         mdView.subviews[0].addGestureRecognizer(tap)
         mdView.subviews[0].addGestureRecognizer(drag)
+        self.provider.checkUpdate { status in
+            if status {
+                MessageNotifier.showUpdate()
+            }
+        }
     }
     @objc func goToAnnouncement() {
         if navigationController?.topViewController is AnnouncementViewController {

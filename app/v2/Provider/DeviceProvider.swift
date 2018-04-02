@@ -30,4 +30,17 @@ class DeviceProvider: AbstractProvider<DeviceRequest> {
             
         })
     }
+    
+    public func checkUpdate(completion: @escaping (Bool) -> Void) {
+        self.request(target: DeviceRequest.version(), type: DataWrapper<String>.self, success: { (version) in
+            
+            let current = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            if version.value.compare(current, options: .numeric) == .orderedDescending {
+                completion(true)
+            } else {
+                completion(false)
+            }
+            
+        })
+    }
 }
