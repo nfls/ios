@@ -11,4 +11,5 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     static let announcement = DefaultsKey<String>("annoucement")
+    static let downloadCenterHeader = DefaultsKey<String>("downloadCenterHeader")
 }

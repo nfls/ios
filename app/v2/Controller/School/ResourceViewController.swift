@@ -22,10 +22,9 @@ class ResourcesViewController:UITableViewController {
     var cacheMode = false
     var multiMode = false
     
-    var cacheButton = UIBarButtonItem()
+    var headerButton = UIBarButtonItem()
     var multiButton = UIBarButtonItem()
     var downloadButton = UIBarButtonItem()
-    var previewButton = UIBarButtonItem()
     var deleteButton = UIBarButtonItem()
     
     let provider = SchoolProvider()
@@ -36,19 +35,45 @@ class ResourcesViewController:UITableViewController {
     
     var swipe = UIScreenEdgePanGestureRecognizer()
     
+    override var navigationItem: UINavigationItem {
+        return self.tabBarController!.navigationItem
+    }
+    
+    override var navigationController: UINavigationController? {
+        return self.tabBarController!.navigationController
+    }
+    
     override func viewDidLoad() {
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
         self.downloadButton = UIBarButtonItem(title: "查看", style: .plain, target: self, action: #selector(bulkDownload))
         self.deleteButton = UIBarButtonItem(title: "删除", style: .plain, target: self, action: #selector(bulkDelete))
+        self.headerButton = UIBarButtonItem(title: "提示", style: .plain, target: self, action: #selector(loadHeader))
         
         self.reloadData()
         self.swipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(goBack))
         self.swipe.edges = .left
         self.swipe.delegate = self
         definesPresentationContext = true
-        
+        self.provider.getAnnouncement {
+            self.loadHeader()
+        }
         view.addGestureRecognizer(swipe)
-       
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationItem.prompt = nil
+        self.navigationItem.rightBarButtonItems = []
+    }
+    
+    @objc func loadHeader() {
+        let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "AnnouncementViewController") as! AnnouncementViewController
+        controller.text = self.provider.announcement
+        controller.title = "资源下载中心提示"
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @objc func multi(sender:UIButton){
@@ -121,8 +146,9 @@ class ResourcesViewController:UITableViewController {
         return files
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadData()
         
     }
     @objc func goBack(){
@@ -142,22 +168,25 @@ class ResourcesViewController:UITableViewController {
     }
     func refresh(_ files:[File]){
         self.files = files
-        self.navigationItem.prompt = "/" + (provider.path as NSArray).componentsJoined(by: "/")
-        if(multiMode){
-            self.navigationItem.rightBarButtonItems = [multiButton,deleteButton,downloadButton]
-            self.title = nil
-        } else {
-            self.navigationItem.rightBarButtonItems = [multiButton]
-            self.title = "往卷"
-        }
-        if(provider.path.count > 0){
-            self.navigationItem.hidesBackButton = true
-            swipe.isEnabled = true
-        }else{
-            self.navigationItem.hidesBackButton = false
-            swipe.isEnabled = false
-        }
         DispatchQueue.main.async {
+            if self.tabBarController?.selectedViewController is ResourcesViewController {
+                //self.navigationItem.prompt = "路径: /" + (self.provider.path as NSArray).componentsJoined(by: "/")
+                if(self.multiMode){
+                    self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton,self.deleteButton,self.downloadButton]
+                    self.title = nil
+                } else {
+                    self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton]
+                    self.title = "往卷"
+                }
+                if(self.provider.path.count > 0){
+                    //self.navigationItem.hidesBackButton = true
+                    self.swipe.isEnabled = true
+                }else{
+                    //self.navigationItem.hidesBackButton = false
+                    self.swipe.isEnabled = false
+                }
+            }
+
             self.tableView.reloadData()
         }
     }

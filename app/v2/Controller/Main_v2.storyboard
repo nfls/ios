@@ -6,16 +6,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--南外人Lite-->
+        <!--南外人-->
         <scene sceneID="590-9T-acl">
             <objects>
-                <viewController title="南外人Lite" id="MAC-v6-KWc" customClass="LoginViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="南外人" id="MAC-v6-KWc" customClass="LoginViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ic-DU-cc7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,84 +78,63 @@
                         <outlet property="loginButton" destination="oFp-Tu-j7Y" id="215-eE-gcT"/>
                         <outlet property="password" destination="D0K-KH-kGj" id="FXF-Id-mci"/>
                         <outlet property="username" destination="xsN-Sz-GJ9" id="dbI-Ww-wuX"/>
-                        <segue destination="dF0-A0-YaU" kind="show" id="Glg-vF-zpx"/>
+                        <segue destination="dJ3-9B-CTT" kind="show" id="SUn-zG-9OG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzc-ti-l6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="716" y="-128.18590704647679"/>
         </scene>
-        <!--南外人Lite-->
+        <!--南外人-->
+        <scene sceneID="MRv-nH-DUp">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" title="南外人" id="dJ3-9B-CTT" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J3e-b8-Fzk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dF0-A0-YaU" kind="relationship" relationship="viewControllers" id="Vum-LS-nc3"/>
+                        <segue destination="gLD-4C-ogZ" kind="relationship" relationship="viewControllers" id="3t5-RA-EED"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVP-31-7GN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="679"/>
+        </scene>
+        <!--南外人-->
         <scene sceneID="M9E-E1-b9R">
             <objects>
-                <viewController storyboardIdentifier="temp" title="南外人Lite" wantsFullScreenLayout="YES" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="temp" title="南外人" wantsFullScreenLayout="YES" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRh-zj-EQH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z85-qO-MIy">
-                                <rect key="frame" x="37.5" y="226.5" width="300" height="347"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Yd-RhD">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="An6-Yd-RhD" secondAttribute="height" multiplier="1:1" id="Xog-Y1-cUE"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="qm7-ht-JNn"/>
-                                        </constraints>
-                                        <state key="normal" title="📝" image="resources.png"/>
-                                        <connections>
-                                            <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="LWe-j9-VYN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YF-P2-AhS">
-                                        <rect key="frame" x="0.0" y="300" width="300" height="47"/>
-                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="30"/>
-                                        <state key="normal" title="Resources Center">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="download:" destination="dF0-A0-YaU" eventType="touchUpInside" id="mjK-JN-jlf"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rs-qq-loe" customClass="MarkdownView" customModule="MarkdownView">
-                                <rect key="frame" x="3" y="87" width="369" height="133.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvl-jc-QmQ" customClass="MarkdownView" customModule="MarkdownView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公告栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZY-gV-D9w">
-                                <rect key="frame" x="10" y="67" width="362" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="An6-Yd-RhD" firstAttribute="width" relation="lessThanOrEqual" secondItem="aRh-zj-EQH" secondAttribute="width" multiplier="0.5" priority="500" id="0nG-5o-dZd"/>
-                            <constraint firstItem="6rs-qq-loe" firstAttribute="height" secondItem="aRh-zj-EQH" secondAttribute="height" multiplier="0.2" id="DV8-FC-ehU"/>
-                            <constraint firstItem="KZY-gV-D9w" firstAttribute="leading" secondItem="QGg-0I-hel" secondAttribute="leading" constant="10" id="EJC-NA-M2H"/>
-                            <constraint firstItem="6rs-qq-loe" firstAttribute="top" secondItem="KZY-gV-D9w" secondAttribute="bottom" constant="3" id="M0J-QE-IbH"/>
-                            <constraint firstItem="QGg-0I-hel" firstAttribute="trailing" secondItem="6rs-qq-loe" secondAttribute="trailing" constant="3" id="ZjH-vk-oVY"/>
-                            <constraint firstItem="6rs-qq-loe" firstAttribute="leading" secondItem="QGg-0I-hel" secondAttribute="leading" constant="3" id="bLV-Fx-WiT"/>
-                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerX" secondItem="aRh-zj-EQH" secondAttribute="centerX" id="emR-tQ-4tF"/>
-                            <constraint firstItem="KZY-gV-D9w" firstAttribute="top" secondItem="QGg-0I-hel" secondAttribute="top" constant="3" id="pmF-84-Sxa"/>
-                            <constraint firstItem="Z85-qO-MIy" firstAttribute="centerY" secondItem="aRh-zj-EQH" secondAttribute="centerY" multiplier="1.2" id="srX-PH-tE6"/>
-                            <constraint firstItem="6rs-qq-loe" firstAttribute="top" secondItem="QGg-0I-hel" secondAttribute="top" constant="23" id="uM3-Nr-t4U"/>
-                            <constraint firstItem="QGg-0I-hel" firstAttribute="trailing" secondItem="KZY-gV-D9w" secondAttribute="trailing" constant="3" id="xtv-U0-sdX"/>
+                            <constraint firstItem="zvl-jc-QmQ" firstAttribute="top" secondItem="QGg-0I-hel" secondAttribute="top" id="3gW-vU-2k7"/>
+                            <constraint firstItem="QGg-0I-hel" firstAttribute="trailing" secondItem="zvl-jc-QmQ" secondAttribute="trailing" id="Phe-Pr-ehc"/>
+                            <constraint firstItem="QGg-0I-hel" firstAttribute="bottom" secondItem="zvl-jc-QmQ" secondAttribute="bottom" id="lD3-mC-ZuI"/>
+                            <constraint firstItem="zvl-jc-QmQ" firstAttribute="leading" secondItem="QGg-0I-hel" secondAttribute="leading" id="wcF-Kw-dax"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QGg-0I-hel"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="公告" image="chat" id="Gh9-Uh-4D0"/>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="mdView" destination="6rs-qq-loe" id="CtC-iY-Ahn"/>
-                        <segue destination="gLD-4C-ogZ" kind="show" id="qwn-y2-ofd"/>
-                        <segue destination="ak6-wv-VQK" kind="show" identifier="showAnnouncement" id="UzX-im-rmf"/>
+                        <outlet property="mdView" destination="zvl-jc-QmQ" id="8pD-0Y-Pot"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-Jh-dnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549.5999999999999" y="-128.18590704647679"/>
+            <point key="canvasLocation" x="1646" y="679"/>
         </scene>
         <!--资源-->
         <scene sceneID="NoM-rO-w37">
@@ -181,15 +159,19 @@
                             <outlet property="delegate" destination="gLD-4C-ogZ" id="dtl-pz-mY4"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="资源" image="resource" id="f7z-PG-wJm"/>
+                    <connections>
+                        <segue destination="ak6-wv-VQK" kind="show" identifier="showAnnouncement" id="VyH-MX-lLj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jht-UW-d6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2401" y="-128"/>
+            <point key="canvasLocation" x="2497" y="-128"/>
         </scene>
         <!--公告-->
         <scene sceneID="BzV-c0-LRe">
             <objects>
-                <viewController title="公告" id="ak6-wv-VQK" customClass="AnnouncementViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnnouncementViewController" title="公告" id="ak6-wv-VQK" customClass="AnnouncementViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHH-Eg-eKZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,39 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-E3-Gjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2401" y="606"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="lYZ-FU-ZGo">
-            <objects>
-                <viewController id="7TC-6C-eus" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EgN-H7-pYX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="asb-I0-hAT"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="lwa-qV-nco"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j0j-Mf-1Ur" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4062" y="203"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="cwk-NF-nsT">
-            <objects>
-                <viewController id="HqM-Jf-GCP" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gTF-I3-XWe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="6Q6-OL-AMX"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="success.png" landscapeImage="resources.png" largeContentSizeImage="angle-mask.png" id="lrH-A7-VVO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ft-DB-Cuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4062" y="-459"/>
+            <point key="canvasLocation" x="2497" y="679"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="330-vB-2TS">
@@ -254,8 +204,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="angle-mask.png" width="100" height="100"/>
-        <image name="resources.png" width="2492" height="2376"/>
-        <image name="success.png" width="28" height="28"/>
+        <image name="chat" width="22" height="28"/>
+        <image name="resource" width="25" height="24"/>
     </resources>
 </document>

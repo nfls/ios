@@ -8,6 +8,7 @@
 
 import UIKit
 import MarkdownView
+import SafariServices
 
 class AnnouncementViewController: UIViewController {
 
@@ -21,6 +22,11 @@ class AnnouncementViewController: UIViewController {
         mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+        mdView.onTouchLink = { url in
+            let controller = SFSafariViewController(url: url.url!)
+            self.present(controller, animated: true, completion: nil)
+            return false
+        }
         mdView.load(markdown: text, enableImage: true)
     }
 }

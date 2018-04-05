@@ -48,7 +48,7 @@ class LoginViewController:AbstractViewController {
         oauth2.login(username: username.text!, password: password.text!) { success in
             if(success){
                 let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier :"temp")
+                let viewController = storyboard.instantiateViewController(withIdentifier :"TabBarController")
                 self.navigationController!.pushViewController(viewController, animated: true)
                 UserDefaults.standard.set(self.username.text!, forKey: "username")
                 UserDefaults.standard.set(self.password.text!, forKey: "password")

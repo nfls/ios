@@ -11,7 +11,7 @@ import ObjectMapper
 import Moya
 import AliyunOSSiOS
 import FileKit
-
+import SwiftyUserDefaults
 class SchoolProvider:AbstractProvider<SchoolRequest> {
     //fileprivate var files = [File]()
     fileprivate var isLoaded = false
@@ -19,6 +19,26 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     fileprivate var client:OSSClient? = nil
     fileprivate let interval:TimeInterval = 0.04
     fileprivate var scheduledNextFire:Date = Date()
+    
+    public private(set) var announcement:String {
+        get {
+            return Defaults[.downloadCenterHeader]
+        }
+        set {
+            Defaults[.downloadCenterHeader] = newValue
+        }
+    }
+    
+    public func getAnnouncement(completion: @escaping () -> Void) {
+        self.request(target: SchoolRequest.pastpaperHeader(), type: DataWrapper<String>.self, success: { result in
+            if self.announcement != result.value {
+                self.announcement = result.value
+                completion()
+            } else {
+                self.announcement = result.value
+            }
+        })
+    }
     
     public func getFileList(completion: @escaping (_ files:[File]) -> Void)
     {
@@ -120,7 +140,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
             self.requestList(result:[], next: nil, completion: completion)
         }, error: { _ in
-            self.notifier.showInfo("您尚未完成实名认证，请先在首页上完成相关认证操作！")
+            self.notifier.showInfo("您尚未完成实名认证，或者未绑定手机，请先在首页的主站上完成相关认证操作！")
         })
     }
     
@@ -146,7 +166,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
                         completion(self.filter(files))
                     }
                 } else {
-                    print(rsp.error)
+                    debugPrint(rsp.error)
                 }
                 return task
             })
