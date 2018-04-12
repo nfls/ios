@@ -28,6 +28,7 @@ target 'NFLSers-iOS' do
   pod 'Timepiece'
   pod 'SwiftMessages'
   pod 'MarkdownView'
+  pod 'SwiftIconFont'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

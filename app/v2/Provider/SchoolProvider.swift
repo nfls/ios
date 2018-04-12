@@ -140,7 +140,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
             self.requestList(result:[], next: nil, completion: completion)
         }, error: { _ in
-            self.notifier.showInfo("您尚未完成实名认证，或者未绑定手机，请先在首页的主站上完成相关认证操作！")
+            self.notifier.showInfo("您尚未完成实名认证，或者未绑定手机，请先在主站上完成相关认证操作！")
         })
     }
     

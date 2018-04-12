@@ -34,7 +34,7 @@ class TempViewController:AbstractViewController {
         super.viewWillAppear(animated)
         self.tabBarController!.navigationItem.hidesBackButton = true
         self.tabBarController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
-        self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "主站", style: .plain, target: self, action: #selector(realname))
+        self.tabBarController!.navigationItem.rightBarButtonItems = []
     }
     
     @objc func logout() {

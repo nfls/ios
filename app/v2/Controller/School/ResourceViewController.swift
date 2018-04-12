@@ -31,8 +31,6 @@ class ResourcesViewController:UITableViewController {
     
     var files = [File]()
     
-    let previewController = PreviewController()
-    
     var swipe = UIScreenEdgePanGestureRecognizer()
     
     override var navigationItem: UINavigationItem {
@@ -63,7 +61,7 @@ class ResourcesViewController:UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationItem.prompt = nil
-        self.navigationItem.rightBarButtonItems = []
+        //self.navigationItem.rightBarButtonItems = []
     }
     
     @objc func loadHeader() {
@@ -113,19 +111,20 @@ class ResourcesViewController:UITableViewController {
     }
     
     @objc func bulkView(sender:Any?){
+        let previewController = PreviewController()
         previewController.files.removeAll()
         DispatchQueue.main.async {
             if let files = sender as? [File] {
                 for file in files {
-                    self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+                    previewController.files.append((Path.userDocuments + "download" + file.name).url)
                 }
             } else {
                 for file in self.getSelectedFiles() {
-                    self.previewController.files.append((Path.userDocuments + "download" + file.name).url)
+                    previewController.files.append((Path.userDocuments + "download" + file.name).url)
                 }
             }
-            self.previewController.reloadData()
-            self.navigationController?.pushViewController(self.previewController, animated: true)
+            previewController.reloadData()
+            self.navigationController?.pushViewController(previewController, animated: true)
         }
     }
     
@@ -173,10 +172,8 @@ class ResourcesViewController:UITableViewController {
                 //self.navigationItem.prompt = "路径: /" + (self.provider.path as NSArray).componentsJoined(by: "/")
                 if(self.multiMode){
                     self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton,self.deleteButton,self.downloadButton]
-                    self.title = nil
                 } else {
                     self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton]
-                    self.title = "往卷"
                 }
                 if(self.provider.path.count > 0){
                     //self.navigationItem.hidesBackButton = true
@@ -230,11 +227,12 @@ class ResourcesViewController:UITableViewController {
     
     func preview(_ file:File)
     {
+        let previewController = PreviewController()
         previewController.files.removeAll()
         previewController.files = [(Path.userDocuments + "download" + file.name).url]
         DispatchQueue.main.async {
-            self.previewController.reloadData()
-            self.navigationController?.pushViewController(self.previewController, animated: true)
+            previewController.reloadData()
+            self.navigationController?.pushViewController(previewController, animated: true)
         }
     }
     
