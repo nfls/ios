@@ -77,7 +77,8 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
             let task = client.getObject(request)
             task.continue({ task -> Any? in
                 if let error = task.error {
-                    print(error)
+                self.notifier.showInfo(error.localizedDescription)
+                    completion(false)
                 }else{
                     
                     let result = task.result as! OSSGetObjectResult
@@ -138,6 +139,14 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3600 , execute: {
+                self.notifier.showInfo("正在刷新访问密钥，请稍后")
+                self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
+                    let token = response
+                    let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
+                    self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
+                })
+            })
             self.requestList(result:[], next: nil, completion: completion)
         }, error: { _ in
             self.notifier.showInfo("您尚未完成实名认证，或者未绑定手机，请先在主站上完成相关认证操作！")
