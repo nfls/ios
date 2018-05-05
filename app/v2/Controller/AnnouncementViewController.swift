@@ -29,4 +29,9 @@ class AnnouncementViewController: UIViewController {
         }
         mdView.load(markdown: text, enableImage: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
 }

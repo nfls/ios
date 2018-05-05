@@ -25,6 +25,7 @@ class WKWebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
         if isMain {
             self.tabBarController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "FIB", style: .plain, target: self, action: #selector(fib))]
         } else {

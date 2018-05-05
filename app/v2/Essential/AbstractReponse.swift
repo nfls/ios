@@ -25,7 +25,7 @@ struct AbstractResponse<T: BaseMappable>: ImmutableMappable {
 
 class DataWrapper<T>: ImmutableMappable {
     required init(map: Map) throws {
-        self.value = try map.value("data")!
+        self.value = try map.value("data")
     }
     let value:T
 }

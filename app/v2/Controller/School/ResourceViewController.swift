@@ -58,9 +58,16 @@ class ResourcesViewController:UITableViewController {
         view.addGestureRecognizer(swipe)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        provider.requiresUpdate = true
+        provider.periodUpdate()
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationItem.prompt = nil
+        provider.requiresUpdate = false
         //self.navigationItem.rightBarButtonItems = []
     }
     
@@ -355,11 +362,13 @@ class ResourcesViewController:UITableViewController {
         return files.count
     }
 }
+
 extension ResourcesViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
+
 class PreviewController:QLPreviewController, QLPreviewControllerDelegate, QLPreviewControllerDataSource{
     var files = [URL]()
     
