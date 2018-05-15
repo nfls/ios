@@ -148,17 +148,17 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     }
     
     public func periodUpdate() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1800 , execute: {
-            if(self.requiresUpdate && self.client != nil) {
-                //self.notifier.showInfo("正在刷新访问密钥")
-                self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
-                    let token = response
-                    let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
-                    self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
-                }) 
+        if(self.requiresUpdate && self.client != nil) {
+            //self.notifier.showInfo("正在刷新访问密钥")
+            self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
+                let token = response
+                let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
+                self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
+            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1800 , execute: {
                 self.periodUpdate()
-            }
-        })
+            })
+        }
     }
     
     fileprivate func requestList(result:[File] = [],next:String? = nil, completion: @escaping (_ files:[File]) -> Void)

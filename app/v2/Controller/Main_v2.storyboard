@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,36 +20,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FJL-X1-LET">
-                                <rect key="frame" x="56" y="291" width="262.66666666666669" height="230"/>
+                                <rect key="frame" x="56.333333333333343" y="291" width="262.33333333333326" height="230"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-Sz-GJ9">
-                                        <rect key="frame" x="0.0" y="0.0" width="262.66666666666669" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="262.33333333333331" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D0K-KH-kGj">
-                                        <rect key="frame" x="0.0" y="50" width="262.66666666666669" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="262.33333333333331" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFp-Tu-j7Y">
-                                        <rect key="frame" x="0.0" y="100" width="262.66666666666669" height="30"/>
+                                        <rect key="frame" x="0.0" y="100" width="262.33333333333331" height="30"/>
                                         <state key="normal" title="登陆"/>
                                         <connections>
                                             <action selector="login:" destination="MAC-v6-KWc" eventType="touchDown" id="QUP-Uz-w4z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dl-91-y8D">
-                                        <rect key="frame" x="0.0" y="150" width="262.66666666666669" height="30"/>
+                                        <rect key="frame" x="0.0" y="150" width="262.33333333333331" height="30"/>
                                         <state key="normal" title="注册"/>
                                         <connections>
                                             <action selector="register:" destination="MAC-v6-KWc" eventType="touchDown" id="Gk9-qD-Z20"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-yy-h1Z">
-                                        <rect key="frame" x="0.0" y="200" width="262.66666666666669" height="30"/>
+                                        <rect key="frame" x="0.0" y="200" width="262.33333333333331" height="30"/>
                                         <state key="normal" title="忘记密码"/>
                                         <connections>
                                             <action selector="reset:" destination="MAC-v6-KWc" eventType="touchDown" id="Lk8-bb-pph"/>

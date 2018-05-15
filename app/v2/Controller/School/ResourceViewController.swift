@@ -177,11 +177,14 @@ class ResourcesViewController:UITableViewController {
         DispatchQueue.main.async {
             if self.tabBarController?.selectedViewController is ResourcesViewController {
                 //self.navigationItem.prompt = "路径: /" + (self.provider.path as NSArray).componentsJoined(by: "/")
+                self.navigationItem.rightBarButtonItems = [self.headerButton]
+                /*
                 if(self.multiMode){
                     self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton,self.deleteButton,self.downloadButton]
                 } else {
                     self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton]
                 }
+                 */
                 if(self.provider.path.count > 0){
                     //self.navigationItem.hidesBackButton = true
                     self.swipe.isEnabled = true
@@ -249,7 +252,7 @@ class ResourcesViewController:UITableViewController {
         } else {
             self.tableView.isUserInteractionEnabled = false
             let toDownload = checkMarkschemes(file)
-            if(toDownload.count == 1) {
+            if(toDownload.count == 1 || true) {
                 self.provider.getFile(file: file, progress: { progress in
                     DispatchQueue.main.async {
                         SVProgressHUD.showProgress(Float(progress), status: file.filename)
