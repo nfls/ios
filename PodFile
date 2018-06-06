@@ -9,49 +9,37 @@ target 'NFLSers-iOS' do
   # Pods for NFLSers-iOS
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire'
-  pod 'SSZipArchive'
-  pod 'SwiftyMarkdown'
-  pod 'SwiftIconFont'
-  pod 'Charts'
   pod 'AlamofireNetworkActivityIndicator'
-  pod 'UITableView+FDTemplateLayoutCell'
-  pod 'CountryPickerSwift'
-  pod 'FrostedSidebar'
-  pod "GCDWebServer"
+  pod 'SDWebImage'
+  pod 'SDWebImage/WebP'
   pod 'UMengAnalytics-NO-IDFA' 
-  pod 'Kingfisher'
-  pod 'EZSwiftExtensions'
-  pod 'Permission/Camera'
-  pod 'Permission/Notifications'
-  pod 'Permission/Photos'
-  pod 'SCLAlertView'
-  pod 'UIColor-Pantone'
-  pod 'InAppSettingsKit'
-  pod 'AMScrollingNavbar'
-  pod 'ChromaColorPicker'
   pod 'Cache'
   pod 'Toucan'
-  pod 'IGListKit'
+  pod 'SCLAlertView'
   pod 'Moya'
   pod 'SwiftyJSON'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-  pod 'FileKit'
-  pod 'SwiftyUserDefaults'
-  pod 'Hero'
-  pod 'DeviceKit'
-  pod 'MGSwipeTableCell'
-  pod "Timepiece"
-  pod 'CryptoSwift'
-  pod 'FSCalendar'
-  pod 'SwiftyStoreKit'
-  pod 'TextFieldEffects'
-  pod 'SnapKit'
+  pod 'AliyunOSSiOS'
+  pod 'p2.OAuth2'
   pod 'ObjectMapper'
-  #pod 'ObjectivePGP'
-  pod 'OneTimePassword'
-  pod 'EFQRCode'
-  pod 'FoldingCell'
-  pod 'RAMAnimatedTabBarController'
-  pod 'expanding-collection'
-  pod 'GlidingCollection'
+  pod 'FileKit'
+  pod 'Sentry'
+  pod 'SVProgressHUD'
+  pod 'SwiftyUserDefaults'
+  pod 'Timepiece'
+  pod 'SwiftMessages'
+  pod 'MarkdownView'
+  pod 'SwiftIconFont'
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == 'OneTimePassword'
+          target.build_configurations.each do |config|
+              config.build_settings['SWIFT_VERSION'] = '3.2'
+          end
+      end
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
+      end
+    end
+  end
 end
