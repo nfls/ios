@@ -40,7 +40,11 @@
 		656F304E20712D5A009B8D69 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304D20712D5A009B8D69 /* AnnouncementViewController.swift */; };
 		656F3052207204E1009B8D69 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656F3051207204E1009B8D69 /* Launch Screen.storyboard */; };
 		659003B02015BA0E0077876F /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659003AF2015BA0E0077876F /* TempViewController.swift */; };
+		65D2327420C842CD00FB5D32 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2327320C842CD00FB5D32 /* UserProvider.swift */; };
+		65D2327620C842EB00FB5D32 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D2327520C842EB00FB5D32 /* UserRequest.swift */; };
 		65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3A75F2010275A00582257 /* ResourceViewController.swift */; };
+		65F33F8D20C7CF540060346A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F33F8C20C7CF540060346A /* ExternalAccessory.framework */; };
+		65F33F8F20C7D08C0060346A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F33F8E20C7D08C0060346A /* CloudKit.framework */; };
 		65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */; };
 		974A27702225B29A9C47EC17 /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDC7CB56AB30DBC06422C04 /* Pods_NFLSers_iOS.framework */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
@@ -96,7 +100,11 @@
 		656F3051207204E1009B8D69 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		659003AF2015BA0E0077876F /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		65D2327320C842CD00FB5D32 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		65D2327520C842EB00FB5D32 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		65D3A75F2010275A00582257 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
+		65F33F8C20C7CF540060346A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		65F33F8E20C7D08C0060346A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
 		86F111C8F7AD1E475324AD0E /* Pods-NFLSers-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B28B96534FB8A60362B227B6 /* Pods-NFLSers-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F33F8F20C7D08C0060346A /* CloudKit.framework in Frameworks */,
+				65F33F8D20C7CF540060346A /* ExternalAccessory.framework in Frameworks */,
 				6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */,
 				6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */,
 				6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */,
@@ -182,6 +192,7 @@
 				65185B352014399B009FDF76 /* MediaRequest.swift */,
 				651FCF75203E7F660089173E /* SchoolRequest.swift */,
 				65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */,
+				65D2327520C842EB00FB5D32 /* UserRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -226,6 +237,7 @@
 			children = (
 				656F304720711C35009B8D69 /* SchoolProvider.swift */,
 				656F304920711CAB009B8D69 /* DeviceProvider.swift */,
+				65D2327320C842CD00FB5D32 /* UserProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -241,6 +253,8 @@
 		B5699415F5610DDDCD428288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65F33F8E20C7D08C0060346A /* CloudKit.framework */,
+				65F33F8C20C7CF540060346A /* ExternalAccessory.framework */,
 				6532E7BD2037588100A23706 /* MapKit.framework */,
 				6515483B2032B19D0088BD20 /* NetworkExtension.framework */,
 				651548392032B19C0088BD20 /* PassKit.framework */,
@@ -314,6 +328,15 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.ClassKit = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
 							com.apple.HotspotConfiguration = {
 								enabled = 1;
 							};
@@ -326,13 +349,25 @@
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
+							com.apple.NearFieldCommunicationTagReading = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 1;
+							};
 							com.apple.Wallet = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -483,6 +518,7 @@
 				6551E4992013AE2F00B81E45 /* Gallery.swift in Sources */,
 				65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */,
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
+				65D2327420C842CD00FB5D32 /* UserProvider.swift in Sources */,
 				6551E4972013AB8700B81E45 /* Constant.swift in Sources */,
 				651ED7A02076A09F009A9ED1 /* TabBarController.swift in Sources */,
 				651FCF74203E7E420089173E /* PastPaper.swift in Sources */,
@@ -493,6 +529,7 @@
 				659003B02015BA0E0077876F /* TempViewController.swift in Sources */,
 				65108DC220101EC800A5267E /* LoginViewController.swift in Sources */,
 				65108DC82010249A00A5267E /* AbstractViewController.swift in Sources */,
+				65D2327620C842EB00FB5D32 /* UserRequest.swift in Sources */,
 				651FCF76203E7F660089173E /* SchoolRequest.swift in Sources */,
 				656F304620711B90009B8D69 /* MessageNotifier.swift in Sources */,
 				650C386A204997EE00A5B192 /* Blackboard.swift in Sources */,
@@ -643,7 +680,7 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -658,7 +695,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				UNITY_IOS_EXPORT_PATH = "$PROJECT_DIR/Unity";
+				UNITY_IOS_EXPORT_PATH = $PROJECT_DIR/Unity;
 				UNITY_RUNTIME_VERSION = 2017.2.0f3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -692,7 +729,7 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -706,7 +743,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				UNITY_IOS_EXPORT_PATH = "$PROJECT_DIR/Unity";
+				UNITY_IOS_EXPORT_PATH = $PROJECT_DIR/Unity;
 				UNITY_RUNTIME_VERSION = 2017.2.0f3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

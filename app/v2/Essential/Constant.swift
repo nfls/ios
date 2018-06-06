@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftMessages
+import ClassKit
 
 class Constant {
     static let apiEndpoint: URL = URL(string: "https://nfls.io/")!
