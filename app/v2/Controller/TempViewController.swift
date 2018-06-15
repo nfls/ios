@@ -11,6 +11,7 @@ import SafariServices
 import SCLAlertView
 import MarkdownView
 import QuartzCore
+import UserNotifications
 
 class TempViewController:AbstractViewController {
     
@@ -28,6 +29,12 @@ class TempViewController:AbstractViewController {
                 MessageNotifier.showUpdate()
             }
         }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { (granted, error) in
+            if granted {
+                
+            }
+        }
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {

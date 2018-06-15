@@ -13,7 +13,7 @@ target 'NFLSers-iOS' do
   pod 'SDWebImage'
   pod 'SDWebImage/WebP'
   pod 'UMengAnalytics-NO-IDFA' 
-  pod 'Cache'
+  pod 'Cache', '4.2.0'
   pod 'Toucan'
   pod 'SCLAlertView'
   pod 'Moya'
@@ -29,14 +29,11 @@ target 'NFLSers-iOS' do
   pod 'SwiftMessages'
   pod 'MarkdownView'
   pod 'SwiftIconFont'
+  pod 'OneTimePassword'
+  pod 'EFQRCode'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
-      if target.name == 'OneTimePassword'
-          target.build_configurations.each do |config|
-              config.build_settings['SWIFT_VERSION'] = '3.2'
-          end
-      end
       target.build_configurations.each do |config|
         config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
       end

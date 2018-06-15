@@ -15,5 +15,11 @@ class Constant {
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
 }
 
-
-
+extension Data {
+    var hexString: String {
+        return withUnsafeBytes {(bytes: UnsafePointer<UInt8>) -> String in
+            let buffer = UnsafeBufferPointer(start: bytes, count: count)
+            return buffer.map {String(format: "%02hhx", $0)}.reduce("", { $0 + $1 })
+        }
+    }
+}

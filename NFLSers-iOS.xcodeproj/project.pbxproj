@@ -40,7 +40,9 @@
 		656F304E20712D5A009B8D69 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304D20712D5A009B8D69 /* AnnouncementViewController.swift */; };
 		656F3052207204E1009B8D69 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656F3051207204E1009B8D69 /* Launch Screen.storyboard */; };
 		659003B02015BA0E0077876F /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659003AF2015BA0E0077876F /* TempViewController.swift */; };
+		659762B120D3B7FD002798F2 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659762B020D3B7FD002798F2 /* QRCodeViewController.swift */; };
 		65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3A75F2010275A00582257 /* ResourceViewController.swift */; };
+		65D55AF420CCD7660089310B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D55AF320CCD7660089310B /* CloudKit.framework */; };
 		65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */; };
 		974A27702225B29A9C47EC17 /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDC7CB56AB30DBC06422C04 /* Pods_NFLSers_iOS.framework */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
@@ -96,7 +98,9 @@
 		656F3051207204E1009B8D69 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		65784C7F1F097C0C00BDC60A /* NFLSers-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NFLSers-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		659003AF2015BA0E0077876F /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		659762B020D3B7FD002798F2 /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		65D3A75F2010275A00582257 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
+		65D55AF320CCD7660089310B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
 		86F111C8F7AD1E475324AD0E /* Pods-NFLSers-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B28B96534FB8A60362B227B6 /* Pods-NFLSers-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */,
 				6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */,
 				6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */,
+				65D55AF420CCD7660089310B /* CloudKit.framework in Frameworks */,
 				974A27702225B29A9C47EC17 /* Pods_NFLSers_iOS.framework in Frameworks */,
 				651548382032B19A0088BD20 /* StoreKit.framework in Frameworks */,
 			);
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				65D3A75F2010275A00582257 /* ResourceViewController.swift */,
+				659762B020D3B7FD002798F2 /* QRCodeViewController.swift */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 		B5699415F5610DDDCD428288 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65D55AF320CCD7660089310B /* CloudKit.framework */,
 				6532E7BD2037588100A23706 /* MapKit.framework */,
 				6515483B2032B19D0088BD20 /* NetworkExtension.framework */,
 				651548392032B19C0088BD20 /* PassKit.framework */,
@@ -287,7 +294,6 @@
 				D6AE173B1E44D51600E66B4B /* Frameworks */,
 				D6AE173C1E44D51600E66B4B /* Resources */,
 				22E64A7FDA9057C2741B7323 /* [CP] Embed Pods Frameworks */,
-				6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */,
 				65E9B4731FAEBEC100A0DFFE /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -334,6 +340,9 @@
 								enabled = 1;
 							};
 							com.apple.Wallet = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -383,13 +392,16 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework",
+				"${BUILT_PRODUCTS_DIR}/Base32/Base32.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/FileKit/FileKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KSCrash/KSCrash.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/OneTimePassword/OneTimePassword.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -409,13 +421,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunOSSiOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base32.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FileKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSCrash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneTimePassword.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -447,21 +462,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
-		};
-		6B93F9D0123AA7825650D41B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -514,6 +514,7 @@
 				650C386A204997EE00A5B192 /* Blackboard.swift in Sources */,
 				656F304C207124C8009B8D69 /* DefaultsKey.swift in Sources */,
 				65108DC5201022C800A5267E /* OAuth2.swift in Sources */,
+				659762B120D3B7FD002798F2 /* QRCodeViewController.swift in Sources */,
 				65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
