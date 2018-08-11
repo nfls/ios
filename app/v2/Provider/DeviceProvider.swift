@@ -43,4 +43,9 @@ class DeviceProvider: AbstractProvider<DeviceRequest> {
             
         })
     }
+    
+    public func regitserDevice(token: String) {
+        self.request(target: .register(token: token), type: PushDevice.self, success: { (_) in
+        })
+    }
 }

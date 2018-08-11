@@ -21,7 +21,7 @@ class NFLSOAuth2:OAuth2PasswordGrantDelegate {
         oauth2 = OAuth2PasswordGrant(settings: [
             "client_id": Constant.client_id,
             "client_secret": Constant.client_secret,
-            "authorize_uri": "https://nfls.io/oauth/authorize",
+            "authorize_uri": "http://nfls.io/oauth/authorize",
             "token_uri": "https://nfls.io/oauth/accessToken",
             "scope": "",
             "secret_in_body": true,

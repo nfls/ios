@@ -31,6 +31,7 @@ target 'NFLSers-iOS' do
   pod 'SwiftIconFont'
   pod 'OneTimePassword'
   pod 'EFQRCode'
+  pod 'DeviceKit'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -26,6 +26,9 @@ class QRCodeViewController: UIViewController {
         self.token = self.getToken()
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: periodUpdate(_:))
         self.periodUpdate(timer)
+        NotificationCenter.default.addObserver(forName: .UIApplicationUserDidTakeScreenshot, object: nil, queue: .main) { notification in
+            //notification.
+        }
     }
     
     private func periodUpdate(_ timer: Timer) {

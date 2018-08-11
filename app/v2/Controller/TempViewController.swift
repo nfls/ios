@@ -20,6 +20,7 @@ class TempViewController:AbstractViewController {
     @IBOutlet weak var mdView: MarkdownView!
     
     override func viewDidLoad() {
+        
         mdView.load(markdown: self.provider.announcement)
         self.provider.getAnnouncement(completion: {
             self.mdView.load(markdown: self.provider.announcement)
@@ -35,6 +36,11 @@ class TempViewController:AbstractViewController {
             }
         }
         UIApplication.shared.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().getNotificationSettings { (setting) in
+            if setting.authorizationStatus != .authorized {
+                SCLAlertView().showWarning("设备注册失败", subTitle: "原因：推送未启用")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
