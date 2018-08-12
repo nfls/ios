@@ -10,7 +10,8 @@ import Foundation
 import SwiftMessages
 
 class Constant {
-    static let apiEndpoint: URL = URL(string: "https://nfls.io/")!
+    static let mainApiEndpoint: URL = URL(string: "https://nfls.io/")!
+    static let waterApiEndpoint: URL = URL(string: "https://water.nfls.io")!
     static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
 }

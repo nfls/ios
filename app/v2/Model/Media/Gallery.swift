@@ -8,9 +8,9 @@
 
 import Foundation
 import ObjectMapper
-/*
-struct Gallery:ImmutableMappable {
-    init(map: Map) throws {
+
+class Gallery: ImmutableMappable {
+    required init(map: Map) throws {
         self.comments = try map.value("comments")
         self.description = try map.value("description")
         self.photos = try map.value("photos")
@@ -20,13 +20,13 @@ struct Gallery:ImmutableMappable {
         self.visible = try map.value("visible")
         self.id = try map.value("id")
     }
-    let comments:[Comment]
-    let description:String
-    let photos:[Photo]
-    let `public`:Bool
-    let time:Date
-    let title:String
-    let visible:Bool
-    let id:Int
+    let comments: [Comment]
+    let description: String
+    let photos: [Photo]
+    let `public`: Bool
+    let time: Date
+    let title: String
+    let visible: Bool
+    let id: Int
 }
-*/
+

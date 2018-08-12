@@ -18,7 +18,7 @@ enum MediaRequest {
 
 extension MediaRequest:TargetType {
     var baseURL: URL {
-        return Constant.apiEndpoint.appendingPathComponent("media")
+        return Constant.mainApiEndpoint.appendingPathComponent("media")
     }
     
     var path: String {

@@ -17,9 +17,8 @@ struct Comment:ImmutableMappable {
         self.postUser = try map.value("postUser")
     }
     
-    let id:Int
-    let content:String
-    let time:Date
-    let postUser:User
-    
+    let id: Int
+    let content: String
+    let time: Date
+    let postUser: User
 }
