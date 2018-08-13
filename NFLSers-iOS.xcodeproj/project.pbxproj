@@ -23,7 +23,7 @@
 		651ED796207641E8009A9ED1 /* ItunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 651ED795207641E8009A9ED1 /* ItunesArtwork@2x.png */; };
 		651ED7A02076A09F009A9ED1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651ED79F2076A09F009A9ED1 /* TabBarController.swift */; };
 		651ED7A22076AE53009A9ED1 /* WKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651ED7A12076AE53009A9ED1 /* WKWebViewController.swift */; };
-		651FCF74203E7E420089173E /* PastPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF73203E7E420089173E /* PastPaper.swift */; };
+		651FCF74203E7E420089173E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF73203E7E420089173E /* File.swift */; };
 		651FCF76203E7F660089173E /* SchoolRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF75203E7F660089173E /* SchoolRequest.swift */; };
 		6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6532E7BD2037588100A23706 /* MapKit.framework */; };
 		6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF7D211EA76000F9D126 /* Blackboard.swift */; };
@@ -33,6 +33,10 @@
 		6542EF8A211FF3AC00F9D126 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF89211FF3AC00F9D126 /* Record.swift */; };
 		6542EF8D211FF4D500F9D126 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF8C211FF4D500F9D126 /* Vote.swift */; };
 		6542EF8F211FF58500F9D126 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF8E211FF58500F9D126 /* Option.swift */; };
+		6542EF912121515E00F9D126 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF902121515E00F9D126 /* Chat.swift */; };
+		6542EF942121520C00F9D126 /* StsToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF932121520C00F9D126 /* StsToken.swift */; };
+		6542EF972121540700F9D126 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF962121540700F9D126 /* Game.swift */; };
+		6542EF99212155D700F9D126 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF98212155D700F9D126 /* Rank.swift */; };
 		6551E4902013A66300B81E45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6551E48F2013A66200B81E45 /* Info.plist */; };
 		6551E4932013A73000B81E45 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4922013A73000B81E45 /* User.swift */; };
 		6551E4952013A9B800B81E45 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4942013A9B800B81E45 /* Photo.swift */; };
@@ -101,7 +105,7 @@
 		651ED795207641E8009A9ED1 /* ItunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ItunesArtwork@2x.png"; path = "app/v2/Assets/ItunesArtwork@2x.png"; sourceTree = SOURCE_ROOT; };
 		651ED79F2076A09F009A9ED1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		651ED7A12076AE53009A9ED1 /* WKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewController.swift; sourceTree = "<group>"; };
-		651FCF73203E7E420089173E /* PastPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastPaper.swift; sourceTree = "<group>"; };
+		651FCF73203E7E420089173E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		651FCF75203E7F660089173E /* SchoolRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolRequest.swift; sourceTree = "<group>"; };
 		6532E7BD2037588100A23706 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6542EF7D211EA76000F9D126 /* Blackboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackboard.swift; sourceTree = "<group>"; };
@@ -111,6 +115,10 @@
 		6542EF89211FF3AC00F9D126 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		6542EF8C211FF4D500F9D126 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		6542EF8E211FF58500F9D126 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		6542EF902121515E00F9D126 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		6542EF932121520C00F9D126 /* StsToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StsToken.swift; sourceTree = "<group>"; };
+		6542EF962121540700F9D126 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		6542EF98212155D700F9D126 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		6551E48F2013A66200B81E45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = app/Info.plist; sourceTree = "<group>"; };
 		6551E4922013A73000B81E45 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6551E4942013A9B800B81E45 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -255,6 +263,7 @@
 			children = (
 				6551E4922013A73000B81E45 /* User.swift */,
 				658CE37721042CE5000D3900 /* Device.swift */,
+				6542EF902121515E00F9D126 /* Chat.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -265,6 +274,8 @@
 				6551E4942013A9B800B81E45 /* Photo.swift */,
 				6551E4982013AE2F00B81E45 /* Gallery.swift */,
 				6551E49A2013AE4100B81E45 /* Comment.swift */,
+				6542EF962121540700F9D126 /* Game.swift */,
+				6542EF98212155D700F9D126 /* Rank.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -289,15 +300,24 @@
 			path = Vote;
 			sourceTree = "<group>";
 		};
+		6542EF92212151F300F9D126 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				651FCF73203E7E420089173E /* File.swift */,
+				6542EF932121520C00F9D126 /* StsToken.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		6551E4912013A72400B81E45 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6542EF92212151F300F9D126 /* Resource */,
 				6542EF8B211FF4B600F9D126 /* Vote */,
 				6542EF82211EA8C100F9D126 /* Practice */,
 				6542EF81211EA89B00F9D126 /* Media */,
 				6542EF80211EA88E00F9D126 /* User */,
 				6542EF7F211EA87800F9D126 /* Blackboard */,
-				651FCF73203E7E420089173E /* PastPaper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -644,12 +664,15 @@
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				6542EF8F211FF58500F9D126 /* Option.swift in Sources */,
 				6551E4972013AB8700B81E45 /* Constant.swift in Sources */,
+				6542EF942121520C00F9D126 /* StsToken.swift in Sources */,
 				651ED7A02076A09F009A9ED1 /* TabBarController.swift in Sources */,
-				651FCF74203E7E420089173E /* PastPaper.swift in Sources */,
+				651FCF74203E7E420089173E /* File.swift in Sources */,
 				6551E49B2013AE4100B81E45 /* Comment.swift in Sources */,
 				65185B3C20144863009FDF76 /* GalleryListController.swift in Sources */,
+				6542EF99212155D700F9D126 /* Rank.swift in Sources */,
 				6551E4932013A73000B81E45 /* User.swift in Sources */,
 				65185B3920143F69009FDF76 /* AbstractProvider.swift in Sources */,
+				6542EF912121515E00F9D126 /* Chat.swift in Sources */,
 				659003B02015BA0E0077876F /* TempViewController.swift in Sources */,
 				6542EF88211FF08500F9D126 /* Problem.swift in Sources */,
 				65108DC220101EC800A5267E /* LoginViewController.swift in Sources */,
@@ -658,6 +681,7 @@
 				656F304620711B90009B8D69 /* MessageNotifier.swift in Sources */,
 				6542EF84211EA8D200F9D126 /* Course.swift in Sources */,
 				650C386A204997EE00A5B192 /* Notice.swift in Sources */,
+				6542EF972121540700F9D126 /* Game.swift in Sources */,
 				6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */,
 				6590C850211EA56800D2CCC5 /* Attachment.swift in Sources */,
 				656F304C207124C8009B8D69 /* DefaultsKey.swift in Sources */,

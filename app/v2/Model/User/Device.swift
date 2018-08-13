@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct PushDevice: ImmutableMappable {
+struct PushDevice: Model {
     init(map: Map) throws {
         self.id = try map.value("id")
         self.token = try map.value("token")
@@ -24,7 +24,7 @@ struct PushDevice: ImmutableMappable {
     let callbackToken: String
     let type: DeviceType
     
-    enum DeviceType: Int {
+    enum DeviceType: Int, Codable {
         case ios = 1
         case we_chat = 2
     }

@@ -9,25 +9,26 @@
 import Foundation
 import ObjectMapper
 
-struct Photo:ImmutableMappable {
+struct Photo: Model {
  
     init(map: Map) throws {
         self.id = try map.value("id")
-        self.gallery = try map.value("gallery")
-        self.origin = Constant.getUrl(string: try? map.value("orogin"))
-        self.hd = Constant.getUrl(string: try map.value("hd"))
-        self.thumb = Constant.getUrl(string: try map.value("thumb"))
-        self.time = ISO8601DateFormatter().date(from: try map.value("time"))!
-        self.visible = try map.value("visible")
-        self.public = try map.value("public")
+        self.height = try map.value("height")
+        self.width = try map.value("width")
+        self.thumbUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/thumb").appendingPathComponent(try map.value("msrc"))
+        self.hdUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/hd").appendingPathComponent(try map.value("src"))
+        if let url: String = try? map.value("osrc") {
+            self.originUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/origin").appendingPathComponent(url)
+        } else {
+            self.originUrl = nil
+        }
     }
+    
     let id: Int
-    let gallery: String
-    let thumb: URL
-    let hd: URL
-    let origin: URL?
-    let time: Date
-    let visible: Bool
-    let `public`: Bool
+    let height: Int
+    let width: Int
+    let thumbUrl: URL
+    let hdUrl: URL
+    let originUrl: URL?
 }
 

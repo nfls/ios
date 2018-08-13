@@ -8,7 +8,8 @@
 
 import Foundation
 import ObjectMapper
-class Notice: ImmutableMappable {
+
+class Notice: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.title = try map.value("title")

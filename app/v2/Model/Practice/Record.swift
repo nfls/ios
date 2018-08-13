@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Record: ImmutableMappable {
+class Record: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.problem = try map.value("problem")
@@ -22,7 +22,7 @@ class Record: ImmutableMappable {
     let type: StatusType
     let time: Date
     
-    enum StatusType: Int {
+    enum StatusType: Int, Codable {
         case blank = 0
         case correct = 1
         case wrong = 2

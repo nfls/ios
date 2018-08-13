@@ -8,6 +8,9 @@
 
 import Foundation
 import SwiftMessages
+import ObjectMapper
+
+internal protocol Model: ImmutableMappable, Codable {}
 
 class Constant {
     static let mainApiEndpoint: URL = URL(string: "https://nfls.io/")!

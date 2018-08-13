@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct Comment:ImmutableMappable {
+struct Comment: Model {
     init(map: Map) throws {
         self.id = try map.value("id")
         self.content = try map.value("content")

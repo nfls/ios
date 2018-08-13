@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Vote: ImmutableMappable {
+class Vote: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.content = try map.value("content")

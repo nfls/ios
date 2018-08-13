@@ -9,24 +9,33 @@
 import Foundation
 import ObjectMapper
 
-class Gallery: ImmutableMappable {
+class Gallery: Model {
     required init(map: Map) throws {
-        self.comments = try map.value("comments")
-        self.description = try map.value("description")
-        self.photos = try map.value("photos")
+        self.id = try map.value("id")
+        self.visible = try map.value("visible")
         self.public = try map.value("public")
         self.time = ISO8601DateFormatter().date(from: try map.value("time"))!
         self.title = try map.value("title")
-        self.visible = try map.value("visible")
-        self.id = try map.value("id")
+        self.description = try map.value("description")
+        self.originCount = try map.value("originCount")
+        self.photoCount = try map.value("photoCount")
+        self.photos = try? map.value("photos")
+        self.comments = try? map.value("comments")
+        self.likes = try? map.value("likes")
+        self.cover = try? map.value("cover")
     }
-    let comments: [Comment]
-    let description: String
-    let photos: [Photo]
+    
+    let id: Int
+    let visible: Bool
     let `public`: Bool
     let time: Date
     let title: String
-    let visible: Bool
-    let id: Int
+    let description: String
+    let originCount: Int
+    let photoCount: Int
+    let cover: Photo?
+    let comments: [Comment]?
+    let photos: [Photo]?
+    let likes: [User]?
 }
 

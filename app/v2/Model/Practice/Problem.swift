@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Problem: ImmutableMappable {
+class Problem: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.contentImageUrl = Constant.waterApiEndpoint.appendingPathComponent("assets/papers").appendingPathComponent(try map.value("contentImageUrl"))
@@ -36,7 +36,7 @@ class Problem: ImmutableMappable {
     let masterProblem: Problem?
     let subProblems: [Problem]
     
-    enum ProblemType: Int {
+    enum ProblemType: Int, Codable {
         case multipleChoice = 1
         case simpleResponse = 2
         case longAnswer = 3

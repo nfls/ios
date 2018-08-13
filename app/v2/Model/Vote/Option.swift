@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Option: ImmutableMappable {
+class Option: Model {
     required init(map: Map) throws {
         self.text = try map.value("text")
         self.options = try map.value("options")

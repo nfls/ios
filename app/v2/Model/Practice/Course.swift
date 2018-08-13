@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Course: ImmutableMappable {
+class Course: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.name = try map.value("name")
@@ -22,7 +22,7 @@ class Course: ImmutableMappable {
     let remark: String
     let type: CourseType
     
-    enum CourseType: Int {
+    enum CourseType: Int, Codable {
         case igcse = 1
         case alevel = 2
         case ibdp = 3

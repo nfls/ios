@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Paper: ImmutableMappable {
+class Paper: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.paper = try map.value("paper")

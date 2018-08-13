@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Attachment: ImmutableMappable {
+class Attachment: Model {
     required init(map: Map) throws {
         self.name = try map.value("name")
         self.id = try map.value("id")

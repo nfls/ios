@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Blackboard: ImmutableMappable {
+class Blackboard: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
         self.title = try map.value("title")
