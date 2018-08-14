@@ -19,6 +19,11 @@ class Constant {
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
 }
 
+class WaterConstant {
+    static let apiEndpoint: URL = URL(string: "https://water.nfls.io")!
+    static let header: [String: String] = [:]
+}
+
 extension Data {
     var hexString: String {
         return withUnsafeBytes {(bytes: UnsafePointer<UInt8>) -> String in

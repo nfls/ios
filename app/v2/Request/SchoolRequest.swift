@@ -22,7 +22,7 @@ enum SchoolRequest {
 
 extension SchoolRequest: TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("school")
+        return Constant.waterApiEndpoint.appendingPathComponent("school")
     }
     
     var path: String {
