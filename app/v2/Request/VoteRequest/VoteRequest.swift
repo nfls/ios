@@ -1,23 +1,23 @@
 //
-//  BlackboardRequest.swift
+//  VoteRequest.swift
 //  NFLSers-iOS
 //
-//  Created by Qingyang Hu on 2018/8/15.
+//  Created by Qingyang Hu on 2018/8/17.
 //  Copyright © 2018 胡清阳. All rights reserved.
 //
 
 import Foundation
 import Moya
 
-enum BlackboardRequest {
+enum VoteRequest {
     case list()
     case detail(id: UUID)
-    case join(code: String)
+    case vote(id: UUID, options: [Int])
 }
 
-extension BlackboardRequest: TargetType {
+extension VoteRequest: TargetType {
     var baseURL: URL {
-        return WaterConstant.apiEndpoint
+        return Constant.mainApiEndpoint.appendingPathComponent("school/vote")
     }
     
     var path: String {
@@ -28,7 +28,7 @@ extension BlackboardRequest: TargetType {
         switch self {
         case .list(), .detail(_):
             return .get
-        case .join(_):
+        case .vote(_, _):
             return .post
         }
     }
@@ -42,14 +42,14 @@ extension BlackboardRequest: TargetType {
         case .list():
             return .requestPlain
         case .detail(let id):
-            return .requestParameters(parameters: ["id": id.uuidString], encoding: URLEncoding.default)
-        case .join(let code):
-            return .requestParameters(parameters: ["code": code], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["id": id.uuidString], encoding: JSONEncoding.default)
+        case .vote(let id, let options):
+            return .requestParameters(parameters: ["id": id.uuidString, "options": options], encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
-        return WaterConstant.header
+        return [:]
     }
     
     

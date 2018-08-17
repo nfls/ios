@@ -11,32 +11,32 @@ import Moya
 import SwiftyJSON
 
 enum MediaRequest {
-    case galleryList(page:Int)
-    case galleryComment(id:Int,content:String)
-    case list(page:Int)
+    case list()
+    case detail(id: Int)
+    case comment(id: Int, content: String)
+    case likeStatus()
+    case like()
 }
 
 extension MediaRequest:TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("media")
+        return Constant.mainApiEndpoint.appendingPathComponent("media/gallery")
     }
     
     var path: String {
         switch self {
-        case .list(_):
-            return "list"
-        case .galleryList(_):
-            return "gallery/list"
-        case .galleryComment(_):
-            return "gallery/comment"
+        case .likeStatus():
+            return "status"
+        default:
+            return String(describing: self)
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .list(_),.galleryList(_):
+        case .list(), .detail(_), .likeStatus():
             return .get
-        case .galleryComment(_,_):
+        case .comment(_, _), .like():
             return .post
         }
     }
@@ -46,13 +46,7 @@ extension MediaRequest:TargetType {
     }
     
     var task: Task {
-        switch self {
-        case .galleryList(let page),.list(let page):
-            return .requestParameters(parameters: ["page":page], encoding: URLEncoding.default)
-        case .galleryComment(let id, let content):
-            return .requestParameters(parameters: ["id":id,"content":content], encoding: JSONEncoding.default)
-
-        }
+        return .requestPlain //TODO: 
     }
     
     var headers: [String : String]? {
