@@ -46,31 +46,17 @@ extension MediaRequest:TargetType {
     }
     
     var task: Task {
-        return .requestPlain //TODO: 
+        switch self {
+        case .like(), .list(), .likeStatus():
+            return .requestPlain
+        case .comment(let id, let content):
+            return .requestParameters(parameters: ["id": id, "content": content], encoding: JSONEncoding.default)
+        case .detail(let id):
+            return .requestParameters(parameters: ["id": id], encoding: URLEncoding.default)
+        }
     }
     
     var headers: [String : String]? {
         return [:]
     }
 }
-/*
-class MediaProvider:AbstractProvider<MediaRequest> {
-    func getGalleryList(withPage page:Int, completion: @escaping (_ result: [Gallery]?) -> Void){
-        self.provider.request(.galleryList(page: page)) { response in
-            switch response {
-            case .success(let data):
-                do{
-                    let response = try AbstractResponse<Gallery>(JSON: JSON(data.data).dictionaryObject!)
-                    completion(response.data)
-                }catch let error{
-                    print(error)
-                    completion(nil)
-                }
-            default:
-                completion(nil)
-                break
-            }
-        }
-    }
-}
-*/
