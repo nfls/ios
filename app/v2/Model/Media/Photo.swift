@@ -15,10 +15,10 @@ struct Photo: Model {
         self.id = try map.value("id")
         self.height = try map.value("height")
         self.width = try map.value("width")
-        self.thumbUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/thumb").appendingPathComponent(try map.value("msrc"))
-        self.hdUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/hd").appendingPathComponent(try map.value("src"))
+        self.thumbUrl = MainConstant.apiEndpoint.appendingPathComponent("storage/photos/thumb").appendingPathComponent(try map.value("msrc"))
+        self.hdUrl = MainConstant.apiEndpoint.appendingPathComponent("storage/photos/hd").appendingPathComponent(try map.value("src"))
         if let url: String = try? map.value("osrc") {
-            self.originUrl = Constant.mainApiEndpoint.appendingPathComponent("storage/photos/origin").appendingPathComponent(url)
+            self.originUrl = MainConstant.apiEndpoint.appendingPathComponent("storage/photos/origin").appendingPathComponent(url)
         } else {
             self.originUrl = nil
         }

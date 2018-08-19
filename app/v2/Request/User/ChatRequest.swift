@@ -16,7 +16,7 @@ enum ChatRequest {
 
 extension ChatRequest: TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("chat")
+        return MainConstant.apiEndpoint.appendingPathComponent("chat")
     }
     
     var path: String {

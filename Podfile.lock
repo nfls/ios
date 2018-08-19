@@ -2,9 +2,9 @@ PODS:
   - Alamofire (4.7.3)
   - AlamofireNetworkActivityIndicator (2.2.1):
     - Alamofire (~> 4.7)
-  - AliyunOSSiOS (2.10.4)
+  - AliyunOSSiOS (2.10.5)
   - Base32 (1.1.2)
-  - Cache (4.2.0)
+  - Cache (5.1.0)
   - DeviceKit (1.7.0)
   - EFQRCode (4.2.2)
   - FileKit (5.0.0)
@@ -51,9 +51,9 @@ PODS:
   - SDWebImage/WebP (4.4.2):
     - libwebp (~> 0.5)
     - SDWebImage/Core
-  - Sentry (4.0.1):
-    - Sentry/Core (= 4.0.1)
-  - Sentry/Core (4.0.1)
+  - Sentry (4.1.0):
+    - Sentry/Core (= 4.1.0)
+  - Sentry/Core (4.1.0)
   - SVProgressHUD (2.2.5)
   - SwiftIconFont (2.8.0)
   - SwiftMessages (4.1.4):
@@ -69,7 +69,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityIndicator
   - AliyunOSSiOS
-  - Cache (= 4.2.0)
+  - Cache
   - DeviceKit
   - EFQRCode
   - FileKit
@@ -125,9 +125,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireNetworkActivityIndicator: aeac50e6ecb78ec71a5f1f29098bcf4ec2962910
-  AliyunOSSiOS: e5dcdba99963ca6b43fea863cead49423c5d4c75
+  AliyunOSSiOS: 53df437f24309bdfbe2df21b4f6be4f75474f00a
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
-  Cache: f28f8dd64b632155aabf9b3906b036a659048251
+  Cache: 7737c595aae7d94c7c0feca2c887288624e3b07e
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   EFQRCode: 203846c7b135b5f7c1d18bb7923bc32a74c8b363
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
@@ -141,7 +141,7 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  Sentry: a38f7879924c02239e121b19d993d23bdd1684db
+  Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftIconFont: ddaccaa3bb90fc21ebc528cfdf793342618a5cc2
   SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
@@ -151,6 +151,6 @@ SPEC CHECKSUMS:
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: dd2490b2dbb5761a797797ee7eaed74b6154c7a1
+PODFILE CHECKSUM: a86f2595fd2b0dead32530e068660edc0dfe209e
 
 COCOAPODS: 1.5.2

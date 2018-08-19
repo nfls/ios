@@ -20,7 +20,7 @@ enum MediaRequest {
 
 extension MediaRequest:TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("media/gallery")
+        return MainConstant.apiEndpoint.appendingPathComponent("media/gallery")
     }
     
     var path: String {

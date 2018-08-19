@@ -17,7 +17,7 @@ enum VoteRequest {
 
 extension VoteRequest: TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("school/vote")
+        return MainConstant.apiEndpoint.appendingPathComponent("school/vote")
     }
     
     var path: String {

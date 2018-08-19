@@ -15,7 +15,7 @@ class WKWebViewController: UIViewController {
     
     let webview = WKWebView()
     
-    let oauth = NFLSOAuth2()
+    let oauth = MainOAuth2()
     
     var isMain = true
     

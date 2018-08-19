@@ -12,15 +12,17 @@ import ObjectMapper
 
 internal protocol Model: ImmutableMappable, Codable {}
 
-class Constant {
-    static let mainApiEndpoint: URL = URL(string: "https://nfls.io/")!
-    static let waterApiEndpoint: URL = URL(string: "https://water.nfls.io")!
+class MainConstant {
+    static let apiEndpoint: URL = URL(string: "https://nfls.io/")!
     static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
+    static let header: [String: String] = [:]
 }
 
 class WaterConstant {
     static let apiEndpoint: URL = URL(string: "https://water.nfls.io")!
+    static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
+    static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
     static let header: [String: String] = [:]
 }
 

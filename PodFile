@@ -13,7 +13,7 @@ target 'NFLSers-iOS' do
   pod 'SDWebImage'
   pod 'SDWebImage/WebP'
   pod 'UMengAnalytics-NO-IDFA' 
-  pod 'Cache', '4.2.0'
+  pod 'Cache'
   pod 'Toucan'
   pod 'SCLAlertView'
   pod 'Moya'

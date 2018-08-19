@@ -11,16 +11,13 @@ import p2_OAuth2
 import Alamofire
 import Moya
 
-class NFLSOAuth2:OAuth2PasswordGrantDelegate {
-    func loginController(oauth2: OAuth2PasswordGrant) -> AnyObject {
-        return UIViewController()
-    }
+class MainOAuth2 {
+    let oauth2: OAuth2PasswordGrant
     
-    var oauth2:OAuth2PasswordGrant
     init() {
         oauth2 = OAuth2PasswordGrant(settings: [
-            "client_id": Constant.client_id,
-            "client_secret": Constant.client_secret,
+            "client_id": MainConstant.client_id,
+            "client_secret": MainConstant.client_secret,
             "authorize_uri": "http://nfls.io/oauth/authorize",
             "token_uri": "https://nfls.io/oauth/accessToken",
             "scope": "",
@@ -29,6 +26,7 @@ class NFLSOAuth2:OAuth2PasswordGrantDelegate {
             "verbose": true
             ] as OAuth2JSON)
     }
+    
     func login(username:String,password:String, completion: @escaping (_ success: Bool) -> Void) {
         oauth2.password = password
         oauth2.username = username
@@ -40,13 +38,13 @@ class NFLSOAuth2:OAuth2PasswordGrantDelegate {
             }
         }
     }
+    
     func getRequestClosure<T:TargetType>(type:T.Type) -> MoyaProvider<T> {
         let requestClosure:MoyaProvider<T>.RequestClosure = { (endpoint, done) in
             var request = try! endpoint.urlRequest() // This is the request Moya generates
             self.oauth2.authorize { (_, error) in
                 if error != nil {
                     self.oauth2.forgetTokens()
-                    //self.showLogin()
                 }
             }
             do {

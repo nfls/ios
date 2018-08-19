@@ -8,5 +8,5 @@
 
 import Foundation
 class AbstractViewController:UIViewController {
-    let oauth2 = NFLSOAuth2()
+    let oauth2 = MainOAuth2()
 }

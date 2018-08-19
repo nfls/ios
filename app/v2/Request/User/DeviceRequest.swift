@@ -19,7 +19,7 @@ enum DeviceRequest {
 
 extension DeviceRequest: TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("device")
+        return MainConstant.apiEndpoint.appendingPathComponent("device")
     }
     
     var path: String {
@@ -59,7 +59,7 @@ extension DeviceRequest: TargetType {
         case .notifiaction(let token):
             return .requestParameters(parameters: ["token": token], encoding: JSONEncoding.default)
         case .version():
-            return .requestParameters(parameters: ["client_id": Constant.client_id], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["client_id": MainConstant.client_id], encoding: URLEncoding.default)
         case .register(let token):
             return .requestParameters(parameters: [
                 "token": token,

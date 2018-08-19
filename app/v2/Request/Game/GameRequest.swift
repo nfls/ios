@@ -16,7 +16,7 @@ enum GameRequest {
 
 extension GameRequest: TargetType {
     var baseURL: URL {
-        return Constant.mainApiEndpoint.appendingPathComponent("game")
+        return MainConstant.apiEndpoint.appendingPathComponent("game")
     }
     
     var path: String {

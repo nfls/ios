@@ -19,7 +19,7 @@ class AbstractProvider<T:TargetType> {
     public let notifier:MessageNotifier
     
     init() {
-        provider = NFLSOAuth2().getRequestClosure(type: T.self)
+        provider = MainOAuth2().getRequestClosure(type: T.self)
         let diskCache = DiskConfig(name: String(describing: T.self))
         let memoryCache = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
         cache = try! Storage(diskConfig: diskCache, memoryConfig: memoryCache)
