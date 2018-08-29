@@ -12,7 +12,7 @@ import Alamofire
 import Moya
 
 class MainOAuth2 {
-    let oauth2: OAuth2PasswordGrant
+    public let oauth2: OAuth2PasswordGrant
     
     init() {
         oauth2 = OAuth2PasswordGrant(settings: [
@@ -34,7 +34,11 @@ class MainOAuth2 {
             if error != nil {
                 completion(false)
             }else{
+                let water = WaterAuth()
                 completion(true)
+                water.login({ (_) in
+                    
+                })
             }
         }
     }
@@ -47,11 +51,15 @@ class MainOAuth2 {
                     self.oauth2.forgetTokens()
                 }
             }
-            do {
-                try request.sign(with: self.oauth2)
+            if request.url!.host! != "nfls.io" {
                 done(.success(request))
-            } catch {
-                done(.success(request))
+            } else {
+                do {
+                    try request.sign(with: self.oauth2)
+                    done(.success(request))
+                } catch {
+                    done(.success(request))
+                }
             }
         }
         let provider = MoyaProvider<T>(requestClosure: requestClosure)

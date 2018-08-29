@@ -7,7 +7,7 @@
 //
 
 import UserNotifications
-import CoreServices
+import MobileCoreServices
 
 class NotificationService: UNNotificationServiceExtension {
 

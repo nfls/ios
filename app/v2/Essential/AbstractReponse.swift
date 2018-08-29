@@ -14,7 +14,11 @@ struct AbstractResponse<T: BaseMappable>: ImmutableMappable {
     init(map: Map) throws {
         self.code = try map.value("code")
         if(String(describing: T.self).contains("Wrapper")) {
-            self.data = T(JSON: map.JSON)!
+            if let data = try T(JSON: map.JSON) {
+                self.data = data
+            } else {
+                throw MapError(key: "data", currentValue: map.JSON, reason: "Failed")
+            }
         } else {
             self.data = try map.value("data")
         }

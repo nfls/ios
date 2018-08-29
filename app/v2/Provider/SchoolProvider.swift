@@ -12,7 +12,9 @@ import Moya
 import AliyunOSSiOS
 import FileKit
 import SwiftyUserDefaults
-class SchoolProvider:AbstractProvider<SchoolRequest> {
+import Cache
+
+class SchoolProvider:AbstractProvider<ResourceRequest> {
     //fileprivate var files = [File]()
     fileprivate var isLoaded = false
     public var path = [String]()
@@ -20,6 +22,12 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     fileprivate var client:OSSClient? = nil
     fileprivate let interval:TimeInterval = 0.04
     fileprivate var scheduledNextFire:Date = Date()
+    fileprivate let cache: Storage<[File]>
+    
+    override init() {
+        self.cache = try! Storage<[File]>(diskConfig: DiskConfig(name: String(describing: "School")), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10), transformer: TransformerFactory.forCodable(ofType: [File].self))
+        super.init()
+    }
     
     public private(set) var announcement:String {
         get {
@@ -31,7 +39,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     }
     
     public func getAnnouncement(completion: @escaping () -> Void) {
-        self.request(target: SchoolRequest.pastpaperHeader(), type: DataWrapper<String>.self, success: { result in
+        self.request(target: ResourceRequest.announcement(), type: DataWrapper<String>.self, success: { result in
             if self.announcement != result.value {
                 self.announcement = result.value
                 completion()
@@ -43,7 +51,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     
     public func getFileList(completion: @escaping (_ files:[File]) -> Void)
     {
-        if let files = try? self.cache.object(ofType: [File].self, forKey: "school.pastpaper.list.cache") {
+        if let files = try? self.cache.object(forKey: "school.pastpaper.list.cache") {
             completion(self.filter(files))
         }
         if !self.isLoaded {
@@ -53,7 +61,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     }
     
     fileprivate func getAllFileListFromCache() -> [File] {
-        if let files = try? self.cache.object(ofType: [File].self, forKey: "school.pastpaper.list.cache") {
+        if let files = try? self.cache.object(forKey: "school.pastpaper.list.cache") {
             return files
         } else {
             return []
@@ -136,7 +144,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     fileprivate func getList(completion: @escaping (_ files:[File]) -> Void)
     {
         self.notifier.showInfo("正在后台刷新文件列表，操作完成后列表将自动刷新")
-        self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
+        self.request(target: .token(), type: StsToken.self, success: { response in
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
@@ -150,7 +158,7 @@ class SchoolProvider:AbstractProvider<SchoolRequest> {
     public func periodUpdate() {
         if(self.requiresUpdate && self.client != nil) {
             //self.notifier.showInfo("正在刷新访问密钥")
-            self.request(target: .pastpaperToken(), type: StsToken.self, success: { response in
+            self.request(target: .token(), type: StsToken.self, success: { response in
                 let token = response
                 let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
                 self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)

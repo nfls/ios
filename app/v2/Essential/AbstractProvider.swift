@@ -15,14 +15,10 @@ import ObjectMapper
 
 class AbstractProvider<T:TargetType> {
     let provider:MoyaProvider<T>
-    let cache:Storage
     public let notifier:MessageNotifier
     
     init() {
         provider = MainOAuth2().getRequestClosure(type: T.self)
-        let diskCache = DiskConfig(name: String(describing: T.self))
-        let memoryCache = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
-        cache = try! Storage(diskConfig: diskCache, memoryConfig: memoryCache)
         notifier = MessageNotifier()
     }
     
@@ -36,35 +32,41 @@ class AbstractProvider<T:TargetType> {
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
-                if let json = JSON(response.data).dictionaryObject {
-                    do {
-                        let value = try AbstractResponse<R>(JSON: json)
-                        successCallback(value.data)
-                    } catch let error {
-                        debugPrint(error)
+                if response.statusCode != 200 {
+                    MainOAuth2().oauth2.forgetTokens()
+                    self.notifier.showInfo("登录失效，请重新登录。")
+                } else {
+                    if let json = JSON(response.data).dictionaryObject {
                         do {
-                            let detail = try AbstractMessage(JSON: json)
-                            if let errorCallback = errorCallback {
-                                errorCallback(detail)
-                            } else {
-                                self.notifier.showNetworkError(detail)
-                            }
-                        } catch let errorWithError {
-                            if let errorCallback = errorCallback {
-                                errorCallback(AbstractError(status: 1001,message: errorWithError.localizedDescription))
-                            } else {
-                                self.notifier.showNetworkError(AbstractError(status: 1001,message: errorWithError.localizedDescription))
+                            let value = try AbstractResponse<R>(JSON: json)
+                            successCallback(value.data)
+                        } catch let error {
+                            debugPrint(error)
+                            do {
+                                let detail = try AbstractMessage(JSON: json)
+                                if let errorCallback = errorCallback {
+                                    errorCallback(detail)
+                                } else {
+                                    self.notifier.showNetworkError(detail)
+                                }
+                            } catch let errorWithError {
+                                if let errorCallback = errorCallback {
+                                    errorCallback(AbstractError(status: 1001,message: errorWithError.localizedDescription))
+                                } else {
+                                    self.notifier.showNetworkError(AbstractError(status: 1001,message: errorWithError.localizedDescription))
+                                }
                             }
                         }
-                    }
-                } else {
-                    debugPrint(String(data: response.data, encoding: .utf8) ?? "")
-                    if let failureCallback = failureCallback {
-                        failureCallback()
                     } else {
-                        self.notifier.showNetworkError(AbstractError(status: 1002, message: "JSON解析失败"))
+                        debugPrint(String(data: response.data, encoding: .utf8) ?? "")
+                        if let failureCallback = failureCallback {
+                            failureCallback()
+                        } else {
+                            self.notifier.showNetworkError(AbstractError(status: 1002, message: "JSON解析失败，请检查网络及当前用户权限。"))
+                        }
                     }
                 }
+                
             case .failure(let error):
                 debugPrint(error)
                 if let failureCallback = failureCallback {

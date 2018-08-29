@@ -37,6 +37,6 @@ extension ResourceRequest: TargetType {
     }
     
     var headers: [String : String]? {
-        return [:]
+        return WaterConstant.header
     }
 }

@@ -19,9 +19,9 @@ class MessageNotifier {
         let view = MessageView.viewFromNib(layout: .cardView)
         view.configureTheme(.error)
         if let error = error {
-            view.configureContent(title: "错误", body: "网络开小差了:\(error.message)")
+            view.configureContent(title: "错误", body: "网络跑路了: \(error.message)")
         }else{
-            view.configureContent(title: "错误", body: "网络开小差了")
+            view.configureContent(title: "错误", body: "网络跑路了")
         }
         self.show(view)
     }
@@ -43,7 +43,7 @@ class MessageNotifier {
         SwiftMessages.show(config: config, view: view)
     }
     @objc class func goToAppStore() {
-        let urlStr = "itms://itunes.apple.com/us/app/apple-store/id1246252649?mt=8"
+        let urlStr = "itms://itunes.apple.com/app/id1246252649"
         UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
     }
 }

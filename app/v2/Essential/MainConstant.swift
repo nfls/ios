@@ -9,6 +9,7 @@
 import Foundation
 import SwiftMessages
 import ObjectMapper
+import SwiftyUserDefaults
 
 internal protocol Model: ImmutableMappable, Codable {}
 
@@ -23,7 +24,9 @@ class WaterConstant {
     static let apiEndpoint: URL = URL(string: "https://water.nfls.io")!
     static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
-    static let header: [String: String] = [:]
+    static let header: [String: String] = [
+        "Cookie": "remember_token=" + Defaults[.waterAuthToken].addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+    ]
 }
 
 extension Data {

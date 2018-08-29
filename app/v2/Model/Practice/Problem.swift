@@ -12,8 +12,8 @@ import ObjectMapper
 class Problem: Model {
     required init(map: Map) throws {
         self.id = UUID(uuidString: try map.value("id"))!
-        self.contentImageUrl = MainConstant.waterApiEndpoint.appendingPathComponent("assets/papers").appendingPathComponent(try map.value("contentImageUrl"))
-        self.markSchemeImageUrl = MainConstant.waterApiEndpoint.appendingPathComponent("assets/papers").appendingPathComponent(try map.value("markSchemeImageUrl"))
+        self.contentImageUrl = WaterConstant.apiEndpoint.appendingPathComponent("assets/papers").appendingPathComponent(try map.value("contentImageUrl"))
+        self.markSchemeImageUrl = WaterConstant.apiEndpoint.appendingPathComponent("assets/papers").appendingPathComponent(try map.value("markSchemeImageUrl"))
         self.correct = try map.value("correct")
         self.mark = try map.value("mark")
         self.number = try map.value("number")

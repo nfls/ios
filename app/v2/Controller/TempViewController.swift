@@ -20,25 +20,37 @@ class TempViewController:AbstractViewController {
     @IBOutlet weak var mdView: MarkdownView!
     
     override func viewDidLoad() {
-        
         mdView.load(markdown: self.provider.announcement)
         self.provider.getAnnouncement(completion: {
             self.mdView.load(markdown: self.provider.announcement)
         })
         self.provider.checkUpdate { status in
             if status {
-                MessageNotifier.showUpdate()
-            }
-        }
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { (granted, error) in
-            if granted {
-                
+                DispatchQueue.main.async {
+                let updateDialog = SCLAlertView()
+                    updateDialog.addButton("进入App Store更新", action: {
+                        let urlStr = "itms-apps://itunes.apple.com/app/id1246252649"
+                        UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+                    })
+                    updateDialog.showNotice("检测到更新", subTitle: "请尽快完成更新，享受更多新特性。", closeButtonTitle: "我懒")
+                }
             }
         }
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().getNotificationSettings { (setting) in
-            if setting.authorizationStatus != .authorized {
-                SCLAlertView().showWarning("设备注册失败", subTitle: "原因：推送未启用")
+            DispatchQueue.main.async {
+                let pushDialog = SCLAlertView()
+                if setting.authorizationStatus == .notDetermined {
+                    pushDialog.addButton("好") {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { (_, _) in }
+                    }
+                    pushDialog.showInfo("推送权限", subTitle: "开启推送后，您可以收到最新的活动通知等。", closeButtonTitle: "不好")
+                }else if setting.authorizationStatus == .denied {
+                    pushDialog.addButton("设置", action: {
+                        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                    })
+                    pushDialog.showWarning("推送权限", subTitle: "设备注册失败，推送未启用", closeButtonTitle: "关闭")
+                }
             }
         }
     }
