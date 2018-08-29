@@ -192,6 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F33F8F20C7D08C0060346A /* CloudKit.framework in Frameworks */,
+				65F33F8D20C7CF540060346A /* ExternalAccessory.framework in Frameworks */,
 				6515483A2032B19C0088BD20 /* PassKit.framework in Frameworks */,
 				6515483C2032B19D0088BD20 /* NetworkExtension.framework in Frameworks */,
 				6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */,
@@ -412,6 +414,7 @@
 			children = (
 				656F304720711C35009B8D69 /* SchoolProvider.swift */,
 				656F304920711CAB009B8D69 /* DeviceProvider.swift */,
+				65D2327320C842CD00FB5D32 /* UserProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -573,6 +576,15 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.ClassKit = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
 							com.apple.HotspotConfiguration = {
 								enabled = 1;
 							};
@@ -585,10 +597,19 @@
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
+							com.apple.NearFieldCommunicationTagReading = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
 								enabled = 1;
 							};
 							com.apple.Wallet = {
@@ -1012,7 +1033,7 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1061,7 +1082,7 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
