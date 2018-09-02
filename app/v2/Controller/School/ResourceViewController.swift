@@ -27,7 +27,7 @@ class ResourcesViewController:UITableViewController {
     var downloadButton = UIBarButtonItem()
     var deleteButton = UIBarButtonItem()
     
-    let provider = SchoolProvider()
+    let provider = ResourceProvider()
     
     var files = [File]()
     

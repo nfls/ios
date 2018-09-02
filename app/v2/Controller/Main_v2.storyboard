@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
-    <device id="retina5_9" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,40 +16,40 @@
             <objects>
                 <viewController title="南外人" id="MAC-v6-KWc" customClass="LoginViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ic-DU-cc7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FJL-X1-LET">
-                                <rect key="frame" x="56.333333333333343" y="291" width="262.33333333333326" height="230"/>
+                                <rect key="frame" x="62" y="253" width="290" height="230"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-Sz-GJ9">
-                                        <rect key="frame" x="0.0" y="0.0" width="262.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D0K-KH-kGj">
-                                        <rect key="frame" x="0.0" y="50" width="262.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="290" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFp-Tu-j7Y">
-                                        <rect key="frame" x="0.0" y="100" width="262.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="100" width="290" height="30"/>
                                         <state key="normal" title="登陆"/>
                                         <connections>
                                             <action selector="login:" destination="MAC-v6-KWc" eventType="touchDown" id="QUP-Uz-w4z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dl-91-y8D">
-                                        <rect key="frame" x="0.0" y="150" width="262.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="150" width="290" height="30"/>
                                         <state key="normal" title="注册"/>
                                         <connections>
                                             <action selector="register:" destination="MAC-v6-KWc" eventType="touchDown" id="Gk9-qD-Z20"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-yy-h1Z">
-                                        <rect key="frame" x="0.0" y="200" width="262.33333333333331" height="30"/>
+                                        <rect key="frame" x="0.0" y="200" width="290" height="30"/>
                                         <state key="normal" title="忘记密码"/>
                                         <connections>
                                             <action selector="reset:" destination="MAC-v6-KWc" eventType="touchDown" id="Lk8-bb-pph"/>
@@ -84,14 +85,6 @@
             </objects>
             <point key="canvasLocation" x="716" y="-128.18590704647679"/>
         </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="HWa-sl-Cpk">
-            <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="TWr-O2-Kvg" customClass="LivePlayerController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ixG-SN-Xem" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3407" y="678"/>
-        </scene>
         <!--南外人-->
         <scene sceneID="MRv-nH-DUp">
             <objects>
@@ -105,6 +98,7 @@
                     <connections>
                         <segue destination="dF0-A0-YaU" kind="relationship" relationship="viewControllers" id="Vum-LS-nc3"/>
                         <segue destination="gLD-4C-ogZ" kind="relationship" relationship="viewControllers" id="3t5-RA-EED"/>
+                        <segue destination="fi9-xy-OzV" kind="relationship" relationship="viewControllers" id="xlo-Q5-Kyt"/>
                         <segue destination="MHn-Sn-7Ag" kind="relationship" relationship="viewControllers" id="k1j-rQ-CgE"/>
                     </connections>
                 </tabBarController>
@@ -117,11 +111,11 @@
             <objects>
                 <viewController storyboardIdentifier="temp" title="南外人" wantsFullScreenLayout="YES" id="dF0-A0-YaU" customClass="TempViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRh-zj-EQH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvl-jc-QmQ" customClass="MarkdownView" customModule="MarkdownView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -144,16 +138,72 @@
             </objects>
             <point key="canvasLocation" x="1645.5999999999999" y="678.32512315270935"/>
         </scene>
+        <!--投票-->
+        <scene sceneID="IGS-2p-LZ7">
+            <objects>
+                <viewController id="fi9-xy-OzV" customClass="VoteController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="keb-O2-vS6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUK-1t-egS">
+                                <rect key="frame" x="0.0" y="64" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="d9w-WQ-EbW"/>
+                                </constraints>
+                            </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIa-SN-VVQ" customClass="MarkdownView" customModule="MarkdownView">
+                                <rect key="frame" x="0.0" y="114" width="414" height="573"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1f0-Wp-bFG" firstAttribute="trailing" secondItem="IIa-SN-VVQ" secondAttribute="trailing" id="3xQ-ue-Fnv"/>
+                            <constraint firstItem="LUK-1t-egS" firstAttribute="leading" secondItem="1f0-Wp-bFG" secondAttribute="leading" id="3yG-XS-ShC"/>
+                            <constraint firstItem="1f0-Wp-bFG" firstAttribute="bottom" secondItem="IIa-SN-VVQ" secondAttribute="bottom" id="8a9-Bz-bBa"/>
+                            <constraint firstItem="IIa-SN-VVQ" firstAttribute="leading" secondItem="1f0-Wp-bFG" secondAttribute="leading" id="MRj-HR-APQ"/>
+                            <constraint firstItem="LUK-1t-egS" firstAttribute="trailing" secondItem="1f0-Wp-bFG" secondAttribute="trailing" id="g70-H9-nI1"/>
+                            <constraint firstItem="IIa-SN-VVQ" firstAttribute="top" secondItem="LUK-1t-egS" secondAttribute="bottom" id="gfw-2Q-bnQ"/>
+                            <constraint firstItem="LUK-1t-egS" firstAttribute="top" secondItem="1f0-Wp-bFG" secondAttribute="top" id="ifv-da-MJ2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1f0-Wp-bFG"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="投票" id="fyD-5Z-8Hd"/>
+                    <connections>
+                        <outlet property="markdownView" destination="IIa-SN-VVQ" id="KwF-08-FCb"/>
+                        <outlet property="pickerView" destination="LUK-1t-egS" id="0rf-nj-ViC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Syr-cJ-pDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702.89855072463774" y="1430.7065217391305"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="l6a-eP-vUM">
+            <objects>
+                <viewController id="C7k-1K-A4A" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zJF-OK-Pay">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6Ti-GC-M2C"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XK0-Am-fEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="703" y="2164"/>
+        </scene>
         <!--主站-->
         <scene sceneID="8qQ-0R-TCe">
             <objects>
                 <viewController id="MHn-Sn-7Ag" customClass="WKWebViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KJ9-kj-cye">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DEg-gi-3HA">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -179,11 +229,11 @@
             <objects>
                 <viewController title="出门证测试" id="cZQ-4h-51b" customClass="QRCodeViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pK9-Xr-9Pr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Su9-U7-UBv">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -208,15 +258,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="download" title="资源" id="gLD-4C-ogZ" customClass="ResourcesViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pf9-Ag-ifj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="q6p-FH-6mJ">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q6p-FH-6mJ" id="gqo-EH-8Eu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -240,7 +290,7 @@
             <objects>
                 <viewController storyboardIdentifier="AnnouncementViewController" title="公告" id="ak6-wv-VQK" customClass="AnnouncementViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHH-Eg-eKZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="dOa-QM-O1Z"/>
@@ -256,7 +306,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GuO-ug-mbw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HT0-cF-iBv">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>

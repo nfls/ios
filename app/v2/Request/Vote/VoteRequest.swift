@@ -21,7 +21,7 @@ extension VoteRequest: TargetType {
     }
     
     var path: String {
-        return String(describing: self)
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
     
     var method: Moya.Method {
@@ -42,7 +42,7 @@ extension VoteRequest: TargetType {
         case .list():
             return .requestPlain
         case .detail(let id):
-            return .requestParameters(parameters: ["id": id.uuidString], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["id": id.uuidString], encoding: URLEncoding.default)
         case .vote(let id, let options):
             return .requestParameters(parameters: ["id": id.uuidString, "options": options], encoding: JSONEncoding.default)
         }

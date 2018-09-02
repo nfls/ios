@@ -14,7 +14,7 @@ import FileKit
 import SwiftyUserDefaults
 import Cache
 
-class SchoolProvider:AbstractProvider<ResourceRequest> {
+class ResourceProvider: AbstractProvider<ResourceRequest> {
     //fileprivate var files = [File]()
     fileprivate var isLoaded = false
     public var path = [String]()

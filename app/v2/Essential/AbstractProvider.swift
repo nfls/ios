@@ -50,6 +50,7 @@ class AbstractProvider<T:TargetType> {
                                     self.notifier.showNetworkError(detail)
                                 }
                             } catch let errorWithError {
+                                debugPrint(errorWithError)
                                 if let errorCallback = errorCallback {
                                     errorCallback(AbstractError(status: 1001,message: errorWithError.localizedDescription))
                                 } else {

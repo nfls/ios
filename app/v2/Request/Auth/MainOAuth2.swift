@@ -62,7 +62,7 @@ class MainOAuth2 {
                 }
             }
         }
-        let provider = MoyaProvider<T>(requestClosure: requestClosure)
+        let provider = MoyaProvider<T>(requestClosure: requestClosure, plugins: [NetworkLoggerPlugin(verbose: true)])
         return provider
     }
     

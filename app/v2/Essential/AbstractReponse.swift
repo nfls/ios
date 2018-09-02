@@ -10,8 +10,8 @@ import ObjectMapper
 import Foundation
 
 
-struct AbstractResponse<T: BaseMappable>: ImmutableMappable {
-    init(map: Map) throws {
+class AbstractResponse<T: BaseMappable>: ImmutableMappable {
+    required init(map: Map) throws {
         self.code = try map.value("code")
         if(String(describing: T.self).contains("Wrapper")) {
             if let data = try T(JSON: map.JSON) {
@@ -25,6 +25,22 @@ struct AbstractResponse<T: BaseMappable>: ImmutableMappable {
     }
     let code:Int
     let data:T
+}
+
+class AbstractList<T: BaseMappable>: ImmutableMappable {
+    required init(map: Map) throws {
+        self.code = try map.value("code")
+        self.data = try map.value("data")
+    }
+    let code:Int
+    let data:[T]
+}
+
+class ListWrapper<T: ImmutableMappable>: ImmutableMappable {
+    required init(map: Map) throws {
+        self.list = try map.value("data")
+    }
+    let list:[T]
 }
 
 class DataWrapper<T>: ImmutableMappable {

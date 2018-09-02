@@ -52,9 +52,11 @@
 		6551E4992013AE2F00B81E45 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E4982013AE2F00B81E45 /* Gallery.swift */; };
 		6551E49B2013AE4100B81E45 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551E49A2013AE4100B81E45 /* Comment.swift */; };
 		655D172B21362FAA00A307F4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655D172A21362FAA00A307F4 /* MobileCoreServices.framework */; };
+		655D172E213BC3AC00A307F4 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D172D213BC3AC00A307F4 /* VoteController.swift */; };
+		655D1730213BC3DE00A307F4 /* VoteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D172F213BC3DE00A307F4 /* VoteProvider.swift */; };
 		656F304420711B49009B8D69 /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304320711B49009B8D69 /* AbstractMessage.swift */; };
 		656F304620711B90009B8D69 /* MessageNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304520711B90009B8D69 /* MessageNotifier.swift */; };
-		656F304820711C35009B8D69 /* SchoolProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304720711C35009B8D69 /* SchoolProvider.swift */; };
+		656F304820711C35009B8D69 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304720711C35009B8D69 /* ResourceProvider.swift */; };
 		656F304A20711CAB009B8D69 /* DeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304920711CAB009B8D69 /* DeviceProvider.swift */; };
 		656F304C207124C8009B8D69 /* DefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304B207124C8009B8D69 /* DefaultsKey.swift */; };
 		656F304E20712D5A009B8D69 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304D20712D5A009B8D69 /* AnnouncementViewController.swift */; };
@@ -148,10 +150,12 @@
 		6551E4982013AE2F00B81E45 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		6551E49A2013AE4100B81E45 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		655D172A21362FAA00A307F4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		655D172D213BC3AC00A307F4 /* VoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
+		655D172F213BC3DE00A307F4 /* VoteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteProvider.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F304320711B49009B8D69 /* AbstractMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
 		656F304520711B90009B8D69 /* MessageNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNotifier.swift; sourceTree = "<group>"; };
-		656F304720711C35009B8D69 /* SchoolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolProvider.swift; sourceTree = "<group>"; };
+		656F304720711C35009B8D69 /* ResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
 		656F304920711CAB009B8D69 /* DeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProvider.swift; sourceTree = "<group>"; };
 		656F304B207124C8009B8D69 /* DefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKey.swift; sourceTree = "<group>"; };
 		656F304D20712D5A009B8D69 /* AnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 		65108DBC20101DE400A5267E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				655D172C213BC39C00A307F4 /* Vote */,
 				659003AF2015BA0E0077876F /* TempViewController.swift */,
 				65185B3A20144854009FDF76 /* Media */,
 				65D3A75E2010274B00582257 /* School */,
@@ -393,6 +398,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		655D172C213BC39C00A307F4 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				655D172D213BC3AC00A307F4 /* VoteController.swift */,
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
 		656F304120711A05009B8D69 /* Essential */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,8 +423,9 @@
 		656F304220711AA9009B8D69 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
-				656F304720711C35009B8D69 /* SchoolProvider.swift */,
+				656F304720711C35009B8D69 /* ResourceProvider.swift */,
 				656F304920711CAB009B8D69 /* DeviceProvider.swift */,
+				655D172F213BC3DE00A307F4 /* VoteProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -764,10 +778,11 @@
 				651ED7A22076AE53009A9ED1 /* WKWebViewController.swift in Sources */,
 				6551E4952013A9B800B81E45 /* Photo.swift in Sources */,
 				6542EF86211EA95900F9D126 /* Paper.swift in Sources */,
+				655D172E213BC3AC00A307F4 /* VoteController.swift in Sources */,
 				65185B362014399B009FDF76 /* GalleryRequest.swift in Sources */,
 				656F304E20712D5A009B8D69 /* AnnouncementViewController.swift in Sources */,
 				6542EFA22123DC0900F9D126 /* CourseRequest.swift in Sources */,
-				656F304820711C35009B8D69 /* SchoolProvider.swift in Sources */,
+				656F304820711C35009B8D69 /* ResourceProvider.swift in Sources */,
 				6551E4992013AE2F00B81E45 /* Gallery.swift in Sources */,
 				65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */,
 				658CE37821042CE5000D3900 /* Device.swift in Sources */,
@@ -786,6 +801,7 @@
 				6542EFA52123DD5E00F9D126 /* BlackboardRequest.swift in Sources */,
 				6551E4932013A73000B81E45 /* User.swift in Sources */,
 				65185B3920143F69009FDF76 /* AbstractProvider.swift in Sources */,
+				655D1730213BC3DE00A307F4 /* VoteProvider.swift in Sources */,
 				6542EF912121515E00F9D126 /* Chat.swift in Sources */,
 				659003B02015BA0E0077876F /* TempViewController.swift in Sources */,
 				6542EFA72123DE6400F9D126 /* NoticeRequest.swift in Sources */,
