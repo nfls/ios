@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>南外人</string>
+	<string>NFLS.IO</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIcons</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.15</string>
 	<key>CFBundleVersion</key>
-	<string>696</string>
+	<string>702</string>
 	<key>CodeNameCN</key>
 	<string>決別</string>
 	<key>CodeNameEN</key>
