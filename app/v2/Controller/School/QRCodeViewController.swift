@@ -23,6 +23,7 @@ class QRCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
         self.token = self.getToken()
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: periodUpdate(_:))
         self.periodUpdate(timer)

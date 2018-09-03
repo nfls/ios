@@ -54,6 +54,7 @@
 		655D172B21362FAA00A307F4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655D172A21362FAA00A307F4 /* MobileCoreServices.framework */; };
 		655D172E213BC3AC00A307F4 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D172D213BC3AC00A307F4 /* VoteController.swift */; };
 		655D1730213BC3DE00A307F4 /* VoteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D172F213BC3DE00A307F4 /* VoteProvider.swift */; };
+		655D1732213D284E00A307F4 /* VoteSubmitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D1731213D284E00A307F4 /* VoteSubmitController.swift */; };
 		656F304420711B49009B8D69 /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304320711B49009B8D69 /* AbstractMessage.swift */; };
 		656F304620711B90009B8D69 /* MessageNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304520711B90009B8D69 /* MessageNotifier.swift */; };
 		656F304820711C35009B8D69 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F304720711C35009B8D69 /* ResourceProvider.swift */; };
@@ -152,6 +153,7 @@
 		655D172A21362FAA00A307F4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		655D172D213BC3AC00A307F4 /* VoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
 		655D172F213BC3DE00A307F4 /* VoteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteProvider.swift; sourceTree = "<group>"; };
+		655D1731213D284E00A307F4 /* VoteSubmitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteSubmitController.swift; sourceTree = "<group>"; };
 		656AEC931F3096F100F0801A /* NFLSers-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFLSers-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F304320711B49009B8D69 /* AbstractMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
 		656F304520711B90009B8D69 /* MessageNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNotifier.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				655D172D213BC3AC00A307F4 /* VoteController.swift */,
+				655D1731213D284E00A307F4 /* VoteSubmitController.swift */,
 			);
 			path = Vote;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FileKit/FileKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
@@ -699,6 +703,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFQRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FileKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
@@ -736,7 +741,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nshortBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nINFOPLIST_SHAREEXT=\"${SRCROOT}/NotificationService/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $shortBuildNumber\" \"$INFOPLIST_SHAREEXT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_SHAREEXT\"\n";
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nshortBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nbuildNumber=$(($buildNumber + 1))\nINFOPLIST_SHAREEXT=\"${SRCROOT}/NotificationService/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $shortBuildNumber\" \"$INFOPLIST_SHAREEXT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_SHAREEXT\"\n";
 		};
 		E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -815,6 +820,7 @@
 				6542EF84211EA8D200F9D126 /* Course.swift in Sources */,
 				650C386A204997EE00A5B192 /* Notice.swift in Sources */,
 				6542EF972121540700F9D126 /* Game.swift in Sources */,
+				655D1732213D284E00A307F4 /* VoteSubmitController.swift in Sources */,
 				6542EFAC21267F4A00F9D126 /* VoteRequest.swift in Sources */,
 				6542EFA921267DA600F9D126 /* LivePlayerController.swift in Sources */,
 				6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */,

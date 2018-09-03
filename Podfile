@@ -32,6 +32,7 @@ target 'NFLSers-iOS' do
   pod 'OneTimePassword'
   pod 'EFQRCode'
   pod 'DeviceKit'
+  pod 'Eureka'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

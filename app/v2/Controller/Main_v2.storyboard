@@ -99,6 +99,7 @@
                         <segue destination="dF0-A0-YaU" kind="relationship" relationship="viewControllers" id="Vum-LS-nc3"/>
                         <segue destination="gLD-4C-ogZ" kind="relationship" relationship="viewControllers" id="3t5-RA-EED"/>
                         <segue destination="fi9-xy-OzV" kind="relationship" relationship="viewControllers" id="xlo-Q5-Kyt"/>
+                        <segue destination="cZQ-4h-51b" kind="relationship" relationship="viewControllers" id="PUk-FU-FNC"/>
                         <segue destination="MHn-Sn-7Ag" kind="relationship" relationship="viewControllers" id="k1j-rQ-CgE"/>
                     </connections>
                 </tabBarController>
@@ -173,16 +174,17 @@
                     <connections>
                         <outlet property="markdownView" destination="IIa-SN-VVQ" id="KwF-08-FCb"/>
                         <outlet property="pickerView" destination="LUK-1t-egS" id="0rf-nj-ViC"/>
+                        <segue destination="C7k-1K-A4A" kind="show" identifier="showSubmit" id="hkj-XK-yh8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syr-cJ-pDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="702.89855072463774" y="1430.7065217391305"/>
         </scene>
-        <!--View Controller-->
+        <!--Vote Submit Controller-->
         <scene sceneID="l6a-eP-vUM">
             <objects>
-                <viewController id="C7k-1K-A4A" sceneMemberID="viewController">
+                <viewController id="C7k-1K-A4A" customClass="VoteSubmitController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zJF-OK-Pay">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Su9-U7-UBv">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -245,6 +247,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IUD-Ss-JA5"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="出门" id="w8l-Gt-HXS"/>
                     <connections>
                         <outlet property="imageview" destination="Su9-U7-UBv" id="4ug-FT-nH2"/>
                     </connections>

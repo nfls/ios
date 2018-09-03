@@ -23,6 +23,16 @@ class VoteController: UIViewController {
             self.pickerView.reloadAllComponents()
             self.loadData(id: self.provider.list[0].id)
         })
+        self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投票", style: .plain, target: self, action: #selector(vote))
+    }
+    
+    @objc func vote() {
+        self.performSegue(withIdentifier: "showSubmit", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! VoteSubmitController
+        destination.provider = self.provider
     }
     
     func loadData(id: UUID) {

@@ -7,6 +7,7 @@ PODS:
   - Cache (5.1.0)
   - DeviceKit (1.7.0)
   - EFQRCode (4.2.2)
+  - Eureka (4.2.0)
   - FileKit (5.0.0)
   - IQKeyboardManagerSwift (6.1.1)
   - libwebp (0.6.1):
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - Cache
   - DeviceKit
   - EFQRCode
+  - Eureka
   - FileKit
   - IQKeyboardManagerSwift
   - MarkdownView
@@ -101,6 +103,7 @@ SPEC REPOS:
     - Cache
     - DeviceKit
     - EFQRCode
+    - Eureka
     - FileKit
     - IQKeyboardManagerSwift
     - libwebp
@@ -130,6 +133,7 @@ SPEC CHECKSUMS:
   Cache: 7737c595aae7d94c7c0feca2c887288624e3b07e
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   EFQRCode: 203846c7b135b5f7c1d18bb7923bc32a74c8b363
+  Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
@@ -151,6 +155,6 @@ SPEC CHECKSUMS:
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: a86f2595fd2b0dead32530e068660edc0dfe209e
+PODFILE CHECKSUM: 18d2538c72e860b380141d067445e999f90a6430
 
 COCOAPODS: 1.5.2

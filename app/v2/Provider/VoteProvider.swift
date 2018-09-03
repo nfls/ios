@@ -25,4 +25,10 @@ class VoteProvider: AbstractProvider<VoteRequest> {
             completion(true)
         })
     }
+    
+    public func submit(options: [Int], _ completion: @escaping (String) -> Void) {
+        self.request(target: VoteRequest.vote(id: self.detail!.id, options: options), type: DataWrapper<String>.self, success: { (message) in
+            completion(message.value)
+        })
+    }
 }
