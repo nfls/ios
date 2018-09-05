@@ -23,7 +23,7 @@ class QRCodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+        //self.tabBarController?.navigationItem.rightBarButtonItem = nil
         self.token = self.getToken()
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: periodUpdate(_:))
         self.periodUpdate(timer)
@@ -32,6 +32,9 @@ class QRCodeViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+    }
     private func periodUpdate(_ timer: Timer) {
         let text = self.token.currentPassword! + self.realname
         let image = EFQRCode.generate(content: text)

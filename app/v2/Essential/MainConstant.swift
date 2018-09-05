@@ -17,7 +17,9 @@ class MainConstant {
     static let apiEndpoint: URL = URL(string: "https://nfls.io/")!
     static let client_id = "9J/xuPUoNBOmA1erNKlBqQ=="
     static let client_secret = "REGbItx41b4IYcK3PiPTXsWTh9KIA0vcHl/W4ediSEg="
-    static let header: [String: String] = [:]
+    static let header: [String: String] = [
+        "Client": "iOS"
+    ]
 }
 
 class WaterConstant {

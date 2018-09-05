@@ -57,7 +57,7 @@ class WaterAuth {
     }
     
     func final(url: URL, completion: @escaping (_ success: Bool) -> Void) {
-        if url.host! == "water.nfls.io" {
+        if url.host == "water.nfls.io" {
             Alamofire.request(url, headers: headers).responseJSON { (response) in
                 switch response.result {
                 case .success(let value):
@@ -69,7 +69,7 @@ class WaterAuth {
                             completion(true)
                             break
                         case "/#/login?reason=permission":
-                            self.notifier.showInfo("请尽快完成实名认证。")
+                            self.notifier.showInfo("未实名用户。请尽快在“更多”-“实名”内完成实名认证。")
                             completion(false)
                             break
                         case "/#/login?reason=private":
@@ -94,7 +94,7 @@ class WaterAuth {
                 }
             }
         } else {
-            self.notifier.showInfo("该功能目前关闭。")
+            self.notifier.showInfo("App部分功能需要绑定邮箱。同时，根据相关法律法规，国内用户需要绑定手机号，国外用户需要确保实名认证已通过。请尽快在“更多”-“安全”内补齐相关信息。")
             completion(false)
         }
         

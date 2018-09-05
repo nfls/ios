@@ -40,11 +40,11 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
     
     public func getAnnouncement(completion: @escaping () -> Void) {
         self.request(target: ResourceRequest.announcement(), type: DataWrapper<String>.self, success: { result in
-            if self.announcement != result.value {
-                self.announcement = result.value
+            if self.announcement != result.data.value {
+                self.announcement = result.data.value
                 completion()
             } else {
-                self.announcement = result.value
+                self.announcement = result.data.value
             }
         })
     }
@@ -143,10 +143,10 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
     
     fileprivate func getList(completion: @escaping (_ files:[File]) -> Void)
     {
-        self.notifier.showInfo("正在后台刷新文件列表，操作完成后列表将自动刷新")
+        self.notifier.showInfo("正在后台刷新文件列表，操作完成后列表将自动刷新。如果无内容请耐心等待1分钟。")
         self.request(target: .token(), type: StsToken.self, success: { response in
             let token = response
-            let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
+            let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.data.accessKeyId, secretKeyId: token.data.accessKeySecret, securityToken: token.data.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
             self.periodUpdate()
             self.requestList(result:[], next: nil, completion: completion)
@@ -160,7 +160,7 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
             //self.notifier.showInfo("正在刷新访问密钥")
             self.request(target: .token(), type: StsToken.self, success: { response in
                 let token = response
-                let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.accessKeyId, secretKeyId: token.accessKeySecret, securityToken: token.securityToken)
+                let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.data.accessKeyId, secretKeyId: token.data.accessKeySecret, securityToken: token.data.securityToken)
                 self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
             })
             DispatchQueue.main.asyncAfter(deadline: .now() + 1800 , execute: {

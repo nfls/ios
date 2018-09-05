@@ -25,7 +25,7 @@ class AbstractProvider<T:TargetType> {
     internal func request<R:BaseMappable>(
         target: T,
         type: R.Type,
-        success successCallback: @escaping (R) -> Void,
+        success successCallback: @escaping (AbstractResponse<R>) -> Void,
         error errorCallback: ((_ error: Error) -> Void)? = nil,
         failure failureCallback: (() -> Void)? = nil
         ) {
@@ -39,7 +39,7 @@ class AbstractProvider<T:TargetType> {
                     if let json = JSON(response.data).dictionaryObject {
                         do {
                             let value = try AbstractResponse<R>(JSON: json)
-                            successCallback(value.data)
+                            successCallback(value)
                         } catch let error {
                             debugPrint(error)
                             do {

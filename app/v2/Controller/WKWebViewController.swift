@@ -19,17 +19,22 @@ class WKWebViewController: UIViewController {
     
     var isMain = true
     
+    var url: String? = nil
+    
     override func viewDidLoad() {
         self.main()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(url)
         UIApplication.shared.isIdleTimerDisabled = false
         if isMain {
             self.tabBarController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "FIB", style: .plain, target: self, action: #selector(fib))]
+            self.main()
         } else {
             self.tabBarController!.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "主站", style: .plain, target: self, action: #selector(main))]
+            self.fib()
         }
     }
     
@@ -59,5 +64,9 @@ extension WKWebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        if let url = url {
+            self.url = nil
+            webView.load(URLRequest(url: URL(string: "https://nfls.io/#/" + url)!))
+        }
     }
 }

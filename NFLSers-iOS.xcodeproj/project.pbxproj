@@ -73,6 +73,7 @@
 		659003B02015BA0E0077876F /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659003AF2015BA0E0077876F /* TempViewController.swift */; };
 		6590C850211EA56800D2CCC5 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6590C84F211EA56800D2CCC5 /* Attachment.swift */; };
 		659762B120D3B7FD002798F2 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659762B020D3B7FD002798F2 /* QRCodeViewController.swift */; };
+		65B9F58D213E783000A1F3DF /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B9F58C213E783000A1F3DF /* Ticket.swift */; };
 		65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3A75F2010275A00582257 /* ResourceViewController.swift */; };
 		65D55AF420CCD7660089310B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D55AF320CCD7660089310B /* CloudKit.framework */; };
 		65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */; };
@@ -175,6 +176,7 @@
 		659003AF2015BA0E0077876F /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		6590C84F211EA56800D2CCC5 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		659762B020D3B7FD002798F2 /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		65B9F58C213E783000A1F3DF /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		65D3A75F2010275A00582257 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
 		65D55AF320CCD7660089310B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				6542EF8C211FF4D500F9D126 /* Vote.swift */,
 				6542EF8E211FF58500F9D126 /* Option.swift */,
+				65B9F58C213E783000A1F3DF /* Ticket.swift */,
 			);
 			path = Vote;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				650C386A204997EE00A5B192 /* Notice.swift in Sources */,
 				6542EF972121540700F9D126 /* Game.swift in Sources */,
 				655D1732213D284E00A307F4 /* VoteSubmitController.swift in Sources */,
+				65B9F58D213E783000A1F3DF /* Ticket.swift in Sources */,
 				6542EFAC21267F4A00F9D126 /* VoteRequest.swift in Sources */,
 				6542EFA921267DA600F9D126 /* LivePlayerController.swift in Sources */,
 				6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */,

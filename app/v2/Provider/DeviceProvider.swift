@@ -21,11 +21,11 @@ class DeviceProvider: AbstractProvider<DeviceRequest> {
 
     public func getAnnouncement(completion: @escaping () -> Void) {
         self.request(target: DeviceRequest.announcement(), type: DataWrapper<String>.self, success: { result in
-            if self.announcement != result.value {
-                self.announcement = result.value
+            if self.announcement != result.data.value {
+                self.announcement = result.data.value
                 completion()
             } else {
-                self.announcement = result.value
+                self.announcement = result.data.value
             }
             
         })
@@ -35,7 +35,7 @@ class DeviceProvider: AbstractProvider<DeviceRequest> {
         self.request(target: DeviceRequest.version(), type: DataWrapper<String>.self, success: { (version) in
             
             let current = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-            if version.value.compare(current, options: .numeric) == .orderedDescending {
+            if version.data.value.compare(current, options: .numeric) == .orderedDescending {
                 completion(true)
             } else {
                 completion(false)

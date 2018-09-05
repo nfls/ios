@@ -23,6 +23,9 @@ class VoteController: UIViewController {
             self.pickerView.reloadAllComponents()
             self.loadData(id: self.provider.list[0].id)
         })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "投票", style: .plain, target: self, action: #selector(vote))
     }
     

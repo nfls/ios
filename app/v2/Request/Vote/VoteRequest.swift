@@ -44,12 +44,12 @@ extension VoteRequest: TargetType {
         case .detail(let id):
             return .requestParameters(parameters: ["id": id.uuidString], encoding: URLEncoding.default)
         case .vote(let id, let options):
-            return .requestParameters(parameters: ["id": id.uuidString, "options": options], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["id": id.uuidString, "choices": options], encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
-        return [:]
+        return MainConstant.header
     }
     
     

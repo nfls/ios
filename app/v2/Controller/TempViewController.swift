@@ -58,8 +58,42 @@ class TempViewController:AbstractViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController!.navigationItem.hidesBackButton = true
-        self.tabBarController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(logout))
-        self.tabBarController!.navigationItem.rightBarButtonItems = []
+        self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "更多", style: .plain, target: self, action: #selector(menu))
+    }
+    
+    
+    @objc func menu() {
+        let alert = SCLAlertView()
+        alert.addButton("实名") {
+            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/#/alumni/auth")!)
+            self.present(safari,animated: true)
+        }
+        alert.addButton("安全") {
+            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/#/user/security")!)
+            self.present(safari,animated: true)
+        }
+        alert.addButton("直播") {
+            self.live()
+        }
+        alert.addButton("网页版") {
+            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/")!)
+            self.present(safari,animated: true)
+        }
+        alert.addButton("退出") {
+            self.logout()
+        }
+        alert.showInfo("更多", subTitle: "部分操作可能需要重新登录", closeButtonTitle: "关闭")
+    }
+    
+    func live() {
+        let view = SCLAlertView()
+        let code = view.addTextField("直播码")
+        code.autocorrectionType = .no
+        code.autocapitalizationType = .none
+        view.addButton("进入") {
+            self.performSegue(withIdentifier: "showLive", sender: code.text)
+        }
+        view.showInfo("观看直播", subTitle: "请输入直播码", closeButtonTitle: "取消")
     }
     
     @objc func logout() {
@@ -84,6 +118,11 @@ class TempViewController:AbstractViewController {
     @objc func realname() {
         let controller = SFSafariViewController(url: URL(string: "https://nfls.io/")!)
         self.present(controller, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! LivePlayerController
+        destination.id = sender as? String
     }
     
 }

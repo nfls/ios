@@ -25,8 +25,13 @@ class VoteSubmitController: FormViewController {
                 }
             }
         }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submit))
-        
+        self.provider?.check({(string) in
+            if let message = string {
+                SCLAlertView().showError("错误", subTitle: message)
+            } else {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "提交", style: .done, target: self, action: #selector(self.submit))
+            }
+        })
     }
     
     @objc func submit() {
@@ -42,9 +47,14 @@ class VoteSubmitController: FormViewController {
                 }
             }
         }
-        self.provider?.submit(options: values, {(message) in
-            SCLAlertView().showInfo("提示", subTitle: message)
-        })
-        self.navigationController?.popViewController(animated: true)
+        let confirm = SCLAlertView()
+        confirm.addButton("确认") {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.provider?.submit(options: values, {(code) in
+                SCLAlertView().showSuccess("投票成功", subTitle: "您已投票成功。该查询码可用于查询自己的投票信息。请注意保护好该查询码，不要告诉他人: " + code)
+                self.navigationController?.popViewController(animated: true)
+            })
+        }
+        confirm.showNotice("提交确认", subTitle: "提交后，您将无法修改您的选择。您确认要提交吗？", closeButtonTitle: "取消")
     }
 }

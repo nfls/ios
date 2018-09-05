@@ -100,7 +100,6 @@
                         <segue destination="gLD-4C-ogZ" kind="relationship" relationship="viewControllers" id="3t5-RA-EED"/>
                         <segue destination="fi9-xy-OzV" kind="relationship" relationship="viewControllers" id="xlo-Q5-Kyt"/>
                         <segue destination="cZQ-4h-51b" kind="relationship" relationship="viewControllers" id="PUk-FU-FNC"/>
-                        <segue destination="MHn-Sn-7Ag" kind="relationship" relationship="viewControllers" id="k1j-rQ-CgE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVP-31-7GN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,6 +132,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="mdView" destination="zvl-jc-QmQ" id="8pD-0Y-Pot"/>
+                        <segue destination="swq-Om-DqW" kind="show" identifier="showLive" id="Gcj-Oh-jz6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-Jh-dnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,6 +196,14 @@
             </objects>
             <point key="canvasLocation" x="703" y="2164"/>
         </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="ZYE-89-z3g">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="swq-Om-DqW" customClass="LivePlayerController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xka-Tz-1bZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645" y="2185"/>
+        </scene>
         <!--主站-->
         <scene sceneID="8qQ-0R-TCe">
             <objects>
@@ -205,7 +213,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DEg-gi-3HA">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,15 +243,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Su9-U7-UBv">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="41.333333333333343" y="147.33333333333334" width="331.33333333333326" height="441.33333333333326"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Su9-U7-UBv" firstAttribute="top" secondItem="IUD-Ss-JA5" secondAttribute="top" id="3VY-Z9-3sm"/>
-                            <constraint firstItem="Su9-U7-UBv" firstAttribute="trailing" secondItem="IUD-Ss-JA5" secondAttribute="trailing" id="AJu-8I-oaK"/>
-                            <constraint firstItem="Su9-U7-UBv" firstAttribute="leading" secondItem="IUD-Ss-JA5" secondAttribute="leading" id="EN5-ed-ZsD"/>
-                            <constraint firstAttribute="bottom" secondItem="Su9-U7-UBv" secondAttribute="bottom" id="J8M-iV-ekk"/>
+                            <constraint firstItem="Su9-U7-UBv" firstAttribute="centerY" secondItem="pK9-Xr-9Pr" secondAttribute="centerY" id="MGf-Yx-Xjw"/>
+                            <constraint firstItem="Su9-U7-UBv" firstAttribute="width" secondItem="pK9-Xr-9Pr" secondAttribute="width" multiplier="0.8" id="cK7-Zh-9gl"/>
+                            <constraint firstItem="Su9-U7-UBv" firstAttribute="centerX" secondItem="pK9-Xr-9Pr" secondAttribute="centerX" id="i9h-rR-bMr"/>
+                            <constraint firstItem="Su9-U7-UBv" firstAttribute="height" secondItem="pK9-Xr-9Pr" secondAttribute="height" multiplier="0.6" id="kFK-pQ-yxK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IUD-Ss-JA5"/>
                     </view>

@@ -19,7 +19,7 @@ class MessageNotifier {
         let view = MessageView.viewFromNib(layout: .cardView)
         view.configureTheme(.error)
         if let error = error {
-            view.configureContent(title: "错误", body: "网络跑路了: \(error.message)")
+            view.configureContent(title: "错误", body: "\(error.message)")
         }else{
             view.configureContent(title: "错误", body: "网络跑路了")
         }
