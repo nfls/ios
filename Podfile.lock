@@ -8,6 +8,8 @@ PODS:
   - DeviceKit (1.7.0)
   - EFQRCode (4.2.2)
   - Eureka (4.2.0)
+  - FCUUID (1.3.1):
+    - UICKeyChainStore (~> 2.1.0)
   - FileKit (5.0.0)
   - IQKeyboardManagerSwift (6.1.1)
   - libwebp (0.6.1):
@@ -64,6 +66,7 @@ PODS:
   - SwiftyUserDefaults (3.0.1)
   - Timepiece (1.3.1)
   - Toucan (1.0.0)
+  - UICKeyChainStore (2.1.1)
   - UMengAnalytics-NO-IDFA (4.2.5)
 
 DEPENDENCIES:
@@ -74,6 +77,7 @@ DEPENDENCIES:
   - DeviceKit
   - EFQRCode
   - Eureka
+  - FCUUID
   - FileKit
   - IQKeyboardManagerSwift
   - MarkdownView
@@ -104,6 +108,7 @@ SPEC REPOS:
     - DeviceKit
     - EFQRCode
     - Eureka
+    - FCUUID
     - FileKit
     - IQKeyboardManagerSwift
     - libwebp
@@ -123,6 +128,7 @@ SPEC REPOS:
     - SwiftyUserDefaults
     - Timepiece
     - Toucan
+    - UICKeyChainStore
     - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
@@ -134,6 +140,7 @@ SPEC CHECKSUMS:
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
   EFQRCode: 203846c7b135b5f7c1d18bb7923bc32a74c8b363
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
+  FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FileKit: 857f5f9d2583044c1354e7564b110d80f31405e8
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
@@ -153,8 +160,9 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
+  UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
 
-PODFILE CHECKSUM: 18d2538c72e860b380141d067445e999f90a6430
+PODFILE CHECKSUM: 50658eab416d293ce4a7c7607162b1f005266279
 
 COCOAPODS: 1.5.2

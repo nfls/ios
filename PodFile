@@ -33,6 +33,7 @@ target 'NFLSers-iOS' do
   pod 'EFQRCode'
   pod 'DeviceKit'
   pod 'Eureka'
+  pod 'FCUUID'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -77,7 +77,7 @@ class WaterAuth {
                             completion(false)
                             break
                         case "/#/login?reason=invalid_state":
-                            self.notifier.showInfo("服务器错误。")
+                            //self.notifier.showInfo("服务器错误。")
                             completion(false)
                             break
                         default:

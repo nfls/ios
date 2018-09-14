@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import SwiftyJSON
 
-enum MediaRequest {
+enum GalleryRequest {
     case list()
     case detail(id: Int)
     case comment(id: Int, content: String)
@@ -18,7 +18,7 @@ enum MediaRequest {
     case like()
 }
 
-extension MediaRequest:TargetType {
+extension GalleryRequest: TargetType {
     var baseURL: URL {
         return MainConstant.apiEndpoint.appendingPathComponent("media/gallery")
     }

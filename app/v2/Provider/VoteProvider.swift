@@ -26,14 +26,14 @@ class VoteProvider: AbstractProvider<VoteRequest> {
         })
     }
     
-    public func submit(options: [Int], _ completion: @escaping (String) -> Void) {
-        self.request(target: VoteRequest.vote(id: self.detail!.id, options: options), type: Ticket.self, success: { (ticket) in
+    public func submit(options: [Int], password: String, _ completion: @escaping (String) -> Void) {
+        self.request(target: VoteRequest.vote(id: self.detail!.id, options: options, password: password), type: Ticket.self, success: { (ticket) in
             completion(ticket.data.code)
         })
     }
     
     public func check(_ completion: @escaping (String?) -> Void) {
-        self.request(target: VoteRequest.vote(id: self.detail!.id, options: []), type: DataWrapper<String>.self, success: { (ticket) in
+        self.request(target: VoteRequest.vote(id: self.detail!.id, options: [], password: ""), type: DataWrapper<String>.self, success: { (ticket) in
             if ticket.code == 401 && !self.detail!.isEnabled! {
                 completion("投票未开始，或已经结束")
             } else if ticket.code == 401 && self.detail!.isEnabled! {

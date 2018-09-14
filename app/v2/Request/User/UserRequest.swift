@@ -19,11 +19,12 @@ enum UserRequest {
     case privacy(antiSpider: Bool, privacy: Int)
     case page(user: Int)
     case current()
+    case card()
 }
 
 extension UserRequest: TargetType {
     var baseURL: URL {
-        return MainConstant.apiEndpoint
+        return MainConstant.apiEndpoint.appendingPathComponent("user")
     }
     
     var path: String {
@@ -34,7 +35,7 @@ extension UserRequest: TargetType {
         switch self {
         case .register(_, _, _, _, _), .reset(_, _, _, _), .change(_, _, _, _, _, _, _, _), .code(_, _, _, _), .avatar(_), .rename(_), .privacy(_, _):
             return .post
-        case .page(_), .current():
+        case .page(_), .current(), .card():
             return .get
         }
     }
@@ -90,7 +91,7 @@ extension UserRequest: TargetType {
             return .requestParameters(parameters: ["antiSpider": antiSpider, "privacy": privacy], encoding: JSONEncoding.default)
         case .page(let user):
             return .requestParameters(parameters: ["id": user], encoding: JSONEncoding.default)
-        case .current():
+        case .current(), .card():
             return .requestPlain
         }
     }

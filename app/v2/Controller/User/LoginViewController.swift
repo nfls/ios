@@ -45,8 +45,8 @@ class LoginViewController:AbstractViewController {
             oauth2.oauth2.forgetTokens()
             loginButton.isEnabled = false
         }
-        oauth2.login(username: username.text!, password: password.text!) { success in
-            if(success){
+        oauth2.login(username: username.text!, password: password.text!) { (main, _) in
+            if(main){
                 let storyboard = UIStoryboard(name: "Main_v2", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier :"TabBarController")
                 self.navigationController!.pushViewController(viewController, animated: true)

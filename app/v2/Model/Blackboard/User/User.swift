@@ -29,7 +29,7 @@ struct User: Model {
     let id: Int
     let username: String
     let htmlUsername: String
-    let point: Int
+    let point: Double
     let isAdmin: Bool
     let isVerified: Bool
     let phone: String?

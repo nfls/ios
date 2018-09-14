@@ -27,17 +27,17 @@ class MainOAuth2 {
             ] as OAuth2JSON)
     }
     
-    func login(username:String,password:String, completion: @escaping (_ success: Bool) -> Void) {
+    func login(username:String,password:String, completion: @escaping (_ success: Bool, _ water: Bool) -> Void) {
         oauth2.password = password
         oauth2.username = username
         oauth2.authorize { (_, error) in
             if error != nil {
-                completion(false)
+                completion(false, false)
             }else{
                 let water = WaterAuth()
-                completion(true)
-                water.login({ (_) in
-                    
+                completion(true, false)
+                water.login({ (status) in
+                    //completion(true, status)
                 })
             }
         }

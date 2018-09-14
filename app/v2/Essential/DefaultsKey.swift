@@ -13,4 +13,6 @@ extension DefaultsKeys {
     static let announcement = DefaultsKey<String>("annoucement")
     static let downloadCenterHeader = DefaultsKey<String>("downloadCenterHeader")
     static let waterAuthToken = DefaultsKey<String>("waterAuthToken")
+    static let cardSecret = DefaultsKey<String>("cardSecret")
+    static let id = DefaultsKey<Int>("id")
 }

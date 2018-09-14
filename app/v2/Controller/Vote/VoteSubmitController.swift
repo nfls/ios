@@ -1,4 +1,3 @@
-//
 //  VoteSubmitController.swift
 //  NFLSers-iOS
 //
@@ -9,6 +8,8 @@
 import Foundation
 import Eureka
 import SCLAlertView
+import FCUUID
+
 
 class VoteSubmitController: FormViewController {
     public var provider: VoteProvider? = nil
@@ -48,13 +49,18 @@ class VoteSubmitController: FormViewController {
             }
         }
         let confirm = SCLAlertView()
+        let textField = confirm.addTextField("密码")
+        textField.isSecureTextEntry = true
         confirm.addButton("确认") {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
-            self.provider?.submit(options: values, {(code) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            })
+            self.provider?.submit(options: values, password: textField.text ?? "", {(code) in
                 SCLAlertView().showSuccess("投票成功", subTitle: "您已投票成功。该查询码可用于查询自己的投票信息。请注意保护好该查询码，不要告诉他人: " + code)
                 self.navigationController?.popViewController(animated: true)
             })
         }
-        confirm.showNotice("提交确认", subTitle: "提交后，您将无法修改您的选择。您确认要提交吗？", closeButtonTitle: "取消")
+        confirm.showNotice("提交确认", subTitle: "请在下方输入您账户的密码以提交。提交后，您将无法修改您的选择。", closeButtonTitle: "取消")
     }
 }

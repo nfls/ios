@@ -29,7 +29,7 @@ class ResourcesViewController:UITableViewController {
     
     let provider = ResourceProvider()
     
-    var files = [File]()
+    var files = [File(specialAction: "none", withName: "加载中，大概需要1分钟。"), File(specialAction: "none", withName: "如果长期卡住，请检查实名认证是否完成"),File(specialAction: "none", withName: "以及邮箱和手机是否完成绑定！")]
     
     var swipe = UIScreenEdgePanGestureRecognizer()
     
@@ -60,14 +60,12 @@ class ResourcesViewController:UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        provider.requiresUpdate = true
-        provider.periodUpdate()
         UIApplication.shared.isIdleTimerDisabled = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationItem.prompt = nil
-        provider.requiresUpdate = false
         //self.navigationItem.rightBarButtonItems = []
     }
     

@@ -8,11 +8,12 @@
 
 import Foundation
 import Moya
+import FCUUID
 
 enum VoteRequest {
     case list()
     case detail(id: UUID)
-    case vote(id: UUID, options: [Int])
+    case vote(id: UUID, options: [Int], password: String)
 }
 
 extension VoteRequest: TargetType {
@@ -28,7 +29,7 @@ extension VoteRequest: TargetType {
         switch self {
         case .list(), .detail(_):
             return .get
-        case .vote(_, _):
+        case .vote(_, _, _):
             return .post
         }
     }
@@ -43,8 +44,14 @@ extension VoteRequest: TargetType {
             return .requestPlain
         case .detail(let id):
             return .requestParameters(parameters: ["id": id.uuidString], encoding: URLEncoding.default)
-        case .vote(let id, let options):
-            return .requestParameters(parameters: ["id": id.uuidString, "choices": options], encoding: JSONEncoding.default)
+        case .vote(let id, let options, let password):
+            print(FCUUID.uuidForDevice())
+            return .requestParameters(parameters: ["id": id.uuidString,
+                                                   "choices": options,
+                                                   "password": password,
+                                                   "clientId": FCUUID.uuidForDevice().lowercased(),
+                                                   "clients": FCUUID.uuidsOfUserDevices()
+                ], encoding: JSONEncoding.default)
         }
     }
     

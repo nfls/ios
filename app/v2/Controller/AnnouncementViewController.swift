@@ -11,7 +11,6 @@ import MarkdownView
 import SafariServices
 
 class AnnouncementViewController: UIViewController {
-
     var text: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +27,7 @@ class AnnouncementViewController: UIViewController {
             return false
         }
         mdView.load(markdown: text, enableImage: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

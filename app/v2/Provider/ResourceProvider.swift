@@ -56,7 +56,9 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
         }
         if !self.isLoaded {
             self.isLoaded = true
-            self.getList(completion: completion)
+            WaterAuth().login { (_) in
+                self.getList(completion: completion)
+            }
         }
     }
     
@@ -148,23 +150,20 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
             let token = response
             let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.data.accessKeyId, secretKeyId: token.data.accessKeySecret, securityToken: token.data.securityToken)
             self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
-            self.periodUpdate()
+            Timer.scheduledTimer(withTimeInterval: 1800, repeats: true, block: {(_) in self.periodUpdate()})
             self.requestList(result:[], next: nil, completion: completion)
         }, error: { error in
             self.notifier.showInfo(error.localizedDescription)
         })
     }
     
-    public func periodUpdate() {
-        if(self.requiresUpdate && self.client != nil) {
+    private func periodUpdate() {
+        if(self.client != nil) {
             //self.notifier.showInfo("正在刷新访问密钥")
             self.request(target: .token(), type: StsToken.self, success: { response in
                 let token = response
                 let stsTokenProvider = OSSStsTokenCredentialProvider(accessKeyId: token.data.accessKeyId, secretKeyId: token.data.accessKeySecret, securityToken: token.data.securityToken)
                 self.client = OSSClient(endpoint: "https://oss-cn-shanghai.aliyuncs.com", credentialProvider: stsTokenProvider)
-            })
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1800 , execute: {
-                self.periodUpdate()
             })
         }
     }

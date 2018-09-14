@@ -19,4 +19,8 @@ platform :ios do
     changelog_from_git_commits
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
+  desc "Upload debug files to Sentry"
+  lane :sentry do
+    download_dsyms(version:"1.2.16", output_directory: "dsyms")
+  end
 end

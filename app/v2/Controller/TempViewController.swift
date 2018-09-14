@@ -16,6 +16,7 @@ import UserNotifications
 class TempViewController:AbstractViewController {
     
     let provider = DeviceProvider()
+    let userProvider = UserProvider()
     
     @IBOutlet weak var mdView: MarkdownView!
     
@@ -24,6 +25,7 @@ class TempViewController:AbstractViewController {
         self.provider.getAnnouncement(completion: {
             self.mdView.load(markdown: self.provider.announcement)
         })
+        self.userProvider.getUser()
         self.provider.checkUpdate { status in
             if status {
                 DispatchQueue.main.async {
@@ -76,8 +78,7 @@ class TempViewController:AbstractViewController {
             self.live()
         }
         alert.addButton("网页版") {
-            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/")!)
-            self.present(safari,animated: true)
+            UIApplication.shared.open(URL(string: "https://nfls.io")!)
         }
         alert.addButton("退出") {
             self.logout()
