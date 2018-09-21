@@ -69,7 +69,7 @@ class WaterAuth {
                             completion(true)
                             break
                         case "/#/login?reason=permission":
-                            self.notifier.showInfo("未实名用户。请尽快在“更多”-“实名”内完成实名认证。")
+                            NotificationCenter.default.post(name: NSNotification.Name(NotificationType.notAuthorized.rawValue), object: nil)
                             completion(false)
                             break
                         case "/#/login?reason=private":
@@ -94,7 +94,7 @@ class WaterAuth {
                 }
             }
         } else {
-            self.notifier.showInfo("App部分功能需要绑定邮箱。同时，根据相关法律法规，国内用户需要绑定手机号，国外用户需要确保实名认证已通过。请尽快在“更多”-“安全”内补齐相关信息。")
+            NotificationCenter.default.post(name: NSNotification.Name(NotificationType.notBind.rawValue), object: nil)
             completion(false)
         }
         

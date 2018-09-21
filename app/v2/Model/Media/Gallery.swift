@@ -14,7 +14,13 @@ class Gallery: Model {
         self.id = try map.value("id")
         self.visible = try map.value("visible")
         self.public = try map.value("public")
-        self.time = ISO8601DateFormatter().date(from: try map.value("time"))!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+        if let time = formatter.date(from: try map.value("time")) {
+            self.time = time
+        } else {
+            self.time = ISO8601DateFormatter().date(from: try map.value("time"))!
+        }
         self.title = try map.value("title")
         self.description = try map.value("description")
         self.originCount = try map.value("originCount")

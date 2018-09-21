@@ -13,8 +13,8 @@ struct Photo: Model {
  
     init(map: Map) throws {
         self.id = try map.value("id")
-        self.height = try map.value("height")
-        self.width = try map.value("width")
+        self.height = try map.value("h")
+        self.width = try map.value("w")
         self.thumbUrl = MainConstant.apiEndpoint.appendingPathComponent("storage/photos/thumb").appendingPathComponent(try map.value("msrc"))
         self.hdUrl = MainConstant.apiEndpoint.appendingPathComponent("storage/photos/hd").appendingPathComponent(try map.value("src"))
         if let url: String = try? map.value("osrc") {

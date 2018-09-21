@@ -17,16 +17,10 @@ class HomeViewController: UITabBarController {
             //dump(tabs)
             tabs[0].icon(from: .materialIcon, code: "info", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
             tabs[1].icon(from: .materialIcon, code: "book", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
-            tabs[2].icon(from: .materialIcon, code: "receipt", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
-            tabs[3].icon(from: .materialIcon, code: "restaurant", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
-            //tabs[4].icon(from: .materialIcon, code: "web", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
-        }
-    }
-    
-    func switchToMainSite(url: String) {
-        self.selectedIndex = 4
-        if let controller = self.selectedViewController as? WKWebViewController {
-            controller.url = url
+            tabs[2].icon(from: .materialIcon, code: "photo", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
+            tabs[3].icon(from: .materialIcon, code: "receipt", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
+            tabs[4].icon(from: .materialIcon, code: "restaurant", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
+            //
         }
     }
     

@@ -28,7 +28,7 @@ extension GalleryRequest: TargetType {
         case .likeStatus():
             return "status"
         default:
-            return String(describing: self)
+            return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
         }
     }
     

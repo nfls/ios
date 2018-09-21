@@ -28,6 +28,10 @@
 		651FCF74203E7E420089173E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF73203E7E420089173E /* File.swift */; };
 		651FCF76203E7F660089173E /* ResourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651FCF75203E7F660089173E /* ResourceRequest.swift */; };
 		6532E7BE2037588100A23706 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6532E7BD2037588100A23706 /* MapKit.framework */; };
+		6541A8CD215525D7004E0957 /* GalleryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A8CC215525D7004E0957 /* GalleryDetailController.swift */; };
+		6541A8CF2155300F004E0957 /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A8CE2155300F004E0957 /* UserInfoController.swift */; };
+		6541A8D121553290004E0957 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A8D021553290004E0957 /* NavigationController.swift */; };
+		6541A8D3215534B0004E0957 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541A8D2215534B0004E0957 /* NotificationType.swift */; };
 		6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF7D211EA76000F9D126 /* Blackboard.swift */; };
 		6542EF84211EA8D200F9D126 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF83211EA8D200F9D126 /* Course.swift */; };
 		6542EF86211EA95900F9D126 /* Paper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6542EF85211EA95900F9D126 /* Paper.swift */; };
@@ -133,6 +137,10 @@
 		651FCF73203E7E420089173E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		651FCF75203E7F660089173E /* ResourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequest.swift; sourceTree = "<group>"; };
 		6532E7BD2037588100A23706 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6541A8CC215525D7004E0957 /* GalleryDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailController.swift; sourceTree = "<group>"; };
+		6541A8CE2155300F004E0957 /* UserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
+		6541A8D021553290004E0957 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		6541A8D2215534B0004E0957 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		6542EF7D211EA76000F9D126 /* Blackboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackboard.swift; sourceTree = "<group>"; };
 		6542EF83211EA8D200F9D126 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		6542EF85211EA95900F9D126 /* Paper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paper.swift; sourceTree = "<group>"; };
@@ -266,6 +274,7 @@
 				656F304D20712D5A009B8D69 /* AnnouncementViewController.swift */,
 				651ED79F2076A09F009A9ED1 /* TabBarController.swift */,
 				651ED7A12076AE53009A9ED1 /* WKWebViewController.swift */,
+				6541A8D021553290004E0957 /* NavigationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				65108DC120101EC800A5267E /* LoginViewController.swift */,
+				6541A8CE2155300F004E0957 /* UserInfoController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 			children = (
 				65185B3B20144863009FDF76 /* GalleryListController.swift */,
 				6542EFA821267DA600F9D126 /* LivePlayerController.swift */,
+				6541A8CC215525D7004E0957 /* GalleryDetailController.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -305,7 +316,6 @@
 		6542EF7F211EA87800F9D126 /* Blackboard */ = {
 			isa = PBXGroup;
 			children = (
-				6542EF80211EA88E00F9D126 /* User */,
 				650C3869204997ED00A5B192 /* Notice.swift */,
 				6590C84F211EA56800D2CCC5 /* Attachment.swift */,
 				6542EF7D211EA76000F9D126 /* Blackboard.swift */,
@@ -406,6 +416,7 @@
 		6551E4912013A72400B81E45 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6542EF80211EA88E00F9D126 /* User */,
 				6542EF92212151F300F9D126 /* Resource */,
 				6542EF8B211FF4B600F9D126 /* Vote */,
 				6542EF82211EA8C100F9D126 /* Practice */,
@@ -434,6 +445,7 @@
 				656F304320711B49009B8D69 /* AbstractMessage.swift */,
 				656F304520711B90009B8D69 /* MessageNotifier.swift */,
 				656F304B207124C8009B8D69 /* DefaultsKey.swift */,
+				6541A8D2215534B0004E0957 /* NotificationType.swift */,
 			);
 			path = Essential;
 			sourceTree = "<group>";
@@ -700,6 +712,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/OneTimePassword/OneTimePassword.framework",
+				"${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -732,6 +745,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OneTimePassword.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReCaptcha.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -801,6 +815,7 @@
 			files = (
 				6542EF9B21229E4200F9D126 /* PaperRequest.swift in Sources */,
 				656F304A20711CAB009B8D69 /* DeviceProvider.swift in Sources */,
+				6541A8CF2155300F004E0957 /* UserInfoController.swift in Sources */,
 				65185B3420143813009FDF76 /* AbstractReponse.swift in Sources */,
 				656F304420711B49009B8D69 /* AbstractMessage.swift in Sources */,
 				651ED7A22076AE53009A9ED1 /* WKWebViewController.swift in Sources */,
@@ -820,6 +835,7 @@
 				D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */,
 				65853A0E2129342F0001D6A3 /* WaterAuth.swift in Sources */,
 				6542EF8F211FF58500F9D126 /* Option.swift in Sources */,
+				6541A8CD215525D7004E0957 /* GalleryDetailController.swift in Sources */,
 				6551E4972013AB8700B81E45 /* MainConstant.swift in Sources */,
 				650806BF214BECF200AD0CAE /* AlbumProvider.swift in Sources */,
 				6542EF942121520C00F9D126 /* StsToken.swift in Sources */,
@@ -844,6 +860,7 @@
 				656F304620711B90009B8D69 /* MessageNotifier.swift in Sources */,
 				65853A092127D5980001D6A3 /* UserRequest.swift in Sources */,
 				6542EF84211EA8D200F9D126 /* Course.swift in Sources */,
+				6541A8D121553290004E0957 /* NavigationController.swift in Sources */,
 				650C386A204997EE00A5B192 /* Notice.swift in Sources */,
 				6542EF972121540700F9D126 /* Game.swift in Sources */,
 				655D1732213D284E00A307F4 /* VoteSubmitController.swift in Sources */,
@@ -860,6 +877,7 @@
 				6542EF8A211FF3AC00F9D126 /* Record.swift in Sources */,
 				659762B120D3B7FD002798F2 /* QRCodeViewController.swift in Sources */,
 				65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */,
+				6541A8D3215534B0004E0957 /* NotificationType.swift in Sources */,
 				65853A042127D3100001D6A3 /* GameRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -66,14 +66,6 @@ class TempViewController:AbstractViewController {
     
     @objc func menu() {
         let alert = SCLAlertView()
-        alert.addButton("实名") {
-            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/#/alumni/auth")!)
-            self.present(safari,animated: true)
-        }
-        alert.addButton("安全") {
-            let safari = SFSafariViewController(url: URL(string : "https://nfls.io/#/user/security")!)
-            self.present(safari,animated: true)
-        }
         alert.addButton("直播") {
             self.live()
         }

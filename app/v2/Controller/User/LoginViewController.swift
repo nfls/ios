@@ -24,7 +24,7 @@ class LoginViewController:AbstractViewController {
     override func viewDidAppear(_ animated: Bool) {
         //self.login(UIButton())
         self.username.text = UserDefaults.standard.string(forKey: "username")
-        self.password.text = UserDefaults.standard.string(forKey: "password")
+        //self.password.text = UserDefaults.standard.string(forKey: "password")
         if(isFirst){
             self.login(UIButton())
         }
@@ -51,7 +51,7 @@ class LoginViewController:AbstractViewController {
                 let viewController = storyboard.instantiateViewController(withIdentifier :"TabBarController")
                 self.navigationController!.pushViewController(viewController, animated: true)
                 UserDefaults.standard.set(self.username.text!, forKey: "username")
-                UserDefaults.standard.set(self.password.text!, forKey: "password")
+                //UserDefaults.standard.set(self.password.text!, forKey: "password")
                 self.loginButton.isEnabled = true
             }else{
                 if(!self.isFirst){

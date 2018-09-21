@@ -13,7 +13,7 @@ struct User: Model {
     init(map: Map) throws {
         self.id = try map.value("id")
         self.username = try map.value("username")
-        self.htmlUsername = try map.value("htmlUsername")
+        self.htmlUsername = try? map.value("htmlUsername")
         self.point = try map.value("point")
         self.isAdmin = try map.value("admin")
         self.isVerified = try map.value("verified")
@@ -28,7 +28,7 @@ struct User: Model {
     }
     let id: Int
     let username: String
-    let htmlUsername: String
+    let htmlUsername: String?
     let point: Double
     let isAdmin: Bool
     let isVerified: Bool

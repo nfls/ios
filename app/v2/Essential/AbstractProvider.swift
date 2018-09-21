@@ -32,9 +32,11 @@ class AbstractProvider<T:TargetType> {
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
-                if response.statusCode != 200 {
-                    MainOAuth2().oauth2.forgetTokens()
-                    self.notifier.showInfo("登录失效，请重新登录。")
+                if response.statusCode == 400 {
+                    if target.baseURL.absoluteString.hasPrefix("https://nfls.io") {
+                        MainOAuth2().oauth2.forgetTokens()
+                        self.notifier.showInfo("权限错误，请尝试重新登录。")
+                    } 
                 } else {
                     if let json = JSON(response.data).dictionaryObject {
                         do {

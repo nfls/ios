@@ -34,6 +34,7 @@ target 'NFLSers-iOS' do
   pod 'DeviceKit'
   pod 'Eureka'
   pod 'FCUUID'
+  pod "ReCaptcha"
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
