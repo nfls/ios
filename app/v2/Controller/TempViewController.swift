@@ -32,7 +32,7 @@ class TempViewController:AbstractViewController {
                 let updateDialog = SCLAlertView()
                     updateDialog.addButton("进入App Store更新", action: {
                         let urlStr = "itms-apps://itunes.apple.com/app/id1246252649"
-                        UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+                        UIApplication.shared.open(URL(string: urlStr)!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                     })
                     updateDialog.showNotice("检测到更新", subTitle: "请尽快完成更新，享受更多新特性。", closeButtonTitle: "我懒")
                 }
@@ -49,7 +49,7 @@ class TempViewController:AbstractViewController {
                     pushDialog.showInfo("推送权限", subTitle: "开启推送后，您可以收到最新的活动通知等。", closeButtonTitle: "不好")
                 }else if setting.authorizationStatus == .denied {
                     pushDialog.addButton("设置", action: {
-                        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                     })
                     pushDialog.showWarning("推送权限", subTitle: "设备注册失败，推送未启用", closeButtonTitle: "关闭")
                 }
@@ -118,4 +118,9 @@ class TempViewController:AbstractViewController {
         destination.id = sender as? String
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

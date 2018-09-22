@@ -20,9 +20,14 @@ class LivePlayerController: AVPlayerViewController {
             player = AVPlayer(playerItem: playerItem)
             player?.play()
         }
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try? AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback))
         try? AVAudioSession.sharedInstance().setActive(true)
         
         
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

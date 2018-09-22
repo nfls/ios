@@ -82,7 +82,7 @@ extension UserRequest: TargetType {
             parameters["clean"] = clean
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .avatar(let image):
-            let data = UIImagePNGRepresentation(image)!
+            let data = image.pngData()!
             let avatar = MultipartFormData(provider: .data(data), name: "photo", fileName: "avatar.png", mimeType: "image/png")
             return .uploadMultipart([avatar])
         case .rename(let username):
