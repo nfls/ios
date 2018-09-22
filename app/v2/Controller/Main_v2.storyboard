@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzc-ti-l6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="-128.18590704647679"/>
+            <point key="canvasLocation" x="-1787" y="-129"/>
         </scene>
         <!--相册-->
         <scene sceneID="xGL-4T-LY8">
@@ -153,7 +153,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRe-Nz-o2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-164.0625" y="677.9296875"/>
+            <point key="canvasLocation" x="390" y="678"/>
         </scene>
         <!--Gallery Detail Controller-->
         <scene sceneID="YnR-no-iZK">
@@ -198,7 +198,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="St4-gg-sup" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-165.21739130434784" y="1429.6875"/>
+            <point key="canvasLocation" x="1486" y="678"/>
         </scene>
         <!--NFLSIO-->
         <scene sceneID="MRv-nH-DUp">
@@ -211,6 +211,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Dsa-RU-GUY" kind="relationship" relationship="viewControllers" id="HEO-5i-vtY"/>
                         <segue destination="dF0-A0-YaU" kind="relationship" relationship="viewControllers" id="Vum-LS-nc3"/>
                         <segue destination="gLD-4C-ogZ" kind="relationship" relationship="viewControllers" id="3t5-RA-EED"/>
                         <segue destination="Ixn-Xn-krR" kind="relationship" relationship="viewControllers" id="t9Y-Oj-6jq"/>
@@ -220,7 +221,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVP-31-7GN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="679"/>
+            <point key="canvasLocation" x="-633" y="-129"/>
         </scene>
         <!--南外人-->
         <scene sceneID="M9E-E1-b9R">
@@ -253,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bld-Jh-dnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645.5999999999999" y="678.32512315270935"/>
+            <point key="canvasLocation" x="390" y="2239"/>
         </scene>
         <!--投票-->
         <scene sceneID="IGS-2p-LZ7">
@@ -295,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syr-cJ-pDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702.89855072463774" y="1430.7065217391305"/>
+            <point key="canvasLocation" x="390" y="1458"/>
         </scene>
         <!--Vote Submit Controller-->
         <scene sceneID="l6a-eP-vUM">
@@ -310,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XK0-Am-fEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="2164"/>
+            <point key="canvasLocation" x="1486" y="1458"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="ZYE-89-z3g">
@@ -318,37 +319,87 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="swq-Om-DqW" customClass="LivePlayerController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xka-Tz-1bZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="2185"/>
+            <point key="canvasLocation" x="1486" y="2239"/>
         </scene>
-        <!--主站-->
-        <scene sceneID="8qQ-0R-TCe">
+        <!--Item-->
+        <scene sceneID="6cH-oH-ED6">
             <objects>
-                <viewController id="MHn-Sn-7Ag" customClass="WKWebViewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KJ9-kj-cye">
+                <tableViewController id="Dsa-RU-GUY" customClass="UserInfoController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="50i-i3-Xfm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DEg-gi-3HA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="DEg-gi-3HA" firstAttribute="top" secondItem="YSZ-Cn-YC6" secondAttribute="top" id="9IM-SZ-jft"/>
-                            <constraint firstItem="YSZ-Cn-YC6" firstAttribute="bottom" secondItem="DEg-gi-3HA" secondAttribute="bottom" id="O7u-xH-9B8"/>
-                            <constraint firstItem="YSZ-Cn-YC6" firstAttribute="trailing" secondItem="DEg-gi-3HA" secondAttribute="trailing" id="eyd-kg-xGn"/>
-                            <constraint firstItem="DEg-gi-3HA" firstAttribute="leading" secondItem="YSZ-Cn-YC6" secondAttribute="leading" id="wb4-iP-JeS"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="YSZ-Cn-YC6"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="主站" id="H0M-Fv-7BW"/>
-                    <connections>
-                        <outlet property="stackView" destination="DEg-gi-3HA" id="vFD-og-WA2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c6J-HI-kP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" textLabel="pm7-0B-CGX" detailTextLabel="NaV-Pr-xZw" style="IBUITableViewCellStyleValue1" id="0Te-sS-fXh">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Te-sS-fXh" id="ni8-8E-RQD">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pm7-0B-CGX">
+                                            <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NaV-Pr-xZw">
+                                            <rect key="frame" x="350" y="11.999999999999998" width="44" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="typeCell" id="Hit-SZ-Uug" customClass="TypeCell" customModule="NFLSers_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hit-SZ-Uug" id="xQ3-9I-dYC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-SI-Tsc">
+                                            <rect key="frame" x="20" y="5" width="374" height="33.666666666666664"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x8h-72-WYM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="333" height="33.666666666666664"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-v4-crL">
+                                                    <rect key="frame" x="343" y="0.0" width="31" height="33.666666666666664"/>
+                                                    <state key="normal" title="提交"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="YAM-SI-Tsc" secondAttribute="bottom" constant="5" id="m7Z-Hl-zMQ"/>
+                                        <constraint firstItem="YAM-SI-Tsc" firstAttribute="leading" secondItem="xQ3-9I-dYC" secondAttribute="leading" constant="20" id="mWd-Mn-0G5"/>
+                                        <constraint firstItem="YAM-SI-Tsc" firstAttribute="top" secondItem="xQ3-9I-dYC" secondAttribute="top" constant="5" id="nOf-ev-PCT"/>
+                                        <constraint firstAttribute="trailing" secondItem="YAM-SI-Tsc" secondAttribute="trailing" constant="20" id="yNb-GW-0LR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="field" destination="x8h-72-WYM" id="dKY-Ez-aGD"/>
+                                    <outlet property="submit" destination="xsV-v4-crL" id="Ftb-rR-lmj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Dsa-RU-GUY" id="EIX-Jb-NQj"/>
+                            <outlet property="delegate" destination="Dsa-RU-GUY" id="dpj-Iu-RSQ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="0XC-vp-xfq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lSB-ec-nGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="1431"/>
+            <point key="canvasLocation" x="-633.33333333333337" y="1457.8125"/>
         </scene>
         <!--出门证测试-->
         <scene sceneID="eKM-HV-hQ8">
@@ -393,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwo-Aq-xFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2496.8000000000002" y="1430.5418719211823"/>
+            <point key="canvasLocation" x="-633" y="678"/>
         </scene>
         <!--资源-->
         <scene sceneID="NoM-rO-w37">
@@ -425,7 +476,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jht-UW-d6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2497" y="-128"/>
+            <point key="canvasLocation" x="391" y="-129"/>
         </scene>
         <!--公告-->
         <scene sceneID="BzV-c0-LRe">
@@ -440,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-E3-Gjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2497" y="679"/>
+            <point key="canvasLocation" x="1486" y="-129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="330-vB-2TS">
@@ -459,7 +510,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZR-1A-Avu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42" y="-128"/>
+            <point key="canvasLocation" x="-2868" y="-129"/>
         </scene>
     </scenes>
     <resources>

@@ -10,9 +10,12 @@ import Foundation
 import SwiftyUserDefaults
 
 class UserProvider: AbstractProvider<UserRequest> {
-    public func getUser() {
+    var current: User? = nil
+    public func getUser(_ completion: @escaping () -> Void) {
         self.request(target: UserRequest.current(), type: User.self, success: { (data) in
+            self.current = data.data
             Defaults[.id] = data.data.id
+            completion()
         })
     }
 }

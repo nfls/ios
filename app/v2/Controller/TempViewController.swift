@@ -25,7 +25,9 @@ class TempViewController:AbstractViewController {
         self.provider.getAnnouncement(completion: {
             self.mdView.load(markdown: self.provider.announcement)
         })
-        self.userProvider.getUser()
+        self.userProvider.getUser() {
+            
+        }
         self.provider.checkUpdate { status in
             if status {
                 DispatchQueue.main.async {

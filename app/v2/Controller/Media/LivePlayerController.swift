@@ -20,7 +20,7 @@ class LivePlayerController: AVPlayerViewController {
             player = AVPlayer(playerItem: playerItem)
             player?.play()
         }
-        try? AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback))
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .videoChat)
         try? AVAudioSession.sharedInstance().setActive(true)
         
         
