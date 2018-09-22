@@ -21,6 +21,6 @@ platform :ios do
   end
   desc "Upload debug files to Sentry"
   lane :sentry do
-    download_dsyms(version:"1.2.16", output_directory: "dsyms")
+    download_dsyms(version:"1.2.19", output_directory: "dsyms")
   end
 end

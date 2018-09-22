@@ -30,6 +30,9 @@ class VoteController: UIViewController {
     }
     
     @objc func vote() {
+        if provider.detail == nil {
+            return
+        }
         self.performSegue(withIdentifier: "showSubmit", sender: self)
     }
     
