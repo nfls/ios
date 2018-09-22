@@ -22,6 +22,7 @@ class HomeViewController: UITabBarController {
             tabs[4].icon(from: .materialIcon, code: "restaurant", iconColor: UIColor.blue, imageSize: CGSize(width: 20, height: 20), ofSize: 20)
             //
         }
+        self.navigationItem.hidesBackButton = true
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

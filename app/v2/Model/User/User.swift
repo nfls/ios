@@ -12,6 +12,7 @@ import ObjectMapper
 struct User: Model {
     init(map: Map) throws {
         self.id = try map.value("id")
+        self.avatar = MainConstant.apiEndpoint.appendingPathComponent("avatar").appendingPathComponent("\(id).png")
         self.username = try map.value("username")
         self.htmlUsername = try? map.value("htmlUsername")
         self.point = try map.value("point")
@@ -27,6 +28,7 @@ struct User: Model {
         self.unreadCount = try? map.value("unreadCount")
     }
     let id: Int
+    let avatar: URL
     let username: String
     let htmlUsername: String?
     let point: Double
