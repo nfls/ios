@@ -33,14 +33,6 @@ class ResourcesViewController:UITableViewController {
     
     var swipe = UIScreenEdgePanGestureRecognizer()
     
-    override var navigationItem: UINavigationItem {
-        return self.tabBarController!.navigationItem
-    }
-    
-    override var navigationController: UINavigationController? {
-        return self.tabBarController!.navigationController
-    }
-    
     override func viewDidLoad() {
         self.multiButton = UIBarButtonItem(title: "多选", style: .plain, target: self, action: #selector(multi))
         self.downloadButton = UIBarButtonItem(title: "查看", style: .plain, target: self, action: #selector(bulkDownload))
@@ -173,23 +165,21 @@ class ResourcesViewController:UITableViewController {
     func refresh(_ files:[File]){
         self.files = files
         DispatchQueue.main.async {
-            if self.tabBarController?.selectedViewController is ResourcesViewController {
-                //self.navigationItem.prompt = "路径: /" + (self.provider.path as NSArray).componentsJoined(by: "/")
-                self.navigationItem.rightBarButtonItems = [self.headerButton]
-                /*
-                if(self.multiMode){
-                    self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton,self.deleteButton,self.downloadButton]
-                } else {
-                    self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton]
-                }
-                 */
-                if(self.provider.path.count > 0){
-                    //self.navigationItem.hidesBackButton = true
-                    self.swipe.isEnabled = true
-                }else{
-                    //self.navigationItem.hidesBackButton = false
-                    self.swipe.isEnabled = false
-                }
+            //self.navigationItem.prompt = "路径: /" + (self.provider.path as NSArray).componentsJoined(by: "/")
+            self.navigationItem.rightBarButtonItems = [self.headerButton]
+            /*
+            if(self.multiMode){
+                self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton,self.deleteButton,self.downloadButton]
+            } else {
+                self.navigationItem.rightBarButtonItems = [self.headerButton,self.multiButton]
+            }
+             */
+            if(self.provider.path.count > 0){
+                //self.navigationItem.hidesBackButton = true
+                self.swipe.isEnabled = true
+            }else{
+                //self.navigationItem.hidesBackButton = false
+                self.swipe.isEnabled = false
             }
 
             self.tableView.reloadData()

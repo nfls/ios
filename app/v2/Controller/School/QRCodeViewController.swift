@@ -44,7 +44,6 @@ class QRCodeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.navigationItem.rightBarButtonItem = nil
         self.brightness = UIScreen.main.brightness
         UIScreen.main.brightness = 1.0
     }

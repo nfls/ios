@@ -82,6 +82,8 @@
 		659003B02015BA0E0077876F /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659003AF2015BA0E0077876F /* TempViewController.swift */; };
 		6590C850211EA56800D2CCC5 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6590C84F211EA56800D2CCC5 /* Attachment.swift */; };
 		659762B120D3B7FD002798F2 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659762B020D3B7FD002798F2 /* QRCodeViewController.swift */; };
+		65B97F5D215781FC00CB4EF8 /* ReCaptchaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B97F5C215781FC00CB4EF8 /* ReCaptchaController.swift */; };
+		65B97F5F2157993700CB4EF8 /* InternationalCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B97F5E2157993700CB4EF8 /* InternationalCenterController.swift */; };
 		65B9F58D213E783000A1F3DF /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B9F58C213E783000A1F3DF /* Ticket.swift */; };
 		65D3A7602010275A00582257 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3A75F2010275A00582257 /* ResourceViewController.swift */; };
 		65D55AF420CCD7660089310B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D55AF320CCD7660089310B /* CloudKit.framework */; };
@@ -194,6 +196,8 @@
 		659003AF2015BA0E0077876F /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		6590C84F211EA56800D2CCC5 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		659762B020D3B7FD002798F2 /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		65B97F5C215781FC00CB4EF8 /* ReCaptchaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCaptchaController.swift; sourceTree = "<group>"; };
+		65B97F5E2157993700CB4EF8 /* InternationalCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternationalCenterController.swift; sourceTree = "<group>"; };
 		65B9F58C213E783000A1F3DF /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
 		65D3A75F2010275A00582257 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
 		65D55AF320CCD7660089310B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -275,6 +279,8 @@
 				651ED79F2076A09F009A9ED1 /* TabBarController.swift */,
 				651ED7A12076AE53009A9ED1 /* WKWebViewController.swift */,
 				6541A8D021553290004E0957 /* NavigationController.swift */,
+				65B97F5C215781FC00CB4EF8 /* ReCaptchaController.swift */,
+				65B97F5E2157993700CB4EF8 /* InternationalCenterController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -839,6 +845,7 @@
 				6542EF8F211FF58500F9D126 /* Option.swift in Sources */,
 				6541A8CD215525D7004E0957 /* GalleryDetailController.swift in Sources */,
 				6551E4972013AB8700B81E45 /* MainConstant.swift in Sources */,
+				65B97F5D215781FC00CB4EF8 /* ReCaptchaController.swift in Sources */,
 				650806BF214BECF200AD0CAE /* AlbumProvider.swift in Sources */,
 				6542EF942121520C00F9D126 /* StsToken.swift in Sources */,
 				651ED7A02076A09F009A9ED1 /* TabBarController.swift in Sources */,
@@ -869,6 +876,7 @@
 				65B9F58D213E783000A1F3DF /* Ticket.swift in Sources */,
 				6542EFAC21267F4A00F9D126 /* VoteRequest.swift in Sources */,
 				65517955214417E900556772 /* CardProvider.swift in Sources */,
+				65B97F5F2157993700CB4EF8 /* InternationalCenterController.swift in Sources */,
 				6542EFA921267DA600F9D126 /* LivePlayerController.swift in Sources */,
 				6542EF7E211EA76000F9D126 /* Blackboard.swift in Sources */,
 				6590C850211EA56800D2CCC5 /* Attachment.swift in Sources */,
@@ -1096,7 +1104,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				UNITY_IOS_EXPORT_PATH = "$PROJECT_DIR/Unity";
+				UNITY_IOS_EXPORT_PATH = $PROJECT_DIR/Unity;
 				UNITY_RUNTIME_VERSION = 2017.2.0f3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1143,7 +1151,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "NFLSers-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				UNITY_IOS_EXPORT_PATH = "$PROJECT_DIR/Unity";
+				UNITY_IOS_EXPORT_PATH = $PROJECT_DIR/Unity;
 				UNITY_RUNTIME_VERSION = 2017.2.0f3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

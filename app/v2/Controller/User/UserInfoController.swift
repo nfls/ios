@@ -23,30 +23,81 @@ class AvatarCell: UITableViewCell {
     @IBOutlet weak var username: UILabel?
 }
 
+class PrivacyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
+    @IBOutlet weak var picker: UIPickerView?
+    @IBOutlet weak var submit: UIButton?
+    @IBOutlet weak var antiSpider: UISwitch?
+    
+    let data = ["仅同校学生 (所有实名用户)", "仅同届同学", "仅自己"]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.data.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.data[row]
+    }
+}
+
 class UserInfoController: UITableViewController {
     let provider = UserProvider()
     let sections = ["个人信息", "安全设置", "隐私设置"]
-    let numberOfRowsInSection = [4, 2, 0]
-    let recaptcha = try? ReCaptcha(endpoint: .default)
+    let numberOfRowsInSection = [4, 3, 1]
+    var recaptcha = try? ReCaptcha(endpoint: .default)
+    let completion: (String?) -> Void = { response in
+        if let response = response {
+            SCLAlertView().showError("错误", subTitle: response)
+        } else {
+            SCLAlertView().showSuccess("成功", subTitle: "修改成功")
+        }
+        load()
+    }
     
     @objc func changePhone(_ sender: UIButton) {
         let indexPath = IndexPath(row: 0, section: 1)
         let cell = self.tableView.cellForRow(at: indexPath) as! TypeCell
-        self.handleClick(cell)
+        self.handleClick(cell, isPhone: true)
     }
 
     @objc func changeEmail(_ sender: UIButton) {
         let indexPath = IndexPath(row: 1, section: 1)
         let cell = self.tableView.cellForRow(at: indexPath) as! TypeCell
-        self.handleClick(cell)
+        self.handleClick(cell, isPhone: false)
     }
     
-    func handleClick(_ cell: TypeCell) {
+    @objc func changePassword(_ sender: UIButton) {
+        let indexPath = IndexPath(row: 2, section: 1)
+        let cell = self.tableView.cellForRow(at: indexPath) as! TypeCell
+        let prompt = SCLAlertView()
+        let password = prompt.addTextField("原密码")
+        prompt.addButton("提交") {
+            self.provider.changeSecurity(password: password.text ?? "", newPassword: cell.field?.text ?? "", newEmail: nil, newPhone: nil, phoneCode: nil, emailCode: nil, clean: true, completion: self.completion)
+        }
+        prompt.showInfo("修改密码", subTitle: "请输入您原来的密码以修改。请注意，您所有登录的设备在修改密码后会自动退出。", closeButtonTitle: "取消")
+    }
+    
+    func handleClick(_ cell: TypeCell, isPhone: Bool) {
         if cell.field!.isEnabled {
-            //cell.submit?.isEnabled = false
-            //recaptcha?.reset()
+            cell.field!.isEnabled = false
             recaptcha?.validate(on: view, resetOnError: true) { [weak self] (result: ReCaptchaResult) in
-                print(try? result.dematerialize())
+                do {
+                    if isPhone {
+                        self?.sendCode(toPhone: cell.field?.text ?? "", captcha: try result.dematerialize(), completion: {
+                            cell.field!.isEnabled = true
+                        })
+                    } else {
+                        self?.sendCode(toEmail: cell.field?.text ?? "", captcha: try result.dematerialize(), completion: {
+                            cell.field!.isEnabled = true
+                        })
+                    }
+                } catch {
+                    
+                }
+                self?.recaptcha = try? ReCaptcha(endpoint: .default)
             }
         } else {
             cell.field!.isEnabled = true
@@ -55,19 +106,64 @@ class UserInfoController: UITableViewController {
             cell.submit?.setTitle("提交", for: [])
         }
     }
+    
+    func sendCode(toPhone phone: String, captcha: String, completion: @escaping ()->Void) {
+        self.provider.postSendRequest(toPhone: phone, captcha: captcha) { (message) in
+            completion()
+            if let message = message {
+                SCLAlertView().showError("错误", subTitle: message)
+            } else {
+                self.showPromptForCode(entry: phone, isPhone: true)
+            }
+        }
+    }
+    
+    func sendCode(toEmail email: String, captcha: String, completion: @escaping ()->Void) {
+        self.provider.postSendRequest(toEmail: email, captcha: captcha) { (message) in
+            completion()
+            if let message = message {
+                SCLAlertView().showError("错误", subTitle: message)
+            } else {
+                self.showPromptForCode(entry: email, isPhone: false)
+            }
+        }
+    }
+    
+    func showPromptForCode(entry: String, isPhone: Bool) {
+        let prompt = SCLAlertView()
+        let code = prompt.addTextField("动态码")
+        code.autocorrectionType = .no
+        code.autocapitalizationType = .none
+        let password = prompt.addTextField("账户密码")
+        password.isSecureTextEntry = true
+        prompt.addButton("确认") {
+            if isPhone {
+                self.provider.changeSecurity(password: password.text ?? "", newPassword: nil, newEmail: nil, newPhone: entry, phoneCode: code.text ?? "", emailCode: nil, clean: nil, completion: self.completion)
+            } else {
+                self.provider.changeSecurity(password: password.text ?? "", newPassword: nil, newEmail: entry, newPhone: nil, phoneCode: nil, emailCode: code.text ?? "", clean: nil, completion: self.completion)
+            }
+        }
+        prompt.showInfo("信息确认", subTitle: "请输入您收到的动态码，并输入您账户的密码以确认", closeButtonTitle: "取消")
+    }
+    
+    func load() {
+        provider.getUser() {
+            self.tableView.reloadData()
+        }
+    }
         
     override func viewDidLoad() {
         self.tableView.allowsSelection = false
         recaptcha?.configureWebView { [weak self] webview in
             webview.frame = CGRect(x: 0, y: 40, width: self?.view.bounds.width ?? 0, height: self?.view.bounds.height ?? 0)
         }
-        provider.getUser() {
-            self.tableView.reloadData()
-        }
+        self.load()
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRowsInSection[section]
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -82,11 +178,11 @@ class UserInfoController: UITableViewController {
                 cell.textLabel?.text = "ID"
                 cell.detailTextLabel?.text = String(provider.current!.id)
             case 2:
-                cell.textLabel?.text = "CAS Hours"
+                cell.textLabel?.text = "\"创意、行动、服务\" 小时数"
                 cell.detailTextLabel?.text = String(provider.current!.point)
             case 3:
                 cell.textLabel?.text = "加入时间"
-                cell.detailTextLabel?.text = provider.current!.joinTime?.toFormat("yyyy'年'MM'月'dd'日' HH:mm")
+                cell.detailTextLabel?.text = provider.current!.joinTime?.toFormat("yyyy'/'MM'/'dd HH:mm")
             default:
                 break
             }
@@ -109,10 +205,25 @@ class UserInfoController: UITableViewController {
                     cell.submit?.addTarget(self, action: #selector(changeEmail(_:)), for: .touchDown)
                     cell.submit?.tag = 1
                 }
+            case 2:
+                cell.hint?.text = "密码"
+                cell.submit?.toolbarPlaceholder = "新密码"
+                cell.submit?.addTarget(self, action: #selector(changePassword(_:)), for: .touchDown)
+                cell.field?.isEnabled = true
             default:
                 break
             }
             return cell
+        case 2:
+            switch indexPath.row {
+            case 0:
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "privacyCell", for: indexPath) as! PrivacyCell
+                cell.picker?.delegate = cell
+                cell.picker?.dataSource = cell
+                return cell
+            default:
+                break
+            }
         default:
             break
         }
