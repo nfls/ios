@@ -8,7 +8,13 @@
 
 import Foundation
 class InternationalCenterController: UIViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+    
+    @IBOutlet weak var paperView: PaperView!
+    
+    let problemProvider = ProblemProvider()
+    override func viewDidLoad() {
+        self.problemProvider.search(text: "use", precise: false, course: nil, isMultipleChoice: nil, size: 10  , page: 1) {
+            self.paperView.setProblem(self.problemProvider.result[0])
+        }
     }
 }

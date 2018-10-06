@@ -20,7 +20,7 @@ extension CourseRequest: TargetType {
     }
     
     var path: String {
-        return String(describing: self)
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
     
     var method: Moya.Method {

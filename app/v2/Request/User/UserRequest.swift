@@ -13,7 +13,7 @@ enum UserRequest {
     case register(username: String, password: String, code:String, email: String?, phone: String?)
     case reset(password: String, code:String, email: String?, phone: String?)
     case change(password: String, newPassword: String?, newEmail: String?, unbindPhone: Bool?, newPhone: String?, phoneCode: String?, emailCode: String?, clean: Bool?)
-    case code(captcha: String, type: Int, email: String?, phone: String?)
+    case code(type: Int, email: String?, phone: String?)
     case avatar(image: UIImage)
     case rename(username: String)
     case privacy(antiSpider: Bool, privacy: Int)
@@ -33,7 +33,7 @@ extension UserRequest: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .register(_, _, _, _, _), .reset(_, _, _, _), .change(_, _, _, _, _, _, _, _), .code(_, _, _, _), .avatar(_), .rename(_), .privacy(_, _):
+        case .register(_, _, _, _, _), .reset(_, _, _, _), .change(_, _, _, _, _, _, _, _), .code(_, _, _), .avatar(_), .rename(_), .privacy(_, _):
             return .post
         case .page(_), .current(), .card():
             return .get
@@ -63,9 +63,8 @@ extension UserRequest: TargetType {
             parameters["email"] = email
             parameters["phone"] = phone
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .code(let captcha, let type, let email, let phone):
-            var parameters: [String: Any] = [
-                "captcha": captcha,
+        case .code(let type, let email, let phone):
+            var parameters: [String: Any] = [ 
                 "type": type
             ]
             parameters["email"] = email

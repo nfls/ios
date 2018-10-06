@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>zh-cn</string>
 	<key>CFBundleDisplayName</key>
 	<string>NFLSIO</string>
 	<key>CFBundleExecutable</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.20</string>
 	<key>CFBundleVersion</key>
-	<string>962</string>
+	<string>1120</string>
 	<key>CodeNameCN</key>
 	<string>決別</string>
 	<key>CodeNameEN</key>
@@ -58,11 +58,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>请允许访问您的相机以拍摄照片并上传</string>
+	<string>上传头像、拍照搜题等功能需要访问您的相机</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>录制视频需要访问您的话筒</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>请允许我们将照片保存到您的相册</string>
+	<string>保存照片需要添加照片到相册的权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>请允许访问您的相册以上传你选择的照片</string>
+	<string>上传头像、拍照搜题等功能需要访问您的相册</string>
 	<key>ReCaptchaDomain</key>
 	<string>https://nfls.io</string>
 	<key>ReCaptchaKey</key>

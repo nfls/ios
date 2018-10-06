@@ -8,21 +8,26 @@
 
 import Foundation
 import SDWebImage
+import AVFoundation
 
 class AlbumCell: UITableViewCell {
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    
+    final func setImage(image: UIImage) {
+        cover?.image = image
+        cover?.frame = AVMakeRect(aspectRatio: image.size, insideRect: cover.frame)
+    }
 }
 
 class GalleryListController: UITableViewController {
     let provider = GalleryProvider()
     override func viewDidLoad() {
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 200
         provider.getList {
             self.tableView.reloadData()
-            /*Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { (_) in
-                self.tableView.reloadData()
-            })*/
         }
     }
     
@@ -36,6 +41,11 @@ class GalleryListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
+        SDWebImageManager.shared().loadImage(with: provider.list[indexPath.row].cover?.hdUrl, options: SDWebImageOptions.highPriority, progress: nil) { (image, _, _, _, _, _) in
+            DispatchQueue.main.async {
+                cell.setImage(image: image!)
+            }
+        }
         cell.title!.text = provider.list[indexPath.row].title
         let description = provider.list[indexPath.row].description
         if description != "" {
@@ -43,8 +53,7 @@ class GalleryListController: UITableViewController {
         } else {
             cell.subtitle!.isHidden = true
         }
-        let imageView = cell.cover!
-        imageView.sd_setImage(with: provider.list[indexPath.row].cover?.hdUrl, completed: nil)
+       
         return cell
     }
     

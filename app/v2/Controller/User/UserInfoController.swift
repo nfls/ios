@@ -11,6 +11,7 @@ import SwiftDate
 import SDWebImage
 import SCLAlertView
 import ReCaptcha
+import YPImagePicker
 
 class TypeCell: UITableViewCell {
     @IBOutlet weak var hint: UILabel!
@@ -52,7 +53,7 @@ class UserInfoController: UITableViewController {
         if let response = response {
             SCLAlertView().showError("错误", subTitle: response)
         } else {
-            SCLAlertView().showSuccess("成功", subTitle: "修改成功")
+            MessageNotifier().showInfo("修改成功")
         }
         load()
     }
@@ -69,6 +70,15 @@ class UserInfoController: UITableViewController {
         self.handleClick(cell, isPhone: false)
     }
     
+    @objc func changeUsername() {
+        let prompt = SCLAlertView()
+        let username = prompt.addTextField("新用户名")
+        prompt.addButton("提交") {
+            self.provider.changeUsername(username.text ?? "", completion: self.completion)
+        }
+        prompt.showInfo("修改用户名", subTitle: "用户名支持中文、英文、日文，长度在3-16之间。每次改名需要2小时的\"创意、活动、服务\"。", closeButtonTitle: "取消")
+    }
+    
     @objc func changePassword(_ sender: UIButton) {
         let indexPath = IndexPath(row: 2, section: 1)
         let cell = self.tableView.cellForRow(at: indexPath) as! TypeCell
@@ -80,24 +90,37 @@ class UserInfoController: UITableViewController {
         prompt.showInfo("修改密码", subTitle: "请输入您原来的密码以修改。请注意，您所有登录的设备在修改密码后会自动退出。", closeButtonTitle: "取消")
     }
     
+    @objc func changeAvatar(_ imageView: UIImageView) {
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photo
+        config.startOnScreen = .library
+        config.showsCrop = .rectangle(ratio: 1.0/1.0)
+        let picker = YPImagePicker(configuration: config)
+        picker.didFinishPicking { (items, _) in
+            if let photo = items.singlePhoto {
+                let loading = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false)).showWait("请稍后", subTitle: "图片上传中，大概需要半分钟")
+                self.provider.changeAvatar(photo.image, completion: {
+                    loading.close()
+                    let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! AvatarCell
+                    cell.avatar?.sd_setImage(with: self.provider.current?.avatar, placeholderImage: nil, options: .refreshCached, progress: nil, completed: nil)
+                })
+            }
+            picker.dismiss(animated: true)
+        }
+        self.present(picker, animated: true)
+    }
+    
     func handleClick(_ cell: TypeCell, isPhone: Bool) {
         if cell.field!.isEnabled {
             cell.field!.isEnabled = false
-            recaptcha?.validate(on: view, resetOnError: true) { [weak self] (result: ReCaptchaResult) in
-                do {
-                    if isPhone {
-                        self?.sendCode(toPhone: cell.field?.text ?? "", captcha: try result.dematerialize(), completion: {
-                            cell.field!.isEnabled = true
-                        })
-                    } else {
-                        self?.sendCode(toEmail: cell.field?.text ?? "", captcha: try result.dematerialize(), completion: {
-                            cell.field!.isEnabled = true
-                        })
-                    }
-                } catch {
-                    
-                }
-                self?.recaptcha = try? ReCaptcha(endpoint: .default)
+            if isPhone {
+                self.sendCode(toPhone: cell.field?.text ?? "", completion: {
+                    cell.field!.isEnabled = true
+                })
+            } else {
+                self.sendCode(toEmail: cell.field?.text ?? "", completion: {
+                    cell.field!.isEnabled = true
+                })
             }
         } else {
             cell.field!.isEnabled = true
@@ -107,8 +130,8 @@ class UserInfoController: UITableViewController {
         }
     }
     
-    func sendCode(toPhone phone: String, captcha: String, completion: @escaping ()->Void) {
-        self.provider.postSendRequest(toPhone: phone, captcha: captcha) { (message) in
+    func sendCode(toPhone phone: String, completion: @escaping ()->Void) {
+        self.provider.postSendRequest(toPhone: phone) { (message) in
             completion()
             if let message = message {
                 SCLAlertView().showError("错误", subTitle: message)
@@ -118,8 +141,8 @@ class UserInfoController: UITableViewController {
         }
     }
     
-    func sendCode(toEmail email: String, captcha: String, completion: @escaping ()->Void) {
-        self.provider.postSendRequest(toEmail: email, captcha: captcha) { (message) in
+    func sendCode(toEmail email: String, completion: @escaping ()->Void) {
+        self.provider.postSendRequest(toEmail: email) { (message) in
             completion()
             if let message = message {
                 SCLAlertView().showError("错误", subTitle: message)
@@ -154,6 +177,8 @@ class UserInfoController: UITableViewController {
         
     override func viewDidLoad() {
         self.tableView.allowsSelection = false
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 100
         recaptcha?.configureWebView { [weak self] webview in
             webview.frame = CGRect(x: 0, y: 40, width: self?.view.bounds.width ?? 0, height: self?.view.bounds.height ?? 0)
         }
@@ -173,6 +198,10 @@ class UserInfoController: UITableViewController {
                 let avatar = tableView.dequeueReusableCell(withIdentifier: "avatarCell", for: indexPath) as! AvatarCell
                 avatar.avatar?.sd_setImage(with: provider.current!.avatar, completed: nil)
                 avatar.username?.text = provider.current!.username
+                avatar.avatar?.isUserInteractionEnabled = true
+                avatar.avatar?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeAvatar(_:))))
+                avatar.username?.isUserInteractionEnabled = true
+                avatar.username?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeUsername)))
                 return avatar
             case 1:
                 cell.textLabel?.text = "ID"
@@ -233,7 +262,7 @@ class UserInfoController: UITableViewController {
         if provider.current == nil {
             return 0
         } else {
-            return 3
+            return 2
         }
         
     }

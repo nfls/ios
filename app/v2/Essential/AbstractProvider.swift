@@ -34,8 +34,8 @@ class AbstractProvider<T:TargetType> {
             case let .success(response):
                 if response.statusCode == 400 {
                     if target.baseURL.absoluteString.hasPrefix("https://nfls.io") {
-                        MainOAuth2().oauth2.forgetTokens()
-                        self.notifier.showInfo("权限错误，请尝试重新登录。")
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationType.logout.rawValue), object: nil)
+                        self.notifier.showInfo("请重新登录。")
                     } 
                 } else {
                     if let json = JSON(response.data).dictionaryObject {

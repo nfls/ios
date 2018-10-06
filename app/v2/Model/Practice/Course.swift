@@ -22,6 +22,11 @@ class Course: Model {
     let remark: String
     let type: CourseType
     
+    var fullname: String {
+        get {
+            return self.name + " (" + self.remark + ")"
+        }
+    }
     enum CourseType: Int, Codable {
         case igcse = 1
         case alevel = 2

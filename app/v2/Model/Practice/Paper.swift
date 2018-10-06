@@ -23,4 +23,16 @@ class Paper: Model {
     let session: String
     let timezone: Int
     let course: Course
+    
+    var name: String {
+        get {
+            return self.session + " " + String(self.paper) + String(self.timezone)
+        }
+    }
+    
+    var fullname: String {
+        get {
+            return self.course.fullname + " " + self.name
+        }
+    }
 }

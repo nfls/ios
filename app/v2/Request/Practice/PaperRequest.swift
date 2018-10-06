@@ -22,7 +22,7 @@ extension PaperRequest: TargetType {
     }
     
     var path: String {
-        return String(describing: self)
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
     
     var method: Moya.Method {
@@ -36,7 +36,7 @@ extension PaperRequest: TargetType {
     var task: Task {
         switch self {
         case .detail(let id), .list(let id) :
-            return .requestParameters(parameters: ["id": id], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["id": id.uuidString], encoding: URLEncoding.default)
         case .recent():
             return .requestPlain
         }

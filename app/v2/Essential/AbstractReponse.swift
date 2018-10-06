@@ -36,6 +36,15 @@ class AbstractList<T: BaseMappable>: ImmutableMappable {
     let data:[T]
 }
 
+class ListWithCount<T: BaseMappable>: ImmutableMappable {
+    required init(map: Map) throws {
+        self.result = try map.value("result")
+        self.count = try map.value("count")
+    }
+    let count: Int
+    let result: [T]
+}
+
 class ListWrapper<T: ImmutableMappable>: ImmutableMappable {
     required init(map: Map) throws {
         self.list = try map.value("data")

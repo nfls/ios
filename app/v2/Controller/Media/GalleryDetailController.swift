@@ -10,9 +10,15 @@ import Foundation
 import SDWebImage
 import Alamofire
 import QuickLook
+import IGListKit
+import AVFoundation
 
 class PhotoCell: UITableViewCell {
-    @IBOutlet weak var photo: UIImageView?
+    @IBOutlet weak var photo: UIImageView!
+    public func setImage(_ image: UIImage) {
+        photo?.image = image
+        photo?.frame = AVMakeRect(aspectRatio: image.size, insideRect: photo.frame)
+    }
 }
 
 class GalleryDetailController: UITableViewController {
@@ -40,7 +46,12 @@ class GalleryDetailController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PhotoCell
-        cell.photo?.sd_setImage(with: current[indexPath.row].hdUrl, completed: nil)
+        SDWebImageManager.shared().loadImage(with: current[indexPath.row].hdUrl, options: SDWebImageOptions.highPriority, progress: nil) { (image, _, _, _, _, _) in
+            DispatchQueue.main.async {
+                cell.setImage(image!)
+
+            }
+        }
         return cell
     }
 }

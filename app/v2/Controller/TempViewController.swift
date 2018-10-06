@@ -12,13 +12,19 @@ import SCLAlertView
 import MarkdownView
 import QuartzCore
 import UserNotifications
+import SwiftyUserDefaults
+import OneTimePassword
+import Base32
 
 class TempViewController:AbstractViewController {
     
     let provider = DeviceProvider()
     let userProvider = UserProvider()
+    let cardProvider = CardProvider()
+    var token: Token? = nil
     
     @IBOutlet weak var mdView: MarkdownView!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         mdView.load(markdown: self.provider.announcement)
@@ -39,6 +45,14 @@ class TempViewController:AbstractViewController {
                     updateDialog.showNotice("检测到更新", subTitle: "请尽快完成更新，享受更多新特性。", closeButtonTitle: "我懒")
                 }
             }
+        }
+        self.cardProvider.getCard { (code) in
+            if let code = code {
+                self.token = self.getToken(code)
+            } else {
+                self.token = nil
+            }
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: self.periodUpdate(_:))
         }
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().getNotificationSettings { (setting) in
@@ -94,18 +108,7 @@ class TempViewController:AbstractViewController {
     @objc func logout() {
         let alert = SCLAlertView()
         alert.addButton("确认") {
-            self.oauth2.oauth2.forgetTokens()
-            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-            let fileManager = FileManager.default
-            let myDocuments = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-            guard let filePaths = try? fileManager.contentsOfDirectory(at: myDocuments, includingPropertiesForKeys: nil, options: []) else {
-                self.navigationController?.popViewController(animated: true)
-                return
-            }
-            for filePath in filePaths {
-                try? fileManager.removeItem(at: filePath)
-            }
-            self.navigationController?.popViewController(animated: true)
+            NotificationCenter.default.post(name: NSNotification.Name(NotificationType.logout.rawValue), object: nil)
         }
         alert.showInfo("退出", subTitle: "您确认要退出吗？", closeButtonTitle: "取消")
     }
@@ -113,6 +116,33 @@ class TempViewController:AbstractViewController {
     @objc func realname() {
         let controller = SFSafariViewController(url: URL(string: "https://nfls.io/")!)
         self.present(controller, animated: true)
+    }
+    
+    private func periodUpdate(_ timer: Timer) {
+        let now = Date()
+        if (now > now.dateAt(hours: 11, minutes: 20) && now < now.dateAt(hours: 12, minutes: 40)) {
+            if let token = self.token {
+                let text = String(Defaults[.id]) + " " + token.currentPassword!
+                let data = text.data(using: .ascii)
+                let filter = CIFilter(name: "CICode128BarcodeGenerator")
+                filter?.setValue(data, forKey: "inputMessage")
+                self.imageView.image = UIImage(ciImage: (filter?.outputImage)!)
+                return
+            }
+        }
+        self.imageView.isHidden = true
+    }
+    
+    private func getToken(_ code: String) -> Token {
+        
+        guard let secretData = MF_Base32Codec.data(fromBase32String: code), !secretData.isEmpty else {
+            fatalError("Invalid secret")
+        }
+        
+        let generator = Generator(factor: .timer(period: 15), secret: secretData, algorithm: .sha1, digits: 8)
+        
+        let token = Token(name: "", issuer: "", generator: generator!)
+        return token
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

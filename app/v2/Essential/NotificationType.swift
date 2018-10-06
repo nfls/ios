@@ -11,4 +11,5 @@ import Foundation
 enum NotificationType: String {
     case notAuthorized = "NotAuthorized"
     case notBind = "NotBind"
+    case logout = "logout"
 }

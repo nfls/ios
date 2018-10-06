@@ -38,4 +38,14 @@ struct User: Model {
     let email: String?
     let joinTime: Date?
     let unreadCount: Int?
+    
+    struct Privacy: Model {
+        init(map: Map) throws {
+            self.antiSpider = try map.value("antiSpider")
+            self.privacy = try map.value("privacy")
+        }
+        
+        let antiSpider: Bool
+        let privacy: Int
+    }
 }

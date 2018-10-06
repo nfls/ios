@@ -4,13 +4,18 @@ PODS:
     - Alamofire (~> 4.7)
   - AliyunOSSiOS (2.10.7)
   - Base32 (1.1.2)
-  - Cache (5.1.0)
+  - Cache (5.2.0)
   - DeviceKit (1.8.1)
   - EFQRCode (4.3.0)
   - Eureka (4.3.0)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FileKit (5.2.0)
+  - IGListKit (3.4.0):
+    - IGListKit/Default (= 3.4.0)
+  - IGListKit/Default (3.4.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.4.0)
   - IQKeyboardManagerSwift (6.1.1)
   - libwebp (0.6.1):
     - libwebp/core (= 0.6.1)
@@ -46,9 +51,10 @@ PODS:
   - OneTimePassword (3.1.4):
     - Base32 (~> 1.1.2)
   - p2.OAuth2 (4.0.1)
-  - ReCaptcha (1.3.1):
-    - ReCaptcha/Core (= 1.3.1)
-  - ReCaptcha/Core (1.3.1)
+  - PryntTrimmerView (3.0.0)
+  - ReCaptcha (1.4):
+    - ReCaptcha/Core (= 1.4)
+  - ReCaptcha/Core (1.4)
   - Result (3.2.4)
   - SCLAlertView (0.8)
   - SDWebImage (4.4.2):
@@ -60,18 +66,22 @@ PODS:
   - Sentry (4.1.0):
     - Sentry/Core (= 4.1.0)
   - Sentry/Core (4.1.0)
+  - SteviaLayout (4.4.0)
   - SVProgressHUD (2.2.5)
   - SwiftDate (5.0.9)
   - SwiftIconFont (2.8.0)
   - SwiftMessages (6.0.0):
     - SwiftMessages/App (= 6.0.0)
   - SwiftMessages/App (6.0.0)
-  - SwiftyJSON (4.1.0)
+  - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (3.0.1)
   - Timepiece (1.3.1)
   - Toucan (1.0.0)
   - UICKeyChainStore (2.1.1)
   - UMengAnalytics-NO-IDFA (4.2.5)
+  - YPImagePicker (3.5.1):
+    - PryntTrimmerView (~> 3.0.0)
+    - SteviaLayout (~> 4.4.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -83,6 +93,7 @@ DEPENDENCIES:
   - Eureka
   - FCUUID
   - FileKit
+  - IGListKit
   - IQKeyboardManagerSwift
   - MarkdownView
   - Moya
@@ -103,6 +114,7 @@ DEPENDENCIES:
   - Timepiece
   - Toucan
   - UMengAnalytics-NO-IDFA
+  - YPImagePicker
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/cocoapods/specs.git:
@@ -116,6 +128,7 @@ SPEC REPOS:
     - Eureka
     - FCUUID
     - FileKit
+    - IGListKit
     - IQKeyboardManagerSwift
     - libwebp
     - MarkdownView
@@ -123,11 +136,13 @@ SPEC REPOS:
     - ObjectMapper
     - OneTimePassword
     - p2.OAuth2
+    - PryntTrimmerView
     - ReCaptcha
     - Result
     - SCLAlertView
     - SDWebImage
     - Sentry
+    - SteviaLayout
     - SVProgressHUD
     - SwiftDate
     - SwiftIconFont
@@ -138,18 +153,20 @@ SPEC REPOS:
     - Toucan
     - UICKeyChainStore
     - UMengAnalytics-NO-IDFA
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireNetworkActivityIndicator: 18346ff6d770d9513d0ac6f2d99706f40f93dbaa
   AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
-  Cache: 7737c595aae7d94c7c0feca2c887288624e3b07e
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   DeviceKit: eb29be542f5473b46b1c719011cf7de3ec5264ca
   EFQRCode: 51b67bd10952da9ef619ae0a396abb746b94263f
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
+  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   MarkdownView: 6cee6c558eed4a012005405066071ef16a042d17
@@ -157,22 +174,25 @@ SPEC CHECKSUMS:
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   OneTimePassword: 2fcf5d0e393a8e630a6bfeed1b250fb008aad487
   p2.OAuth2: fdc2effef37793a8f775dd4760bc4c1ea906c956
-  ReCaptcha: 8ca3a88b515b00c9b4471ddc6de5d6d3913f83f2
+  PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  ReCaptcha: c7122c19f515d61f48ce372e1ea2497bcba1fd63
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
+  SteviaLayout: dd74d1abd127bbf0ce346ac9430441684fe427d0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 52b718d32ec006861a2be2756cbfa482d438e781
   SwiftIconFont: ddaccaa3bb90fc21ebc528cfdf793342618a5cc2
   SwiftMessages: da7c981256a65b3e58022d9027a36584cf4eccf5
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+  YPImagePicker: 63571f23673d54f743522fdf9d7765ab55e4be60
 
-PODFILE CHECKSUM: de3ce44ee9653e7a449ca1c3e93904350b19ad2e
+PODFILE CHECKSUM: d7c0af63c5f1fafa5c1bb4d84265e7cfbce13772
 
 COCOAPODS: 1.5.2
