@@ -5,7 +5,7 @@ PODS:
   - AliyunOSSiOS (2.10.7)
   - Base32 (1.1.2)
   - Cache (5.2.0)
-  - DeviceKit (1.8.1)
+  - DeviceKit (1.9.0)
   - EFQRCode (4.3.0)
   - Eureka (4.3.0)
   - FCUUID (1.3.1):
@@ -16,7 +16,7 @@ PODS:
   - IGListKit/Default (3.4.0):
     - IGListKit/Diffing
   - IGListKit/Diffing (3.4.0)
-  - IQKeyboardManagerSwift (6.1.1)
+  - IQKeyboardManagerSwift (6.2.0)
   - libwebp (0.6.1):
     - libwebp/core (= 0.6.1)
     - libwebp/dec (= 0.6.1)
@@ -68,18 +68,19 @@ PODS:
   - Sentry/Core (4.1.0)
   - SteviaLayout (4.4.0)
   - SVProgressHUD (2.2.5)
-  - SwiftDate (5.0.9)
+  - SwiftDate (5.0.10)
   - SwiftIconFont (2.8.0)
   - SwiftMessages (6.0.0):
     - SwiftMessages/App (= 6.0.0)
   - SwiftMessages/App (6.0.0)
   - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (3.0.1)
+  - TesseractOCRiOS (4.0.0)
   - Timepiece (1.3.1)
   - Toucan (1.0.0)
-  - UICKeyChainStore (2.1.1)
+  - UICKeyChainStore (2.1.2)
   - UMengAnalytics-NO-IDFA (4.2.5)
-  - YPImagePicker (3.5.1):
+  - YPImagePicker (3.5.2):
     - PryntTrimmerView (~> 3.0.0)
     - SteviaLayout (~> 4.4.0)
 
@@ -111,6 +112,7 @@ DEPENDENCIES:
   - SwiftMessages
   - SwiftyJSON
   - SwiftyUserDefaults
+  - TesseractOCRiOS
   - Timepiece
   - Toucan
   - UMengAnalytics-NO-IDFA
@@ -149,6 +151,7 @@ SPEC REPOS:
     - SwiftMessages
     - SwiftyJSON
     - SwiftyUserDefaults
+    - TesseractOCRiOS
     - Timepiece
     - Toucan
     - UICKeyChainStore
@@ -161,13 +164,13 @@ SPEC CHECKSUMS:
   AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
   Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
-  DeviceKit: eb29be542f5473b46b1c719011cf7de3ec5264ca
+  DeviceKit: a376cb3d0dda0c27c81dcc0d2b7b8600b6802065
   EFQRCode: 51b67bd10952da9ef619ae0a396abb746b94263f
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FileKit: 10bfd8a3023a0b09f24c9f49546cbbddf43fd464
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
-  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   MarkdownView: 6cee6c558eed4a012005405066071ef16a042d17
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -182,17 +185,18 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   SteviaLayout: dd74d1abd127bbf0ce346ac9430441684fe427d0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftDate: 52b718d32ec006861a2be2756cbfa482d438e781
+  SwiftDate: fcdaa7ca22a903faf6d7ed231239a88d174dcae3
   SwiftIconFont: ddaccaa3bb90fc21ebc528cfdf793342618a5cc2
   SwiftMessages: da7c981256a65b3e58022d9027a36584cf4eccf5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
   Toucan: 61867fb10948c02e9804280a95eb183e98eac97a
-  UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
+  UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
-  YPImagePicker: 63571f23673d54f743522fdf9d7765ab55e4be60
+  YPImagePicker: 26d5bf7bfe1cffd1c5eedea3ac60422b314e2a42
 
-PODFILE CHECKSUM: d7c0af63c5f1fafa5c1bb4d84265e7cfbce13772
+PODFILE CHECKSUM: 42586b498e856d594fda3a1c084d8079669f13ca
 
 COCOAPODS: 1.5.2

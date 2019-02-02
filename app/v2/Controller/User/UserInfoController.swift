@@ -258,6 +258,19 @@ class UserInfoController: UITableViewController {
         }
         return UITableViewCell()
     }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 1 {
+            let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as! String
+            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+            let code = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+            let jp = Bundle.main.infoDictionary?["CodeNameJP"] as! String
+            let en = Bundle.main.infoDictionary?["CodeNameEN"] as! String
+            return  "\(name) \(version)(\(code)), \(jp)(\(en)), © 2017-2018 胡清阳 "
+        } else {
+            return nil
+        }
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         if provider.current == nil {
             return 0

@@ -29,7 +29,7 @@ class ResourcesViewController:UITableViewController {
     
     let provider = ResourceProvider()
     
-    var files = [File(specialAction: "none", withName: "加载中，大概需要1分钟。"), File(specialAction: "none", withName: "如果长期卡住，请检查实名认证是否完成"),File(specialAction: "none", withName: "以及邮箱和手机是否完成绑定！")]
+    var files = [File(specialAction: "none", withName: "加载中，大概需要1分钟。")]
     
     var swipe = UIScreenEdgePanGestureRecognizer()
     

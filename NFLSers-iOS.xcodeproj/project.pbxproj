@@ -93,6 +93,8 @@
 		65F255BD21622C35004CE4DD /* PaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F255BC21622C35004CE4DD /* PaperView.swift */; };
 		65F255BF21622E6A004CE4DD /* ProblemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F255BE21622E6A004CE4DD /* ProblemProvider.swift */; };
 		65F255C121625A68004CE4DD /* ProblemListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F255C021625A68004CE4DD /* ProblemListController.swift */; };
+		65F60BB1217494E000B3C0C2 /* SearchWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F60BB0217494E000B3C0C2 /* SearchWebviewController.swift */; };
+		65F60BB321760D6300B3C0C2 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 65F60BB221760D6300B3C0C2 /* tessdata */; };
 		65FDA9F5206FF91A001F4AE9 /* DeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */; };
 		974A27702225B29A9C47EC17 /* Pods_NFLSers_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDC7CB56AB30DBC06422C04 /* Pods_NFLSers_iOS.framework */; };
 		D6AE17421E44D51600E66B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AE17411E44D51600E66B4B /* AppDelegate.swift */; };
@@ -213,6 +215,8 @@
 		65F255BC21622C35004CE4DD /* PaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperView.swift; sourceTree = "<group>"; };
 		65F255BE21622E6A004CE4DD /* ProblemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemProvider.swift; sourceTree = "<group>"; };
 		65F255C021625A68004CE4DD /* ProblemListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListController.swift; sourceTree = "<group>"; };
+		65F60BB0217494E000B3C0C2 /* SearchWebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWebviewController.swift; sourceTree = "<group>"; };
+		65F60BB221760D6300B3C0C2 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		65FDA9F4206FF91A001F4AE9 /* DeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
 		86F111C8F7AD1E475324AD0E /* Pods-NFLSers-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B28B96534FB8A60362B227B6 /* Pods-NFLSers-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFLSers-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -533,9 +537,9 @@
 		65B97F602157DB9D00CB4EF8 /* Practice */ = {
 			isa = PBXGroup;
 			children = (
-				65B97F622157DF6F00CB4EF8 /* ProblemSearchController.swift */,
 				65F2557C21611502004CE4DD /* PaperSearchController.swift */,
 				65F255C021625A68004CE4DD /* ProblemListController.swift */,
+				65B97F622157DF6F00CB4EF8 /* ProblemSearchController.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -552,6 +556,7 @@
 			children = (
 				65D3A75F2010275A00582257 /* ResourceViewController.swift */,
 				659762B020D3B7FD002798F2 /* QRCodeViewController.swift */,
+				65F60BB0217494E000B3C0C2 /* SearchWebviewController.swift */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 		D6AE17401E44D51600E66B4B /* app */ = {
 			isa = PBXGroup;
 			children = (
+				65F60BB221760D6300B3C0C2 /* tessdata */,
 				D6AE17411E44D51600E66B4B /* AppDelegate.swift */,
 				65108DBA20101D9100A5267E /* v2 */,
 				D6AE174D1E44D51600E66B4B /* Info.plist */,
@@ -719,6 +725,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65F255BB21622C13004CE4DD /* PaperView.xib in Resources */,
+				65F60BB321760D6300B3C0C2 /* tessdata in Resources */,
 				656F3052207204E1009B8D69 /* Launch Screen.storyboard in Resources */,
 				651ED7942076415A009A9ED1 /* Images.xcassets in Resources */,
 				6551E4902013A66300B81E45 /* Info.plist in Resources */,
@@ -767,6 +774,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/Timepiece/Timepiece.framework",
 				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
 				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
@@ -805,6 +813,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Timepiece.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
@@ -919,6 +928,7 @@
 				6541A8D121553290004E0957 /* NavigationController.swift in Sources */,
 				650C386A204997EE00A5B192 /* Notice.swift in Sources */,
 				6542EF972121540700F9D126 /* Game.swift in Sources */,
+				65F60BB1217494E000B3C0C2 /* SearchWebviewController.swift in Sources */,
 				655D1732213D284E00A307F4 /* VoteSubmitController.swift in Sources */,
 				65B9F58D213E783000A1F3DF /* Ticket.swift in Sources */,
 				6542EFAC21267F4A00F9D126 /* VoteRequest.swift in Sources */,
@@ -1122,6 +1132,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = K2P3533G4D;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
@@ -1138,11 +1149,95 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Unity/Libraries",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-weak_library",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireNetworkActivityIndicator\"",
+					"-framework",
+					"\"AliyunOSSiOS\"",
+					"-framework",
+					"\"Base32\"",
+					"-framework",
+					"\"Cache\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"DeviceKit\"",
+					"-framework",
+					"\"EFQRCode\"",
+					"-framework",
+					"\"Eureka\"",
+					"-framework",
+					"\"FCUUID\"",
+					"-framework",
+					"\"FileKit\"",
+					"-framework",
+					"\"IGListKit\"",
+					"-framework",
+					"\"IQKeyboardManagerSwift\"",
+					"-framework",
+					"\"MarkdownView\"",
+					"-framework",
+					"\"Moya\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"OneTimePassword\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"ReCaptcha\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"SCLAlertView\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"Sentry\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftIconFont\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SwiftyUserDefaults\"",
+					"-framework",
+					"\"TesseractOCR\"",
+					"-framework",
+					"\"Timepiece\"",
+					"-framework",
+					"\"Toucan\"",
+					"-framework",
+					"\"UICKeyChainStore\"",
+					"-framework",
+					"\"UMMobClick\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"libwebp\"",
+					"-framework",
+					"\"p2_OAuth2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1170,6 +1265,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = K2P3533G4D;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
@@ -1186,11 +1282,95 @@
 				);
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = app/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Unity/Libraries",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-weak_library",
+					"-l\"sqlite3\"",
+					"-l\"stdc++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireNetworkActivityIndicator\"",
+					"-framework",
+					"\"AliyunOSSiOS\"",
+					"-framework",
+					"\"Base32\"",
+					"-framework",
+					"\"Cache\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"DeviceKit\"",
+					"-framework",
+					"\"EFQRCode\"",
+					"-framework",
+					"\"Eureka\"",
+					"-framework",
+					"\"FCUUID\"",
+					"-framework",
+					"\"FileKit\"",
+					"-framework",
+					"\"IGListKit\"",
+					"-framework",
+					"\"IQKeyboardManagerSwift\"",
+					"-framework",
+					"\"MarkdownView\"",
+					"-framework",
+					"\"Moya\"",
+					"-framework",
+					"\"ObjectMapper\"",
+					"-framework",
+					"\"OneTimePassword\"",
+					"-framework",
+					"\"PryntTrimmerView\"",
+					"-framework",
+					"\"ReCaptcha\"",
+					"-framework",
+					"\"Result\"",
+					"-framework",
+					"\"SCLAlertView\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"Sentry\"",
+					"-framework",
+					"\"Stevia\"",
+					"-framework",
+					"\"SwiftDate\"",
+					"-framework",
+					"\"SwiftIconFont\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SwiftyUserDefaults\"",
+					"-framework",
+					"\"TesseractOCR\"",
+					"-framework",
+					"\"Timepiece\"",
+					"-framework",
+					"\"Toucan\"",
+					"-framework",
+					"\"UICKeyChainStore\"",
+					"-framework",
+					"\"UMMobClick\"",
+					"-framework",
+					"\"YPImagePicker\"",
+					"-framework",
+					"\"libwebp\"",
+					"-framework",
+					"\"p2_OAuth2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";

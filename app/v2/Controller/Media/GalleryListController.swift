@@ -11,13 +11,14 @@ import SDWebImage
 import AVFoundation
 
 class AlbumCell: UITableViewCell {
-    @IBOutlet weak var cover: UIImageView!
+    @IBOutlet weak var cover: ScaledHeightImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     
     final func setImage(image: UIImage) {
         cover?.image = image
         cover?.frame = AVMakeRect(aspectRatio: image.size, insideRect: cover.frame)
+        self.layoutIfNeeded()
     }
 }
 

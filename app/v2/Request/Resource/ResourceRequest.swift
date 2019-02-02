@@ -17,7 +17,7 @@ enum ResourceRequest {
 
 extension ResourceRequest: TargetType {
     var baseURL: URL {
-        return WaterConstant.apiEndpoint.appendingPathComponent("resource")
+        return URL(string: "https://dl.nfls.io")!
     }
     
     var path: String {

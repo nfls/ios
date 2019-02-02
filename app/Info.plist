@@ -21,13 +21,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.20</string>
+	<string>1.2.21</string>
 	<key>CFBundleVersion</key>
-	<string>1120</string>
-	<key>CodeNameCN</key>
-	<string>決別</string>
+	<string>1331</string>
 	<key>CodeNameEN</key>
-	<string>Farewell</string>
+	<string>Tappi-Kaitei</string>
+	<key>CodeNameJP</key>
+	<string>たっぴていてん</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>

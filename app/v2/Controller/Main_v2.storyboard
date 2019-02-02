@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GuO-ug-mbw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LdN-on-BeE">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -103,7 +103,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5A-5m-z5P">
                                             <rect key="frame" x="10" y="10" width="394" height="579.66666666666663"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tKH-yF-do9">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tKH-yF-do9" customClass="ScaledHeightImageView" customModule="NFLSers_iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="394" height="221.66666666666666"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="tKH-yF-do9" secondAttribute="height" multiplier="16:9" id="7MT-6j-o7r"/>
@@ -122,6 +122,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tKH-yF-do9" firstAttribute="width" secondItem="Z5A-5m-z5P" secondAttribute="width" id="teS-nG-cyh"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -336,13 +339,13 @@
         <scene sceneID="6cH-oH-ED6">
             <objects>
                 <tableViewController id="Dsa-RU-GUY" customClass="UserInfoController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="50i-i3-Xfm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="50i-i3-Xfm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" textLabel="pm7-0B-CGX" detailTextLabel="NaV-Pr-xZw" style="IBUITableViewCellStyleValue1" id="0Te-sS-fXh">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Te-sS-fXh" id="ni8-8E-RQD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -366,7 +369,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="typeCell" id="Hit-SZ-Uug" customClass="TypeCell" customModule="NFLSers_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hit-SZ-Uug" id="xQ3-9I-dYC">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -408,7 +411,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="avatarCell" rowHeight="163" id="Bd9-aQ-aOp" customClass="AvatarCell" customModule="NFLSers_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="116" width="414" height="163"/>
+                                <rect key="frame" x="0.0" y="143.33333333333334" width="414" height="163.00000000000003"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bd9-aQ-aOp" id="VDh-gn-Ssv">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="162.66666666666666"/>
@@ -463,7 +466,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="privacyCell" rowHeight="223" id="zFj-VP-g8b" customClass="PrivacyCell" customModule="NFLSers_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="279" width="414" height="223"/>
+                                <rect key="frame" x="0.0" y="306.33333333333337" width="414" height="223"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zFj-VP-g8b" id="pJt-Im-s9O">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="222.66666666666666"/>
@@ -552,40 +555,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cHO-FD-fhF">
-                                <rect key="frame" x="181" y="413" width="52" height="70"/>
+                                <rect key="frame" x="41.333333333333343" y="413" width="331.33333333333326" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwC-Mt-By2">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="30"/>
-                                        <state key="normal" title="搜题📝"/>
-                                        <connections>
-                                            <segue destination="heI-ux-Ax7" kind="show" id="xKy-4o-b5N"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1DS-QR-LCC">
+                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="30"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LzZ-b0-7cm">
+                                                <rect key="frame" x="0.0" y="0.0" width="259.33333333333331" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwC-Mt-By2">
+                                                <rect key="frame" x="279.33333333333337" y="0.0" width="52" height="30"/>
+                                                <state key="normal" title="搜题📝"/>
+                                                <connections>
+                                                    <segue destination="qdm-cn-i8z" kind="show" identifier="search" id="oMj-g1-2XR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbk-0j-feJ">
-                                        <rect key="frame" x="0.0" y="40" width="52" height="30"/>
+                                        <rect key="frame" x="0.0" y="40" width="331.33333333333331" height="30"/>
                                         <state key="normal" title="资源📒"/>
-                                        <connections>
-                                            <segue destination="gLD-4C-ogZ" kind="show" id="W2Z-0b-hfh"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wyV-60-qPL" customClass="PaperView" customModule="NFLSers_iOS" customModuleProvider="target">
-                                <rect key="frame" x="87" y="157" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cHO-FD-fhF" firstAttribute="centerY" secondItem="ChJ-3T-07U" secondAttribute="centerY" id="Emr-Gp-5n7"/>
+                            <constraint firstItem="cHO-FD-fhF" firstAttribute="width" secondItem="ChJ-3T-07U" secondAttribute="width" multiplier="0.8" id="G96-Ne-pon"/>
                             <constraint firstItem="cHO-FD-fhF" firstAttribute="centerX" secondItem="ChJ-3T-07U" secondAttribute="centerX" id="wSn-SQ-3q2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0O3-t4-zxj"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="国高" id="eov-DX-w9Z"/>
                     <connections>
-                        <outlet property="paperView" destination="wyV-60-qPL" id="0Mz-mz-esJ"/>
+                        <outlet property="searchStack" destination="1DS-QR-LCC" id="0Xb-ID-4Se"/>
+                        <outlet property="textField" destination="LzZ-b0-7cm" id="9nQ-9I-kxN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8E-Ve-XCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -616,13 +624,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="464" id="CPx-8W-MPS">
-                                <rect key="frame" x="0.0" y="28" width="414" height="464"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="problemCell" rowHeight="318" id="CPx-8W-MPS" customClass="ProblemCell" customModule="NFLSers_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="318"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CPx-8W-MPS" id="1Of-Kc-9yL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="463.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="317.66666666666669"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uof-3h-jQ0" customClass="ScaledHeightImageView" customModule="NFLSers_iOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="317.66666666666669"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Uof-3h-jQ0" firstAttribute="leading" secondItem="1Of-Kc-9yL" secondAttribute="leading" id="2lC-DC-iEi"/>
+                                        <constraint firstAttribute="bottom" secondItem="Uof-3h-jQ0" secondAttribute="bottom" id="dWG-kp-xY2"/>
+                                        <constraint firstAttribute="trailing" secondItem="Uof-3h-jQ0" secondAttribute="trailing" id="hrW-Qx-PkX"/>
+                                        <constraint firstItem="Uof-3h-jQ0" firstAttribute="top" secondItem="1Of-Kc-9yL" secondAttribute="top" id="sTs-FL-QOu"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="question" destination="Uof-3h-jQ0" id="mJt-aN-ged"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -633,7 +655,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTK-hH-vOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="-834"/>
+            <point key="canvasLocation" x="386.95652173913044" y="-834.375"/>
         </scene>
         <!--资源-->
         <scene sceneID="NoM-rO-w37">
@@ -658,14 +680,43 @@
                             <outlet property="delegate" destination="gLD-4C-ogZ" id="dtl-pz-mY4"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="资源" id="f7z-PG-wJm"/>
+                    <navigationItem key="navigationItem" id="G5C-3I-QdG"/>
                     <connections>
                         <segue destination="ak6-wv-VQK" kind="show" identifier="showAnnouncement" id="VyH-MX-lLj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jht-UW-d6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="-507"/>
+            <point key="canvasLocation" x="2395.6521739130435" y="-507.58928571428567"/>
+        </scene>
+        <!--搜题-->
+        <scene sceneID="2LQ-La-Ksf">
+            <objects>
+                <viewController title="搜题" id="qdm-cn-i8z" customClass="SearchWebviewController" customModule="NFLSers_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I3k-At-9bP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YxZ-3b-h0U">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2u4-Fk-9xI" firstAttribute="trailing" secondItem="YxZ-3b-h0U" secondAttribute="trailing" id="EVh-ad-8BQ"/>
+                            <constraint firstItem="YxZ-3b-h0U" firstAttribute="top" secondItem="2u4-Fk-9xI" secondAttribute="top" id="Iu4-nG-bz9"/>
+                            <constraint firstItem="2u4-Fk-9xI" firstAttribute="bottom" secondItem="YxZ-3b-h0U" secondAttribute="bottom" id="aAZ-DX-D9s"/>
+                            <constraint firstItem="YxZ-3b-h0U" firstAttribute="leading" secondItem="2u4-Fk-9xI" secondAttribute="leading" id="mUo-l2-tiH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2u4-Fk-9xI"/>
+                    </view>
+                    <connections>
+                        <outlet property="stackview" destination="YxZ-3b-h0U" id="sYX-mb-ccS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQJ-5a-Coz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1486" y="-1206"/>
         </scene>
         <!--公告-->
         <scene sceneID="BzV-c0-LRe">
@@ -680,7 +731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-E3-Gjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2543" y="-508"/>
+            <point key="canvasLocation" x="3452.1739130434785" y="-508.25892857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="330-vB-2TS">
@@ -700,6 +751,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZR-1A-Avu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2868" y="-129"/>
+        </scene>
+        <!--资源-->
+        <scene sceneID="sjA-ma-BGE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LdN-on-BeE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="资源" id="f7z-PG-wJm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="teJ-Hk-L9x">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gLD-4C-ogZ" kind="relationship" relationship="rootViewController" id="3he-Ky-kc0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I34-Jn-T49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485.5072463768117" y="-507.58928571428567"/>
         </scene>
     </scenes>
 </document>

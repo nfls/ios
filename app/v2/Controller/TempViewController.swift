@@ -27,7 +27,13 @@ class TempViewController:AbstractViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
+        self.imageView.isHidden = true
         mdView.load(markdown: self.provider.announcement)
+        mdView.onTouchLink = { url in
+            let controller = SFSafariViewController(url: url.url!)
+            self.present(controller, animated: true, completion: nil)
+            return false
+        }
         self.provider.getAnnouncement(completion: {
             self.mdView.load(markdown: self.provider.announcement)
         })
@@ -73,10 +79,14 @@ class TempViewController:AbstractViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController!.navigationItem.hidesBackButton = true
         self.tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "更多", style: .plain, target: self, action: #selector(menu))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController!.navigationItem.rightBarButtonItem = nil
     }
     
     
@@ -127,6 +137,7 @@ class TempViewController:AbstractViewController {
                 let filter = CIFilter(name: "CICode128BarcodeGenerator")
                 filter?.setValue(data, forKey: "inputMessage")
                 self.imageView.image = UIImage(ciImage: (filter?.outputImage)!)
+                self.imageView.isHidden = false
                 return
             }
         }
@@ -139,7 +150,7 @@ class TempViewController:AbstractViewController {
             fatalError("Invalid secret")
         }
         
-        let generator = Generator(factor: .timer(period: 15), secret: secretData, algorithm: .sha1, digits: 8)
+        let generator = Generator(factor: .timer(period: 180), secret: secretData, algorithm: .sha1, digits: 8)
         
         let token = Token(name: "", issuer: "", generator: generator!)
         return token
