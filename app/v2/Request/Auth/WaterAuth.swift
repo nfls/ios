@@ -18,6 +18,7 @@ class WaterAuth {
     ]
     
     func login(_ completion: @escaping (_ success: Bool) -> Void) {
+        /*
         Alamofire.request(WaterConstant.apiEndpoint.appendingPathComponent("user/login"), headers: self.headers).responseJSON { (response) in
             switch response.result {
             case .success(let value):
@@ -33,6 +34,8 @@ class WaterAuth {
                 completion(false)
             }
         }
+    */
+        completion(true)
     }
     
     func authorize(url: URL, completion: @escaping (_ success: Bool) -> Void) {

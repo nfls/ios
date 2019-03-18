@@ -28,6 +28,7 @@ class TempViewController:AbstractViewController {
     
     override func viewDidLoad() {
         self.imageView.isHidden = true
+        self.imageView.isHidden = true
         mdView.load(markdown: self.provider.announcement)
         mdView.onTouchLink = { url in
             let controller = SFSafariViewController(url: url.url!)
@@ -52,6 +53,7 @@ class TempViewController:AbstractViewController {
                 }
             }
         }
+        /*
         self.cardProvider.getCard { (code) in
             if let code = code {
                 self.token = self.getToken(code)
@@ -60,6 +62,7 @@ class TempViewController:AbstractViewController {
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: self.periodUpdate(_:))
         }
+        */
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().getNotificationSettings { (setting) in
             DispatchQueue.main.async {
@@ -129,6 +132,7 @@ class TempViewController:AbstractViewController {
     }
     
     private func periodUpdate(_ timer: Timer) {
+        /*
         let now = Date()
         if (now > now.dateAt(hours: 11, minutes: 20) && now < now.dateAt(hours: 12, minutes: 40)) {
             if let token = self.token {
@@ -142,6 +146,7 @@ class TempViewController:AbstractViewController {
             }
         }
         self.imageView.isHidden = true
+ */
     }
     
     private func getToken(_ code: String) -> Token {

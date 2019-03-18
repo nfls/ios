@@ -39,13 +39,17 @@ class ResourceProvider: AbstractProvider<ResourceRequest> {
     }
     
     public func getAnnouncement(completion: @escaping () -> Void) {
-        self.request(target: ResourceRequest.announcement(), type: DataWrapper<String>.self, success: { result in
+        self.request(target: ResourceRequest.header(), type: DataWrapper<String>.self, success: { result in
             if self.announcement != result.data.value {
                 self.announcement = result.data.value
                 completion()
             } else {
                 self.announcement = result.data.value
             }
+        }, error: { error in
+            
+        }, failure:  {
+            
         })
     }
     

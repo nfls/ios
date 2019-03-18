@@ -627,7 +627,6 @@
 			buildConfigurationList = D6AE17661E44D51600E66B4B /* Build configuration list for PBXNativeTarget "NFLSers-iOS" */;
 			buildPhases = (
 				E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */,
-				6555DC9220161ED000FA8B13 /* Run Script */,
 				D6AE173A1E44D51600E66B4B /* Sources */,
 				D6AE173B1E44D51600E66B4B /* Frameworks */,
 				D6AE173C1E44D51600E66B4B /* Resources */,
@@ -744,7 +743,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework",
@@ -781,6 +780,7 @@
 				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/swift_qrcodejs/swift_qrcodejs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -820,25 +820,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/swift_qrcodejs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NFLSers-iOS/Pods-NFLSers-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		6555DC9220161ED000FA8B13 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nshortBuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nbuildNumber=$(($buildNumber + 1))\nINFOPLIST_SHAREEXT=\"${SRCROOT}/NotificationService/Info.plist\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $shortBuildNumber\" \"$INFOPLIST_SHAREEXT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_SHAREEXT\"\n";
 		};
 		E5BC3AD96A01BCEAF78DDDCA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1155,90 +1142,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Unity/Libraries",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					"-l\"sqlite3\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireNetworkActivityIndicator\"",
-					"-framework",
-					"\"AliyunOSSiOS\"",
-					"-framework",
-					"\"Base32\"",
-					"-framework",
-					"\"Cache\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"DeviceKit\"",
-					"-framework",
-					"\"EFQRCode\"",
-					"-framework",
-					"\"Eureka\"",
-					"-framework",
-					"\"FCUUID\"",
-					"-framework",
-					"\"FileKit\"",
-					"-framework",
-					"\"IGListKit\"",
-					"-framework",
-					"\"IQKeyboardManagerSwift\"",
-					"-framework",
-					"\"MarkdownView\"",
-					"-framework",
-					"\"Moya\"",
-					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
-					"\"OneTimePassword\"",
-					"-framework",
-					"\"PryntTrimmerView\"",
-					"-framework",
-					"\"ReCaptcha\"",
-					"-framework",
-					"\"Result\"",
-					"-framework",
-					"\"SCLAlertView\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SVProgressHUD\"",
-					"-framework",
-					"\"Sentry\"",
-					"-framework",
-					"\"Stevia\"",
-					"-framework",
-					"\"SwiftDate\"",
-					"-framework",
-					"\"SwiftIconFont\"",
-					"-framework",
-					"\"SwiftMessages\"",
-					"-framework",
-					"\"SwiftyJSON\"",
-					"-framework",
-					"\"SwiftyUserDefaults\"",
-					"-framework",
-					"\"TesseractOCR\"",
-					"-framework",
-					"\"Timepiece\"",
-					"-framework",
-					"\"Toucan\"",
-					"-framework",
-					"\"UICKeyChainStore\"",
-					"-framework",
-					"\"UMMobClick\"",
-					"-framework",
-					"\"YPImagePicker\"",
-					"-framework",
-					"\"libwebp\"",
-					"-framework",
-					"\"p2_OAuth2\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1288,90 +1192,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Unity/Libraries",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					"-l\"sqlite3\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireNetworkActivityIndicator\"",
-					"-framework",
-					"\"AliyunOSSiOS\"",
-					"-framework",
-					"\"Base32\"",
-					"-framework",
-					"\"Cache\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"DeviceKit\"",
-					"-framework",
-					"\"EFQRCode\"",
-					"-framework",
-					"\"Eureka\"",
-					"-framework",
-					"\"FCUUID\"",
-					"-framework",
-					"\"FileKit\"",
-					"-framework",
-					"\"IGListKit\"",
-					"-framework",
-					"\"IQKeyboardManagerSwift\"",
-					"-framework",
-					"\"MarkdownView\"",
-					"-framework",
-					"\"Moya\"",
-					"-framework",
-					"\"ObjectMapper\"",
-					"-framework",
-					"\"OneTimePassword\"",
-					"-framework",
-					"\"PryntTrimmerView\"",
-					"-framework",
-					"\"ReCaptcha\"",
-					"-framework",
-					"\"Result\"",
-					"-framework",
-					"\"SCLAlertView\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SVProgressHUD\"",
-					"-framework",
-					"\"Sentry\"",
-					"-framework",
-					"\"Stevia\"",
-					"-framework",
-					"\"SwiftDate\"",
-					"-framework",
-					"\"SwiftIconFont\"",
-					"-framework",
-					"\"SwiftMessages\"",
-					"-framework",
-					"\"SwiftyJSON\"",
-					"-framework",
-					"\"SwiftyUserDefaults\"",
-					"-framework",
-					"\"TesseractOCR\"",
-					"-framework",
-					"\"Timepiece\"",
-					"-framework",
-					"\"Toucan\"",
-					"-framework",
-					"\"UICKeyChainStore\"",
-					"-framework",
-					"\"UMMobClick\"",
-					"-framework",
-					"\"YPImagePicker\"",
-					"-framework",
-					"\"libwebp\"",
-					"-framework",
-					"\"p2_OAuth2\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.nfls.client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

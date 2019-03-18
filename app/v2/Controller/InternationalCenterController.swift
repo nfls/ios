@@ -20,11 +20,14 @@ class InternationalCenterController: UIViewController, G8TesseractDelegate {
     let problemProvider = ProblemProvider()
     var shouldCancel = false
     override func viewDidAppear(_ animated: Bool)  {
+        self.searchStack.isHidden = true
+        /*
         if !Device().isPad {
-            self.searchStack.isHidden = true
+            
         } else {
             self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(camera))
         }
+        */
     }
     
     override func viewWillDisappear(_ animated: Bool) {

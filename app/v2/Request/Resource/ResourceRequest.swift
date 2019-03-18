@@ -11,13 +11,13 @@ import Moya
 
 enum ResourceRequest {
     case token()
-    case announcement()
-    case shortcut()
+    case header()
+    case shortcuts()
 }
 
 extension ResourceRequest: TargetType {
     var baseURL: URL {
-        return URL(string: "https://dl.nfls.io")!
+        return URL(string: "https://papers.mrtunnel.club")!
     }
     
     var path: String {

@@ -33,12 +33,15 @@ class MainOAuth2 {
         oauth2.authorize { (_, error) in
             if error != nil {
                 completion(false, false)
-            }else{
-                let water = WaterAuth()
+            } else {
                 completion(true, false)
+                /*
+                let water = WaterAuth()
+                
                 water.login({ (status) in
                     //completion(true, status)
                 })
+ */
             }
         }
     }

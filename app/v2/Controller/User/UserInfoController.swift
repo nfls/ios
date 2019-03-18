@@ -266,7 +266,7 @@ class UserInfoController: UITableViewController {
             let code = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
             let jp = Bundle.main.infoDictionary?["CodeNameJP"] as! String
             let en = Bundle.main.infoDictionary?["CodeNameEN"] as! String
-            return  "\(name) \(version)(\(code)), \(jp)(\(en)), © 2017-2018 胡清阳 "
+            return  "\(name) \(version)(\(code)), \(jp)(\(en)), © 2017-2019 胡清阳 "
         } else {
             return nil
         }
